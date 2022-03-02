@@ -233,7 +233,7 @@ export const UpdatedCartInfoAction = (user) => async (dispatch) => {
         dispatch({ type: ActionTypes.ADD_UPDATED_CARTINFO_LOADING })
         const { data } = await axios.put(`/api/cartinfo/updated/${user?._id}`,user)
         dispatch({ type: ActionTypes.ADD_UPDATED_CARTINFO_SUCCESS, payload: data })
-        // dispatch(CartInfoActionResturan(user._id))
+        dispatch(CartInfoActionResturan(user._id))
     } catch (error) {
         dispatch({
             type: ActionTypes.ADD_UPDATED_CARTINFO_FAIL,
