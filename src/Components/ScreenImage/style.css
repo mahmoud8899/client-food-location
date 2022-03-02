@@ -1,0 +1,29 @@
+
+
+
+.Add_open{
+    width: 100%;
+    margin-top: 80px;
+    height: 400px;
+    position: fixed;
+    left: 0px;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    transition: opacity .4s ease, visibility .4s ease, transform .4s easw-in-out;
+    background-color: rgba(0, 0, 0, 0.445);
+    opacity: 0;
+    transform: scale(0);
+    overflow: hidden;
+    z-index: 34534543;
+    visibility: hidden;
+    flex-direction: column;
+}
+
+.Add_open.open{
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+}
+
+

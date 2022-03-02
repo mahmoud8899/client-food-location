@@ -1,0 +1,935 @@
+.Remove-div-all{
+    margin-left: auto;
+    position: relative;
+}
+.className-linkleft{
+    margin-left: 0.5rem;
+}
+.className-link{
+    text-decoration: none;
+}
+.routx-{
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+    background-color: #eee;
+}
+.routx- h1
+{
+    height: 30px;
+    line-height: 19px;
+    font-size: 30px;
+    color: black;
+}
+.class-edit-postion{
+    transition: all 2s;
+    display: none;
+}
+.class-edit-postion.hidden{
+    display: flex;
+    flex-direction:column;
+    padding: 0rem;
+    margin: 0rem;
+    background-color: #eee;
+    border-radius: 0.4rem;
+    position: absolute;
+    top: 2.4rem;
+    left: -3rem;
+    transition: all 2s;
+    border-top-left-radius: 1rem;
+
+}.class-edit-postion span{
+    padding: 0.5rem;
+    text-transform: capitalize;
+    font-size: 14px;
+    transition: all 1s;
+    color: black;
+}.class-edit-postion span:hover{
+    background-color: white;
+}
+.company.bottom-xp{
+ 
+  margin-top: 1rem;
+}
+.Empty-Page{
+    text-align: center
+}
+.visa-image{
+    width: 30px;
+    height: 30px;
+}
+.Edit-updateCart{
+   
+    display: flex;
+  
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    margin-top: 4rem;
+
+}
+
+.first-class-add-remove{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.first-class-add-remove span:nth-of-type(1){
+    margin-left: 0.5rem;
+}
+
+.dddddddd
+{
+    color: #000000bf;
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 0.6rem;
+}
+.text-align-center-h1{
+    margin-top: 5rem;
+    text-align: center;
+    text-transform: capitalize;
+    font-family: "Mochiy Pop P One", sans-serif;
+}
+
+.Edit-updateCart-x{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #eee;
+    color: black;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 2s;
+    position: relative;
+}
+.Edit-updateCart-x:hover{
+    opacity: 1;
+}
+
+.remove-icons{
+
+    width: 100px;
+    background-color: #eee;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    position: absolute;
+    top: 1.5rem;
+    
+    
+}
+.remove-icons.notdisplay{
+    display: none;
+}
+
+.bike-User{
+    width: 30px;
+    height: 30px;
+    object-fit:cover
+}
+.bike-User.add-size{
+    width: 20px;
+    height: 20px;
+}
+.color-family-User
+{    color: black;
+    font-size: 16px;
+    font-family: system-ui;
+    text-transform: capitalize;
+}
+.color-family-User.add-size{
+    font-size: 13px;
+}
+.color-last-items-User.add-size{
+    font-size: 13px;
+}
+.add-padding-number-clos{
+    padding: 1rem;
+    cursor: pointer;
+}
+.CloseImagePhone{
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    border-radius: 50%;
+    background-color: #eee;
+    padding: 3px;
+    display: block;
+}
+.flex-class-center{
+
+
+    margin-top: 3rem;
+
+}
+.Type-Input-class{
+    width: 100%;
+    display: flex;
+    margin-bottom: 2rem;
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+
+}
+
+.Type-Input-class:focus {
+    color: #212529;
+    background-color: white;
+    border-color: #eee;
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem #eee;
+}
+.foodname{
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    object-fit: cover;
+    display: block;
+    margin : 0rem auto
+}
+.plus-image{
+    width: 20px;
+    height: 20px;
+}
+.PAYMENT-FIX{
+    display: flex;
+}
+.className-infoUser{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 4rem;
+    cursor: pointer;
+    transition: all 3s;
+    border-radius: 0.4rem;
+ 
+}
+
+.first-left-box{
+    margin-left: 1rem;
+}
+
+.myprofile h1{
+    font-family: system-ui;
+}
+.buttom-box{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+}
+.buttom-class{
+    width: 45%;
+}
+.name-class  h1{
+    font-family: system-ui;
+    color: black;
+}.name-class  h1:hover{
+    opacity: 1;
+}
+.close-close{
+
+    margin-left: auto;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #eee;
+    text-align: center;
+    line-height: 45px;
+    font-weight: bold;
+    font-size: 40px;
+    font-family: 'Dongle', sans-serif;
+    cursor: pointer;
+    transition: all 0.20s;
+    opacity: 0.6;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+}
+.close-close:hover{
+    opacity: 1;
+}
+.padding-null{
+    margin-top: 3rem;
+}
+.margin-top-class{
+ margin-top:5rem
+}
+.heigth-margin{
+    height: 400px;
+}
+
+.addcardpassword{
+
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+
+}
+.animationRow{
+   transition: all 2s;
+   animation: leftxp 2s 1;
+}
+@keyframes leftxp {
+
+    0%{
+        transform: translate(-100%, 0%);
+    }
+    0%{
+        transform: translate(-100%, 0%);
+    }
+    100%{
+        transform: translate(0%, 0%);
+    }
+    
+}
+.cancel-add{
+   
+   margin-top: 2rem;
+}
+.text-error{
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+label {
+    display: inline-block;
+    margin-left: 0.4rem
+}
+.cancel-add-text{
+    width: 100%;
+    height: 45px;
+    border-radius: 0.4rem;
+    text-align: center;
+    line-height: 44px;
+    text-transform: capitalize;
+}
+
+.box-navbar{
+
+   display: flex;
+    padding: 0rem;
+    cursor: pointer;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  
+   
+}
+
+.margin-bottom-class{
+    margin-top: 1rem;
+    border-bottom : 1px solid #eee
+}
+
+.Personal-Info{
+   
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-right: 0.9rem;
+    cursor: pointer;
+    font-size: 23px;
+    color: rgba(0, 0, 0, 0.733);
+}
+.action-personal{
+    color: black;
+ border-bottom: 1px solid red;
+  
+}
+.border-bottom-style{
+ margin-top: 1rem;
+border-bottom : 1px solid black
+
+}
+
+.border-bottom-style-none{
+    margin-top: 1rem;
+   border-bottom : 1px solid black
+   
+   }
+
+.class-box{
+    display: flex;
+    justify-content :flex-start;
+    margin-top: 4rem;
+   
+}
+
+.classInfo{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    
+    justify-content: space-between;
+}
+.classInfo-email{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    color: black;
+    opacity: 0.6;
+}
+.classInfo-email.add-margin-left{
+    margin-left: 3rem;
+}
+.classInfo-email span{
+    font-size: 17px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.yourFavorutnavbar h1{
+    text-transform: capitalize;
+    font-size: 14px;
+    color: black;
+    font-family: system-ui;
+}
+.class-profile-name{
+    margin-left: 1rem;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+}
+.class-profile-name h1{
+    text-transform: capitalize;
+    font-size: 14px;
+    color: black;
+    font-family: system-ui;
+}
+.image-box-css{
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #eee;
+    text-align: center;
+    line-height: 50px;
+    text-transform: capitalize;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.yourFavorutnavbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: capitalize;
+    flex-wrap: wrap;
+}
+
+.margin-top-{
+    margin-top: 2rem;
+}
+
+.Favourites-items{
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.Favourites-items-category{
+    width: 100%;
+    object-fit: cover;
+    height: 230px;
+    
+}
+.box-name{
+    padding: 0.3rem;
+    text-transform: capitalize;
+    font-size: 13px;
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.driver-class{
+    width: 20px;
+    height: 20px;
+}
+.class-driver{
+    display: flex;
+    align-items: center;
+}
+.class-driver span{
+ margin-left: 0.5rem;
+ color: #383737;
+font-size: 13px;
+}
+.aad-top-style{
+    border-top: 1px solid #eee;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.addToCart{
+   margin-top: 4rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+  
+    height: 45px;
+}
+.addToCart-option{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0rem;
+}
+.firstBack{
+    font-size: 20px;
+    font-weight: bold;
+    
+}.firstBack-option {
+    opacity: 0.7;
+}
+.addtext-align{
+    
+    
+    width: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0rem auto;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.addtext-align span{
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.des-text p{
+    font-size: 10px;
+    text-transform: capitalize;
+    margin-top: 1rem;
+}
+.box-cart-Info{
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin-top: 4rem;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    
+
+}
+.box-cart-Info.extra{
+    box-shadow: 0rem 0rem 0rem 0rem;
+}
+@media only screen and (max-width: 900px) {
+
+    .padding-null{
+        padding: 0rem;
+        margin: 0rem;
+    }
+    .box-navbar{
+        margin: 0rem;
+        padding: 0rem;
+        display: block;
+       
+     }
+     
+     .Personal-Info{
+
+       border-top: 1px solid #eee;
+        height: 40px;
+        line-height: 40px;
+        border-bottom: 1px solid #eee;
+        font-size: 20px;
+     }
+     .border-bottom-style{
+        border-bottom: none;
+     }
+     .margin-bottom-class{
+      
+        border-bottom : none
+     }
+     /* .myprofile h1{
+         margin-left: 1rem;
+     } */
+    
+  }
+
+  @media only screen and (max-width: 400px) {
+
+    .Personal-Info{
+        font-size: 19px;
+    }
+    .classInfo-email.add-margin-left{
+        margin-left: 0px;
+    }
+   
+  }
+
+
+
+.col_order_bacgroun{
+    margin: 0.4rem auto;
+}
+
+.ass_test {
+    margin-top: 180px;
+}
+
+.Profile_User{
+    display: block;
+    margin: 0rem auto;
+    padding: 0rem;
+    border-radius: 0rem;
+    outline: none;
+    text-transform: capitalize;
+}
+.box-Setting{
+    margin-top: 4rem;
+}
+.box-setting-children{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+   
+    padding: 0rem;
+    margin-bottom: 1rem
+
+
+}.box-setting-children h1{
+    font-size: 17px;
+    font-weight: bold;
+    text-transform: capitalize;
+}.box-setting-children span:hover{
+    opacity: 1;
+}
+
+.check-box-me{
+    width: 60px;
+    height: 30px;
+    background: #eee;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.class-close-image{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #eee;
+    overflow: hidden;
+    padding: 10px;
+    cursor: pointer;
+}
+.class-close-image.add-left-black{
+    margin-left: auto;
+    display: block;
+}
+.check-box-me-c{
+    width: 41%;
+    height: 100%;
+    background: red;
+    display: block;
+    border-left-width: 9px;
+    border-right: ridge;
+}
+.check-box-me-c.check-box-me-left{
+margin-left: auto;
+border-left-width: 9px;
+border-left: ridge;
+}
+.Order_List_User_Info{
+    margin-top: 4rem;
+  
+    margin-left: 0rem;
+    padding: 0rem;
+    
+}
+
+.Order_List_User_Info h1{
+    font-size: 24px;
+    font-family: system-ui;
+    text-transform: capitalize;
+    text-align: center;
+}
+.List_user_profil{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    align-items: center;
+    
+    padding: 0rem;
+    flex-wrap: wrap;
+        
+}
+.List_user_profil li {
+    border-radius: 0.4rem;
+    height: 2rem;
+    line-height: 2rem;
+    width: 100%;
+    text-align: center;
+    margin: 0.2rem auto;
+    font-family: monospace;
+    font-size: 12px;;
+    cursor: pointer;
+}
+
+.List_user_profil li .add_color_style{
+    color: black;
+}
+
+
+.first_Order{
+    background-color: rgb(238 238 238 / 39%);
+    box-shadow: 0rem 0rem 0.1rem 0rem black;
+    border-radius: 0.2rem;
+    opacity: 0.8;
+    transition: .3s;
+    width: 100%;
+    padding: 0.2rem;
+}
+.first_Order:hover{
+    opacity: 1;
+}
+.Order_List_list{
+    padding: 0rem ;
+    margin: 0rem auto;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.Order_List_list h1{
+    font-size: 13px;
+    font-family: cursive;
+    padding: 0rem;
+    margin-top: 1rem;
+    width: 100%;
+    display: block;
+    
+ }
+.Order_List_list p{
+    font-size: 13px;
+    padding: 0rem;
+    width: 100%;
+    display: block;
+    margin: 0rem auto;
+}
+
+.Order_List_Order{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    
+  
+}
+.Order_List_Order_Image{
+    width: 50px;
+    height:  50px;
+    margin: 0rem;
+    padding: 0rem;
+    border-radius: 0.4rem;
+    outline: none;
+    border: none;
+    transform-style:preserve-3d;
+    transition: .6s;
+}.Order_List_Order_Image:hover{
+    transform: scale(1.2);
+}
+.Order_List_Order_Info{
+   
+    font-size: 14px;
+    text-transform: capitalize;
+    font-family: inherit;
+    width: auto;
+    justify-content: center;
+
+}
+
+.order__qty_info{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.4rem;
+    align-items: center;
+}
+.items__total{
+    border-top: 1px solid #ff000094;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    font-family: monospace;
+}
+
+
+.Add_open_Adress{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    left: 0px;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0);
+    overflow: hidden;
+    transition: opacity 2s , visibility 2s  , transform 2s;
+    background-color: rgba(0, 0, 0, 0.445);
+
+    z-index: 34534543;
+    visibility: hidden;
+    flex-direction: column;
+}
+
+.Add_open_Adress.open{
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.Add_change_adress{
+    background-color: blue;
+    width: 100%;
+    height: auto;
+    margin: 0rem auto;
+    padding: 0rem;
+    display: flex;
+    justify-content: center;
+}
+
+.test_code{
+
+    background-color: transparent;
+   
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0rem auto;
+    padding: 0rem;
+    width: 100%;
+    height: 200px;
+    overflow-y: auto;
+    border-radius: 0.4rem;
+    padding: 0.3rem;
+    position: relative;
+    cursor: pointer;
+ 
+}
+
+.close_items{
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 18px;
+    cursor: pointer;
+    transition: .6s;
+    border-radius: 10%;
+    background-color: #ff000094;
+    width: 25px;
+    height: 25px;
+    color: white;
+    
+    box-shadow: 0.1rem 0.1rem  0rem 0rem ;
+    transform-style: preserve-3d;
+    text-align: center;
+}.close_items:hover{
+    opacity: 1;
+    transform: rotate(10deg);
+}
+
+.Form_Address{
+    margin-top: 4rem;
+
+}
+
+
+.Add_with_width{
+    width: 250px;
+   
+    
+}
+.Address_My{
+    padding: 0.6rem;
+
+    text-transform: capitalize;
+    transform-style: preserve-3d;
+    transition: .6s;
+    cursor: pointer;
+    width: 150px;
+}.Address_My:hover{
+    transform: translate(-20px);
+    
+}
+
+
+
+.Billing_Address .form-label {
+    margin-bottom: .5rem;
+    font-size: 14px;
+    font-family: monospace;
+    color: brown;
+    text-transform: capitalize;
+}
+.Billing_Address .form-label::first-letter{
+    color: red;
+}
+.Link_Home{
+    text-decoration: none;
+    color: black;
+}
+
+
+.List_user_profil li span{
+    color: #ff000094;
+    margin-left: 0.4rem;
+}
+
+
+.class-dina-favoriter{
+    margin-top: 5rem;
+
+}
+.class-profile-name.add-notleft{
+    margin-left: 0rem;
+
+}
+.Add-din{
+    width: 40px;
+    height: 40px;
+}
+
+.flex-boxc{
+    display: flex;
+    flex-direction: row;
+}
+.flex-boxc-left{
+    padding: 1rem;
+    border-radius: 0.4rem;
+    border: 1px solid #eee;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    cursor: pointer;
+}
