@@ -6,10 +6,11 @@ import ButtomClick from '../../../Components/Buttom/Buttom'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import Input from '../../../Components/Input/Input'
 import Styles from '../style'
-import { UpdatedCartInfoAction } from '../../../redux/Action/CartItemAction'
+import { UpdatedCartInfoAction, UpdingImageAction } from '../../../redux/Action/CartItemAction'
 import OppenImage from '../../../Components/Update/OppenImage/OppenImage'
 import ScreenAlrt from '../../../Components/ScreenAlrt/ScreenAlrt'
-import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen'
+// import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen'
+
 export default function EditCartInfo(props) {
 
 
@@ -31,6 +32,8 @@ export default function EditCartInfo(props) {
     const [opentime, setOpentime] = useState([])
     const [finishfood, setFinishfood] = useState([])
     const [addressinfo, setAddressinfo] = useState([])
+    const [changeImage, setChangeImage] = useState('')
+    const [imageSave, setImageSave] = useState('')
 
 
     useEffect(() => {
@@ -113,12 +116,17 @@ export default function EditCartInfo(props) {
             addressinfo,
             finishfood,
             opentime,
+        }
 
+
+        if (imageSave) {
+            return dispatch(UpdingImageAction(imageSave, dataInfo))
+        } else {
+            return dispatch(UpdatedCartInfoAction(dataInfo))
 
         }
 
-        dispatch(UpdatedCartInfoAction(dataInfo))
-        return
+
 
 
     }
@@ -137,12 +145,14 @@ export default function EditCartInfo(props) {
 
 
     // uploading image 
-    const [loadingImage, setLoadingImage] = useState(false)
     const HandleIamge = async (e) => {
         e.preventDefault()
         const file = e.target.files[0]
+        const formData = new FormData()
+        formData.append('image', file)
         const changeImage = URL.createObjectURL(file)
-        console.log(changeImage)
+        setChangeImage(changeImage)
+        setImageSave(formData)
 
 
     }
@@ -350,13 +360,15 @@ export default function EditCartInfo(props) {
 
                             />
 
-                            {loadingImage
-                                ?
-                                <LoadingScreen />
-                                :
-                                <ImageScreen ImageIcon={productDetails.image} className='image-xo' />
 
-                            }
+
+                            <ImageScreen
+                                ImageIcon={changeImage ? changeImage : productDetails?.image}
+                                className='image-xo'
+                                onClick={() => setShowImage({ value: true, image: changeImage ? changeImage : productDetails?.image })}
+                            />
+
+
 
 
 
@@ -405,55 +417,6 @@ export default function EditCartInfo(props) {
 
 
 
-
-
-
-
-
-
-// console.log(file.image)
-
-//  console.log(formData)
-// console.log(formData)
-// setLoadingImage(true)
-// try {
-//     const config = {
-//         headers: {
-//             'Content-Type': 'multipart/form-data',
-//         }
-//     }
-//     const { data } = await axios.post(`/api/uploading/`, formData, config)
-//     
-//     setLoadingImage(false)
-
-// } catch (error) {
-//     console.error(error)
-//     setLoadingImage(false)
-// }
-
-
-
-{/* {loadingImage && <LoadingScreen />}
-                            {productDetails?.image ?
-                                <div className='div-image-handle-product-edit'>
-                                    <ImageScreen
-                                        ImageIcon={productDetails?.image}
-                                        className='Image-product-Edit'
-                                        onClick={() => setShowImage({ value: true, image: productDetails?.image })}
-                                    />
-
-                                </div>
-                                : null} */}
-
-
-
-        // setSuccessfully(true)
-
-
-        // // setTimeout(() => {
-        //     setSuccessfully(false)
-        //     setShow({ value: false, object: false })
-        // }, 9000);
 
 
 

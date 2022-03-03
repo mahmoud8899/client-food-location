@@ -226,12 +226,10 @@ export const FirDeliveryAction = () => async (dispatch) => {
 // PUL : // URL : //api/cartinfo/updated/id
 export const UpdatedCartInfoAction = (user) => async (dispatch) => {
 
-
-
     try {
 
         dispatch({ type: ActionTypes.ADD_UPDATED_CARTINFO_LOADING })
-        const { data } = await axios.put(`/api/cartinfo/updated/${user?._id}`,user)
+        const { data } = await axios.put(`/api/cartinfo/updated/${user?._id}`, user)
         dispatch({ type: ActionTypes.ADD_UPDATED_CARTINFO_SUCCESS, payload: data })
         dispatch(CartInfoActionResturan(user._id))
     } catch (error) {
@@ -244,6 +242,49 @@ export const UpdatedCartInfoAction = (user) => async (dispatch) => {
         })
     }
 }
+
+
+
+export const UpdingImageAction = (user, updateInfo) => async (dispatch) => {
+
+    // console.log('data coming',)
+    try {
+        const { data } = await axios.post(`/api/uploading/`,
+            user,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            })
+        const userData = {
+            _id: updateInfo._id,
+            addressinfo: updateInfo.addressinfo,
+            description: updateInfo.description,
+            finishfood: updateInfo.finishfood,
+            freeDelvery: updateInfo.freeDelvery,
+            image: data,
+            opentime: updateInfo.opentime,
+            productType: updateInfo.productType,
+            username: updateInfo.username,
+            restrangeDriver: updateInfo.restrangeDriver,
+        }
+
+        dispatch(UpdatedCartInfoAction(userData))
+
+    } catch (error) {
+        dispatch({
+            type: ActionTypes.ADD_UPDATED_CARTINFO_FAIL,
+            payload: error.response &&
+                error.response.data.message ?
+                error.response.data.message :
+                error.message
+        })
+    }
+}
+
+
+
+
         // const form_data = new FormData();
         // form_data.set(user)
         // for (var key in user) {

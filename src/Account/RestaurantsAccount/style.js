@@ -55,7 +55,10 @@ const Styles = {
     },
 
     edit: {
-        background: COLORS.finds
+        background: COLORS.finds,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
 
  
@@ -75,7 +78,8 @@ const Styles = {
         textTransform: 'capitalize',
         padding: 'auto',
         height: '40px',
-        lineHeight: '20px'
+        lineHeight: '20px',
+        cursor: 'pointer',
 
 
 

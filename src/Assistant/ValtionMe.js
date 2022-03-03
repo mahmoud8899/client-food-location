@@ -5,7 +5,6 @@ const isEmail = (name) => {
 }
 // validation username
 function ValidationUsername(valueEmail) {
-    // console.log(valueEmail)
     return valueEmail.length >= 6
 }
 
@@ -59,8 +58,19 @@ function ValtionCvvX(name) {
 
 }
 
+// DESCRIPTION
+function ValtionDescription(name){
+
+    return name.length >= 20
+}
 
 
+//  PRICE
+function ValtionPrices(name) {
+
+    return /^[1-9]\d*(\.\d+)?$/.test(name)
+
+}
 
 export const ValtionMe = (name, key) => {
     switch (key) {
@@ -72,6 +82,8 @@ export const ValtionMe = (name, key) => {
         case 'cartnumber': return ValidayionCartNumber(name)
         case 'Expiration': return ValtionExpiration(name)
         case 'xPcVV': return ValtionCvvX(name)
+        case 'description': return ValtionDescription(name)
+        case 'Prices': return ValtionPrices(name)
         default: return key
 
 
