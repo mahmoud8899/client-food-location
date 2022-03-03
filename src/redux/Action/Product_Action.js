@@ -35,6 +35,15 @@ export const ReviewCommentUserAction = (user) => async (dispatch, getState) => {
     }
 }
 
+
+
+// change product details
+// export const AppendChangeData = (ProductDetails) => ({
+//     type: ActionTypes.ADD_CATEGORYPRODUCT_APPEND,
+//     payload: { ProductDetails }
+// })
+// // 
+// paylod: OtherParams
 // product id 
 // GET // URL :  product/product/id
 export const product_IDAction = (id) => async (dispatch) => {
@@ -45,6 +54,7 @@ export const product_IDAction = (id) => async (dispatch) => {
 
         const { data } = await axios.get(`/api/product/product/details/${id}`)
         dispatch({ type: ActionTypes.ADD_PRODUCT_ID_SUCCESS, payload: data })
+        // OtherParams && dispatch(AppendChangeData(data))
     } catch (error) {
         dispatch({
             type: ActionTypes.ADD_PRODUCT_ID_FAIL,
@@ -74,14 +84,15 @@ export const AppendNumberCategoryProduct = (categoryId, nextpage) => ({
 
 // get product with category id... 
 // url : product/category/617946b505c8dc1944a5439d
-
 // const user = '6179463f05c8dc1944a5438f'
 export const productpaginationAction = (user) => async (dispatch, getState) => {
 
 
 
-    const calculatedPage = getState().PaginationProducts?.categoryProductsNextPagesxp[user]
+    // console.log('updated',user)
 
+
+    const calculatedPage = getState().PaginationProducts?.categoryProductsNextPagesxp[user]
     const nextRequestPage = calculatedPage === undefined ? 1 : calculatedPage
 
     // console.log('======', nextRequestPage)
@@ -128,7 +139,93 @@ export const productpaginationAction = (user) => async (dispatch, getState) => {
 
 
 
+// Create Product/
+// POST // URL : /api/product/create/
+export const CreateNewProductAction = (user) => async (dispatch, getState) => {
+    try {
 
+        const { userLogin: { token } } = getState()
+
+
+        dispatch({ type: ActionTypes.ADD_PRODUCT_UPDATED_LOADING })
+        const { data } = await axios.post(`/api/product/create/`,
+            user, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        dispatch({ type: ActionTypes.ADD_PRODUCT_CREATE_SUCCESS, payload: data })
+    } catch (error) {
+        dispatch({
+            type: ActionTypes.ADD_PRODUCT_UPDATED_FAIL,
+            payload: error.response &&
+                error.response.data.message ?
+                error.response.data.message :
+                error.message
+        })
+    }
+}
+
+
+
+// updated product
+// put  url : //  /api/product/product/updated/6210f00d5d48931ab7b5637c
+export const ProductUpdatedAction = (user) => async (dispatch) => {
+
+    try {
+
+        dispatch({ type: ActionTypes.ADD_PRODUCT_UPDATED_LOADING })
+        const { data } = await axios.put(`/api/product/product/updated/${user._id}`, user)
+        dispatch({ type: ActionTypes.ADD_PRODUCT_UPDATED_SUCCESS, payload: data })
+        // dispatch(productpaginationAction(user?.cartinfo))
+        // console.log('succfully',user?.cartinfo)
+        // console.log('SuccessFully product Update')
+        // dispatch(product_IDAction(user?._id, true))
+    } catch (error) {
+        dispatch({
+            type: ActionTypes.ADD_PRODUCT_UPDATED_FAIL,
+            payload: error.response &&
+                error.response.data.message ?
+                error.response.data.message :
+                error.message
+        })
+    }
+}
+
+// Uploading Image/
+// POST // URL : /api/uploading/
+export const UploadingNewImageProduct = (user, UpdateProducts, CreateProduct) => async (dispatch) => {
+    try {
+
+        dispatch({ type: ActionTypes.ADD_PRODUCT_UPDATED_LOADING })
+
+        const { data } = await axios.post(`/api/uploading/`, user)
+        console.log('successfully uploading :', data)
+        console.log('Old data  :', UpdateProducts)
+        const newDataUploading = {
+            cartinfo: UpdateProducts?.cartinfo,
+            category: UpdateProducts?.category,
+            description: UpdateProducts?.description,
+            name: UpdateProducts?.name,
+            popular: UpdateProducts?.popular,
+            prices: UpdateProducts?.prices,
+            _id: UpdateProducts?._id,
+            image: data
+        }
+        CreateProduct ?
+            dispatch(CreateNewProductAction(newDataUploading))
+            : dispatch(ProductUpdatedAction(newDataUploading))
+
+    } catch (error) {
+        dispatch({
+            type: ActionTypes.ADD_PRODUCT_UPDATED_FAIL,
+            payload: error.response &&
+                error.response.data.message ?
+                error.response.data.message :
+                error.message
+        })
+    }
+}
 
 
 
@@ -214,7 +311,7 @@ export const productpaginationAction = (user) => async (dispatch, getState) => {
 
 
 
-// Remove product from user 
+// Remove product from user
 // // delete /product/product/:id/
 // export const RemoveProductAction = (user) => async (dispatch, getState) => {
 
@@ -284,7 +381,7 @@ export const productpaginationAction = (user) => async (dispatch, getState) => {
 // Create Product....
 // POST // Url : // api/product/create/
 // const user = {
-//     user: 
+//     user:
 //     name,
 //     image: Follow,
 //     prics,
@@ -329,7 +426,7 @@ export const productpaginationAction = (user) => async (dispatch, getState) => {
 
 
 
-// // start discount 
+// // start discount
 // // POST URL : /discount/checkin/
 // export const CheckInDiscountCodAction = (user) => async (dispatch, getState) => {
 

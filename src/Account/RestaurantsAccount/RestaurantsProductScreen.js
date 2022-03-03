@@ -20,14 +20,11 @@ export default function RestaurantsProductScreen(props) {
     const dispatch = useDispatch()
     const matProducts = useSelector((state) => state?.PaginationProducts?.categoryproduct[resturantId]) || []
 
-
     useEffect(() => {
         if (resturantId) {
-
             return matProducts?.length === 0 && dispatch(productpaginationAction(resturantId))
         }
-    }, [resturantId,matProducts?.length, dispatch])
-
+    }, [resturantId, matProducts?.length, dispatch])
 
 
 

@@ -10,6 +10,7 @@ import {
 
     PaginationProductReducres,
     ShowPostIDReducres,
+    HandleUpdatedAndCreateProductReducres,
 
 
 } from '../reducres/Product_Reducres'
@@ -100,6 +101,7 @@ const reducer = combineReducers({
     // product pagination and reviews...
     PaginationProducts: PaginationProductReducres,
     productID: ShowPostIDReducres,
+    PageUpdatedProduct: HandleUpdatedAndCreateProductReducres, 
 
 
 

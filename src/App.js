@@ -41,6 +41,7 @@ import NavBar from './Pages/NavBar/NavBar'
 import VisaProducts from './Pages/VisaProducts/VisaProducts'
 import FilterCategoryScreen from './Components/Update/UseContext/FilterCategoryScreen'
 import { FirstNameRest } from './Assistant/Selection'
+import UserVerifiedID from './Components/Update/UserVerifiedID/UserVerifiedID'
 export default function App() {
 
 
@@ -68,12 +69,14 @@ export default function App() {
             <Route path="/test/test/" component={Testing} exact />
 
 
+            <UserVerifiedID>
+              <Route path="/sw/profil/personal/" component={UserProfileScreen} exact />
+              <Route path="/sw/profil/payment/" component={UserPaymentScreen} exact />
+              <Route path="/sw/profil/address/" component={UserAddresScreen} exact />
+              <Route path="/sw/profil/orders/" component={UserOrdersScreen} exact />
+              <Route path="/sw/profil/settings/" component={UserSettingsScreen} exact />
+            </UserVerifiedID>
 
-            <Route path="/sw/profil/personal/" component={UserProfileScreen} exact />
-            <Route path="/sw/profil/payment/" component={UserPaymentScreen} exact />
-            <Route path="/sw/profil/address/" component={UserAddresScreen} exact />
-            <Route path="/sw/profil/orders/" component={UserOrdersScreen} exact />
-            <Route path="/sw/profil/settings/" component={UserSettingsScreen} exact />
 
             <Route path={`/sw/${FirstNameRest}/work/`} component={ScreenWork} exact />
             <Route path={`/sw/${FirstNameRest}/contact/`} component={ScreenContact} exact />
@@ -103,7 +106,7 @@ export default function App() {
             <Route path='/sw/restaurants/admin/category/:id/' component={RestaurantsCategoryScreen} exact />
             <Route path='/sw/restaurants/admin/profile/:id/' component={RestaurantsProfilScreen} exact />
 
-            
+
             <Route path='/:id/:id/' component={VisaProducts} exact />
 
 

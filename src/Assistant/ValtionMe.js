@@ -61,7 +61,7 @@ function ValtionCvvX(name) {
 // DESCRIPTION
 function ValtionDescription(name){
 
-    return name.length >= 20
+    return name?.trim().length >= 20
 }
 
 
@@ -72,11 +72,19 @@ function ValtionPrices(name) {
 
 }
 
+// name length == 3 
+function ValidationName(name){
+    // console.log(name)
+
+    return name?.trim().length >= 3
+}
+
 export const ValtionMe = (name, key) => {
     switch (key) {
 
         case 'isEmail': return isEmail(name)
         case 'isUser': return ValidationUsername(name)
+        case 'inputname': return ValidationName(name)
         case 'isPhone': return ValidationNumberStory(name)
         case 'isPassword': return ValidationPassword(name)
         case 'cartnumber': return ValidayionCartNumber(name)

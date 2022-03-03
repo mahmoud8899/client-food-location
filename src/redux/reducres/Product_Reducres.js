@@ -20,8 +20,8 @@ export const PaginationProductReducres = (state = {
 
 
         case ActionTypes.ADD_CATEGORYPRODUCT_APPEND:
-
             const categoryId = action.payload.categoryId
+
             return {
                 loading: false,
                 ...state,
@@ -31,6 +31,7 @@ export const PaginationProductReducres = (state = {
                 }
 
             }
+
 
 
         case ActionTypes.ADD_NUMBERNEXTPAGE_SUCCESS:
@@ -97,6 +98,53 @@ export const ShowPostIDReducres = (state = {
         default: return state
     }
 }
+
+
+
+
+
+// ADD_PRODUCT_CREATE_IMAGE_SUCCESS
+// product Updated and create
+export const HandleUpdatedAndCreateProductReducres = (state = {
+    error: null,
+    loading: false,
+    updated: null,
+    created: null
+}, action) => {
+    switch (action.type) {
+
+        case ActionTypes.ADD_PRODUCT_UPDATED_LOADING: return {
+            loading: true
+        }
+
+        case ActionTypes.ADD_PRODUCT_UPDATED_SUCCESS: return {
+            ...state,
+            updated: action.payload,
+            loading: false,
+        }
+
+        case ActionTypes.ADD_PRODUCT_CREATE_SUCCESS: return {
+            ...state,
+            created: action.payload,
+            loading: false,
+        }
+
+        case ActionTypes.ADD_PRODUCT_UPDATED_FAIL: return {
+            ...state,
+            error: action.payload,
+            loading: false,
+        }
+
+        default: return state
+    }
+}
+
+
+
+
+
+
+
 
 
 

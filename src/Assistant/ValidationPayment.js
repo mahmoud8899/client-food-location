@@ -51,4 +51,47 @@ export const CheckOutConfirming = (TheCheckOutBookingTime) => {
 
 
 
+// real time Validation
+// create product and checkut type input...
+export function ValidationProducts(productDetails, changeImage) {
+
+    return productDetails?.name?.trim().length <= 2 ||
+        productDetails?.description?.trim().length <= 19 ||
+        (productDetails.image.length <= 0 && changeImage === '') ||
+        /^[1-9]\d*(\.\d+)?$/.test(productDetails.prices) !== true
+
+
+}
+
+// if type input equle old value  not requirest
+export function ValidationUpdateProduct(OldValues, NewValues ,changeImage) {
+
+  
+    return NewValues?.name?.trim()?.normalize() === OldValues?.name?.normalize()
+        && NewValues?.description?.trim()?.normalize() === OldValues?.description?.normalize()
+        && Number(NewValues?.prices) === Number(OldValues?.prices)
+        &&  changeImage === ''  
+
+
+    // NewValues?.image?.normalize() === OldValues?.image?.normalize() 
+
+
+
+
+
+    // || /^[1-9]\d*(\.\d+)?$/.test(productDetails.prices) !== true
+
+
+}
+
+
+
+// the best code...
+export function ChangeCode(CodeName) {
+
+
+    return CodeName?.trim().toLowerCase()
+}
+
+
 
