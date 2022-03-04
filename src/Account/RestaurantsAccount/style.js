@@ -4,44 +4,46 @@ import COLORS from '../../Assistant/Color'
 
 const Styles = {
 
-    imageproduct : {
 
-        width : '40px',
+
+    imageproduct: {
+
+        width: '40px',
         heigth: '40px',
-        border : 'none',
-        borderRadius : '0.4rem',
-        cursor : 'pointer',
-        objectFit : 'cover'
+        border: 'none',
+        borderRadius: '0.4rem',
+        cursor: 'pointer',
+        objectFit: 'cover'
     },
 
     co: {
 
         overflow: 'none'
     },
-    stylebuttom:{
-        backgroundColor : COLORS.firstRed,
-        color : COLORS.white,
-        border : 'none',
+    stylebuttom: {
+        backgroundColor: COLORS.firstRed,
+        color: COLORS.white,
+        border: 'none',
         width: '100%',
         borderRadius: '0.4rem',
-        height : '45px',
-        marginTop : '1rem',
+        height: '45px',
+        marginTop: '1rem',
         boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
         cursor: 'pointer',
 
     },
 
-    font : {
+    font: {
 
-        fontSize : '15px'
+        fontSize: '15px'
 
     },
 
-    processing : {
+    processing: {
 
-        width : '10px',
-        height : '10px',
-        marginRight : '0.4rem'
+        width: '10px',
+        height: '10px',
+        marginRight: '0.4rem'
 
     },
 
@@ -50,7 +52,10 @@ const Styles = {
         background: COLORS.firstRed,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        color: COLORS.white,
+        textTransform: 'capitalize',
+        fonSize: '13px'
 
     },
 
@@ -61,7 +66,7 @@ const Styles = {
         justifyContent: 'center'
     },
 
- 
+
 
     color: {
 
@@ -90,11 +95,12 @@ const Styles = {
         padding: '0rem'
 
     },
-    iconsremov :{
+    iconsremov: {
         width: '12px',
         heigth: '12px',
         objectFit: 'cover',
-        marginRight: '0.2rem'
+        marginRight: '0.2rem',
+        color: COLORS.white
     },
     image: {
         width: '20px',
@@ -106,7 +112,7 @@ const Styles = {
         fontSize: '13px',
         textTransform: 'capitalize',
         width: '100px',
-        
+
     },
     buttom: {
         fontSize: '13px',

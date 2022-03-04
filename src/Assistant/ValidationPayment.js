@@ -95,3 +95,12 @@ export function ChangeCode(CodeName) {
 
 
 
+
+// validation category
+export function ValidationCategory(){
+
+
+    return
+}
+
+

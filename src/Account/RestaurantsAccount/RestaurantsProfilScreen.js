@@ -22,13 +22,7 @@ export default function RestaurantsProfilScreen(props) {
     const [show, setShow] = useState({ value: false, updated: false })
     const pageUserCartinfo = useSelector((state) => state.pageUserCartinfo)
     const { loading, info, error } = pageUserCartinfo
-
     const dispatch = useDispatch()
-
-
-
-
-
 
 
     useEffect(() => {
@@ -41,17 +35,6 @@ export default function RestaurantsProfilScreen(props) {
         }
 
     }, [resturantId, dispatch, info?.length,])
-
-
-
-
-
-
-
-
-
-
-
 
 
     // open acount 

@@ -3,6 +3,32 @@ import COLORS from '../../../Assistant/Color'
 
 
 const Styles = {
+    buttomRemoveStag: {
+        width: '100%',
+        height: '45px',
+        border: 'none',
+        color: COLORS.white,
+        backgroundColor: '#0000004d',
+        cursor: 'pointer',
+        borderRadius: '0.4rem',
+        fontSize: '15px',
+        textTransform: 'capitalize',
+        fontFamily: 'system-ui'
+    },
+
+    buttomRemove:
+    {
+        width: '100%',
+        height: '45px',
+        border: 'none',
+        color: COLORS.white,
+        backgroundColor: COLORS.firstRed,
+        borderRadius: '0.4rem',
+        fontSize: '15px',
+        textTransform: 'capitalize',
+        fontFamily: 'system-ui',
+        cursor: 'pointer',
+    },
     newLi:
     {
         width: '100%',

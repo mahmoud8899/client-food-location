@@ -1,11 +1,12 @@
 import { Form, Modal } from 'react-bootstrap'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
-import '../style.css'
 import Input from '../../../Components/Input/Input'
 import ButtomClick from '../../../Components/Buttom/Buttom'
+import {ValidationCategory} from '../../../Assistant/ValidationPayment'
 import { useEffect, useState } from 'react'
 import Styles from '../style'
+import '../style.css'
 
 
 export default function CategoryEditOchCreate(props) {

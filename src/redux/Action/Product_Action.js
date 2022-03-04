@@ -3,6 +3,27 @@ import axios from 'axios'
 
 
 
+// Remove product from user
+// // delete /product/product/:id/
+export const RemoveProductAction = (user) => async (dispatch) => {
+
+    try {
+
+        const { data } = await axios.delete(`/api/product/product/${user}`,)
+        dispatch({ type: ActionTypes.ADD_PRODUCT_REMOVE_SUCCESS, payload: data.message })
+
+    } catch (error) {
+        dispatch({
+            type: ActionTypes.ADD_PRODUCT_UPDATED_FAIL,
+            payload: error.response &&
+                error.response.data.message ?
+                error.response.data.message :
+                error.message
+        })
+    }
+}
+
+
 // comment review 
 // POST  url  very / /product/product/comment/:id/
 export const ReviewCommentUserAction = (user) => async (dispatch, getState) => {
@@ -37,13 +58,7 @@ export const ReviewCommentUserAction = (user) => async (dispatch, getState) => {
 
 
 
-// change product details
-// export const AppendChangeData = (ProductDetails) => ({
-//     type: ActionTypes.ADD_CATEGORYPRODUCT_APPEND,
-//     payload: { ProductDetails }
-// })
-// // 
-// paylod: OtherParams
+
 // product id 
 // GET // URL :  product/product/id
 export const product_IDAction = (id) => async (dispatch) => {
@@ -238,7 +253,13 @@ export const UploadingNewImageProduct = (user, UpdateProducts, CreateProduct) =>
 
 
 
-
+// change product details
+// export const AppendChangeData = (ProductDetails) => ({
+//     type: ActionTypes.ADD_CATEGORYPRODUCT_APPEND,
+//     payload: { ProductDetails }
+// })
+// //
+// paylod: OtherParams
 
 
 
@@ -311,32 +332,6 @@ export const UploadingNewImageProduct = (user, UpdateProducts, CreateProduct) =>
 
 
 
-// Remove product from user
-// // delete /product/product/:id/
-// export const RemoveProductAction = (user) => async (dispatch, getState) => {
-
-//     try {
-//         const { userLogin: { token } } = getState()
-//         const config = {
-//             headers: {
-//                 Authorization: `Bearer ${token}`
-//             }
-//         }
-
-
-//         const { data } = await axios.delete(`/api/product/product/${user}`, config)
-//         dispatch({ type: ActionTypes.ADD_ADMIN_PRODUCTS_REMOVE_SUCCESS, payload: data.message })
-
-//     } catch (error) {
-//         dispatch({
-//             type: ActionTypes.ADD_SEARCHING_FAIL,
-//             payload: error.response &&
-//                 error.response.data.message ?
-//                 error.response.data.message :
-//                 error.message
-//         })
-//     }
-// }
 
 
 

@@ -1,3 +1,16 @@
+ .class-Half{
+     margin-top: 5rem;
+ }
+
+ .Div-center{
+     text-align: center;
+     text-transform: capitalize;
+     font-size: 20px;
+     color: rgba(255, 59, 47, 0.52);
+     font-family: "Mochiy Pop P One", sans-serif;
+     margin-bottom: 3rem;
+ }
+
  .Loading-Updated{
 
 

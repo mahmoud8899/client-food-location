@@ -104,7 +104,7 @@ export const ShowPostIDReducres = (state = {
 
 
 // ADD_PRODUCT_CREATE_IMAGE_SUCCESS
-// product Updated and create
+// product Updated and create and remove...
 export const HandleUpdatedAndCreateProductReducres = (state = {
     error: null,
     loading: false,
@@ -127,6 +127,12 @@ export const HandleUpdatedAndCreateProductReducres = (state = {
             ...state,
             created: action.payload,
             loading: false,
+        }
+
+        case ActionTypes.ADD_PRODUCT_REMOVE_SUCCESS: return {
+            ...state,
+            removeproduct: action.payload,
+            loading: false
         }
 
         case ActionTypes.ADD_PRODUCT_UPDATED_FAIL: return {

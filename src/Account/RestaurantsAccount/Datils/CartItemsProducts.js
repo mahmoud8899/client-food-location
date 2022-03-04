@@ -3,7 +3,11 @@ import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { TabScreen, TabScrrenDor } from '../../../Components/TabScreen/TabScreen'
 import Styles from '../style'
-import {SliceNameNot} from '../../../Assistant/Slice'
+import { SliceNameNot } from '../../../Assistant/Slice'
+import { Fragment, useState } from 'react'
+import RemoveAlrt from '../../../Components/Update/RemoveAlrt/RemoveAlrt'
+import { RemoveProductAction } from '../../../redux/Action/Product_Action'
+import { useDispatch } from 'react-redux'
 
 
 
@@ -13,15 +17,30 @@ import {SliceNameNot} from '../../../Assistant/Slice'
 export default function CartItemsProducts(props) {
 
 
+    const dispatch = useDispatch()
+    // open alrt remove...
+    const [show, setShow] = useState({ value: false, object: '' })
 
-    return   <Table responsive >
+
+
+
+    const HandleRemove = () => {
+        console.log('remove....', show?.object)
+
+        dispatch(RemoveProductAction(show?.object))
+        return setShow({ value: false, object: '' })
+    }
+
+
+    return <Fragment>
+        <Table responsive >
             <thead style={Styles.color}>
                 <tr style={Styles.color}>
-                    <TabScreen  TitleTh='number' style={Styles.fontText} />
+                    <TabScreen TitleTh='number' style={Styles.fontText} />
                     <TabScreen TitleTh='username' style={Styles.fontText} />
-                    <TabScreen   TitleTh='image' style={Styles.fontText} />
-                    <TabScreen   TitleTh='prices' style={Styles.fontText} />
-                      <TabScreen TitleTh='category' style={Styles.fontText} />
+                    <TabScreen TitleTh='image' style={Styles.fontText} />
+                    <TabScreen TitleTh='prices' style={Styles.fontText} />
+                    <TabScreen TitleTh='category' style={Styles.fontText} />
                     <TabScreen TitleTh='edit' style={Styles.fontText} />
 
                     <TabScreen TitleTh='remove' style={Styles.fontText} />
@@ -44,7 +63,7 @@ export default function CartItemsProducts(props) {
 
                             </div>
                         }
-                            onClick={() => props?.setShow({value : true, object : product})}
+                            onClick={() => props?.setShow({ value: true, object: product })}
                         />
                         <TabScrrenDor other={
                             <div className='remove' style={Styles.remove}>
@@ -53,7 +72,7 @@ export default function CartItemsProducts(props) {
 
                             </div>
                         }
-                            onClick={() => console.log('clcik')}
+                            onClick={() => setShow({ value: true, object: product?._id })}
                         />
 
                     </tr>
@@ -61,14 +80,28 @@ export default function CartItemsProducts(props) {
 
             </tbody>
 
+
+
+
+
         </Table>
 
+        {show?.value &&
+            <RemoveAlrt
+                show={show}
+                setShow={setShow}
+                TextRemove='ta bort produkt'
+                HandleRemove={HandleRemove}
+            />
+        }
+    </Fragment>
 
 
 
 
 
- 
+
+
 
 
 

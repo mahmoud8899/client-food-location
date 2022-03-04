@@ -2,8 +2,6 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
-import Styles from './style'
-import './style.css'
 import { useEffect, useState } from 'react'
 import CartItemsProducts from './Datils/CartItemsProducts'
 import ImageScreen from '../../Components/ImageScreen/ImageScreen'
@@ -12,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import ProductEditOchCreate from './Datils/ProductEditOchCreate'
 import Input from '../../Components/Input/Input'
 import NavBarList from './Datils/NavBarList'
+import Styles from './style'
+import './style.css'
 export default function RestaurantsProductScreen(props) {
 
 
