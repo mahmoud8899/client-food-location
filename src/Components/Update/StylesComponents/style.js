@@ -3,6 +3,124 @@ import COLORS from '../../../Assistant/Color'
 
 
 const Styles = {
+    processing: {
+        width: '10px',
+        height: '10px',
+        marginRight: '0.4rem'
+    },
+    user : {
+        textTransform: 'capitalize',
+        color: COLORS.firstRed,
+        fontSize : '16px',
+        marginBottom : '2rem',
+        fontWeight : 'bold'
+    },
+    NavBarSearchingColor: {
+        background: COLORS.firstRed,
+        color: COLORS.white
+    },
+
+    NavBarSearchingColorInput: {
+        boxShadow : `0rem 0rem 0rem 1px ${COLORS.firstRed}`
+
+    },
+    TabBackColor: {
+        background: COLORS.firstRed,
+        color: COLORS.white,
+    },
+    Tabbox: {
+        margin : '1px auto'
+       
+    },
+    TabActive :{
+
+        background : COLORS.firstRed,
+        width: '100%',
+        fontSize: '12px',
+        textTransform: 'capitalize',
+        padding: 'auto',
+        height: '40px',
+        lineHeight: '20px',
+        cursor: 'pointer',
+        color :COLORS.white,
+        transition: 'all 4s',
+        
+
+    },
+
+    TabBoxChildren: {
+        width: '100%',
+        fontSize: '12px',
+        textTransform: 'capitalize',
+        padding: 'auto',
+        height: '40px',
+        lineHeight: '20px',
+        cursor: 'pointer',
+        transition: 'all 4s',
+    },
+    TabBoximage: {
+        width: '20px',
+        heigth: '20px',
+        objectFit: 'cover',
+        marginRight: '0.2rem'
+    },
+    Tabcolor: {
+        borderTop: `2px solid ${COLORS.finds}`,
+        borderBottom: `2px solid ${COLORS.finds}`,
+        border: `2px solid ${COLORS.finds}`,
+        borderRadius: '40px',
+    },
+    TabfontText: {
+        fontSize: '13px',
+        textTransform: 'capitalize',
+        width: '100px',
+    },
+    Tabimageproduct: {
+        width: '40px',
+        heigth: '40px',
+        border: 'none',
+        borderRadius: '0.4rem',
+        cursor: 'pointer',
+        objectFit: 'cover'
+    },
+    TabButtomEdit: {
+        background: COLORS.finds,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    TabIconsremov: {
+        width: '12px',
+        heigth: '12px',
+        objectFit: 'cover',
+        marginRight: '0.2rem',
+        color: COLORS.white
+    },
+    TabButtomRemove: {
+
+        background: COLORS.firstRed,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: COLORS.white,
+        textTransform: 'capitalize',
+        fonSize: '13px'
+
+    },
+    TabButtomCreate: {
+        backgroundColor: COLORS.firstRed,
+        color: COLORS.white,
+        border: 'none',
+        width: '100%',
+        borderRadius: '0.4rem',
+        height: '45px',
+        boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
+        cursor: 'pointer',
+
+    },
+
+
     buttomRemoveStag: {
         width: '100%',
         height: '45px',
@@ -214,7 +332,7 @@ const Styles = {
 
         color: COLORS.firstRed,
         fontFamily: `'Mochiy Pop P One', sans-serif`,
-        
+
     },
 
     bottom: {

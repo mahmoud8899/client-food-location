@@ -1,4 +1,4 @@
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, FormControl } from 'react-bootstrap'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
@@ -7,11 +7,10 @@ import './style.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CartItemsCategory from './Datils/CartItemsCategory'
-import ImageScreen from '../../Components/ImageScreen/ImageScreen'
 import { getCategoryAction } from '../../redux/Action/Category_Action'
 import CategoryEditOchCreate from './Datils/CategoryEditOchCreate'
-import Input from '../../Components/Input/Input'
-import NavBarList from './Datils/NavBarList'
+import CategoryNavBarSearching from './Datils/CategoryNavBarSearching'
+import UserName from './Datils/UserName'
 export default function RestaurantsCategoryScreen(props) {
 
 
@@ -20,68 +19,78 @@ export default function RestaurantsCategoryScreen(props) {
 
     const resturantId = props?.match?.params?.id
     const dispatch = useDispatch()
+    const [editCategory, setEditCategory] = useState({ value: false, object: '' })
+    const ListCategoryUX = useSelector((state) => state?.ListCategory?.category)
+
+    // console.log(ListCategoryUX?.length)
 
 
-    const ListCategoryUX = useSelector((state) => state?.ListCategory?.category[resturantId]) || []
+    // event after reqqurest...
+    const PageCategory = useSelector((state) => state?.PageCategory)
+    const { updated, create, remove } = PageCategory
+
 
 
     useEffect(() => {
 
         if (resturantId) {
-
             return ListCategoryUX?.length === 0 && dispatch(getCategoryAction(resturantId))
         }
 
-    }, [resturantId, dispatch, ListCategoryUX?.length])
+
+    }, [
+        resturantId,
+        dispatch,
+        ListCategoryUX?.length,
+
+    ])
 
 
+    useEffect(() => {
 
-    const [editCategory, setEditCategory] = useState({
-        value: false,
-        object: ''
-    })
+        if (updated || create || remove) {
+            dispatch(getCategoryAction(resturantId))
+            return
+        }
+
+    }, [updated, create, dispatch, resturantId, remove])
 
 
+    const [query, setQuery] = useState("");
+    const keys = ["name"];
+    const search = (data) => {
+        return data?.filter((item) =>
+            keys?.some((key) => item[key]?.toLowerCase()?.includes(query))
+        );
+    };
 
 
 
 
     return <Container>
 
-        <div className='box'> </div>
+        <div className='box'>
+            <UserName />
+        </div>
 
 
         <Title TextTitle='product Admin' />
         <Row className='justify-content-center'>
 
-
-
-            <Col xs={12} sm={12} md={3} lg={3} >
-                <RestaurantsNavBarScreen ClassNameUpdate />
+        <Col xs={12} sm={12} md={4} lg={3} >
+                <RestaurantsNavBarScreen ClassCategoryActive />
             </Col>
 
-            <Col xs={12} sm={12} md={9} lg={9} >
+            <Col xs={12} sm={12} md={8} lg={9} >
 
-
-                <NavBarList
-                    onClick={() => setEditCategory({ value: true })}
-                    Other={
-                        <div className='Order-List-New color-color'>
-                            <ImageScreen ImageIcon={MyOderImage.uploading} style={Styles.image} />
-                            <span>Create Category</span>
-                        </div>
-                    }
-                    OtherLast={
-                        <div className='Order-List-New'>
-                            <Input className='Input-type-style notLeft' placeholder='Searching Product...' ImageLog={MyOderImage.search} />
-                        </div>
-
-                    }
+                <CategoryNavBarSearching
+                    setEditCategory={setEditCategory}
+                    setQuery={setQuery}
                 />
 
 
                 <CartItemsCategory
-                    ListCategoryUX={ListCategoryUX}
+                    ListCategoryUX={search(ListCategoryUX)}
                     setEditCategory={setEditCategory}
 
                 />
@@ -93,11 +102,8 @@ export default function RestaurantsCategoryScreen(props) {
 
 
 
-        <CategoryEditOchCreate
-
-            editCategory={editCategory}
-            setEditCategory={setEditCategory}
-        />
+        <CategoryEditOchCreate editCategory={editCategory} setEditCategory={setEditCategory} />
 
     </Container>
 }
+

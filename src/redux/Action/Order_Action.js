@@ -191,9 +191,10 @@ export const ShowOrderAction = (id) => async (dispatch, getState) => {
 
     
     const CheckNumber = getState().TheResturantShowsOrders.ordersAllNumber
-    if (CheckNumber) {
+    const nextRequestPage = CheckNumber === undefined ? 1 : CheckNumber
+    if (nextRequestPage) {
         try {
-            const { data } = await axios.get(`/api/order/view/all/order/${id}/?pageNumber=${CheckNumber}/`)
+            const { data } = await axios.get(`/api/order/view/all/order/${id}/?pageNumber=${nextRequestPage}`)
             dispatch(AppendOrderShowData(data.product))
             if (data?.pages <= 1) return dispatch(AppendOrderNumber(null))
             const nextpage = data.result.next.page > data.pages ? null : data.result.next.page

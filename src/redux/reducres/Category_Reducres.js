@@ -9,7 +9,7 @@ export const UpdateRemoveReducres = (state = {
     error: null,
     updated: null,
     remove: null,
-    create: {}
+    create: null,
 }, action) => {
     switch (action.type) {
 
@@ -53,9 +53,9 @@ export const UpdateRemoveReducres = (state = {
 // case ActionTypes.ADD_CATEGORY_LOADING: return { loading: true }
 // get  category to restrange. och save id 
 export const CategoryAllReducres = (state = {
-    category: {},
+    category: [],
     error: null,
-    categoryProductsNextPagesxp: {}
+    // categoryProductsNextPagesxp: {}
 
 }, action) => {
 
@@ -63,31 +63,43 @@ export const CategoryAllReducres = (state = {
     switch (action.type) {
 
         case ActionTypes.ADD_CATEGORY_SUCCESS:
+            // console.log(action.payload)
 
-            const categoryId = action.payload.id
-            return {
-                loading: false,
-                ...state,
-                category: {
-                    ...state.category,
-                    [categoryId]: (state.category[categoryId] || []).concat(action.payload.data)
-                }
-
-            }
-
-        case ActionTypes.ADD_CATEGORY_SAVE_ID:
             return {
                 ...state,
-                categoryProductsNextPagesxp: {
-                    ...state.categoryProductsNextPagesxp,
-                    [action.payload.id]: action.payload.id,
-                }
-            }
+                category: action.payload,
+            };
 
 
-        case ActionTypes.ADD_CATEGORY_FAIL: return { error: action.payload }
+
+
+        case ActionTypes.ADD_CATEGORY_FAIL: return {
+            error: action.payload,
+            loading: false
+        }
 
 
         default: return state
     }
 }
+
+
+        // const categoryId = action.payload.id
+        // return {
+        //     loading: false,
+        //     ...state,
+        //     category: {
+        //         ...state.category,
+        //         [categoryId]: (state.category[categoryId] || []).concat(action.payload.data)
+        //     }
+
+        // }
+
+        // case ActionTypes.ADD_CATEGORY_SAVE_ID:
+        //     return {
+        //         ...state,
+        //         categoryProductsNextPagesxp: {
+        //             ...state.categoryProductsNextPagesxp,
+        //             [action.payload.id]: action.payload.id,
+        //         }
+        //     }

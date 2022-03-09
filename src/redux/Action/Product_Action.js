@@ -1,6 +1,7 @@
 import * as ActionTypes from './Types'
 import axios from 'axios'
-
+import { ChangeCode } from '../../Assistant/ValidationPayment'
+import { Action_logout } from './Auth_Action'
 
 
 // Remove product from user
@@ -56,9 +57,6 @@ export const ReviewCommentUserAction = (user) => async (dispatch, getState) => {
     }
 }
 
-
-
-
 // product id 
 // GET // URL :  product/product/id
 export const product_IDAction = (id) => async (dispatch) => {
@@ -82,60 +80,30 @@ export const product_IDAction = (id) => async (dispatch) => {
 }
 
 // Start Product Pagination  //.................................................................>
-
 // append.... 
-export const AppendProductAndCategory = (categoryId, data) => ({
+export const AppendProductAndCategory = (data) => ({
     type: ActionTypes.ADD_CATEGORYPRODUCT_APPEND,
-    payload: { categoryId, data }
+    payload: data
 })
-
-
-
 // count next pages...
-export const AppendNumberCategoryProduct = (categoryId, nextpage) => ({
+export const AppendNumberCategoryProduct = (nextpage) => ({
     type: ActionTypes.ADD_NUMBERNEXTPAGE_SUCCESS,
-    payload: { categoryId, nextpage }
+    payload: nextpage
 })
 
-// get product with category id... 
-// url : product/category/617946b505c8dc1944a5439d
-// const user = '6179463f05c8dc1944a5438f'
+// get products... 
 export const productpaginationAction = (user) => async (dispatch, getState) => {
-
-
-
-    // console.log('updated',user)
-
-
-    const calculatedPage = getState().PaginationProducts?.categoryProductsNextPagesxp[user]
+    const calculatedPage = getState().PaginationProducts?.categoryProductsNextPagesxp
     const nextRequestPage = calculatedPage === undefined ? 1 : calculatedPage
-
-    // console.log('======', nextRequestPage)
-
     if (nextRequestPage) {
-
         try {
-
-
             const { data } = await axios.get(`/api/product/cartinfo/${user}?pageNumber=${nextRequestPage}`)
-            // const { product, pages, result: { next: { page } } } = data
-            //  console.log(data)
-            dispatch(AppendProductAndCategory(user, data.product))
-
-
-
-            if (data?.pages <= 1) return dispatch(AppendNumberCategoryProduct(user, null))
-
-
+            dispatch(AppendProductAndCategory(data.product))
+            if (data?.pages <= 1) return dispatch(AppendNumberCategoryProduct(null))
             const nextpage = data?.result?.next?.page > data?.pages ? null : data?.result?.next?.page
-            dispatch(AppendNumberCategoryProduct(user, nextpage))
-
+            dispatch(AppendNumberCategoryProduct(nextpage))
             return
-
-
-
         } catch (error) {
-
             dispatch({
                 type: ActionTypes.ADD_PAGINATION_PRODUCT_FAIL,
                 payload: error.response &&
@@ -148,8 +116,7 @@ export const productpaginationAction = (user) => async (dispatch, getState) => {
     }
 
 }
-
-
+// End Product Pagination  //.................................................................>
 
 
 
@@ -158,10 +125,7 @@ export const productpaginationAction = (user) => async (dispatch, getState) => {
 // POST // URL : /api/product/create/
 export const CreateNewProductAction = (user) => async (dispatch, getState) => {
     try {
-
         const { userLogin: { token } } = getState()
-
-
         dispatch({ type: ActionTypes.ADD_PRODUCT_UPDATED_LOADING })
         const { data } = await axios.post(`/api/product/create/`,
             user, {
@@ -171,13 +135,23 @@ export const CreateNewProductAction = (user) => async (dispatch, getState) => {
         })
         dispatch({ type: ActionTypes.ADD_PRODUCT_CREATE_SUCCESS, payload: data })
     } catch (error) {
-        dispatch({
-            type: ActionTypes.ADD_PRODUCT_UPDATED_FAIL,
-            payload: error.response &&
-                error.response.data.message ?
-                error.response.data.message :
-                error.message
-        })
+
+        const message = error.response &&
+        error.response.data.message ?
+        error.response.data.message :
+        error.message
+
+    if (message === 'token failed') {
+
+        dispatch(Action_logout())
+
+    }
+    dispatch({
+        type: ActionTypes.ADD_PRODUCT_UPDATED_FAIL,
+        payload: message
+
+    })
+        
     }
 }
 
@@ -192,10 +166,6 @@ export const ProductUpdatedAction = (user) => async (dispatch) => {
         dispatch({ type: ActionTypes.ADD_PRODUCT_UPDATED_LOADING })
         const { data } = await axios.put(`/api/product/product/updated/${user._id}`, user)
         dispatch({ type: ActionTypes.ADD_PRODUCT_UPDATED_SUCCESS, payload: data })
-        // dispatch(productpaginationAction(user?.cartinfo))
-        // console.log('succfully',user?.cartinfo)
-        // console.log('SuccessFully product Update')
-        // dispatch(product_IDAction(user?._id, true))
     } catch (error) {
         dispatch({
             type: ActionTypes.ADD_PRODUCT_UPDATED_FAIL,
@@ -215,13 +185,11 @@ export const UploadingNewImageProduct = (user, UpdateProducts, CreateProduct) =>
         dispatch({ type: ActionTypes.ADD_PRODUCT_UPDATED_LOADING })
 
         const { data } = await axios.post(`/api/uploading/`, user)
-        console.log('successfully uploading :', data)
-        console.log('Old data  :', UpdateProducts)
         const newDataUploading = {
             cartinfo: UpdateProducts?.cartinfo,
-            category: UpdateProducts?.category,
-            description: UpdateProducts?.description,
-            name: UpdateProducts?.name,
+            category: ChangeCode(UpdateProducts?.category),
+            description: ChangeCode(UpdateProducts?.description),
+            name: ChangeCode(UpdateProducts?.name),
             popular: UpdateProducts?.popular,
             prices: UpdateProducts?.prices,
             _id: UpdateProducts?._id,

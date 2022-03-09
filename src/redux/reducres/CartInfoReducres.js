@@ -8,7 +8,7 @@ import * as ActionTypes from '../Action/Types'
 
 
 // Updated cart info
-// put
+// put 
 export const UpdatedCartiNFOReducres = (state = {
     loading: false,
     updated: null,

@@ -4,8 +4,6 @@
 // Before confirming the payment.......
 export const ValidationPayment = (TheCheckOutDriver, theCheckOutCard, CheckUserAddress) => {
 
-
-
     if (TheCheckOutDriver?.name === 'delivery') {
         return typeof CheckUserAddress === 'undefined' ? 'Please Add Delivery Address' :
             typeof theCheckOutCard === 'undefined' ? 'check in payment Methode' : true
@@ -57,20 +55,21 @@ export function ValidationProducts(productDetails, changeImage) {
 
     return productDetails?.name?.trim().length <= 2 ||
         productDetails?.description?.trim().length <= 19 ||
-        (productDetails.image.length <= 0 && changeImage === '') ||
+        (productDetails?.image?.length <= 0 && changeImage === '') ||
         /^[1-9]\d*(\.\d+)?$/.test(productDetails.prices) !== true
 
 
 }
 
 // if type input equle old value  not requirest
-export function ValidationUpdateProduct(OldValues, NewValues ,changeImage) {
+export function ValidationUpdateProduct(OldValues, NewValues, changeImage) {
 
-  
+
     return NewValues?.name?.trim()?.normalize() === OldValues?.name?.normalize()
         && NewValues?.description?.trim()?.normalize() === OldValues?.description?.normalize()
+        && NewValues?.popular === OldValues?.popular
         && Number(NewValues?.prices) === Number(OldValues?.prices)
-        &&  changeImage === ''  
+        && changeImage === ''
 
 
     // NewValues?.image?.normalize() === OldValues?.image?.normalize() 
@@ -97,10 +96,45 @@ export function ChangeCode(CodeName) {
 
 
 // validation category
-export function ValidationCategory(){
+export function ValidationCategory(NewValue, OldValue) {
 
-
-    return
+    return NewValue?.normalize() === OldValue?.normalize()
 }
 
 
+
+// Validation Cart Info.....
+export function ValidationCartInfo(
+    NewValue,
+    OldValue,
+    opentime,
+    addressinfo,
+    finishfood,
+    changeImage
+) {
+
+    return NewValue?.username?.normalize() === OldValue?.username?.normalize()
+        && NewValue?.description?.normalize() === OldValue?.description?.normalize()
+        && NewValue?.productType?.normalize() === OldValue?.productType?.normalize()
+        && NewValue?.freeDelvery === OldValue?.freeDelvery
+        && NewValue?.restrangeDriver === OldValue?.restrangeDriver
+        && (NewValue?.image?.length <= 0 || changeImage === '')
+        && opentime?.oppen?.normalize() === OldValue?.opentime?.oppen?.normalize()
+        && opentime?.close?.normalize() === OldValue?.opentime?.close?.normalize()
+        && addressinfo?.city?.normalize() === OldValue?.addressinfo?.city?.normalize()
+        && Number(addressinfo?.telefon) === Number(OldValue?.addressinfo?.telefon)
+        && addressinfo?.address?.normalize() === OldValue?.addressinfo?.address?.normalize()
+        && addressinfo?.website?.normalize() === OldValue?.addressinfo?.website?.normalize()
+        && Number(finishfood?.to) === Number(OldValue?.finishfood?.to)
+        && Number(finishfood?.end) === Number(OldValue?.finishfood?.end)
+
+
+}
+
+
+// validation account
+export function ValidationAccount(name) {
+
+    return name?.Accountnumber?.length >= 6 && name?.Accountowner?.length >= 6 &&
+        name?.IBAN?.length >= 6
+}

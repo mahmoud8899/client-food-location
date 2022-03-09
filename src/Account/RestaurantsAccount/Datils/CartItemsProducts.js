@@ -2,11 +2,13 @@ import { Table } from 'react-bootstrap'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { TabScreen, TabScrrenDor } from '../../../Components/TabScreen/TabScreen'
-import Styles from '../style'
 import { SliceNameNot } from '../../../Assistant/Slice'
-import { Fragment, useState } from 'react'
 import RemoveAlrt from '../../../Components/Update/RemoveAlrt/RemoveAlrt'
 import { RemoveProductAction } from '../../../redux/Action/Product_Action'
+import InfiniteScrollData from '../Datils/InfiniteScrollData'
+import { productpaginationAction } from '../../../redux/Action/Product_Action'
+import Styles from '../../../Components/Update/StylesComponents/style'
+import { Fragment, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 
@@ -16,80 +18,114 @@ import { useDispatch } from 'react-redux'
 
 export default function CartItemsProducts(props) {
 
+    const {
+        categoryProductsNextPagesxp,
+        products,
+        setShow,
+        resturantId
+    } = props
+
+
+
 
     const dispatch = useDispatch()
-    // open alrt remove...
-    const [show, setShow] = useState({ value: false, object: '' })
-
-
-
-
+    //  alrt remove...
+    const [alrtRemove, setAlrtRemove] = useState({ value: false, object: '' })
+    // remove products...
     const HandleRemove = () => {
-        console.log('remove....', show?.object)
+        console.log('remove....', alrtRemove?.object)
+        dispatch(RemoveProductAction(alrtRemove?.object))
+        return setAlrtRemove({ value: false, object: '' })
+    }
 
-        dispatch(RemoveProductAction(show?.object))
-        return setShow({ value: false, object: '' })
+
+
+
+
+    // fetch data more...
+    const fetchData = () => {
+        if(categoryProductsNextPagesxp > Number(1)){
+
+            return dispatch(productpaginationAction(resturantId))
+        }
     }
 
 
     return <Fragment>
-        <Table responsive >
-            <thead style={Styles.color}>
-                <tr style={Styles.color}>
-                    <TabScreen TitleTh='number' style={Styles.fontText} />
-                    <TabScreen TitleTh='username' style={Styles.fontText} />
-                    <TabScreen TitleTh='image' style={Styles.fontText} />
-                    <TabScreen TitleTh='prices' style={Styles.fontText} />
-                    <TabScreen TitleTh='category' style={Styles.fontText} />
-                    <TabScreen TitleTh='edit' style={Styles.fontText} />
 
-                    <TabScreen TitleTh='remove' style={Styles.fontText} />
 
-                </tr>
+        <InfiniteScrollData
+            products={products}
+            categoryProductsNextPagesxp={categoryProductsNextPagesxp}
+            fetchData={fetchData}
+        >
 
-            </thead>
-            <tbody style={Styles.color}>
-                {props?.matProducts?.map((product, Index) => (
-                    <tr style={Styles.color} key={Index}>
-                        <TabScrrenDor TitleTd={SliceNameNot(product?._id, 10)} style={Styles.fontText} />
-                        <TabScrrenDor TitleTd={product?.name} style={Styles.fontText} />
-                        <TabScrrenDor other={<ImageScreen ImageIcon={product?.image} style={Styles.imageproduct} />} />
-                        <TabScrrenDor TitleTd={product?.prices} style={Styles.fontText} />
-                        <TabScrrenDor TitleTd={product?.category?.name} style={Styles.fontText} />
-                        <TabScrrenDor other={
-                            <div className='remove' style={Styles.edit}>
-                                <ImageScreen ImageIcon={MyOderImage.edit} style={Styles.iconsremov} />
-                                <span  >Edit</span>
-
-                            </div>
-                        }
-                            onClick={() => props?.setShow({ value: true, object: product })}
-                        />
-                        <TabScrrenDor other={
-                            <div className='remove' style={Styles.remove}>
-                                <ImageScreen ImageIcon={MyOderImage.remove} style={Styles.iconsremov} />
-                                <span >remove</span>
-
-                            </div>
-                        }
-                            onClick={() => setShow({ value: true, object: product?._id })}
-                        />
+            <Table responsive >
+                <thead style={Styles.TabBackColor}>
+                    <tr style={Styles.Tabcolor}>
+                        <TabScreen TitleTh='number' style={Styles.TabfontText} />
+                        <TabScreen TitleTh='username' style={Styles.TabfontText} />
+                        <TabScreen TitleTh='image' style={Styles.TabfontText} />
+                        <TabScreen TitleTh='prices' style={Styles.TabfontText} />
+                        <TabScreen TitleTh='category' style={Styles.TabfontText} />
+                        <TabScreen TitleTh='edit' style={Styles.TabfontText} />
+                        <TabScreen TitleTh='remove' style={Styles.TabfontText} />
 
                     </tr>
-                ))}
 
-            </tbody>
+                </thead>
+                <tbody style={Styles.Tabcolor}>
+                    {products?.map((product, Index) => (
+                        <tr style={Styles.Tabcolor} key={Index}>
+                            <TabScrrenDor TitleTd={SliceNameNot(product?._id, 10)} style={Styles.TabfontText} />
+                            <TabScrrenDor TitleTd={product?.name} style={Styles.TabfontText} />
+                            <TabScrrenDor other={<ImageScreen ImageIcon={product?.image} style={Styles.Tabimageproduct} />} />
+                            <TabScrrenDor TitleTd={product?.prices} style={Styles.TabfontText} />
+                            <TabScrrenDor TitleTd={
+                                product?.category?.name ? product?.category?.name : 'add category'
+                                
+                                } style={Styles.TabfontText} />
+                            <TabScrrenDor other={
+                                <div className='remove' style={Styles.TabButtomEdit}>
+                                    <ImageScreen ImageIcon={MyOderImage.edit} style={Styles.TabIconsremov} />
+                                    <span  >Edit</span>
+
+                                </div>
+                            }
+                                onClick={() => setShow({ value: true, object: product })}
+                            />
+                            <TabScrrenDor other={
+                                <div className='remove' style={Styles.TabButtomRemove}>
+                                    <ImageScreen ImageIcon={MyOderImage.remove} style={Styles.TabIconsremov} />
+                                    <span >remove</span>
+
+                                </div>
+                            }
+                                onClick={() => setAlrtRemove({ value: true, object: product?._id })}
+                            />
+
+                        </tr>
+                    ))}
+
+                </tbody>
 
 
 
 
 
-        </Table>
+            </Table>
 
-        {show?.value &&
+        </InfiniteScrollData>
+
+
+
+
+
+
+        {alrtRemove?.value &&
             <RemoveAlrt
-                show={show}
-                setShow={setShow}
+                show={alrtRemove}
+                setShow={setAlrtRemove}
                 TextRemove='ta bort produkt'
                 HandleRemove={HandleRemove}
             />

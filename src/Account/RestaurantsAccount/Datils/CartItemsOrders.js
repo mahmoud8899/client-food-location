@@ -1,71 +1,103 @@
-import { Table } from 'react-bootstrap'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { TabScreen, TabScrrenDor } from '../../../Components/TabScreen/TabScreen'
-import Styles from '../style'
-
+import InfiniteScrollData from '../Datils/InfiniteScrollData'
+import { ShowOrderAction } from '../../../redux/Action/Order_Action'
+import Styles from '../../../Components/Update/StylesComponents/style'
+import {SliceName} from '../../../Assistant/Slice'
+import { Fragment } from 'react'
+import { useDispatch } from 'react-redux'
+import { Table } from 'react-bootstrap'
 
 
 
 export default function CartItemsOrders(props) {
+    const {
+        ShowOrders,
+        history,
+        ordersAllNumber,
+        resturantId
+    } = props
 
-    const { ShowOrders, history } = props
 
 
-
-
-    return <Table responsive  >
-        <thead style={Styles.color}>
-            <tr >
-                <TabScreen TitleTh='Order Number' style={Styles.fontText} />
-                <TabScreen TitleTh='Pric' style={Styles.fontText} />
-                <TabScreen TitleTh='payment' style={Styles.fontText} />
-                <TabScreen TitleTh='Paid' style={Styles.fontText} />
-                <TabScreen TitleTh='delivery' style={Styles.fontText} />
-                <TabScreen TitleTh='Detail' style={Styles.fontText} />
-                <TabScreen TitleTh='edit' style={Styles.fontText} />
-            </tr>
-
-        </thead>
-        {ShowOrders?.map((order, Index) => (
-
-            <tbody style={Styles.color} key={Index}>
-                <tr style={Styles.fontText}  >
-
-                    <TabScrrenDor TitleTd={order?._id} />
-                    <TabScrrenDor TitleTd={order?.itemsPrics} style={Styles.fontText} />
-                    <TabScrrenDor TitleTd={order?.paymentMethod} style={Styles.fontText} />
-                    <TabScrrenDor TitleTd={order?.ispaid ? 'yes' : 'no'} style={Styles.fontText} />
-                    <TabScrrenDor TitleTd={order?.OrderStatus} style={Styles.fontText} />
-                    <TabScrrenDor
-                        TitleTd='detail'
-                        style={Styles.fontText}
-                        onClick={(e) => history.push(`/order/shipping/${order?._id}`)}
-                    />
-                    <TabScrrenDor other={
-                        <div className='remove' style={Styles.edit}>
-                            <ImageScreen ImageIcon={MyOderImage.edit}
-                                style={Styles.iconsremov} />
-                            <span  >Edit</span>
-
-                        </div>
-                    }
-
-                    />
+    const dispatch = useDispatch()
 
 
 
 
+     // fetch data..
+    const fetchData = () => {
 
-                </tr>
-
-            </tbody>
-
-        ))
+        if (ordersAllNumber > Number(1)) {
+            return dispatch(ShowOrderAction(resturantId))
         }
 
+    }
 
-    </Table>
+
+    return <Fragment>
+        <InfiniteScrollData
+            products={ShowOrders}
+            categoryProductsNextPagesxp={ordersAllNumber}
+            fetchData={fetchData}
+        >
+            <Table responsive  >
+                <thead style={Styles.TabBackColor} >
+                    <tr style={Styles.Tabcolor} >
+                        <TabScreen TitleTh='Order Number' style={Styles.TabfontText} />
+                        <TabScreen TitleTh='Pric' style={Styles.TabfontText} />
+                        <TabScreen TitleTh='payment' style={Styles.TabfontText} />
+                        <TabScreen TitleTh='Paid' style={Styles.TabfontText} />
+                        <TabScreen TitleTh='delivery' style={Styles.TabfontText} />
+                        <TabScreen TitleTh='titta' style={Styles.TabfontText} />
+     
+                    </tr>
+
+                </thead>
+                {ShowOrders?.map((order, Index) => (
+
+                    <tbody style={Styles.Tabcolor} key={Index}>
+                        <tr style={Styles.Tabcolor}  >
+
+                            <TabScrrenDor TitleTd={SliceName(order?._id,20)  } style={Styles.TabfontText} />
+                            <TabScrrenDor TitleTd={order?.itemsPrics} style={Styles.TabfontText} />
+                            <TabScrrenDor TitleTd={order?.paymentMethod} style={Styles.TabfontText} />
+                            <TabScrrenDor TitleTd={order?.ispaid ? 'yes' : 'no'} style={Styles.TabfontText} />
+                            <TabScrrenDor TitleTd={order?.OrderStatus} style={Styles.TabfontText} />
+                         
+                            <TabScrrenDor other={
+                                <div className='remove' style={Styles.TabButtomEdit}>
+                                    <ImageScreen ImageIcon={MyOderImage.edit}
+                                        style={Styles.TabIconsremov} />
+                                    <span>titta</span>
+
+                                </div>
+                            }
+                            onClick={(e) => history.push(`/order/shipping/${order?._id}`)}
+
+                            />
+
+
+
+
+
+                        </tr>
+
+                    </tbody>
+
+                ))
+                }
+
+
+            </Table>
+
+
+
+        </InfiniteScrollData>
+    </Fragment>
+
+
 
 
 

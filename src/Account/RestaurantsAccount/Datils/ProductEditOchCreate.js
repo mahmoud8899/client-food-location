@@ -1,19 +1,20 @@
-import { Modal, Form } from 'react-bootstrap'
+
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import Input from '../../../Components/Input/Input'
 import ButtomClick from '../../../Components/Buttom/Buttom'
 import OppenImage from '../../../Components/Update/OppenImage/OppenImage'
 import { getCategoryAction } from '../../../redux/Action/Category_Action'
-import { useDispatch, useSelector } from 'react-redux'
 import { ValtionMe } from '../../../Assistant/ValtionMe'
-import { ValidationProducts,  ValidationUpdateProduct } from '../../../Assistant/ValidationPayment'
-import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen'
-import CodeError from '../../../Components/CodeError/CodeError'
+import { ValidationProducts, ValidationUpdateProduct, ChangeCode } from '../../../Assistant/ValidationPayment'
 import { UploadingNewImageProduct, ProductUpdatedAction } from '../../../redux/Action/Product_Action'
-import { useEffect, useState } from 'react'
-import Styles from '../style'
+import { TheProductRemoveAndUpdated } from '../../../Components/CloseScreen/CloseScreen'
+import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
+import Styles from '../../../Components/Update/StylesComponents/style'
+import { Modal, Form } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 import '../style.css'
+import { useEffect, useState } from 'react'
 
 
 export default function ProductEditOchCreate(props) {
@@ -22,20 +23,24 @@ export default function ProductEditOchCreate(props) {
     const dispatch = useDispatch()
     // show image 
     const [showImage, setShowImage] = useState({ value: false, image: '' })
-    const ListCategoryUX = useSelector((state) => state?.ListCategory?.category[resturantId]) || []
-    // updated and create successfully
+    // get all category 
+    const ListCategoryUX = useSelector((state) => state?.ListCategory?.category)
+    // alret  updated and create successfully
     const [updateSuccessFully, setUpdateSuccessFully] = useState(false)
     //  create product and updated product 
     const PageUpdatedProduct = useSelector((state) => state.PageUpdatedProduct)
     const { loading, error, updated, created } = PageUpdatedProduct
 
 
+    // image uploading and show
     const [imageSave, setImageSave] = useState('')
+    // image uploading and show
     const [changeImage, setChangeImage] = useState('')
-    const [productDetails, setProductDetails] = useState({name: '',description: '',image: '',popular: false, prices: Number(), category: '', _id: '', cartinfo: ''})
+    // product details
+    const [productDetails, setProductDetails] = useState({ name: '', description: '', image: '', popular: false, prices: Number(), category: '', _id: '', cartinfo: '' })
 
+    // updated when edit show product details
     useEffect(() => {
-
         if (resturantId) {
             ListCategoryUX?.length === 0 && dispatch(getCategoryAction(resturantId))
             return show?.object ? setProductDetails({
@@ -44,7 +49,7 @@ export default function ProductEditOchCreate(props) {
                 image: show?.object?.image ? show?.object?.image : '',
                 popular: show?.object?.popular ? show?.object?.popular : false,
                 prices: show?.object?.prices ? show?.object?.prices : Number(),
-                category: show?.object?.category?._id ? show?.object?.category?._id : '',
+                category: show?.object?.category?._id ? show?.object?.category?._id : ListCategoryUX ? ListCategoryUX[0]?._id : ListCategoryUX[0]?._id,
                 _id: show?.object?._id ? show?.object?._id : '',
                 cartinfo: show?.object?.cartinfo ? show?.object?.cartinfo : '620d1f1084f54514ebb4dac8'
             }) : setProductDetails({
@@ -56,18 +61,18 @@ export default function ProductEditOchCreate(props) {
                 category: ListCategoryUX ? ListCategoryUX[0]?._id : ListCategoryUX[0]?._id,
                 cartinfo: show?.object?.cartinfo ? show?.object?.cartinfo : '620d1f1084f54514ebb4dac8'
             })
-
-
-
-
         }
+
+
+
+
 
         return () => {
             setProductDetails([])
-            // setUpdateSuccessFully(false)
+
         }
 
-// eslint-disable-next-line
+        // eslint-disable-next-line
     }, [
         resturantId,
         ListCategoryUX?.length,
@@ -76,11 +81,10 @@ export default function ProductEditOchCreate(props) {
         setProductDetails,
     ])
 
+
+    // updated and remove ...
     useEffect(() => {
         if (updated || created) {
-
-            console.log('helllo',)
-
             return setUpdateSuccessFully(true)
 
         }
@@ -88,25 +92,23 @@ export default function ProductEditOchCreate(props) {
         return () => {
             setUpdateSuccessFully(false)
         }
-        // eslint-disable-next-line
-    }, [
-        updated,
+
+    }, [updated,
         created,
-        setUpdateSuccessFully
-    ])
+        setUpdateSuccessFully])
 
 
 
 
 
-     // send form to backend updated and create
+    // send form to backend updated and create
+    // Handle Edit and Create new product.
     const HandleForm = (e) => {
         e.preventDefault()
 
         // [1] : check out all 
         // [2] : code cleaning with  ChangeCode(params)
         // [3] : checkut picture
-        // [4] : 
 
         if (changeImage?.length >= 1) {
             // Updated image and delete old photo
@@ -119,7 +121,18 @@ export default function ProductEditOchCreate(props) {
 
         // Updated Input and without changing th picture....
         // updated product.....
-        return dispatch(ProductUpdatedAction(productDetails))
+
+        const ChekOutInput = {
+            name: ChangeCode(productDetails?.name),
+            description: ChangeCode(productDetails?.description),
+            image: productDetails?.image,
+            popular: productDetails?.popular,
+            prices: productDetails?.prices,
+            category: productDetails?.category,
+            _id: productDetails?._id,
+            cartinfo: productDetails?.cartinfo,
+        }
+        return dispatch(ProductUpdatedAction(ChekOutInput))
 
     }
 
@@ -149,188 +162,175 @@ export default function ProductEditOchCreate(props) {
         setShowImage('')
         setImageSave('')
         setUpdateSuccessFully(false)
-        return
+        return TheProductRemoveAndUpdated(dispatch)
 
+
+    }
+
+    // remove all error 
+    const BackAndRemoveError = () => {
+        return TheProductRemoveAndUpdated(dispatch)
     }
 
     return <Modal
         show={props?.show?.value}
         onHide={() => HandleClose()}
     >
-        {loading ?
-            <div className='Loading-Updated'>
-                <LoadingScreen />
-            </div>
-            : error ?
-                <div className='Loading-Updated'>
-                    <CodeError error={error} onClick={() => console.log('click')} />
-                </div>
-                :
+        <HandleLoadingPage
+            loading={loading}
+            error={error}
+            updateSuccessFully={updateSuccessFully}
+            HandleClose={HandleClose}
+            BackAndRemoveError={BackAndRemoveError}
+            updated={updated}
+        >
+            {
                 showImage?.value ?
                     <OppenImage
                         showImage={showImage}
                         setShowImage={setShowImage}
                     />
                     :
+                    <div className='body-category'>
 
-                    updateSuccessFully
-                        ?
-                        <div className='body-category'>
+                        <div className='modal-title-edit-category'>
+
+                            <h1>
+                                {show?.object?.name ?
+                                    `Uppdatering - ${show?.object?.name}` :
+                                    `skapa ny kategori`
+
+                                }
+                            </h1>
                             <ImageScreen
                                 ImageIcon={MyOderImage.close}
                                 className='close-pp-pp-image'
-                                onClick={() => HandleClose()}
+                                onClick={() => setShow({ value: false, object: '' })}
                             />
-
-                            <div className='Loading-Updated'>
-
-                                <div className='Text-Uploading'>
-                                    {updated ? 'Updated your order' : 'successfully new product'}
-                                </div>
-                                <LoadingScreen />
-                            </div>
                         </div>
 
 
-                        :
-
-                        <div className='body-category'>
-
-                            <div className='modal-title-edit-category'>
-
-                                <h1>
-                                    {show?.object?.name ?
-                                        `Edit - ${show?.object?.name}` :
-                                        `create new Category`
-
-                                    }
-                                </h1>
-                                <ImageScreen
-                                    ImageIcon={MyOderImage.close}
-                                    className='close-pp-pp-image'
-                                    onClick={() => setShow({ value: false, object: '' })}
+                        <div className='form-Scrolling'>
+                            <Form onSubmit={HandleForm} className='form-padding'>
+                                <Input
+                                    placeholder='Product name'
+                                    onChange={(e) => setProductDetails({ ...productDetails, name: e.target.value })}
+                                    value={productDetails.name}
+                                    className='Input-type-style productdetials'
+                                    type='text'
+                                    validation={ValtionMe(productDetails.name, 'inputname').toString()}
                                 />
-                            </div>
+
+                                <Input
+                                    placeholder='Description'
+                                    className='Input-type-style productdetials hegith'
+                                    as='textarea'
+                                    type='text'
+                                    onChange={(e) => setProductDetails({ ...productDetails, description: e.target.value })}
+                                    value={productDetails.description}
+                                    validation={ValtionMe(productDetails.description, 'description').toString()}
+                                />
 
 
-                            <div className='form-Scrolling'>
-                                <Form onSubmit={HandleForm} className='form-padding'>
+                                <Input
+                                    placeholder='Prices'
+                                    onChange={(e) => setProductDetails({ ...productDetails, prices: e.target.value })}
+                                    value={productDetails.prices}
+                                    className='Input-type-style productdetials'
+                                    type='number'
+                                    validation={ValtionMe(productDetails.prices, 'Prices').toString()}
+                                />
+
+
+                                <select
+                                    className='Input-type-style productdetials'
+
+                                    onChange={(e) =>
+                                        setProductDetails({ ...productDetails, category: e.target.value })}
+                                    value={productDetails?.category}
+                                >
+                                    {ListCategoryUX?.map((x, Index) => (
+                                        <option
+                                            value={x?._id}
+                                            key={Index}
+                                        >{x?.name}</option>
+                                    ))}
+
+                                </select>
+
+                                <div className='edit-product-image-div'>
                                     <Input
-                                        placeholder='Product name'
-                                        onChange={(e) => setProductDetails({ ...productDetails, name: e.target.value })}
-                                        value={productDetails.name}
-                                        className='Input-type-style productdetials'
-                                        type='text'
-                                        validation={ValtionMe(productDetails.name, 'inputname').toString()}
+                                        placeholder='image'
+                                        type="file"
+                                        onChange={HandleIamge}
+                                        name="image"
+
                                     />
+                                    {productDetails?.image || changeImage ?
+                                        <div className='div-image-handle-product-edit'>
+                                            <ImageScreen
+                                                ImageIcon={changeImage ? changeImage : productDetails?.image}
+                                                className='Image-product-Edit'
+                                                onClick={() => setShowImage({ value: true, image: changeImage ? changeImage : productDetails?.image })}
+                                            />
+                                            <ImageScreen
+                                                ImageIcon={MyOderImage.close}
+                                                className='Image-product-Edit close-c'
+                                                onClick={(e) => changeImage ? setChangeImage('') : setProductDetails({ ...productDetails, image: '' })}
+                                            />
+                                        </div>
+                                        : null}
 
-                                    <Input
-                                        placeholder='Description'
-                                        className='Input-type-style productdetials hegith'
-                                        as='textarea'
-                                        type='text'
-                                        onChange={(e) => setProductDetails({ ...productDetails, description: e.target.value })}
-                                        value={productDetails.description}
-                                        validation={ValtionMe(productDetails.description, 'description').toString()}
+                                </div>
+
+
+
+                                <div className='switch-type'
+                                    onClick={() => setProductDetails({
+                                        ...productDetails, popular: productDetails?.popular ? false : true
+
+                                    })} >
+
+                                    <span className={productDetails?.popular ? 'checkOut-popluer' : ''}>
+
+                                    </span>
+                                    <span>Är det populär mat?</span>
+
+                                </div>
+
+
+
+
+
+                                <div className='Buttom-class'>
+                                    <ButtomClick
+                                        style={Styles.TabButtomCreate}
+                                        title={show?.object
+                                            ?
+                                            ValidationProducts(productDetails, changeImage) !== true ? 'Uppdatering' : 'kolla in typinmatning'
+                                            :
+                                            ValidationProducts(productDetails, changeImage) !== true ? 'skapa ny produkt' : 'kolla in typinmatning'
+
+                                        }
+                                        onClick={HandleForm}
+                                        disabled={show?.object ?
+                                            ValidationUpdateProduct(show?.object, productDetails, changeImage)
+                                            :
+                                            ValidationProducts(productDetails, changeImage) === true
+
+                                        }
                                     />
+                                </div>
+                            </Form>
 
-
-                                    <Input
-                                        placeholder='Prices'
-                                        onChange={(e) => setProductDetails({ ...productDetails, prices: e.target.value })}
-                                        value={productDetails.prices}
-                                        className='Input-type-style productdetials'
-                                        type='number'
-                                        validation={ValtionMe(productDetails.prices, 'Prices').toString()}
-                                    />
-
-
-                                    <select
-                                        className='Input-type-style productdetials'
-
-                                        onChange={(e) =>
-                                            setProductDetails({ ...productDetails, category: e.target.value })}
-                                        value={productDetails?.category}
-                                    >
-                                        {ListCategoryUX?.map((x, Index) => (
-                                            <option
-                                                value={x?._id}
-                                                key={Index}
-                                            >{x?.name}</option>
-                                        ))}
-
-                                    </select>
-
-                                    <div className='edit-product-image-div'>
-                                        <Input
-                                            placeholder='image'
-                                            type="file"
-                                            onChange={HandleIamge}
-                                            name="image"
-
-                                        />
-                                        {productDetails?.image || changeImage ?
-                                            <div className='div-image-handle-product-edit'>
-                                                <ImageScreen
-                                                    ImageIcon={changeImage ? changeImage : productDetails?.image}
-                                                    className='Image-product-Edit'
-                                                    onClick={() => setShowImage({ value: true, image: changeImage ? changeImage : productDetails?.image })}
-                                                />
-                                                <ImageScreen
-                                                    ImageIcon={MyOderImage.close}
-                                                    className='Image-product-Edit close-c'
-                                                    onClick={(e) => changeImage ? setChangeImage('') : setProductDetails({ ...productDetails, image: '' })}
-                                                />
-                                            </div>
-                                            : null}
-
-                                    </div>
-
-
-
-                                    <div className='switch-type'
-                                        onClick={() => setProductDetails({
-                                            ...productDetails, popular: productDetails?.popular ? false : true
-
-                                        })} >
-
-                                        <span className={productDetails?.popular ? 'checkOut-popluer' : ''}>
-
-                                        </span>
-                                        <span>Är det populär mat?</span>
-
-                                    </div>
-
-
-
-
-
-                                    <div className='Buttom-class'>
-                                        <ButtomClick
-                                            style={Styles.stylebuttom}
-                                            title={show?.object
-                                                ?
-                                                ValidationProducts(productDetails, changeImage) !== true ? 'Updated' : 'check out type input'
-                                                :
-                                                ValidationProducts(productDetails, changeImage) !== true ? 'create new Product' : 'check out Type input'
-
-                                            }
-                                            onClick={HandleForm}
-                                            disabled={show?.object ?
-                                                ValidationUpdateProduct(show?.object, productDetails, changeImage)
-                                                :
-                                                ValidationProducts(productDetails, changeImage) === true
-
-                                            }
-                                        />
-                                    </div>
-                                </Form>
-
-                            </div>
                         </div>
+                    </div>
 
 
-        }
+            }
+
+        </HandleLoadingPage>
+
 
 
     </Modal>

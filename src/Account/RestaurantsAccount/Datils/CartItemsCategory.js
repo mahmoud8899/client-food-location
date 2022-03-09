@@ -2,62 +2,82 @@ import { Table } from 'react-bootstrap'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { TabScreen, TabScrrenDor } from '../../../Components/TabScreen/TabScreen'
-import Styles from '../style'
-
-
-
+import Styles from '../../../Components/Update/StylesComponents/style'
+import RemoveAlrt from '../../../Components/Update/RemoveAlrt/RemoveAlrt'
+import { useState } from 'react'
+import { DeleteCategoryAction } from '../../../redux/Action/Category_Action'
+import { useDispatch } from 'react-redux'
 
 
 export default function CartItemsCategory(props) {
+    const { ListCategoryUX } = props
 
+    const dispatch = useDispatch()
+    const [show, setShow] = useState({ value: false, object: '' })
 
-   
+    const HandleRemove = () => {
+        //  testing   console.log('remove....', show?.object)
+        dispatch(DeleteCategoryAction(show?.object))
+        return setShow({ value: false, object: '' })
+
+    }
 
 
 
     return <Table responsive >
-            <thead style={Styles.color}>
-                <tr style={Styles.color}>
-                    <TabScreen TitleTh='username' style={Styles.fontText} />
-                    <TabScreen TitleTh='edit' style={Styles.fontText} />
-                    <TabScreen TitleTh='remove' style={Styles.fontText} />
+        <thead style={Styles.TabBackColor}>
+            <tr style={Styles.Tabcolor}>
+                <TabScreen TitleTh='username' style={Styles.TabfontText} />
+                <TabScreen TitleTh='edit' style={Styles.TabfontText} />
+                <TabScreen TitleTh='remove' style={Styles.TabfontText} />
+            </tr>
+
+        </thead>
+        <tbody style={Styles.Tabcolor}  >
+            {ListCategoryUX?.length === 0 ? null : ListCategoryUX?.map((category, Index) => (
+                <tr style={Styles.Tabcolor} key={Index}>
+
+                    <TabScrrenDor TitleTd={category?.name} style={Styles.TabfontText} />
+
+                    <TabScrrenDor other={
+                        <div className='remove' style={Styles.TabButtomEdit}>
+                            <ImageScreen ImageIcon={MyOderImage.edit}
+                                style={Styles.TabIconsremov} />
+                            <span>Edit</span>
+
+                        </div>
+                    }
+                        onClick={() => props?.setEditCategory({ value: true, object: category })}
+                    />
+                    <TabScrrenDor other={
+                        <div className='remove' style={Styles.TabButtomRemove}>
+                            <ImageScreen ImageIcon={MyOderImage.remove}
+                                style={Styles.TabIconsremov} />
+                            <span  >remove</span>
+
+                        </div>
+                    }
+                        onClick={() => setShow({ value: true, object: category?._id })}
+                    />
+
                 </tr>
-
-            </thead>
-            <tbody style={Styles.color}  >
-                {props?.ListCategoryUX?.map((category, Index) => (
-                    <tr style={Styles.color} key={Index}>
-
-                        <TabScrrenDor TitleTd={category?.name} style={Styles.fontText} />
-
-                        <TabScrrenDor other={
-                            <div className='remove' style={Styles.edit}>
-                                <ImageScreen ImageIcon={MyOderImage.edit}
-                                    style={Styles.iconsremov} />
-                                <span  >Edit</span>
-
-                            </div>
-                        }
-                            onClick={() => props?.setEditCategory({value : true, object : category})}
-                        />
-                        <TabScrrenDor other={
-                            <div className='remove' style={Styles.remove}>
-                                <ImageScreen ImageIcon={MyOderImage.remove}
-                                    style={Styles.iconsremov} />
-                                <span  >remove</span>
-
-                            </div>
-                        }
-                            onClick={() => console.log('clcik')}
-                        />
-
-                    </tr>
-                ))}
+            ))}
 
 
-            </tbody>
+        </tbody>
 
-        </Table>
+
+        {show?.value &&
+
+            <RemoveAlrt
+                show={show}
+                setShow={setShow}
+                HandleRemove={HandleRemove}
+                TextRemove='Ta bort category'
+            />
+        }
+
+    </Table>
 
 
 

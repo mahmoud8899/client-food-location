@@ -23,11 +23,7 @@ export const AppendProductSearching = (data) => ({
 // GET // URL : /api/product/product/61f72059c3c4460f9145c4e5?keyword
 export const SearchingProductsAction = (id, query = '', form) => async (dispatch,getState)=>{
 
- 
-  
     const nextPage = form ? 1 : getState()?.ProductsSearching?.page
-
-    // console.log('action',getState()?.ProductsSearching?.page)
 
  if(nextPage){
     try{

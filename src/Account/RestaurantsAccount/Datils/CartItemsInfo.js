@@ -1,10 +1,9 @@
 import { Table } from 'react-bootstrap'
-import Styles from '../style'
 import { TabScreen, TabScrrenDor } from '../../../Components/TabScreen/TabScreen'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import { SliceName } from '../../../Assistant/Slice'
-
+import Styles from '../../../Components/Update/StylesComponents/style'
 
 export default function CartItemsInfo(props) {
 
@@ -13,40 +12,43 @@ export default function CartItemsInfo(props) {
 
 
     return <Table responsive >
-        <thead style={Styles.color}>
-            <tr style={Styles.color}>
-                <TabScreen TitleTh='username' style={Styles.fontText} />
-                <TabScreen TitleTh='image' style={Styles.fontText} />
-                <TabScreen TitleTh='opentime' style={Styles.fontText} />
-                <TabScreen TitleTh='address' style={Styles.fontText} />
-                <TabScreen TitleTh='description' style={Styles.fontText} />
-                <TabScreen TitleTh='finishfood' style={Styles.fontText} />
-                <TabScreen TitleTh='productType' style={Styles.fontText} />
-                <TabScreen TitleTh='comment' style={Styles.fontText} />
-                <TabScreen TitleTh='free delivery' style={Styles.fontText} />
-                <TabScreen TitleTh='restaurant driver' style={Styles.fontText} />
-
-
-                <TabScreen TitleTh='edit' style={Styles.fontText} />
+        <thead style={Styles.TabBackColor} >
+            <tr style={Styles.Tabcolor} >
+                <TabScreen TitleTh='username' style={Styles.TabfontText} />
+                <TabScreen TitleTh='image' style={Styles.TabfontText} />
+                <TabScreen TitleTh='opentime' style={Styles.TabfontText} />
+                <TabScreen TitleTh='address' style={Styles.TabfontText} />
+                <TabScreen TitleTh='description' style={Styles.TabfontText} />
+                <TabScreen TitleTh='finishfood' style={Styles.TabfontText} />
+                <TabScreen TitleTh='productType' style={Styles.TabfontText} />
+                <TabScreen TitleTh='comment' style={Styles.TabfontText} />
+                <TabScreen TitleTh='free delivery' style={Styles.TabfontText} />
+                <TabScreen TitleTh='restaurant driver' style={Styles.TabfontText} />
+                <TabScreen TitleTh='edit' style={Styles.TabfontText} />
 
 
             </tr>
 
         </thead>
-        <tbody style={Styles.color}>
+        <tbody style={Styles.Tabcolor}>
 
 
-            <tr style={Styles.color} onClick={(e) => setShow({ value: true, updated: true })} >
-                <TabScrrenDor TitleTd={info?.username} style={Styles.fontText} />
-            <TabScrrenDor other={
-                info?.image ?   <ImageScreen ImageIcon={info?.image} className='Image-info' />  : <span>add image</span>
-          
-            
-            } />
-                
+            <tr style={Styles.Tabcolor} onClick={(e) => setShow({ value: true, updated: true })} >
+                <TabScrrenDor TitleTd={info?.username} style={Styles.TabfontText} />
+                <TabScrrenDor other={
+                    info?.image ?
+                        <ImageScreen
+                            ImageIcon={info?.image}
+                            style={Styles.Tabimageproduct}
+                        />
+                        : <span>add image</span>
+
+
+                } />
+
                 <TabScrrenDor
                     TitleTd={`${info?.opentime?.oppen} -${info?.opentime?.close}`}
-                    style={Styles.fontText} />
+                    style={Styles.TabfontText} />
                 <TabScrrenDor
                     other={<div className='class-sw'>
                         <span>{info?.addressinfo?.city}</span>
@@ -65,26 +67,26 @@ export default function CartItemsInfo(props) {
                 <TabScrrenDor
                     TitleTd={`${info?.finishfood?.to}-${info?.finishfood?.end}`}
 
-                    style={Styles.fontText} />
-                <TabScrrenDor TitleTd={info?.productType} style={Styles.fontText} />
+                    style={Styles.TabfontText} />
+                <TabScrrenDor TitleTd={info?.productType} style={Styles.TabfontText} />
                 <TabScrrenDor
                     TitleTd={info?.numReviews?.toString()}
-                    style={Styles.fontText}
+                    style={Styles.TabfontText}
                 />
                 <TabScrrenDor
                     TitleTd={info?.freeDelvery === true ? 'yes' : 'no'}
-                    style={Styles.fontText}
+                    style={Styles.TabfontText}
                 />
                 <TabScrrenDor
                     TitleTd={info?.restrangeDriver === true ? 'yes' : 'no'}
-                    style={Styles.fontText}
+                    style={Styles.TabfontText}
                 />
 
 
 
                 <TabScrrenDor other={
-                    <div className='remove' style={Styles.edit}>
-                        <ImageScreen ImageIcon={MyOderImage.edit} style={Styles.iconsremov} />
+                    <div className='remove' style={Styles.TabButtomEdit}>
+                        <ImageScreen ImageIcon={MyOderImage.edit} style={Styles.TabIconsremov} />
                         <span>Edit</span>
 
                     </div>

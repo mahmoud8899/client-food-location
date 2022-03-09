@@ -1,7 +1,34 @@
- .class-Half{
-     margin-top: 5rem;
+.Handl-navBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+ 
+}
+.valkommen-admin{
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.valkommen-admin h1{
+    font-family: system-ui;
+    text-transform: capitalize;
+}
+.Loading-Updated{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10rem;
  }
 
+.class-Half{
+     margin-top: 5rem;
+ }
+ .class-Margin-buttom
+{
+    margin-top: 1rem;
+}
  .Div-center{
      text-align: center;
      text-transform: capitalize;
@@ -11,15 +38,7 @@
      margin-bottom: 3rem;
  }
 
- .Loading-Updated{
 
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
- }
  .Text-Uploading{
     font-size: 20px;
     text-transform: capitalize;
@@ -31,8 +50,18 @@
     height: 100%;
 }
 .image-xo{
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
+    border-radius: 0.4rem;
+    object-fit: cover;
+    margin-left: auto;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: 4s;
+}
+.image-xo:hover{
+    opacity: 1;
+    transform: scale(1.1);
 }
 .oppen-image{
     height: 100%;
@@ -51,26 +80,93 @@
 .HandleNavBar{
    
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
     justify-content: space-between;
-
+    padding: 0rem;
+    flex-wrap: wrap;
     margin-bottom: 1rem;
    
 }
-.Order-List-New{
-    padding: 1rem;
-    border-radius: 0.5rem;
+.Order-List-New
+{
     display: flex;
     align-items: center;
+    justify-content: center;
+    opacity: 0.9;
     cursor: pointer;
+    width: 180px;
+    height: 45px;
+
 }
-.Order-List-New.color-color{
+.AddClass-c{
+    height: 43px;
+    border-radius: 999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 165px;
+}
+.AddClass-c.add-left{
+    justify-content: flex-start;
+}
+.AddClass-c.color-color{
+    background-color: #EEE;
+}
+.Order-List-New.color-back{
     background-color: #eee;
+
+    
 }
+.Order-List-New-other
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.4rem;
+    opacity: 0.9;
+    cursor: pointer;
+    height: 45px;
+    position: relative;
+    
+}
+
+.with-input{
+    display: flex;
+    width: 260px;
+    height: 45px;
+    text-align: left;
+    padding-left: 2rem;
+    border-radius: 666px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+
+}
+
+.Searching-input
+{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 0.5rem;
+}
+.with-input.form-control:focus {
+    color: #212529;
+    background-color: transparent;
+    border-color: transparent;
+    outline: 0;
+    box-shadow: 0 0 0 0rem transparent;
+}
+
 .Order-List-New span:nth-last-of-type(1){
     margin-left: 0.5rem;
 }
+
+@media only screen and (max-width: 477px) {
+    .Order-List-New-other{
+       margin-top: 0.5rem;
+    }
+}
+
 
 @media only screen and (max-width: 767px) {
     .HandleNavBar{
@@ -114,15 +210,16 @@
 }
 
 .Fistclass-handle{
+    background: #ff9d97;
+    border-radius: 0.5rem;
+    padding: 7px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 150px;
     align-items: center;
-    border-radius: 0.5rem;
-    background-color: rgb(238 238 238 / 45%);
-    overflow: hidden;
-    cursor: pointer;
+    justify-content: center;
+    color: white;
+    font-size: 13px;
+    width: 112px;
 }
 .half-fistclass{
     align-items: center;
@@ -451,11 +548,7 @@ margin-top: 1rem;
 
 .box {
 
-    text-align: center;
-    margin-top: 9rem;
-    margin-bottom: 1rem;
-    text-transform: capitalize;
-    font-size: 19px;
+margin-top: 4rem;
    
 }
 .buttom{

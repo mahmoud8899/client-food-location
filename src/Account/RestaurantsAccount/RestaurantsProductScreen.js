@@ -1,82 +1,118 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import { MyOderImage } from '../../Assistant/MyOrderImage'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
 import { useEffect, useState } from 'react'
 import CartItemsProducts from './Datils/CartItemsProducts'
-import ImageScreen from '../../Components/ImageScreen/ImageScreen'
 import { productpaginationAction } from '../../redux/Action/Product_Action'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductEditOchCreate from './Datils/ProductEditOchCreate'
-import Input from '../../Components/Input/Input'
-import NavBarList from './Datils/NavBarList'
-import Styles from './style'
+import { TheClearing } from '../../Components/CloseScreen/CloseScreen'
+import ProductsNavBarSearching from './Datils/ProductsNavBarSearching'
 import './style.css'
+import UserName from './Datils/UserName'
+
+
+
+
+
 export default function RestaurantsProductScreen(props) {
 
 
 
+    // id to user......
     const resturantId = props?.match?.params?.id
     const dispatch = useDispatch()
-    const matProducts = useSelector((state) => state?.PaginationProducts?.categoryproduct[resturantId]) || []
+    // get all products..
+    const matProducts = useSelector((state) => state?.PaginationProducts)
+    const { categoryProductsNextPagesxp, products } = matProducts
 
+    // [1]  open create product --- show.value equal true
+    // [2] show.object  has object product for edit 
+    const [show, setShow] = useState({ value: false, object: '' })
+
+    //----------- updated and remove and create product  ---------- important ---------->
+    const PageUpdatedProduct = useSelector((state) => state?.PageUpdatedProduct)
+    const { updated, created, removeproduct } = PageUpdatedProduct
+
+
+
+    // get products...
     useEffect(() => {
         if (resturantId) {
-            return matProducts?.length === 0 && dispatch(productpaginationAction(resturantId))
+
+            products?.length === 0 && dispatch(productpaginationAction(resturantId))
+            return
         }
-    }, [resturantId, matProducts?.length, dispatch])
+    }, [
+        dispatch,
+        resturantId,
+        products?.length,
+    ])
 
 
 
+    // Update State and products...
+    // if there is an updated and remove and create
+    useEffect(() => {
 
-    // open create product or edit.....
-    const [show, setShow] = useState({ value: false, object: '' })
+        if (updated || created || removeproduct) {
+
+            return TheClearing(dispatch)
+
+        }
+
+    }, [
+        dispatch,
+        updated,
+        created,
+        removeproduct
+    ])
+
+
+
+    // searching with products....
+    const [query, setQuery] = useState("");
+    const keys = ["name"];
+    const search = (data) => {
+        return data?.filter((item) =>
+            keys?.some((key) => item[key]?.toLowerCase()?.includes(query))
+        );
+    };
+
+
 
 
     return <Container >
 
-        <div className='box'></div>
+        <div className='box'>
 
+            <UserName />
 
-        <Title TextTitle='product Admin' />
+        </div>
+
+        <Title TextTitle='Alla Produkter...' />
         <Row className='justify-content-center'>
-
-
-
-            <Col xs={12} sm={12} md={3} lg={3} >
+            <Col xs={12} sm={12} md={4} lg={3} >
                 <RestaurantsNavBarScreen ClassNameUpdate />
             </Col>
 
-            <Col xs={12} sm={12} md={9} lg={9} >
+            <Col xs={12} sm={12} md={8} lg={9} >
 
 
 
-                <NavBarList
-                    onClick={(e) => setShow({ value: true, object: '' })}
-                    Other={
-                        <div className='Order-List-New color-color'>
-                            <ImageScreen ImageIcon={MyOderImage.uploading} style={Styles.image} />
-                            <span>Create Product</span>
-                        </div>
 
-
-                    }
-                    OtherLast={
-                        <div className='Order-List-New'>
-                            <Input className='Input-type-style notLeft' placeholder='Searching Product...' ImageLog={MyOderImage.search} />
-                        </div>
-
-                    }
+                <ProductsNavBarSearching
+                    setShow={setShow}
+                    setQuery={setQuery}
                 />
 
 
 
-
-
-
                 <CartItemsProducts
-                    matProducts={matProducts}
+                    products={search(products)}
                     setShow={setShow}
+                    categoryProductsNextPagesxp={categoryProductsNextPagesxp}
+                    resturantId={resturantId}
                 />
 
             </Col>
@@ -89,9 +125,13 @@ export default function RestaurantsProductScreen(props) {
                 setShow={setShow}
                 resturantId={resturantId}
 
+
+
             />
 
         }
 
     </Container>
 }
+
+

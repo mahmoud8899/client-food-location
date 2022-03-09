@@ -5,6 +5,7 @@ const isEmail = (name) => {
 }
 // validation username
 function ValidationUsername(valueEmail) {
+
     return valueEmail.length >= 6
 }
 

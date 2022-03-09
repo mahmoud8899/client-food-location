@@ -9,49 +9,42 @@ import * as ActionTypes from '../Action/Types'
 
 // products to restrange...
 export const PaginationProductReducres = (state = {
-    categoryProductsNextPagesxp: {},
+    categoryProductsNextPagesxp: Number(1),
     loading: false,
     error: null,
-    categoryproduct: {},
+    products: [],
 }, action) => {
 
     switch (action.type) {
 
 
 
+
+
+
         case ActionTypes.ADD_CATEGORYPRODUCT_APPEND:
-            const categoryId = action.payload.categoryId
 
             return {
-                loading: false,
                 ...state,
-                categoryproduct: {
-                    ...state.categoryproduct,
-                    [categoryId]: (state.categoryproduct[categoryId] || []).concat(action.payload.data)
-                }
-
-            }
-
+                products: [...state.products, ...action.payload],
+            };
 
 
         case ActionTypes.ADD_NUMBERNEXTPAGE_SUCCESS:
 
-
-            //console.log('reducres..',action.type)
             return {
-
                 ...state,
-                categoryProductsNextPagesxp: {
-                    ...state.categoryProductsNextPagesxp,
-                    [action.payload.categoryId]: action.payload.nextpage,
-                }
+                categoryProductsNextPagesxp: action.payload
             }
-
 
         case ActionTypes.ADD_PAGINATION_PRODUCT_FAIL: return { error: action.payload }
 
 
-
+        case ActionTypes.ADD_CALING_SATA: return {
+            ...state,
+            products: [],
+            categoryProductsNextPagesxp: Number(1)
+        }
 
 
         default: return state
@@ -103,13 +96,13 @@ export const ShowPostIDReducres = (state = {
 
 
 
-// ADD_PRODUCT_CREATE_IMAGE_SUCCESS
 // product Updated and create and remove...
 export const HandleUpdatedAndCreateProductReducres = (state = {
     error: null,
     loading: false,
     updated: null,
-    created: null
+    created: null,
+    removeproduct: null,
 }, action) => {
     switch (action.type) {
 

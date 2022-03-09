@@ -1,13 +1,19 @@
 import { ListGroup, Row, Col } from 'react-bootstrap'
 import { SliceName } from '../../Assistant/Slice'
-import Styles from './style'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import { useHistory } from 'react-router-dom'
 import ImageScreen from '../../Components/ImageScreen/ImageScreen'
+import Styles from '../../Components/Update/StylesComponents/style'
 
 export default function RestaurantsNavBarScreen(props) {
-
-    const { classNameSitting, OpenBankAcount } = props
+    const {
+        classNameSitting,
+        OpenBankAcount,
+        ClassNameUpdate,
+        ClassNameOrder,
+        ClassCategoryActive,
+        ClassNotfication
+    } = props
 
 
     const history = useHistory()
@@ -15,6 +21,7 @@ export default function RestaurantsNavBarScreen(props) {
 
 
 
+    // all  navigation 
     const HomePage = (e) => {
         e.preventDefault()
 
@@ -52,12 +59,12 @@ export default function RestaurantsNavBarScreen(props) {
 
     return <Row className='justify-content-center'>
 
-        <Col xs={6} sm={12} md={12} lg={12} style={Styles.box}>
+        <Col xs={6} sm={12} md={12} lg={12} style={Styles.Tabbox}>
             <ListGroup onClick={(e) => HomePage(e)} >
-                <ListGroup.Item style={Styles.boxChildren}>
+                <ListGroup.Item style={ClassNotfication? Styles.TabActive :Styles.TabBoxChildren}>
                     <ImageScreen
                         ImageIcon={MyOderImage.notification}
-                        style={Styles.image}
+                        style={Styles.TabBoximage}
                     />
                     {SliceName('Notification', 10)}
                 </ListGroup.Item>
@@ -65,10 +72,10 @@ export default function RestaurantsNavBarScreen(props) {
         </Col>
 
 
-        <Col xs={5} sm={12} md={12} lg={12} style={Styles.box} >
+        <Col xs={6} sm={12} md={12} lg={12} style={Styles.Tabbox} >
             <ListGroup onClick={(e) => OrderPage(e)}>
-                <ListGroup.Item style={Styles.boxChildren} >
-                    <ImageScreen ImageIcon={MyOderImage.basket2} style={Styles.image} />
+                <ListGroup.Item style={ClassNameOrder ?  Styles.TabActive  : Styles.TabBoxChildren} >
+                    <ImageScreen ImageIcon={MyOderImage.basket2} style={Styles.TabBoximage} />
                     {SliceName('views orders', 10)}</ListGroup.Item>
             </ListGroup>
         </Col>
@@ -76,19 +83,19 @@ export default function RestaurantsNavBarScreen(props) {
 
 
 
-        <Col xs={6} sm={12} md={12} lg={12} style={Styles.box}>
-            <ListGroup onClick={(e) => ProductPage(e)}>
-                <ListGroup.Item style={Styles.boxChildren}>
-                    <ImageScreen ImageIcon={MyOderImage.product} style={Styles.image} />
+        <Col xs={6} sm={12} md={12} lg={12} style={Styles.Tabbox}  >
+            <ListGroup onClick={(e) => ProductPage(e)}   >
+                <ListGroup.Item style={ClassNameUpdate  ? Styles.TabActive: Styles.TabBoxChildren}>
+                    <ImageScreen ImageIcon={MyOderImage.product} style={Styles.TabBoximage} />
                     list Products
                 </ListGroup.Item>
             </ListGroup>
         </Col>
 
-        <Col xs={5} sm={12} md={12} lg={12} style={Styles.box} >
+        <Col xs={6} sm={12} md={12} lg={12} style={Styles.Tabbox} >
             <ListGroup onClick={(e) => CategoryPage(e)}>
-                <ListGroup.Item style={Styles.boxChildren} >
-                    <ImageScreen ImageIcon={MyOderImage.category} style={Styles.image} />
+                <ListGroup.Item style={ClassCategoryActive ? Styles.TabActive :  Styles.TabBoxChildren} >
+                    <ImageScreen ImageIcon={MyOderImage.category} style={Styles.TabBoximage} />
                     list category
                 </ListGroup.Item>
             </ListGroup>
@@ -98,24 +105,24 @@ export default function RestaurantsNavBarScreen(props) {
 
 
 
-        <Col xs={11} sm={12} md={12} lg={12} style={Styles.box} >
+        <Col xs={12} sm={12} md={12} lg={12} style={Styles.Tabbox} >
             <ListGroup >
-                <ListGroup.Item style={Styles.boxChildren} >
-                    <ImageScreen ImageIcon={MyOderImage.chat} style={Styles.image} />
+                <ListGroup.Item style={Styles.TabBoxChildren} >
+                    <ImageScreen ImageIcon={MyOderImage.chat} style={Styles.TabBoximage} />
                     {SliceName('chat with servis', 10)}</ListGroup.Item>
             </ListGroup>
         </Col>
 
 
-        <Col xs={11} sm={12} md={12} lg={12} style={Styles.box}>
+        <Col xs={12} sm={12} md={12} lg={12} style={Styles.Tabbox}>
             <ListGroup onClick={(e) => ProfilPage(e)}>
-                <ListGroup.Item style={Styles.boxChildren} >
-                    <ImageScreen ImageIcon={MyOderImage.user} style={Styles.image} />
+                <ListGroup.Item style={classNameSitting ? Styles.TabActive : Styles.TabBoxChildren} >
+                    <ImageScreen ImageIcon={MyOderImage.user} style={Styles.TabBoximage} />
                     {SliceName('Sitting', 10)}
                 </ListGroup.Item>
                 {classNameSitting && <>
-                    <ListGroup.Item style={Styles.boxChildren} onClick={(e) => OpenBankAcount(e)} >
-                        <ImageScreen ImageIcon={MyOderImage.change} style={Styles.image} />
+                    <ListGroup.Item style={Styles.TabBoxChildren} onClick={(e) => OpenBankAcount(e)} >
+                        <ImageScreen ImageIcon={MyOderImage.change} style={Styles.TabBoximage} />
                         {SliceName('add acount', 10)}
                     </ListGroup.Item>
 

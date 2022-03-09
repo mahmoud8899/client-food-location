@@ -16,14 +16,16 @@ export default function PageItemsScreen(props) {
 
     const [openCartProduct, setOpenCartProduct] = useState({ value: false, id: '' })
     const dispatch = useDispatch()
-    const matProducts = useSelector((state) => state?.PaginationProducts?.categoryproduct[idRes]) || []
-    const TestingNumber = useSelector((state) => state?.PaginationProducts?.categoryProductsNextPagesxp[idRes])
-   
+    const theProducts = useSelector((state) => state?.PaginationProducts)
+
+    const { categoryProductsNextPagesxp, products } = theProducts
+
+
 
     // searching product
-    const { products, searching } = useContext(SearchingContext)
-    const ProductsSearching = useSelector((state) => state?.ProductsSearching)
-    const { page } = ProductsSearching
+    // const { products, searching } = useContext(SearchingContext)
+    // const ProductsSearching = useSelector((state) => state?.ProductsSearching)
+    // const { page } = ProductsSearching
 
 
 
@@ -35,10 +37,10 @@ export default function PageItemsScreen(props) {
         // console.log(typeof  idRes)
 
         if (idRes) {
-            return matProducts?.length === 0 && dispatch(productpaginationAction(idRes))
+            return products?.length === 0 && dispatch(productpaginationAction(idRes))
         }
 
-    }, [idRes, dispatch, matProducts?.length])
+    }, [idRes, dispatch, products?.length])
 
 
 
@@ -62,35 +64,35 @@ export default function PageItemsScreen(props) {
 
 
 
-    // fetch data .... more...>
+    // fetching products....
     const fetchData = () => {
 
         // console.log(typeof TestingNumber)
 
-        if (TestingNumber !== null && typeof TestingNumber !== 'undefined') {
-            if (idRes) {
-                return dispatch(productpaginationAction(idRes))
-            }
-        } else {
-            return
 
+        if (idRes) {
+            return dispatch(productpaginationAction(idRes))
         }
 
 
+
+
     }
 
 
 
 
-    // fetching searching....
-    const FetchSearching = () => {
+    // // fetching searching....
+    // const FetchSearching = () => {
 
-        // return console.log('hello more...')
-        dispatch(SearchingProductsAction(idRes, searching))
-    }
+    //     // return console.log('hello more...')
+    //     dispatch(SearchingProductsAction(idRes, searching))
+    // }
 
 
+    
 
+    // console.log(categoryProductsNextPagesxp)
 
 
 
@@ -103,15 +105,15 @@ export default function PageItemsScreen(props) {
 
             <InfiniteScroll
                 style={Styles.hidden}
-                dataLength={products?.length >= 1 ? products?.length : matProducts.length}
-                next={products?.length >= 1 ? FetchSearching : fetchData}
-                hasMore={products?.length >= 1 ? page !== null ? 'false' : 'true' : TestingNumber !== null ? 'false' : 'true'}
-                loader={products?.length >= 1 ? page !== null ? <LoadingScreen /> : null : TestingNumber !== null ? <LoadingScreen /> : null}
+                dataLength={products.length}
+                next={fetchData}
+                hasMore={categoryProductsNextPagesxp !== null ? 'false' : 'true'}
+                loader={categoryProductsNextPagesxp !== null ? <LoadingScreen /> : null}
                 endMessage={<p ><b>Yay! You have seen it all</b> </p>}
             >
 
                 <RestaurantProducts
-                    matProducts={products?.length >= 1 ? products : matProducts}
+                    matProducts={products}
                     HandleOpenProductid={HandleOpenProductid}
                 />
 
@@ -139,4 +141,16 @@ export default function PageItemsScreen(props) {
 
 
 
+// style={Styles.hidden}
+// dataLength={products?.length >= 1 ? products?.length : matProducts.length}
+// next={products?.length >= 1 ? FetchSearching : fetchData}
+// hasMore={products?.length >= 1 ? page !== null ? 'false' : 'true' :TestingNumber !== null ? 'false' : 'true' }
+// loader={products?.length >= 1 ? page !== null ? <LoadingScreen /> : null : TestingNumber !== null ? <LoadingScreen /> : null}
+// endMessage={<p ><b>Yay! You have seen it all</b> </p>}
+// >
+
+// <RestaurantProducts
+//     matProducts={products?.length >= 1 ? products : matProducts}
+//     HandleOpenProductid={HandleOpenProductid}
+// />
 

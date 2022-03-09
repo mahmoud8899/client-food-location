@@ -21,7 +21,7 @@ export default function UserVerifiedID(props) {
             return history.push('/uppsala/')
         } else {
 
-            return console.log('not')
+            return 
 
         }
 

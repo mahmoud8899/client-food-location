@@ -247,7 +247,6 @@ export const UpdatedCartInfoAction = (user) => async (dispatch) => {
 
 export const UpdingImageAction = (user, updateInfo) => async (dispatch) => {
 
-    // console.log('data coming',)
     try {
         const { data } = await axios.post(`/api/uploading/`,
             user,

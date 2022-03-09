@@ -3,19 +3,15 @@ import { SliceName } from '../../../Assistant/Slice'
 import ButtomClick from '../../../Components/Buttom/Buttom'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import LoadingErrorHandle from '../../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import Styles from '../style'
 import { Col } from 'react-bootstrap'
-
+import Styles from '../../../Components/Update/StylesComponents/style'
 
 
 export default function NotficationOrders(props) {
-
-
     const {
         error,
         loading,
         orderNotfications
-
     } = props
 
 
@@ -48,7 +44,6 @@ export default function NotficationOrders(props) {
                         <div className='item'>
                             <ImageScreen
                                 ImageIcon={MyOderImage.credit}
-
                                 style={Styles.processing}
                             />
 
@@ -59,7 +54,6 @@ export default function NotficationOrders(props) {
                         <div className='item'>
                             <ImageScreen
                                 ImageIcon={MyOderImage.processing}
-
                                 style={Styles.processing}
                             />
 
@@ -160,7 +154,7 @@ export default function NotficationOrders(props) {
                             <div className='cancel'>
                                 <ButtomClick
                                     title='Cancel Order'
-                                    style={Styles.stylebuttom}
+                                    style={Styles.TabButtomCreate}
                                 />
                             </div>
 

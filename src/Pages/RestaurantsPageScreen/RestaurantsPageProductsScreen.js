@@ -49,7 +49,7 @@ export default function RestaurantsPageProductsScreen(props) {
     const { loading: loadingCartInfo, cartinfo, error: errorCartInfo } = cartInfoid
 
 
-    const ListCategoryUX = useSelector((state) => state?.ListCategory?.category[cartinfo?._id]) || []
+    const ListCategoryUX = useSelector((state) => state?.ListCategory?.category) 
 
 
 

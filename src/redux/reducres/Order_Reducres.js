@@ -134,7 +134,7 @@ export const ShowOrderReducres = (state = {
 
          return {
              ...state,
-             ShowOrders : action.payload
+             ShowOrders: [...state.ShowOrders, ...action.payload],
          }
 
 

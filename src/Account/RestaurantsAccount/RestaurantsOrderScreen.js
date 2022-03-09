@@ -1,36 +1,25 @@
 
 import { Container, Row, Col } from 'react-bootstrap'
-import { MyOderImage } from '../../Assistant/MyOrderImage'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
-import Styles from './style'
-import './style.css'
-import ImageScreen from '../../Components/ImageScreen/ImageScreen'
-import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { ShowOrderAction } from '../../redux/Action/Order_Action'
 import CartItemsOrders from './Datils/CartItemsOrders'
-import Input from '../../Components/Input/Input'
-import NavBarList from './Datils/NavBarList'
+import OrderNavBarSearching from './Datils/OrderNavBarSearching'
+import { useEffect, useState } from 'react'
+import './style.css'
+import UserName from './Datils/UserName'
+
 export default function RestaurantsOrderScreen(props) {
 
 
 
     const resturantId = props?.match?.params?.id
-
-
     const dispatch = useDispatch()
 
+    // get all orders
     const TheResturantShowsOrders = useSelector((state) => state?.TheResturantShowsOrders)
     const { ordersAllNumber, ShowOrders } = TheResturantShowsOrders
-
-
-
-
-
-
-
-
 
 
 
@@ -42,7 +31,7 @@ export default function RestaurantsOrderScreen(props) {
             return ShowOrders?.length === 0 && dispatch(ShowOrderAction(resturantId))
         }
 
-    }, [dispatch, resturantId, ordersAllNumber, ShowOrders?.length])
+    }, [dispatch, resturantId, ShowOrders?.length])
 
 
 
@@ -52,76 +41,38 @@ export default function RestaurantsOrderScreen(props) {
 
 
 
+    // Searching...
+    const [query, setQuery] = useState("");
+    const keys = ["OrderStatus", "paymentMethod"];
+    const search = (data) => {
+        return data?.filter((item) =>
+            keys?.some((key) => item[key]?.toLowerCase()?.includes(query))
+        );
+    };
 
 
-    return <Container >
 
+
+
+    return <Container>
         <div className='box'>
-
-
+            <UserName />
         </div>
-
-
         <Title TextTitle='All Orders' />
         <Row className='justify-content-center'>
-
-        
- 
-
- <Col xs={12} sm={12} md={3} lg={3} >
-                <RestaurantsNavBarScreen />
+            <Col xs={12} sm={12} md={4} lg={3} >
+                <RestaurantsNavBarScreen ClassNameOrder />
             </Col>
+            <Col xs={12} sm={12} md={8} lg={9} >
+                <OrderNavBarSearching setQuery={setQuery} />
 
-            <Col xs={12} sm={12} md={9} lg={9} >
 
-                <NavBarList
-                    Other={
-                        <div className='Order-List-New'>
-                            <ImageScreen
-                                ImageIcon={MyOderImage.delivery}
-                                style={Styles.image}
-                            />
-                            <span>List Orders</span>
-                        </div>
-                    }
-                    OtherLast={
-                        <div className='Order-List-New'>
-                            <Input
-                                className='Input-type-style notLeft'
-                                placeholder='Searching orders...'
-                                ImageLog={MyOderImage.search}
-                            />
-                        </div>
-
-                    }
+                <CartItemsOrders
+                    ShowOrders={search(ShowOrders)}
+                    history={props?.history}
+                    ordersAllNumber={ordersAllNumber}
+                    resturantId={resturantId}
                 />
-
-
-
-
-
-
-
-
-
-
-
-
-                <CartItemsOrders ShowOrders={ShowOrders} history={props?.history} />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             </Col>
 
