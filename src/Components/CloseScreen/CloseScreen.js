@@ -1,6 +1,9 @@
 import * as ActionTypes from '../../redux/Action/Types'
 import { Action_logout } from '../../redux/Action/Auth_Action'
 
+
+
+// remove error user....
 export const CloseScreen = (dispatch) => {
     // const dispatch = useDispatch()
     return dispatch({
@@ -111,9 +114,17 @@ export const TheClearing = (dispatch) => {
         type: ActionTypes.ADD_CALING_SATA,
         payload: []
     })
-    // dispatch({
-    //     type: ActionTypes.ADD_NUMBERNEXTPAGE_SUCCESS,
-    //     payload: Number(1)
-    // })
+ 
+
+}
+
+// cleraing products and next number...
+export const closeUpdateAccount = (dispatch) => {
+
+    dispatch({
+        type: ActionTypes.ADD_ACOUNT_USER_SUCCESS,
+        payload: null
+    })
+ 
 
 }

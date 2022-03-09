@@ -14,7 +14,7 @@ function ValidationUsername(valueEmail) {
 // validation number 
 function ValidationNumberStory(valueNumber) {
     //  console.log(valueNumber)
-    return valueNumber.length >= 10
+    return valueNumber?.length >= 10
 
 }
 
@@ -77,7 +77,15 @@ function ValtionPrices(name) {
 function ValidationName(name){
     // console.log(name)
 
-    return name?.trim().length >= 3
+    return name?.length >= 3
+}
+
+
+// name length == 2 
+function TimeNumber(name){
+  
+
+    return Number(name) > Number(0)
 }
 
 export const ValtionMe = (name, key) => {
@@ -93,6 +101,7 @@ export const ValtionMe = (name, key) => {
         case 'xPcVV': return ValtionCvvX(name)
         case 'description': return ValtionDescription(name)
         case 'Prices': return ValtionPrices(name)
+        case 'TheTime': return TimeNumber(name)
         default: return key
 
 

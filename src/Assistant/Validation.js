@@ -28,7 +28,7 @@ function ValidationNumber(valueNumber){
 // validation username
 function ValidationUsername(valueEmail) {
     // console.log(valueEmail)
-    return valueEmail.length >= 6
+    return valueEmail?.length >= 6
 }
 
 

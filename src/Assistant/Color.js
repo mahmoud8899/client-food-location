@@ -17,7 +17,8 @@ const COLORS = {
   op : '#00000010',
   green : '#198754',
   andraColor : '#ff3b2f12',
-  change : '#FEE3EC'
+  change : '#FEE3EC',
+  testing : 'rgba(255, 59, 47, 0.32)'
 };
 
 export default COLORS;

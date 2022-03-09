@@ -2,7 +2,6 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
-import AddAccount from '../DriverAccount/DriverProfile/AddAccount'
 import ImageScreen from '../../Components/ImageScreen/ImageScreen'
 import NavBarList from './Datils/NavBarList'
 import CartItemsInfo from './Datils/CartItemsInfo'
@@ -12,7 +11,9 @@ import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/Loadi
 import EditCartInfo from './Datils/EditCartInfo'
 import UserName from './Datils/UserName'
 import { useEffect, useState } from 'react'
+import Styles from '../../Components/Update/StylesComponents/style'
 import './style.css'
+import AddAccountUser from './Datils/AddAccountUser'
 
 
 
@@ -65,11 +66,6 @@ export default function RestaurantsProfilScreen(props) {
         <LoadingErrorHandle loading={loading} error={error} home={info}>
             <Row className='justify-content-center'>
 
-
-
-
-
-
                 <Col xs={12} sm={12} md={4} lg={3} >
                     <RestaurantsNavBarScreen
                         classNameSitting
@@ -80,7 +76,7 @@ export default function RestaurantsProfilScreen(props) {
                     <NavBarList
                         Other={
                             <div className='Order-List-New-other'>
-                                <div className='Fistclass-handle'>
+                                <div style={Styles.colorback} className='Fistclass-handle'>
                                     <div className='half-fistclass'>
                                         <ImageScreen ImageIcon={MyOderImage.sales} className='Image-sales' />
                                         <span>sales</span>
@@ -100,7 +96,7 @@ export default function RestaurantsProfilScreen(props) {
                         }
                         OtherLast={
                             <div className='Order-List-New-other'>
-                                <div className='Fistclass-handle'>
+                                <div style={Styles.colorback} className='Fistclass-handle'>
                                     <div className='half-fistclass'>
                                         <ImageScreen ImageIcon={MyOderImage.cancel} className='Image-sales' />
                                         <span>cancel</span>
@@ -125,7 +121,7 @@ export default function RestaurantsProfilScreen(props) {
 
             </Row>
 
-            <AddAccount
+            <AddAccountUser
                 openAddAccount={openAddAccount}
                 setOpenAddAccount={setOpenAddAccount}
             />

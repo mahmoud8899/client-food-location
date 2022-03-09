@@ -6,15 +6,15 @@ import Input from '../../../Components/Input/Input'
 import { UpdatedCartInfoAction, UpdingImageAction } from '../../../redux/Action/CartItemAction'
 import OppenImage from '../../../Components/Update/OppenImage/OppenImage'
 import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
-import { ValidationCartInfo } from '../../../Assistant/ValidationPayment'
+import { ValidationCartInfo, ChangeCode } from '../../../Assistant/ValidationPayment'
 import { TheCartInfo } from '../../../Components/CloseScreen/CloseScreen'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Styles from '../../../Components/Update/StylesComponents/style'
-
+import PageSwitch from '../../../Components/Update/PageSwitch/PageSwitch'
+import { ValtionMe } from '../../../Assistant/ValtionMe'
+import CodeError from '../../../Components/CodeError/CodeError'
 export default function EditCartInfo(props) {
-
-
     const { show, setShow, info } = props
 
     // console.log(info)
@@ -24,6 +24,8 @@ export default function EditCartInfo(props) {
     const [showImage, setShowImage] = useState({ value: false, image: '' })
     // successfully updated
     const [updateSuccessFully, setUpdateSuccessFully] = useState(false)
+    // Handle error input 
+    const [handleError, setHandleError] = useState(false)
     // value updated cart info....
     const [productDetails, setProductDetails] = useState([])
     const [opentime, setOpentime] = useState([])
@@ -58,7 +60,7 @@ export default function EditCartInfo(props) {
             setFinishfood({ to: info?.finishfood?.to ? info?.finishfood?.to : '', end: info?.finishfood?.end ? info?.finishfood?.end : '' })
         } else {
             setAddressinfo({ address: '', city: '', telefon: '', website: '', })
-            setProductDetails({ username: '', restrangeDriver: '', productType: '', image: '', freeDelvery: '', description: '', })
+            setProductDetails({ username: '', restrangeDriver: false, productType: '', image: '', freeDelvery: false, description: '', })
             setOpentime({ oppen: '', close: '' })
             setFinishfood({ to: '', end: '' })
 
@@ -71,7 +73,8 @@ export default function EditCartInfo(props) {
 
 
 
-
+    // successfully create and updated cart info....
+    // this is singepage after succsfully ....
     useEffect(() => {
 
         if (updated) {
@@ -89,28 +92,55 @@ export default function EditCartInfo(props) {
     // handle updated cart info.... 
     const HandleForm = (e) => {
         e.preventDefault()
+        setHandleError(false)
+        if (
+            opentime?.oppen > '00:00'
+            && opentime?.close > '00:00'
+            && finishfood?.to >= 1
+            && finishfood?.end >= 1
+            && addressinfo?.address?.length >= Number(3)
+            && addressinfo?.city?.length >= Number(3)
+            && addressinfo?.telefon?.length >= Number(10)
+            && addressinfo?.website?.length >= Number(3)
+            && productDetails?.username?.length >= Number(3)
+            && productDetails?.productType?.length >= Number(3)
+            && productDetails?.description?.length >= Number(3)
+        ) {
+            const dataInfo = {
+                _id: info?._id,
+                username: ChangeCode(productDetails?.username),
+                restrangeDriver: productDetails?.restrangeDriver,
+                productType: ChangeCode(productDetails?.productType),
+                freeDelvery: productDetails?.freeDelvery,
+                description: ChangeCode(productDetails?.description),
+                image: productDetails.image,
+                addressinfo,
+                finishfood,
+                opentime,
+            }
 
-        // update 
-        const dataInfo = {
-            _id: info?._id,
-            username: productDetails?.username,
-            restrangeDriver: productDetails?.restrangeDriver,
-            productType: productDetails?.productType,
-            freeDelvery: productDetails?.freeDelvery,
-            description: productDetails?.description,
-            image: productDetails.image,
-            addressinfo,
-            finishfood,
-            opentime,
-        }
 
 
-        if (imageSave) {
-            return dispatch(UpdingImageAction(imageSave, dataInfo))
+
+            if (imageSave) {
+                return dispatch(UpdingImageAction(imageSave, dataInfo))
+            } else {
+                return dispatch(UpdatedCartInfoAction(dataInfo))
+
+            }
+
+
         } else {
-            return dispatch(UpdatedCartInfoAction(dataInfo))
 
+
+
+            return setHandleError(true)
         }
+
+
+
+
+
 
 
 
@@ -139,6 +169,7 @@ export default function EditCartInfo(props) {
         TheCartInfo(dispatch)
         setImageSave('')
         setChangeImage('')
+        setHandleError(false)
         return
     }
     // close error and update and create
@@ -148,6 +179,7 @@ export default function EditCartInfo(props) {
         TheCartInfo(dispatch)
         setImageSave('')
         setChangeImage('')
+        setHandleError(false)
         return
     }
 
@@ -176,10 +208,6 @@ export default function EditCartInfo(props) {
 
                     <div className='body-category'>
 
-
-
-
-
                         <div className='modal-title-edit-category'>
                             <h1> ändring </h1>
                             <ImageScreen
@@ -188,6 +216,12 @@ export default function EditCartInfo(props) {
                                 onClick={HandleClose}
                             />
                         </div>
+
+                        {handleError &&
+                            <div className='error-input-red' >
+                                <CodeError error='Det är saker som är fel' />
+                            </div>
+                        }
 
 
                         <div className='form-Scrolling'>
@@ -199,6 +233,8 @@ export default function EditCartInfo(props) {
                                     className='Input-type-style productdetials'
                                     type='text'
                                     title='Namnet på restaurangen eller butiken'
+                                    validation={ValtionMe(productDetails?.username, 'inputname')?.toString()}
+
                                 />
 
                                 <Input
@@ -209,6 +245,7 @@ export default function EditCartInfo(props) {
                                     onChange={(e) => setProductDetails({ ...productDetails, description: e.target.value })}
                                     value={productDetails.description}
                                     title='Description'
+                                    validation={ValtionMe(productDetails.description, 'inputname')?.toString()}
                                 />
 
 
@@ -222,6 +259,7 @@ export default function EditCartInfo(props) {
                                             onChange={(e) => setOpentime({ ...opentime, oppen: e.target.value })}
                                             value={opentime.oppen}
                                             title='öppnings tid'
+                                            validation={ValtionMe(opentime.oppen, 'inputname')?.toString()}
 
                                         />
 
@@ -238,6 +276,7 @@ export default function EditCartInfo(props) {
                                             className='Input-type-style productdetials'
                                             onChange={(e) => setOpentime({ ...opentime, close: e.target.value })}
                                             value={opentime.close}
+                                            validation={ValtionMe(opentime.close, 'inputname')?.toString()}
 
                                         />
                                     </Col>
@@ -254,6 +293,7 @@ export default function EditCartInfo(props) {
                                             onChange={(e) => setFinishfood({ ...finishfood, to: e.target.value })}
                                             value={finishfood.to}
                                             type='number'
+                                            validation={ValtionMe(finishfood.to, 'TheTime')?.toString()}
                                         />
                                     </Col>
                                     <Col xs={6} sm={6} md={6} lg={6}>
@@ -265,6 +305,7 @@ export default function EditCartInfo(props) {
                                             onChange={(e) => setFinishfood({ ...finishfood, end: e.target.value })}
                                             value={finishfood.end}
                                             type='number'
+                                            validation={ValtionMe(finishfood.end, 'TheTime')?.toString()}
 
                                         />
                                     </Col>
@@ -277,6 +318,7 @@ export default function EditCartInfo(props) {
                                     className='Input-type-style productdetials'
                                     value={productDetails?.productType}
                                     onChange={(e) => setProductDetails({ ...productDetails, productType: e.target.value })}
+                                    validation={ValtionMe(productDetails?.productType, 'inputname')?.toString()}
                                 />
 
 
@@ -288,6 +330,7 @@ export default function EditCartInfo(props) {
                                             title='Address'
                                             value={addressinfo?.address}
                                             onChange={(e) => setAddressinfo({ ...addressinfo, address: e.target.value })}
+                                            validation={ValtionMe(addressinfo?.address, 'inputname')?.toString()}
 
                                         />
                                     </Col>
@@ -298,6 +341,7 @@ export default function EditCartInfo(props) {
                                             className='Input-type-style productdetials'
                                             value={addressinfo?.city}
                                             onChange={(e) => setAddressinfo({ ...addressinfo, city: e.target.value })}
+                                            validation={ValtionMe(addressinfo?.city, 'inputname')?.toString()}
 
                                         />
                                     </Col>
@@ -308,6 +352,7 @@ export default function EditCartInfo(props) {
                                             className='Input-type-style productdetials'
                                             value={addressinfo?.telefon}
                                             onChange={(e) => setAddressinfo({ ...addressinfo, telefon: e.target.value })}
+                                            validation={ValtionMe(addressinfo?.telefon, 'isPhone')?.toString()}
 
                                         />
                                     </Col>
@@ -318,38 +363,12 @@ export default function EditCartInfo(props) {
                                             className='Input-type-style productdetials'
                                             value={addressinfo?.website}
                                             onChange={(e) => setAddressinfo({ ...addressinfo, website: e.target.value })}
+                                            validation={ValtionMe(addressinfo?.website, 'inputname')?.toString()}
 
                                         />
                                     </Col>
                                 </Row>
 
-                                <div className='switch-type'
-                                    onClick={() => setProductDetails({
-                                        ...productDetails, restrangeDriver: productDetails?.restrangeDriver ? false : true
-
-                                    })} >
-
-                                    <span className={productDetails?.restrangeDriver ? 'checkOut-popluer' : ''}>
-
-                                    </span>
-                                    <span>Vill du ha chauffören till restaurangen eller butiken</span>
-
-                                </div>
-
-
-
-                                <div className='switch-type'
-                                    onClick={() => setProductDetails({
-                                        ...productDetails, freeDelvery: productDetails?.freeDelvery ? false : true
-
-                                    })} >
-
-                                    <span className={productDetails?.freeDelvery ? 'checkOut-popluer' : ''}>
-
-                                    </span>
-                                    <span>   fri leverans</span>
-
-                                </div>
 
 
                                 <div className='edit-product-image-div'>
@@ -366,7 +385,24 @@ export default function EditCartInfo(props) {
                                         onClick={() => setShowImage({ value: true, image: changeImage ? changeImage : productDetails?.image })}
                                     />
                                 </div>
+                                <PageSwitch
+                                    onClick={() => setProductDetails({
+                                        ...productDetails, freeDelvery: productDetails?.freeDelvery ? false : true
 
+                                    })}
+                                    TextInput='fri leverans'
+                                    OtherInput={productDetails?.freeDelvery}
+                                />
+
+
+
+                                <PageSwitch
+                                    onClick={() => setProductDetails({
+                                        ...productDetails, restrangeDriver: productDetails?.restrangeDriver ? false : true
+                                    })}
+                                    TextInput='Vill du ha chauffören till restaurangen eller butiken'
+                                    OtherInput={productDetails?.restrangeDriver}
+                                />
 
 
                                 <div className='Buttom-class'>

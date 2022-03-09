@@ -2,11 +2,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen'
 import { productpaginationAction } from '../../../redux/Action/Product_Action'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useEffect, useState, useContext } from 'react'
-import { SearchingContext } from '../../../Components/Update/UseContext/SearchingResult'
+import { useEffect, useState } from 'react'
 import RestaurantsOneProduct from '../RestaurantsOneProduct'
 import RestaurantProducts from '../../../Components/Update/RestaurantProducts/RestaurantProducts'
-import { SearchingProductsAction } from '../../../redux/Action/SearchingProduct'
 import Styles from '../../../Components/Update/StylesComponents/style'
 
 
@@ -90,7 +88,7 @@ export default function PageItemsScreen(props) {
     // }
 
 
-    
+
 
     // console.log(categoryProductsNextPagesxp)
 

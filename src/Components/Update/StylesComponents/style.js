@@ -3,6 +3,13 @@ import COLORS from '../../../Assistant/Color'
 
 
 const Styles = {
+
+    colorback: {
+
+        background : COLORS.testing,
+        color : COLORS.white
+
+    },
     processing: {
         width: '10px',
         height: '10px',
@@ -25,7 +32,7 @@ const Styles = {
 
     },
     TabBackColor: {
-        background: COLORS.firstRed,
+        background: COLORS.testing,
         color: COLORS.white,
     },
     Tabbox: {
@@ -34,7 +41,7 @@ const Styles = {
     },
     TabActive :{
 
-        background : COLORS.firstRed,
+        background : 'rgb(255 59 47 / 32%)',
         width: '100%',
         fontSize: '12px',
         textTransform: 'capitalize',

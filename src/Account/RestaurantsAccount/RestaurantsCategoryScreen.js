@@ -1,9 +1,6 @@
-import { Container, Row, Col, FormControl } from 'react-bootstrap'
-import { MyOderImage } from '../../Assistant/MyOrderImage'
+import { Container, Row, Col } from 'react-bootstrap'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
-import Styles from './style'
-import './style.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CartItemsCategory from './Datils/CartItemsCategory'
@@ -11,18 +8,22 @@ import { getCategoryAction } from '../../redux/Action/Category_Action'
 import CategoryEditOchCreate from './Datils/CategoryEditOchCreate'
 import CategoryNavBarSearching from './Datils/CategoryNavBarSearching'
 import UserName from './Datils/UserName'
+import './style.css'
 export default function RestaurantsCategoryScreen(props) {
 
 
 
 
 
+     // cart info id
     const resturantId = props?.match?.params?.id
     const dispatch = useDispatch()
+    // open edit and create.....
     const [editCategory, setEditCategory] = useState({ value: false, object: '' })
+    // get all category....
     const ListCategoryUX = useSelector((state) => state?.ListCategory?.category)
 
-    // console.log(ListCategoryUX?.length)
+
 
 
     // event after reqqurest...
@@ -31,6 +32,7 @@ export default function RestaurantsCategoryScreen(props) {
 
 
 
+    // requrest category
     useEffect(() => {
 
         if (resturantId) {
@@ -42,10 +44,10 @@ export default function RestaurantsCategoryScreen(props) {
         resturantId,
         dispatch,
         ListCategoryUX?.length,
-
     ])
 
 
+    // updated and create category....
     useEffect(() => {
 
         if (updated || create || remove) {
@@ -56,6 +58,7 @@ export default function RestaurantsCategoryScreen(props) {
     }, [updated, create, dispatch, resturantId, remove])
 
 
+    // searching in category....
     const [query, setQuery] = useState("");
     const keys = ["name"];
     const search = (data) => {

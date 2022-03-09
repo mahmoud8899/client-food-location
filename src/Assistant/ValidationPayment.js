@@ -70,17 +70,6 @@ export function ValidationUpdateProduct(OldValues, NewValues, changeImage) {
         && NewValues?.popular === OldValues?.popular
         && Number(NewValues?.prices) === Number(OldValues?.prices)
         && changeImage === ''
-
-
-    // NewValues?.image?.normalize() === OldValues?.image?.normalize() 
-
-
-
-
-
-    // || /^[1-9]\d*(\.\d+)?$/.test(productDetails.prices) !== true
-
-
 }
 
 
@@ -134,7 +123,19 @@ export function ValidationCartInfo(
 
 // validation account
 export function ValidationAccount(name) {
-
     return name?.Accountnumber?.length >= 6 && name?.Accountowner?.length >= 6 &&
-        name?.IBAN?.length >= 6
+        name?.iban?.length >= 6
+}
+
+// valtion updated account..
+export function ValidationUpdatedAccount(NewData, OldData) {
+
+    return NewData?.Accountnumber?.trim()?.normalize() === OldData?.accountnumber?.normalize()
+        && NewData?.Accountowner?.trim()?.normalize() === OldData?.accountnowner?.normalize()
+        && NewData?.iban?.trim()?.normalize() === OldData?.iban?.normalize()
+
+
+
+
+
 }

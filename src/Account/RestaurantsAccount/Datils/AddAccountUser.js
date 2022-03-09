@@ -1,65 +1,63 @@
-import { Form, Modal } from 'react-bootstrap'
-import Input from '../../../Components/Input/Input'
-import ButtomClick from '../../../Components/Buttom/Buttom'
-import Styles from '../../../Components/Update/StylesComponents/style'
-import { ValidationAccount, ValidationUpdatedAccount, ChangeCode } from '../../../Assistant/ValidationPayment'
-import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
-import { ValtionMe } from '../../../Assistant/ValtionMe'
 import { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
+import { Form, Modal } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { MyOderImage } from '../../../Assistant/MyOrderImage'
+import { ChangeCode, ValidationAccount, ValidationUpdatedAccount } from '../../../Assistant/ValidationPayment'
+import { ValtionMe } from '../../../Assistant/ValtionMe'
+import ButtomClick from '../../../Components/Buttom/Buttom'
 import { CloseScreen, closeUpdateAccount } from '../../../Components/CloseScreen/CloseScreen'
-import '../../RestaurantsAccount/style.css'
-import { AddAcountBAction } from '../../../redux/Action/Auth_Action'
 import CodeError from '../../../Components/CodeError/CodeError'
+import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
+import Input from '../../../Components/Input/Input'
+import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
+import Styles from '../../../Components/Update/StylesComponents/style'
+import { AddAcountBAction } from '../../../redux/Action/Auth_Action'
 
-const AddAccount = (props) => {
 
-    const {
-        openAddAccount,
-        setOpenAddAccount
-    } = props
 
+
+
+
+export default function AddAccountUser(props) {
+    const { openAddAccount, setOpenAddAccount } = props
 
 
 
     const dispatch = useDispatch()
-
-
     // user info 
     const userLogin = useSelector((state) => state?.userLogin)
     const { userInfo, token, loading, error, updatedaccount } = userLogin
-
-
     // success updated User.... 
     const [updateSuccessFully, setUpdateSuccessFully] = useState(false)
-
+    // handle error input
     const [handleError, setHandleError] = useState(false)
-
     // input change user add acount
     const [addAccountNumber, setAddAccountNumber] = useState({ Accountnumber: '', Accountowner: '', iban: '' })
 
 
+
+    // updated user add account....
     useEffect(() => {
 
         if (userInfo?.accountB?.accountnumber) {
+
             return setAddAccountNumber({
                 Accountnumber: userInfo?.accountB?.accountnumber ? userInfo?.accountB?.accountnumber : '',
                 Accountowner: userInfo?.accountB?.accountnowner ? userInfo?.accountB?.accountnowner : '',
                 iban: userInfo?.accountB?.iban ? userInfo?.accountB?.iban : '',
             })
+        } else {
+            setAddAccountNumber({ Accountnumber: '', Accountowner: '', iban: '' })
         }
 
 
-        return () => {
-            setAddAccountNumber([])
-        }
+
 
     }, [userInfo?.accountB])
 
 
 
+    // success after updated and create....
     useEffect(() => {
 
         if (updatedaccount) {
@@ -75,6 +73,8 @@ const AddAccount = (props) => {
 
 
 
+
+    // send data After Updated to Server......
     const HandleAccount = (e) => {
 
         e.preventDefault()
@@ -101,6 +101,7 @@ const AddAccount = (props) => {
         closeUpdateAccount(dispatch)
         setUpdateSuccessFully(false)
         setHandleError(false)
+
         return setOpenAddAccount(!openAddAccount)
     }
 
@@ -111,6 +112,8 @@ const AddAccount = (props) => {
         setUpdateSuccessFully(false)
         return CloseScreen(dispatch)
     }
+
+
 
 
     return <Modal show={openAddAccount} onHide={HandleClose}>
@@ -132,13 +135,13 @@ const AddAccount = (props) => {
                     <ImageScreen
                         ImageIcon={MyOderImage.close}
                         className='close-pp-pp-image'
-                        onClick={() => setOpenAddAccount(!openAddAccount)}
+                        onClick={HandleClose}
                     />
                 </div>
 
                 {handleError &&
-                    <div  className='error-input-red' >
-                      <CodeError  error='Det är saker som är fel'   /> 
+                    <div className='error-input-red' >
+                        <CodeError error='Det är saker som är fel' />
                     </div>
                 }
 
@@ -209,9 +212,4 @@ const AddAccount = (props) => {
 
 
     </Modal>
-
-
 }
-
-export default AddAccount
-
