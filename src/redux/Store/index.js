@@ -110,7 +110,7 @@ const reducer = combineReducers({
 
 
     // category to restranges...
-    ListCategory: CategoryAllReducres,
+    // ListCategory: CategoryAllReducres,
     PageCategory : UpdateRemoveReducres,
 
 

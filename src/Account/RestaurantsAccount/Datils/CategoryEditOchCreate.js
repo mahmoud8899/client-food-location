@@ -12,6 +12,7 @@ import { TheRemoveUpdated } from '../../../Components/CloseScreen/CloseScreen'
 import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
 import Styles from '../../../Components/Update/StylesComponents/style'
 import '../style.css'
+import CodeError from '../../../Components/CodeError/CodeError'
 
 
 
@@ -20,17 +21,20 @@ export default function CategoryEditOchCreate(props) {
 
 
     const { editCategory, setEditCategory } = props
-    const [categoryData, setCategoryData] = useState({ name: '', _id: '', cartinfo: '620d1f1084f54514ebb4dac8' })
-
     const dispatch = useDispatch()
-
+    // handle input error 
+    const [handleError, setHandleError] = useState(false)
+    // input category 
+    const [categoryData, setCategoryData] = useState({ name: '', _id: '', cartinfo: '620d1f1084f54514ebb4dac8' })
     // event after reqqurest...
     const PageCategory = useSelector((state) => state?.PageCategory)
     const { updated, loading, error, create } = PageCategory
 
+    // successfully singe page
     const [successFully, setSuccessFully] = useState(false)
 
 
+    // updated input category Edit....
     useEffect(() => {
 
         if (editCategory?.object) {
@@ -41,12 +45,9 @@ export default function CategoryEditOchCreate(props) {
             })
         }
 
+        // open after successfully create and Update.
         if (updated || create) {
-
-            
             return setSuccessFully(true)
-
-
         }
 
 
@@ -69,20 +70,30 @@ export default function CategoryEditOchCreate(props) {
     // handle form
     const HandleForm = (e) => {
         e.preventDefault()
+        setHandleError(false)
 
-        const CodeColenar = {
-            name: ChangeCode(categoryData?.name),
-            _id: ChangeCode(categoryData?._id),
-            cartinfo: ChangeCode(categoryData?.cartinfo),
+        if (categoryData?.name?.trim().length >= Number(3)) {
+
+            const CodeColenar = {
+                name: ChangeCode(categoryData?.name),
+                _id: ChangeCode(categoryData?._id),
+                cartinfo: ChangeCode(categoryData?.cartinfo),
+            }
+
+            if (editCategory?.object?.name) {
+
+                return dispatch(UpdatedCategoryAction(CodeColenar))
+            } else {
+                return dispatch(CategoryCategoryAction(CodeColenar))
+            }
+
+        } else {
+
+
+            return setHandleError(true)
         }
 
-        if (editCategory?.object?.name) {
 
-            return dispatch(UpdatedCategoryAction(CodeColenar))
-        }
-
-
-        return dispatch(CategoryCategoryAction(CodeColenar))
     }
 
 
@@ -92,6 +103,7 @@ export default function CategoryEditOchCreate(props) {
         setEditCategory({ value: false, object: '' })
         setSuccessFully(false)
         TheRemoveUpdated(dispatch)
+        setHandleError(false)
         return
     }
 
@@ -99,6 +111,7 @@ export default function CategoryEditOchCreate(props) {
     // remove error
     const BackAndRemoveError = () => {
         TheRemoveUpdated(dispatch)
+        setHandleError(false)
         return
     }
 
@@ -129,9 +142,16 @@ export default function CategoryEditOchCreate(props) {
                     <ImageScreen
                         ImageIcon={MyOderImage.close}
                         className='close-pp-pp-image'
-                        onClick={() => setEditCategory({ value: false, object: '' })}
+                        onClick={HandleClose}
                     />
                 </div>
+
+
+                {handleError &&
+                    <div className='error-input-red' >
+                        <CodeError error='Det är saker som är fel' />
+                    </div>
+                }
 
 
                 <Form onSubmit={HandleForm} className='form-class-category'>

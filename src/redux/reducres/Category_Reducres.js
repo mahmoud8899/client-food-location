@@ -10,6 +10,7 @@ export const UpdateRemoveReducres = (state = {
     updated: null,
     remove: null,
     create: null,
+    category: [],
 }, action) => {
     switch (action.type) {
 
@@ -35,7 +36,13 @@ export const UpdateRemoveReducres = (state = {
                 create: action.payload,
                 loading: false,
             }
-
+            case ActionTypes.ADD_CATEGORY_SUCCESS:
+                return {
+                    ...state,
+                    category: action.payload,
+                    loading: false,
+                };
+    
 
         case ActionTypes.ADD_CATEGORY_DELETE_FAIL:
             return {
@@ -50,38 +57,24 @@ export const UpdateRemoveReducres = (state = {
     }
 }
 
-// case ActionTypes.ADD_CATEGORY_LOADING: return { loading: true }
-// get  category to restrange. och save id 
-export const CategoryAllReducres = (state = {
-    category: [],
-    error: null,
-    // categoryProductsNextPagesxp: {}
+// // case ActionTypes.ADD_CATEGORY_LOADING: return { loading: true }
+// // get  category to restrange. och save id 
+// export const CategoryAllReducres = (state = {
+//     category: [],
+//     error: null,
+//     // categoryProductsNextPagesxp: {}
 
-}, action) => {
+// }, action) => {
+//     switch (action.type) {
 
-
-    switch (action.type) {
-
-        case ActionTypes.ADD_CATEGORY_SUCCESS:
-            // console.log(action.payload)
-
-            return {
-                ...state,
-                category: action.payload,
-            };
-
-
-
-
-        case ActionTypes.ADD_CATEGORY_FAIL: return {
-            error: action.payload,
-            loading: false
-        }
-
-
-        default: return state
-    }
-}
+      
+//         case ActionTypes.ADD_CATEGORY_FAIL: return {
+//             error: action.payload,
+//             loading: false
+//         }
+//         default: return state
+//     }
+// }
 
 
         // const categoryId = action.payload.id

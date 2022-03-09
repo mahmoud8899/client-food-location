@@ -4,7 +4,6 @@ import { TabScreen, TabScrrenDor } from '../../../Components/TabScreen/TabScreen
 import InfiniteScrollData from '../Datils/InfiniteScrollData'
 import { ShowOrderAction } from '../../../redux/Action/Order_Action'
 import Styles from '../../../Components/Update/StylesComponents/style'
-import {SliceName} from '../../../Assistant/Slice'
 import { Fragment } from 'react'
 import { useDispatch } from 'react-redux'
 import { Table } from 'react-bootstrap'
@@ -45,7 +44,7 @@ export default function CartItemsOrders(props) {
             <Table responsive  >
                 <thead style={Styles.TabBackColor} >
                     <tr style={Styles.Tabcolor} >
-                        <TabScreen TitleTh='Order Number' style={Styles.TabfontText} />
+                        <TabScreen TitleTh='Number' style={Styles.TabfontText} />
                         <TabScreen TitleTh='Pric' style={Styles.TabfontText} />
                         <TabScreen TitleTh='payment' style={Styles.TabfontText} />
                         <TabScreen TitleTh='Paid' style={Styles.TabfontText} />
@@ -60,8 +59,8 @@ export default function CartItemsOrders(props) {
                     <tbody style={Styles.Tabcolor} key={Index}>
                         <tr style={Styles.Tabcolor}  >
 
-                            <TabScrrenDor TitleTd={SliceName(order?._id,20)  } style={Styles.TabfontText} />
-                            <TabScrrenDor TitleTd={order?.itemsPrics} style={Styles.TabfontText} />
+                            <TabScrrenDor TitleTd={Index + 1} style={Styles.TabfontText} />
+                            <TabScrrenDor TitleTd={`${order?.itemsPrics} Kr`} style={Styles.TabfontText} />
                             <TabScrrenDor TitleTd={order?.paymentMethod} style={Styles.TabfontText} />
                             <TabScrrenDor TitleTd={order?.ispaid ? 'yes' : 'no'} style={Styles.TabfontText} />
                             <TabScrrenDor TitleTd={order?.OrderStatus} style={Styles.TabfontText} />

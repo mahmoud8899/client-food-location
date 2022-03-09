@@ -81,6 +81,9 @@ export default function RestaurantsProductScreen(props) {
 
 
 
+    // console.log(show)
+
+
 
     return <Container >
 
@@ -124,9 +127,6 @@ export default function RestaurantsProductScreen(props) {
                 show={show}
                 setShow={setShow}
                 resturantId={resturantId}
-
-
-
             />
 
         }

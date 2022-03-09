@@ -7,6 +7,7 @@ import CartItemsCategory from './Datils/CartItemsCategory'
 import { getCategoryAction } from '../../redux/Action/Category_Action'
 import CategoryEditOchCreate from './Datils/CategoryEditOchCreate'
 import CategoryNavBarSearching from './Datils/CategoryNavBarSearching'
+import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import UserName from './Datils/UserName'
 import './style.css'
 export default function RestaurantsCategoryScreen(props) {
@@ -15,22 +16,19 @@ export default function RestaurantsCategoryScreen(props) {
 
 
 
-     // cart info id
+    // cart info id
     const resturantId = props?.match?.params?.id
     const dispatch = useDispatch()
     // open edit and create.....
     const [editCategory, setEditCategory] = useState({ value: false, object: '' })
-    // get all category....
-    const ListCategoryUX = useSelector((state) => state?.ListCategory?.category)
+
 
 
 
 
     // event after reqqurest...
     const PageCategory = useSelector((state) => state?.PageCategory)
-    const { updated, create, remove } = PageCategory
-
-
+    const { updated, create, remove, category: ListCategoryUX, error, loading } = PageCategory
 
     // requrest category
     useEffect(() => {
@@ -51,6 +49,8 @@ export default function RestaurantsCategoryScreen(props) {
     useEffect(() => {
 
         if (updated || create || remove) {
+
+            console.log('helllo')
             dispatch(getCategoryAction(resturantId))
             return
         }
@@ -64,7 +64,7 @@ export default function RestaurantsCategoryScreen(props) {
     const search = (data) => {
         return data?.filter((item) =>
             keys?.some((key) => item[key]?.toLowerCase()?.includes(query))
-        );
+        )
     };
 
 
@@ -78,35 +78,49 @@ export default function RestaurantsCategoryScreen(props) {
 
 
         <Title TextTitle='product Admin' />
-        <Row className='justify-content-center'>
+        <LoadingErrorHandle
+            loading={loading}
+            error={error}
+            home={ListCategoryUX}
+            TextNotItems='Empty'
 
-        <Col xs={12} sm={12} md={4} lg={3} >
-                <RestaurantsNavBarScreen ClassCategoryActive />
-            </Col>
+        >
 
-            <Col xs={12} sm={12} md={8} lg={9} >
+            <Row className='justify-content-center'>
 
-                <CategoryNavBarSearching
-                    setEditCategory={setEditCategory}
-                    setQuery={setQuery}
-                />
+                <Col xs={12} sm={12} md={4} lg={3} >
+                    <RestaurantsNavBarScreen ClassCategoryActive />
+                </Col>
 
+                <Col xs={12} sm={12} md={8} lg={9} >
 
-                <CartItemsCategory
-                    ListCategoryUX={search(ListCategoryUX)}
-                    setEditCategory={setEditCategory}
-
-                />
-
-
-            </Col>
-
-        </Row>
+                    <CategoryNavBarSearching
+                        setEditCategory={setEditCategory}
+                        setQuery={setQuery}
+                    />
 
 
+                    <CartItemsCategory
+                        ListCategoryUX={search(ListCategoryUX)}
+                        setEditCategory={setEditCategory}
 
-        <CategoryEditOchCreate editCategory={editCategory} setEditCategory={setEditCategory} />
+                    />
+
+
+                </Col>
+
+            </Row>
+
+
+        </LoadingErrorHandle>
+
+        <CategoryEditOchCreate
+            editCategory={editCategory}
+            setEditCategory={setEditCategory}
+        />
+
+
+
 
     </Container>
 }
-

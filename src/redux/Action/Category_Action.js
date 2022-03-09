@@ -21,18 +21,16 @@ export const AppenCategoryId = (id) => ({
 
 // all category ......................................>
 // GET // URL : /api/category/restrange/list/:id cart info to restrange....../
-export const getCategoryAction = (id) => async (dispatch, getState) => {
-
-
-
+export const getCategoryAction = (id) => async (dispatch) => {
 
     try {
+        dispatch({ type: ActionTypes.ADD_CATEGORY_DELETE_LOADING })
         const { data } = await axios.get(`/api/category/restrange/list/${id}/`)
         // dispatch(AppenCategoryId(id))
-        dispatch({ type: ActionTypes.ADD_CATEGORY_SUCCESS, payload: data})
+        dispatch({ type: ActionTypes.ADD_CATEGORY_SUCCESS, payload: data })
     } catch (error) {
         dispatch({
-            type: ActionTypes.ADD_CATEGORY_FAIL,
+            type: ActionTypes.ADD_CATEGORY_DELETE_FAIL,
             payload: error.response &&
                 error.response.data.message ?
                 error.response.data.message :
@@ -72,7 +70,7 @@ export const DeleteCategoryAction = (user) => async (dispatch) => {
 export const UpdatedCategoryAction = (user) => async (dispatch) => {
 
     try {
-        dispatch({ type: ActionTypes.ADD_CATEGORY_DELETE_LOADING })
+        // dispatch({ type: ActionTypes.ADD_CATEGORY_DELETE_LOADING })
         const { data } = await axios.put(`/api/category/${user?._id}`, user)
         dispatch({ type: ActionTypes.ADD_CATEGORY_UPDATED_SUCCESS, payload: data.message })
     } catch (error) {
@@ -98,7 +96,7 @@ export const CategoryCategoryAction = (user) => async (dispatch) => {
 
 
     try {
-        dispatch({ type: ActionTypes.ADD_CATEGORY_DELETE_LOADING })
+        // dispatch({ type: ActionTypes.ADD_CATEGORY_DELETE_LOADING })
         const { data } = await axios.post(`/api/category/create/`, user)
         dispatch({ type: ActionTypes.ADD_CATEGORY_CREATE_SUCCESS, payload: data.message })
     } catch (error) {
@@ -118,23 +116,3 @@ export const CategoryCategoryAction = (user) => async (dispatch) => {
 
 
 
-    // const calculatedPage = getState()?.ListCategory?.categoryProductsNextPagesxp[id]
-
-    // if (typeof calculatedPage === 'undefined') {
-    //     try {
-    //         const { data } = await axios.get(`/api/category/restrange/list/${id}/`)
-    //         dispatch(AppenCategoryId(id))
-    //         dispatch({
-    //             type: ActionTypes.ADD_CATEGORY_SUCCESS,
-    //             payload: { id, data }
-    //         })
-    //     } catch (error) {
-    //         dispatch({
-    //             type: ActionTypes.ADD_CATEGORY_FAIL,
-    //             payload: error.response &&
-    //                 error.response.data.message ?
-    //                 error.response.data.message :
-    //                 error.message
-    //         })
-    //     }
-    // }

@@ -7,7 +7,7 @@ const Styles = {
     colorback: {
 
         background : COLORS.testing,
-        color : COLORS.white
+        color : COLORS.light
 
     },
     processing: {
@@ -23,8 +23,8 @@ const Styles = {
         fontWeight : 'bold'
     },
     NavBarSearchingColor: {
-        background: COLORS.firstRed,
-        color: COLORS.white
+        background: COLORS.testing,
+        color: COLORS.light
     },
 
     NavBarSearchingColorInput: {
@@ -49,7 +49,7 @@ const Styles = {
         height: '40px',
         lineHeight: '20px',
         cursor: 'pointer',
-        color :COLORS.white,
+        color :COLORS.light,
         transition: 'all 4s',
         
 
@@ -81,6 +81,7 @@ const Styles = {
         fontSize: '13px',
         textTransform: 'capitalize',
         width: '100px',
+        color : COLORS.light
     },
     Tabimageproduct: {
         width: '40px',

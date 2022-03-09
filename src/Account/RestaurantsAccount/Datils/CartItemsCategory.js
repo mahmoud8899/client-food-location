@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux'
 
 
 export default function CartItemsCategory(props) {
-    const { ListCategoryUX } = props
+    const { ListCategoryUX, setEditCategory } = props
 
     const dispatch = useDispatch()
     const [show, setShow] = useState({ value: false, object: '' })
@@ -27,6 +27,7 @@ export default function CartItemsCategory(props) {
     return <Table responsive >
         <thead style={Styles.TabBackColor}>
             <tr style={Styles.Tabcolor}>
+                <TabScreen TitleTh='number' style={Styles.TabfontText} />
                 <TabScreen TitleTh='username' style={Styles.TabfontText} />
                 <TabScreen TitleTh='edit' style={Styles.TabfontText} />
                 <TabScreen TitleTh='remove' style={Styles.TabfontText} />
@@ -36,6 +37,7 @@ export default function CartItemsCategory(props) {
         <tbody style={Styles.Tabcolor}  >
             {ListCategoryUX?.length === 0 ? null : ListCategoryUX?.map((category, Index) => (
                 <tr style={Styles.Tabcolor} key={Index}>
+                    <TabScrrenDor TitleTd={Index + 1} style={Styles.TabfontText} />
 
                     <TabScrrenDor TitleTd={category?.name} style={Styles.TabfontText} />
 
@@ -47,13 +49,13 @@ export default function CartItemsCategory(props) {
 
                         </div>
                     }
-                        onClick={() => props?.setEditCategory({ value: true, object: category })}
+                        onClick={() => setEditCategory({ value: true, object: category })}
                     />
                     <TabScrrenDor other={
                         <div className='remove' style={Styles.TabButtomRemove}>
                             <ImageScreen ImageIcon={MyOderImage.remove}
                                 style={Styles.TabIconsremov} />
-                            <span  >remove</span>
+                            <span>remove</span>
 
                         </div>
                     }

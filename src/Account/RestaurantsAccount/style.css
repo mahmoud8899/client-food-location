@@ -5,6 +5,14 @@
     justify-content: space-between;
  
 }
+
+
+.category-span{
+    font-size: 13px;
+    font-family: monospace;
+    margin-bottom: 0.4rem;
+    display: block;
+}
 .valkommen-admin{
     text-align: left;
     margin-bottom: 2rem;
@@ -291,6 +299,9 @@
 .Input-type-style.productdetials{
     padding-left: 0.3rem;
     width: 100%;
+}
+select{
+    background-color: #212529;
 }
 
 .Input-type-style.hegith{

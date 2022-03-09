@@ -2,7 +2,6 @@ import { Table } from 'react-bootstrap'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { TabScreen, TabScrrenDor } from '../../../Components/TabScreen/TabScreen'
-import { SliceNameNot } from '../../../Assistant/Slice'
 import RemoveAlrt from '../../../Components/Update/RemoveAlrt/RemoveAlrt'
 import { RemoveProductAction } from '../../../redux/Action/Product_Action'
 import InfiniteScrollData from '../Datils/InfiniteScrollData'
@@ -77,10 +76,10 @@ export default function CartItemsProducts(props) {
                 <tbody style={Styles.Tabcolor}>
                     {products?.map((product, Index) => (
                         <tr style={Styles.Tabcolor} key={Index}>
-                            <TabScrrenDor TitleTd={SliceNameNot(product?._id, 10)} style={Styles.TabfontText} />
+                            <TabScrrenDor TitleTd={Index + 1} style={Styles.TabfontText} />
                             <TabScrrenDor TitleTd={product?.name} style={Styles.TabfontText} />
                             <TabScrrenDor other={<ImageScreen ImageIcon={product?.image} style={Styles.Tabimageproduct} />} />
-                            <TabScrrenDor TitleTd={product?.prices} style={Styles.TabfontText} />
+                            <TabScrrenDor TitleTd={`${product?.prices} Kr`} style={Styles.TabfontText} />
                             <TabScrrenDor TitleTd={
                                 product?.category?.name ? product?.category?.name : 'add category'
                                 

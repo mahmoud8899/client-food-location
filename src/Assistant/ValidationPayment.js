@@ -87,7 +87,7 @@ export function ChangeCode(CodeName) {
 // validation category
 export function ValidationCategory(NewValue, OldValue) {
 
-    return NewValue?.normalize() === OldValue?.normalize()
+    return NewValue?.trim().normalize() === OldValue?.trim()?.normalize()
 }
 
 
