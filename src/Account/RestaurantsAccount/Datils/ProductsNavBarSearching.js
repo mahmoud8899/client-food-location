@@ -1,8 +1,7 @@
 import { FormControl } from 'react-bootstrap'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
-import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import Styles from '../../../Components/Update/StylesComponents/style'
 import NavBarList from './NavBarList'
+import { BiCloudUpload, BiSearch } from 'react-icons/bi'
 
 
 
@@ -15,15 +14,14 @@ export default function ProductsNavBarSearching(props) {
 
 
 
-
     return <NavBarList
         onClick={(e) => setShow({ value: true, object: '' })}
         Other={
             <div className='Order-List-New-other'>
-                <div  style={Styles.NavBarSearchingColor} className='AddClass-c'>
-                    <ImageScreen ImageIcon={MyOderImage.uploading} style={Styles.TabBoximage} />
+                <div style={Styles.NavBarSearchingColor} className='AddClass-c'>
+                    <BiCloudUpload style={Styles.TabBoximage} />
                     <span>Create Product</span>
-          
+
 
                 </div>
 
@@ -37,12 +35,15 @@ export default function ProductsNavBarSearching(props) {
                 <FormControl
                     className='with-input'
                     placeholder='Searching Product...'
-                    onChange={(e)=> setQuery(e.target.value)}
+                    onChange={(e) => setQuery(e.target.value)}
                     style={Styles.NavBarSearchingColorInput}
 
                 />
 
-                <ImageScreen ImageIcon={MyOderImage.search} className='Searching-input' />
+                <BiSearch
+                    style={Styles.searchingcolor}
+                    className='Searching-input'
+                />
             </div>
 
         }

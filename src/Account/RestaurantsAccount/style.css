@@ -295,7 +295,14 @@
 }
 
 
+.Icons-edit-style{
+    font-size: 22px;
+    color: black;
+    margin-top: 0.4rem;
+    width: 40px;
 
+
+}
 .Input-type-style.productdetials{
     padding-left: 0.3rem;
     width: 100%;

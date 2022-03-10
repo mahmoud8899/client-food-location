@@ -7,7 +7,7 @@ import RemoveAlrt from '../../../Components/Update/RemoveAlrt/RemoveAlrt'
 import { useState } from 'react'
 import { DeleteCategoryAction } from '../../../redux/Action/Category_Action'
 import { useDispatch } from 'react-redux'
-
+import {BiTrashAlt} from 'react-icons/bi'
 
 export default function CartItemsCategory(props) {
     const { ListCategoryUX, setEditCategory } = props
@@ -53,8 +53,7 @@ export default function CartItemsCategory(props) {
                     />
                     <TabScrrenDor other={
                         <div className='remove' style={Styles.TabButtomRemove}>
-                            <ImageScreen ImageIcon={MyOderImage.remove}
-                                style={Styles.TabIconsremov} />
+                            <BiTrashAlt style={Styles.TabIconsremov} />
                             <span>remove</span>
 
                         </div>

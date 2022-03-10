@@ -4,36 +4,24 @@ import '../UserProfileScreen/Profile.css'
 import Title from '../../../Components/ScreenTitle/ScreenTitle'
 import Styles from '../UserProfileScreen/style'
 import UserChange from '../../../Components/UserChange/UserChange'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Action_logout } from '../../../redux/Action/Auth_Action'
 import { useDispatch } from 'react-redux'
+import UserVerifiedID from '../../../Components/Update/UserVerifiedID/UserVerifiedID'
 
 
-
-export default function UserSettingsScreen({ history }) {
+export default function UserSettingsScreen(props) {
 
 
 
     const [openName, setOpenName] = useState(false)
-   
+
 
     const dispatch = useDispatch()
 
     const userLogin = useSelector((state) => state?.userLogin)
     const { userInfo } = userLogin
-
-
-    useEffect(() => {
-
-        if (!userInfo?.firstname) {
-
-            return history.push('/')
-        }
-
-    }, [history, userInfo?.firstname])
-
-
 
 
 
@@ -47,69 +35,70 @@ export default function UserSettingsScreen({ history }) {
 
 
 
-    return  <Container>
-            
-        <Title TextTitle='Setting' />
-   
+    return <UserVerifiedID>
+        <Container>
 
-        <Row className="justify-content-center margin-top-class" >
-
-            <Col xs={12} sm={12} md={12} lg={12} >
-                <div className='myprofile'>
-                    <h1>Profile</h1>
-                </div>
-
-            </Col>
+            <Title TextTitle='Setting' />
 
 
-            <Col xs={12} sm={12} md={12} lg={12}>
+            <Row className="justify-content-center margin-top-class" >
 
-
-                <UserNavBarScreen ClassNameSetting />
-
-                <div className='margin-bottom-class'>  </div>
-
-            </Col>
-
-
-            <Col xs={12} sm={12} md={12} lg={8}  className='heigth-margin' >
-
-
-
-
-                <div className='box-Setting'>
-                    <div className='box-setting-children'>
-                        <h1>Nmae</h1>
-                        <h1 style={Styles.ColorSetting} onClick={(e) => setOpenName(true)}>
-                            {userInfo?.firstname} {userInfo?.lastname}
-                        </h1>
+                <Col xs={12} sm={12} md={12} lg={12} >
+                    <div className='myprofile'>
+                        <h1>Profile</h1>
                     </div>
-                    <div className='box-setting-children'>
-                        <h1>Send receipts to email</h1>
-                        <div className='check-box-me'>
-                            <span className='check-box-me-c check-box-me-left'></span>
+
+                </Col>
+
+
+                <Col xs={12} sm={12} md={12} lg={12}>
+
+
+                    <UserNavBarScreen ClassNameSetting />
+
+                    <div className='margin-bottom-class'>  </div>
+
+                </Col>
+
+
+                <Col xs={12} sm={12} md={12} lg={8} className='heigth-margin' >
+
+
+
+
+                    <div className='box-Setting'>
+                        <div className='box-setting-children'>
+                            <h1>Nmae</h1>
+                            <h1 style={Styles.ColorSetting} onClick={(e) => setOpenName(true)}>
+                                {userInfo?.firstname} {userInfo?.lastname}
+                            </h1>
+                        </div>
+                        <div className='box-setting-children'>
+                            <h1>Send receipts to email</h1>
+                            <div className='check-box-me'>
+                                <span className='check-box-me-c check-box-me-left'></span>
+                            </div>
+                        </div>
+
+                        <div className='box-setting-children'>
+                            <h1>Log out of UppsalaMat</h1>
+                            <h1 style={Styles.ColorSetting} onClick={HandleLogoUt}>Log out</h1>
                         </div>
                     </div>
 
-                    <div className='box-setting-children'>
-                        <h1>Log out of UppsalaMat</h1>
-                        <h1 style={Styles.ColorSetting} onClick={HandleLogoUt}>Log out</h1>
-                    </div>
-                </div>
 
 
+                    {openName &&
+                        <div className='Add_open_Adress open' >
 
-                {openName &&
-                    <div className='Add_open_Adress open' >
+                            <UserChange
 
-                        <UserChange
-
-                            setOpenName={setOpenName}
-                        />
-                    </div>
+                                setOpenName={setOpenName}
+                            />
+                        </div>
 
 
-                }
+                    }
 
 
 
@@ -119,9 +108,10 @@ export default function UserSettingsScreen({ history }) {
 
 
 
-            </Col>
-        </Row>
-    </Container>
+                </Col>
+            </Row>
+        </Container>
+    </UserVerifiedID>
 
-  
+
 }

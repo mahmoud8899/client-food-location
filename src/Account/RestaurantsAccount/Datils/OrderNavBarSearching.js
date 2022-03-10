@@ -3,6 +3,7 @@ import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import NavBarList from './NavBarList'
 import Styles from '../../../Components/Update/StylesComponents/style'
+import { BiSearch } from 'react-icons/bi'
 
 
 
@@ -39,10 +40,9 @@ export default function OrderNavBarSearching(props) {
 
                 />
 
-                <ImageScreen
-                    ImageIcon={MyOderImage.search}
+                <BiSearch
+                    style={Styles.searchingcolor}
                     className='Searching-input'
-                    
                 />
             </div>
 

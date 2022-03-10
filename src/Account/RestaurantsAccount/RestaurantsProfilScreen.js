@@ -1,8 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import { MyOderImage } from '../../Assistant/MyOrderImage'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
-import ImageScreen from '../../Components/ImageScreen/ImageScreen'
 import NavBarList from './Datils/NavBarList'
 import CartItemsInfo from './Datils/CartItemsInfo'
 import { CartInfoActionResturan } from '../../redux/Action/CartItemAction'
@@ -14,6 +12,7 @@ import { useEffect, useState } from 'react'
 import Styles from '../../Components/Update/StylesComponents/style'
 import './style.css'
 import AddAccountUser from './Datils/AddAccountUser'
+import {BiTaskX,BiNetworkChart}  from 'react-icons/bi'
 
 
 
@@ -61,6 +60,8 @@ export default function RestaurantsProfilScreen(props) {
         <Title TextTitle='product Admin' />
         <div className='box'>
             <UserName />
+       
+           
         </div>
 
         <LoadingErrorHandle loading={loading} error={error} home={info}>
@@ -78,7 +79,7 @@ export default function RestaurantsProfilScreen(props) {
                             <div className='Order-List-New-other'>
                                 <div style={Styles.colorback} className='Fistclass-handle'>
                                     <div className='half-fistclass'>
-                                        <ImageScreen ImageIcon={MyOderImage.sales} className='Image-sales' />
+                                        <BiNetworkChart  className='Image-sales' />
                                         <span>sales</span>
                                     </div>
 
@@ -98,7 +99,7 @@ export default function RestaurantsProfilScreen(props) {
                             <div className='Order-List-New-other'>
                                 <div style={Styles.colorback} className='Fistclass-handle'>
                                     <div className='half-fistclass'>
-                                        <ImageScreen ImageIcon={MyOderImage.cancel} className='Image-sales' />
+                                        <BiTaskX  className='Image-sales' />
                                         <span>cancel</span>
 
                                     </div>

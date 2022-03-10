@@ -1,9 +1,7 @@
 import { FormControl } from 'react-bootstrap'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
-import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import Styles from '../../../Components/Update/StylesComponents/style'
 import NavBarList from './NavBarList'
-
+import {BiCloudUpload,BiSearch} from 'react-icons/bi' 
 
 
 
@@ -20,8 +18,8 @@ export default function CategoryNavBarSearching(props) {
         Other={
             <div className='Order-List-New-other'>
                 <div style={Styles.NavBarSearchingColor} className='AddClass-c'>
-                    <ImageScreen
-                        ImageIcon={MyOderImage.uploading}
+                    <BiCloudUpload
+                        
                         style={Styles.TabBoximage}
                     />
                     <span>Create Category</span>
@@ -41,8 +39,8 @@ export default function CategoryNavBarSearching(props) {
                     style={Styles.NavBarSearchingColorInput}
                 />
 
-                <ImageScreen
-                    ImageIcon={MyOderImage.search}
+                <BiSearch
+                  style={Styles.searchingcolor}
                     className='Searching-input'
                 />
             </div>

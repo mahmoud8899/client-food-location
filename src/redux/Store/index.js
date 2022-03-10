@@ -16,7 +16,6 @@ import {
 } from '../reducres/Product_Reducres'
 
 import {
-    CategoryAllReducres,
     UpdateRemoveReducres
 } from '../reducres/Category_Reducres'
 

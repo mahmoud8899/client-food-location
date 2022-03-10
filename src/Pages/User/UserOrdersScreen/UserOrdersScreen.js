@@ -10,6 +10,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { OrdersUserAction } from '../../../redux/Action/Order_Action'
 import UserNavBarScreen from '../UserNavBarScreen/UserNavBarScreen'
 import '../UserProfileScreen/Profile.css'
+import UserVerifiedID from '../../../Components/Update/UserVerifiedID/UserVerifiedID'
 const UserOrdersScreen = (props) => {
 
 
@@ -81,153 +82,154 @@ const UserOrdersScreen = (props) => {
 
 
 
-    return <Container>
+    return <UserVerifiedID>
+        <Container>
 
-        <Row className="justify-content-center margin-top-class" >
-
-
-            <Col xs={12} sm={12} md={12} lg={12} >
-                <div className='myprofile'>
-                    <h1>Profile</h1>
-                </div>
-
-            </Col>
+            <Row className="justify-content-center margin-top-class" >
 
 
-            <Col xs={12} sm={12} md={12} lg={12}>
+                <Col xs={12} sm={12} md={12} lg={12} >
+                    <div className='myprofile'>
+                        <h1>Profile</h1>
+                    </div>
+
+                </Col>
 
 
-                <UserNavBarScreen ClassNameOrder />
-
-                <div className='margin-bottom-class'>  </div>
-
-            </Col>
+                <Col xs={12} sm={12} md={12} lg={12}>
 
 
-            <Col xs={12} sm={12} md={12} lg={8} >
+                    <UserNavBarScreen ClassNameOrder />
 
-                <InfiniteScroll
-                    style={Styles.co}
+                    <div className='margin-bottom-class'>  </div>
 
-                    dataLength={UserOrders.length} //This is important field to render the next data
-                    next={fetchData}
-                    hasMore={nextNumber === null ? false : true}
-                    loader={nextNumber === null ? false : <h1>loading....</h1>}
+                </Col>
 
 
-                >
-                    <Row className='justify-content-center'>
-                        <Fragment>
-                            <div className="Order_List_User_Info">
+                <Col xs={12} sm={12} md={12} lg={8} >
 
-                                <h1 >Du har inte gjort några beställningar än</h1>
-                            </div>
+                    <InfiniteScroll
+                        style={Styles.co}
 
-                            {UserOrders ?
-
-                                UserOrders?.map((order, orderIndex) => (
+                        dataLength={UserOrders.length} //This is important field to render the next data
+                        next={fetchData}
+                        hasMore={nextNumber === null ? false : true}
+                        loader={nextNumber === null ? false : <h1>loading....</h1>}
 
 
-                                    <Col xs={11} sm={6} md={6} lg={6} key={orderIndex} >
+                    >
+                        <Row className='justify-content-center'>
+                            <Fragment>
+                                <div className="Order_List_User_Info">
 
-                                        <div style={Styles.box} className="xp_order">
+                                    <h1 >Du har inte gjort några beställningar än</h1>
+                                </div>
 
-                                            <div className="Remove_order_user">
-                                                <Image src={MyOderImage.remove}
-                                                    style={Styles.remove} />
+                                {UserOrders ?
 
-                                            </div>
-
-                                            <div className="Order_List_list">
-                                                <h1 >Order # <span className="Order_List_list_color">{SliceName(order?._id, 15)}</span></h1>
-
-                                                <div className="time_buy">
+                                    UserOrders?.map((order, orderIndex) => (
 
 
-                                                    <span>{format(order?.createdAt)}</span>
-                                                    <Image src={MyOderImage.time}
-                                                        style={Styles.time} />
+                                        <Col xs={11} sm={6} md={6} lg={6} key={orderIndex} >
+
+                                            <div style={Styles.box} className="xp_order">
+
+                                                <div className="Remove_order_user">
+                                                    <Image src={MyOderImage.remove}
+                                                        style={Styles.remove} />
 
                                                 </div>
 
-                                                <div className="Delivered">
+                                                <div className="Order_List_list">
+                                                    <h1 >Order # <span className="Order_List_list_color">{SliceName(order?._id, 15)}</span></h1>
 
-                                                    <span className="add_delivered">{order?.OrderStatus}</span>
-                                                    {order?.OrderStatus === 'processing' ?
+                                                    <div className="time_buy">
 
-                                                        <Image src={MyOderImage.processing}
+
+                                                        <span>{format(order?.createdAt)}</span>
+                                                        <Image src={MyOderImage.time}
                                                             style={Styles.time} />
-                                                        :
-                                                        <Image src={MyOderImage.delivery}
-                                                            style={Styles.time} />
 
-                                                    }
+                                                    </div>
+
+                                                    <div className="Delivered">
+
+                                                        <span className="add_delivered">{order?.OrderStatus}</span>
+                                                        {order?.OrderStatus === 'processing' ?
+
+                                                            <Image src={MyOderImage.processing}
+                                                                style={Styles.time} />
+                                                            :
+                                                            <Image src={MyOderImage.delivery}
+                                                                style={Styles.time} />
+
+                                                        }
 
 
 
+
+                                                    </div>
+
+                                                    <p className="order_payment">pay Payment :
+                                                        <span className="method_payment">{order?.paymentMethod}</span>
+                                                        <span className="credit_card">
+
+                                                            <Image src={MyOderImage.credit}
+                                                                style={Styles.timenotLeft} />
+                                                        </span>
+
+                                                    </p>
 
                                                 </div>
 
-                                                <p className="order_payment">pay Payment :
-                                                    <span className="method_payment">{order?.paymentMethod}</span>
-                                                    <span className="credit_card">
 
-                                                        <Image src={MyOderImage.credit}
-                                                            style={Styles.timenotLeft} />
+
+
+
+                                                <div style={Styles.bottom} className="items_total_info">
+                                                    <span className="time_boking_info_info">
+                                                        <span className="time_boking_info_info_time" >time boking :</span>
+                                                        <span className="credit_card" >{format(order?.orderTime)}</span>
+                                                        <span className="credit_card">
+                                                            <Image src={MyOderImage.delivery}
+                                                                style={Styles.timenotLeft} />
+                                                        </span>
+                                                    </span>
+                                                </div>
+
+
+
+
+
+
+
+                                                <div style={Styles.bottom} className="items_total_info">
+                                                    <span className="">
+                                                        {order?.orderitems?.length}x items
                                                     </span>
 
-                                                </p>
+                                                </div>
 
-                                            </div>
-
-
-
-
-
-                                            <div style={Styles.bottom} className="items_total_info">
-                                                <span className="time_boking_info_info">
-                                                    <span className="time_boking_info_info_time" >time boking :</span>
-                                                    <span className="credit_card" >{format(order?.orderTime)}</span>
-                                                    <span className="credit_card">
-                                                        <Image src={MyOderImage.delivery}
-                                                            style={Styles.timenotLeft} />
+                                                <div style={Styles.bottom} className="items_total_info" onClick={(e) => HandleProductId(e, order?._id)}>
+                                                    <span style={Styles.looklike} className="Add_last">
+                                                        <span style={Styles.font}>detail </span>
                                                     </span>
-                                                </span>
-                                            </div>
+                                                </div>
 
-
-
-
-
-
-
-                                            <div style={Styles.bottom} className="items_total_info">
-                                                <span className="">
-                                                    {order?.orderitems?.length}x items
-                                                </span>
+                                                <div style={Styles.bottom} className="items_total_info">
+                                                    <span style={Styles.boxpric} className="Add_last">
+                                                        <span>{order?.itemsPrics} Kr </span>
+                                                    </span>
+                                                </div>
 
                                             </div>
 
-                                            <div style={Styles.bottom} className="items_total_info" onClick={(e) => HandleProductId(e, order?._id)}>
-                                                <span style={Styles.looklike} className="Add_last">
-                                                    <span style={Styles.font}>detail </span>
-                                                </span>
-                                            </div>
-
-                                            <div style={Styles.bottom} className="items_total_info">
-                                                <span style={Styles.boxpric} className="Add_last">
-                                                    <span>{order?.itemsPrics} Kr </span>
-                                                </span>
-                                            </div>
-
-                                        </div>
 
 
+                                        </Col>
+                                    ))
 
-                                    </Col>
-                                ))
-
-                                : null}
+                                    : null}
 
 
 
@@ -235,14 +237,15 @@ const UserOrdersScreen = (props) => {
 
 
 
-                        </Fragment>
+                            </Fragment>
 
-                    </Row>
-                </InfiniteScroll>
-            </Col>
-        </Row>
-    </Container>
+                        </Row>
+                    </InfiniteScroll>
+                </Col>
+            </Row>
+        </Container>
 
+    </UserVerifiedID>
 
 
 

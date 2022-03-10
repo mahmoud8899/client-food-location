@@ -350,6 +350,7 @@ export default function EditCartInfo(props) {
                                             placeholder='Telefonnummber'
                                             title='Telefonnummber'
                                             className='Input-type-style productdetials'
+                                            type='number'
                                             value={addressinfo?.telefon}
                                             onChange={(e) => setAddressinfo({ ...addressinfo, telefon: e.target.value })}
                                             validation={ValtionMe(addressinfo?.telefon, 'isPhone')?.toString()}
