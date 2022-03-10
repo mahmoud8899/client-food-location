@@ -3,7 +3,6 @@ import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import ImageScreen from '../../Components/ImageScreen/ImageScreen'
-
 import { OrderResturantNotifications } from '../../redux/Action/Order_Action'
 import { useDispatch, useSelector } from 'react-redux'
 import NotficationOrders from './Datils/NotficationOrders'
@@ -14,8 +13,13 @@ import './style.css'
 
 export default function RestaurantsHomeScreen(props) {
 
+    const { match, history } = props
 
-    const resturantId = props?.match?.params?.id
+    const resturantId = match?.params?.id
+
+    // user check ut
+    const userLogin = useSelector((state) => state?.userLogin)
+    const { userInfo } = userLogin
 
 
     // get all order....>
@@ -25,15 +29,21 @@ export default function RestaurantsHomeScreen(props) {
 
     const dispatch = useDispatch()
 
- 
+
     // get all order notfiation ... 
     useEffect(() => {
 
-        if (resturantId) {
-            return orderNotfications?.length === 0 && dispatch(OrderResturantNotifications(resturantId))
+        if (userInfo?.restaurantid) {
+            if (resturantId) {
+                return orderNotfications?.length === 0 && dispatch(OrderResturantNotifications(resturantId))
+            }
+        } else {
+            return history.push('/uppsala/')
         }
 
-    }, [dispatch, resturantId, orderNotfications?.length])
+
+
+    }, [dispatch, resturantId, orderNotfications?.length, history, userInfo])
 
 
 
@@ -45,7 +55,7 @@ export default function RestaurantsHomeScreen(props) {
     return <Container >
 
         <div className='box'>
-            <UserName  />
+            <UserName />
         </div>
         <Title TextTitle='Restaurant Admin' />
         <Row className='justify-content-center'>
@@ -100,18 +110,8 @@ export default function RestaurantsHomeScreen(props) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         </Row>
     </Container>
+
 }
 

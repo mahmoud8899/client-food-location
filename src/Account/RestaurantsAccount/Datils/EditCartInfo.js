@@ -2,22 +2,25 @@ import { Form, Modal, Row, Col } from 'react-bootstrap'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ButtomClick from '../../../Components/Buttom/Buttom'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
-import Input from '../../../Components/Input/Input'
-import { UpdatedCartInfoAction, UpdingImageAction } from '../../../redux/Action/CartItemAction'
-import OppenImage from '../../../Components/Update/OppenImage/OppenImage'
-import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
-import { ValidationCartInfo, ChangeCode } from '../../../Assistant/ValidationPayment'
-import { TheCartInfo } from '../../../Components/CloseScreen/CloseScreen'
-import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Styles from '../../../Components/Update/StylesComponents/style'
 import PageSwitch from '../../../Components/Update/PageSwitch/PageSwitch'
 import { ValtionMe } from '../../../Assistant/ValtionMe'
 import CodeError from '../../../Components/CodeError/CodeError'
-export default function EditCartInfo(props) {
-    const { show, setShow, info } = props
+import Input from '../../../Components/Input/Input'
+import { UpdatedCartInfoAction, UpdatedImageAction } from '../../../redux/Action/CartItemAction'
+import OppenImage from '../../../Components/Update/OppenImage/OppenImage'
+import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
+import { ValidationCartInfo, ChangeCode, ValidationCreateCart } from '../../../Assistant/ValidationPayment'
+import { TheCartInfo } from '../../../Components/CloseScreen/CloseScreen'
+import { useEffect, useState } from 'react'
 
-    // console.log(info)
+
+export default function EditCartInfo(props) {
+
+    const { show, setShow, info, userInfo } = props
+
+
 
     const dispatch = useDispatch()
     // SHOW IMAGE
@@ -41,6 +44,7 @@ export default function EditCartInfo(props) {
 
     useEffect(() => {
         if (show?.value) {
+
             setAddressinfo({
                 address: info?.addressinfo?.address ? info?.addressinfo?.address : '',
                 city: info?.addressinfo?.city ? info?.addressinfo?.city : '',
@@ -93,12 +97,7 @@ export default function EditCartInfo(props) {
     const HandleForm = (e) => {
         e.preventDefault()
         setHandleError(false)
-        if (
-            opentime?.oppen > '00:00'
-            && opentime?.close > '00:00'
-            && finishfood?.to >= 1
-            && finishfood?.end >= 1
-            && addressinfo?.address?.length >= Number(3)
+        if (opentime?.oppen > '00:00' && opentime?.close > '00:00' && finishfood?.to >= 1 && finishfood?.end >= 1 && addressinfo?.address?.length >= Number(3)
             && addressinfo?.city?.length >= Number(3)
             && addressinfo?.telefon?.length >= Number(10)
             && addressinfo?.website?.length >= Number(3)
@@ -106,8 +105,10 @@ export default function EditCartInfo(props) {
             && productDetails?.productType?.length >= Number(3)
             && productDetails?.description?.length >= Number(3)
         ) {
+
             const dataInfo = {
                 _id: info?._id,
+                user: userInfo?._id,
                 username: ChangeCode(productDetails?.username),
                 restrangeDriver: productDetails?.restrangeDriver,
                 productType: ChangeCode(productDetails?.productType),
@@ -119,15 +120,28 @@ export default function EditCartInfo(props) {
                 opentime,
             }
 
+            // console.log(dataInfo)
+            if (info === 'Empty') {
 
+                if (imageSave) {
+                    return dispatch(UpdatedImageAction(imageSave, dataInfo, true))
+                } else {
+                    return dispatch(UpdatedCartInfoAction(dataInfo))
 
+                }
 
-            if (imageSave) {
-                return dispatch(UpdingImageAction(imageSave, dataInfo))
             } else {
-                return dispatch(UpdatedCartInfoAction(dataInfo))
 
+                if (imageSave) {
+                    return dispatch(UpdatedImageAction(imageSave, dataInfo))
+                } else {
+                    return dispatch(UpdatedCartInfoAction(dataInfo))
+
+                }
             }
+
+
+
 
 
         } else {
@@ -136,15 +150,6 @@ export default function EditCartInfo(props) {
 
             return setHandleError(true)
         }
-
-
-
-
-
-
-
-
-
     }
 
     // uploading image 
@@ -182,8 +187,6 @@ export default function EditCartInfo(props) {
         setHandleError(false)
         return
     }
-
-
 
 
     return <Modal show={props?.show?.value} onHide={HandleClose}>
@@ -312,16 +315,6 @@ export default function EditCartInfo(props) {
                                 </Row>
 
 
-                                <Input
-                                    placeholder='Produkttyp'
-                                    title='Produkttyp'
-                                    className='Input-type-style productdetials'
-                                    value={productDetails?.productType}
-                                    onChange={(e) => setProductDetails({ ...productDetails, productType: e.target.value })}
-                                    validation={ValtionMe(productDetails?.productType, 'inputname')?.toString()}
-                                />
-
-
                                 <Row className='justify-content-center'>
                                     <Col xs={6} sm={6} md={6} lg={6}>
                                         <Input
@@ -369,19 +362,40 @@ export default function EditCartInfo(props) {
                                         />
                                     </Col>
                                 </Row>
+                                <div className='selection-name'>Produkttyp</div>
+                                <div className='flex-switch'>
+
+                                    <PageSwitch
+                                        onClick={() => setProductDetails({
+                                            ...productDetails, productType: 'restaurant'
+                                        })}
+                                        TextInput='restaurant'
+                                        OtherInput={productDetails?.productType === 'restaurant'}
+                                    />
+                                    <PageSwitch
+                                        onClick={() => setProductDetails({
+                                            ...productDetails, productType: 'butiker'
+                                        })}
+                                        TextInput='butiker'
+                                        OtherInput={productDetails?.productType === 'butiker'}
+                                    />
+
+
+                                </div>
 
 
 
                                 <div className='edit-product-image-div'>
                                     <Input
                                         placeholder='image'
+                                        title='ladda upp bild'
                                         type="file"
                                         onChange={HandleIamge}
                                         name="image"
 
                                     />
                                     <ImageScreen
-                                        ImageIcon={changeImage ? changeImage : productDetails?.image}
+                                        ImageIcon={changeImage ? changeImage : productDetails?.image ? productDetails?.image : null}
                                         className='image-xo'
                                         onClick={() => setShowImage({ value: true, image: changeImage ? changeImage : productDetails?.image })}
                                     />
@@ -406,20 +420,20 @@ export default function EditCartInfo(props) {
                                 />
 
 
+
+
+
                                 <div className='Buttom-class'>
                                     <ButtomClick
                                         style={Styles.TabButtomCreate}
                                         title='ändring'
                                         onClick={HandleForm}
-                                        disabled={ValidationCartInfo(
-                                            productDetails,
-                                            info,
-                                            opentime,
-                                            addressinfo,
-                                            finishfood,
-                                            changeImage
-
-                                        ) === true}
+                                        disabled={
+                                            info === 'Empty' ?
+                                                ValidationCreateCart(productDetails, opentime, addressinfo, finishfood, changeImage) !== true
+                                                :
+                                                ValidationCartInfo(productDetails, info, opentime, addressinfo, finishfood, changeImage) === true
+                                        }
                                     />
                                 </div>
                             </Form>
@@ -455,6 +469,23 @@ export default function EditCartInfo(props) {
 
 
 
+//  <div className='switch-type' >
 
+//                                         <span className='checkOut-popluer'>
+
+//                                         </span>
+//                                         <span>butiker</span>
+//                                     </div>
+
+//                                     <div className='switch-type' >
+
+//                                         <span className='checkOut-popluer'>
+
+//                                         </span>
+//                                         <span>restaurant</span>
+
+
+
+//                                     </div>
 
 

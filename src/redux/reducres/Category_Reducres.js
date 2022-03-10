@@ -36,13 +36,16 @@ export const UpdateRemoveReducres = (state = {
                 create: action.payload,
                 loading: false,
             }
-            case ActionTypes.ADD_CATEGORY_SUCCESS:
-                return {
-                    ...state,
-                    category: action.payload,
-                    loading: false,
-                };
-    
+
+
+
+        case ActionTypes.ADD_CATEGORY_SUCCESS:
+            return {
+                ...state,
+                category: action.payload,
+                loading: false,
+            };
+
 
         case ActionTypes.ADD_CATEGORY_DELETE_FAIL:
             return {
@@ -57,42 +60,39 @@ export const UpdateRemoveReducres = (state = {
     }
 }
 
-// // case ActionTypes.ADD_CATEGORY_LOADING: return { loading: true }
-// // get  category to restrange. och save id 
-// export const CategoryAllReducres = (state = {
-//     category: [],
-//     error: null,
-//     // categoryProductsNextPagesxp: {}
-
-// }, action) => {
-//     switch (action.type) {
-
-      
-//         case ActionTypes.ADD_CATEGORY_FAIL: return {
-//             error: action.payload,
-//             loading: false
-//         }
-//         default: return state
-//     }
-// }
 
 
-        // const categoryId = action.payload.id
-        // return {
-        //     loading: false,
-        //     ...state,
-        //     category: {
-        //         ...state.category,
-        //         [categoryId]: (state.category[categoryId] || []).concat(action.payload.data)
-        //     }
 
-        // }
 
-        // case ActionTypes.ADD_CATEGORY_SAVE_ID:
-        //     return {
-        //         ...state,
-        //         categoryProductsNextPagesxp: {
-        //             ...state.categoryProductsNextPagesxp,
-        //             [action.payload.id]: action.payload.id,
-        //         }
-        //     }
+
+// category user 
+export const CategoryReducresUser = (state =
+    {
+        loading: false,
+        usercategory: [],
+        error: null
+    }, action) => {
+    switch (action.type) {
+
+        case ActionTypes.ADD_CATEGORY_USER_LOADING:
+            return {
+                loading: true
+            }
+        case ActionTypes.ADD_CATEGORY_USER_SUCCESS:
+            return {
+                ...state,
+                usercategory: action.payload,
+                loading: false
+            }
+        case ActionTypes.ADD_CATEGORY_USER_FAIL:
+            return {
+
+                error: action.payload,
+                loading: false
+            }
+
+
+
+        default: return state
+    }
+}

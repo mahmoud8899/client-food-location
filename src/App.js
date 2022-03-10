@@ -41,6 +41,7 @@ import NavBar from './Pages/NavBar/NavBar'
 import VisaProducts from './Pages/VisaProducts/VisaProducts'
 import FilterCategoryScreen from './Components/Update/UseContext/FilterCategoryScreen'
 import { FirstNameRest } from './Assistant/Selection'
+
 export default function App() {
 
 
@@ -52,7 +53,6 @@ export default function App() {
       <FilterRestarangeProduct>
         <FilterCategoryScreen>
           <BrowserRouter>
-
 
 
             <NavBar />
@@ -90,11 +90,13 @@ export default function App() {
 
 
             <Route path="/sw/personal/like/" component={ScreenLike} exact />
-
             <Route path='/driver/' component={DriverItemsScreen} exact />
             <Route path='/driver/profile/' component={DriverProfile} exact />
             <Route path='/driver/processing/' component={CancalOrder} exact />
             <Route path='/driver/message/' component={ChatScreen} exact />
+
+
+
 
 
             <Route path='/sw/restaurants/admin/:id/' component={RestaurantsHomeScreen} exact />
@@ -102,8 +104,6 @@ export default function App() {
             <Route path='/sw/restaurants/admin/product/:id/' component={RestaurantsProductScreen} exact />
             <Route path='/sw/restaurants/admin/category/:id/' component={RestaurantsCategoryScreen} exact />
             <Route path='/sw/restaurants/admin/profile/:id/' component={RestaurantsProfilScreen} exact />
-
-
 
 
   
@@ -119,23 +119,19 @@ export default function App() {
 
 
 
+
+
+
+
+
+
             <Route path='/:id/:id/' component={VisaProducts} exact />
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
             <Footer />
+
+
           </BrowserRouter>
 
         </FilterCategoryScreen>

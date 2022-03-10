@@ -1,12 +1,10 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import './Profile.css'
 import React, { useEffect, useState } from 'react'
 import Title from '../../../Components/ScreenTitle/ScreenTitle'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { GetUserInfoAction } from '../../../redux/Action/Auth_Action'
 import UserNavBarScreen from '../UserNavBarScreen/UserNavBarScreen'
-import Styles from './style'
 import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen'
 import { SliceNameNot } from '../../../Assistant/Slice'
 import ScreenLike from '../../Like/Like'
@@ -15,6 +13,8 @@ import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import { LikePage } from '../../../Components/Update/Redirction/Redirction'
 import UserVerifiedID from '../../../Components/Update/UserVerifiedID/UserVerifiedID'
+import './Profile.css'
+import Styles from './style'
 const UserProfileScreen = () => {
 
 

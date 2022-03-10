@@ -20,12 +20,14 @@ export default function CategoryEditOchCreate(props) {
 
 
 
-    const { editCategory, setEditCategory } = props
+    const { editCategory, setEditCategory,userInfo } = props
+
+
     const dispatch = useDispatch()
     // handle input error 
     const [handleError, setHandleError] = useState(false)
     // input category 
-    const [categoryData, setCategoryData] = useState({ name: '', _id: '', cartinfo: '620d1f1084f54514ebb4dac8' })
+    const [categoryData, setCategoryData] = useState({ name: '', _id: '', cartinfo: userInfo?.cartinfo , user : '' })
     // event after reqqurest...
     const PageCategory = useSelector((state) => state?.PageCategory)
     const { updated, loading, error, create } = PageCategory
@@ -41,7 +43,8 @@ export default function CategoryEditOchCreate(props) {
             setCategoryData({
                 name: editCategory?.object?.name ? editCategory?.object?.name : '',
                 _id: editCategory?.object?._id ? editCategory?.object?._id : '',
-                cartinfo: editCategory?.object?.cartinfo ? editCategory?.object?.cartinfo : '620d1f1084f54514ebb4dac8'
+                cartinfo: userInfo?.cartinfo ? userInfo?.cartinfo  : '',
+                user : userInfo?._id ? userInfo?._id : ''
             })
         }
 
@@ -52,7 +55,7 @@ export default function CategoryEditOchCreate(props) {
 
 
         return () => {
-            setCategoryData({ name: '', _id: '', cartinfo: '620d1f1084f54514ebb4dac8' })
+            setCategoryData({ name: '', _id: '', cartinfo: userInfo?.cartinfo, user : userInfo?._id })
             setSuccessFully(false)
         }
 
@@ -61,7 +64,8 @@ export default function CategoryEditOchCreate(props) {
         editCategory,
         updated,
         create,
-        successFully
+        successFully,
+        userInfo?._id
     ])
 
 
@@ -74,10 +78,15 @@ export default function CategoryEditOchCreate(props) {
 
         if (categoryData?.name?.trim().length >= Number(3)) {
 
+
+
+       
+
             const CodeColenar = {
                 name: ChangeCode(categoryData?.name),
-                _id: ChangeCode(categoryData?._id),
-                cartinfo: ChangeCode(categoryData?.cartinfo),
+                _id: categoryData?._id,
+                user : categoryData?._id,
+                cartinfo: categoryData?.cartinfo,
             }
 
             if (editCategory?.object?.name) {

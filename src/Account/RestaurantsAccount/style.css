@@ -1,3 +1,21 @@
+
+.flex-switch{
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+ 
+   
+    
+}
+
+.flex-switch :nth-child(2){
+    margin-left: 2rem;
+}
+.selection-name{
+    font-size: 13px;
+    font-family: monospace;
+    margin-top: 1rem;
+}
 .Handl-navBar{
     display: flex;
     flex-direction: row;
@@ -302,6 +320,32 @@
     width: 40px;
 
 
+}
+
+.lagg-New-resta{
+    cursor: pointer;
+    width: auto;
+    padding: 1rem;
+    border-radius: 999px;
+    text-align: center;
+    margin-top: 1rem;
+
+    
+}.lagg-New-resta span{
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.font-icons{
+    font-size: 20px;
+
+}
+.font-icons.icons-left{
+    margin-left: 1rem;
+    font-size: 25px;
+}
+.font-icons.icons-right{
+    margin-right: 1rem;
+    font-size: 25px;
 }
 .Input-type-style.productdetials{
     padding-left: 0.3rem;

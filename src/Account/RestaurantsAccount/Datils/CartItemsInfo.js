@@ -11,6 +11,8 @@ export default function CartItemsInfo(props) {
 
 
 
+
+
     return <Table responsive >
         <thead style={Styles.TabBackColor} >
             <tr style={Styles.Tabcolor} >

@@ -1,6 +1,6 @@
 import * as ActionTypes from './Types'
 import axios from 'axios'
-
+import { Action_logout } from './Auth_Action'
 
 
 
@@ -91,13 +91,17 @@ export const UpdatedCategoryAction = (user) => async (dispatch) => {
 
 // create category
 // POST : // /category/create/
-export const CategoryCategoryAction = (user) => async (dispatch) => {
-
-
-
+export const CategoryCategoryAction = (user) => async (dispatch, getState) => {
     try {
         // dispatch({ type: ActionTypes.ADD_CATEGORY_DELETE_LOADING })
-        const { data } = await axios.post(`/api/category/create/`, user)
+        const { userLogin: { token } } = getState()
+        const { data } = await axios.post(`/api/category/create/`,
+            user,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
         dispatch({ type: ActionTypes.ADD_CATEGORY_CREATE_SUCCESS, payload: data.message })
     } catch (error) {
         dispatch({
@@ -112,6 +116,46 @@ export const CategoryCategoryAction = (user) => async (dispatch) => {
 
 
 
+
+
+// get category User 
+// GET // URL : http://localhost:8000/api/category/create/user
+
+export const FetchCategoryUser = () => async (dispatch, getState) => {
+
+
+
+    try {
+
+        dispatch({ type: ActionTypes.ADD_CATEGORY_USER_LOADING })
+        const { userLogin: { token } } = getState()
+
+        const { data } = await axios.get(`/api/category/create/user/`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        dispatch({ type: ActionTypes.ADD_CATEGORY_USER_SUCCESS, payload: data })
+    } catch (error) {
+
+        const message = error.response &&
+            error.response.data.message ?
+            error.response.data.message :
+            error.message
+        if (message === 'token failed') {
+
+            return dispatch(Action_logout())
+        }
+        dispatch({
+            type: ActionTypes.ADD_CATEGORY_USER_FAIL,
+            payload: message
+        })
+
+
+
+
+    }
+}
 
 
 

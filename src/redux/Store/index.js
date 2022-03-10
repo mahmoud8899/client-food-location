@@ -16,7 +16,8 @@ import {
 } from '../reducres/Product_Reducres'
 
 import {
-    UpdateRemoveReducres
+    UpdateRemoveReducres,
+    CategoryReducresUser
 } from '../reducres/Category_Reducres'
 
 
@@ -111,6 +112,7 @@ const reducer = combineReducers({
     // category to restranges...
     // ListCategory: CategoryAllReducres,
     PageCategory : UpdateRemoveReducres,
+    UserpageCategory : CategoryReducresUser,
 
 
 

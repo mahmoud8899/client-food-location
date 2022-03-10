@@ -4,6 +4,17 @@ import COLORS from '../../../Assistant/Color'
 
 const Styles = {
 
+    coloricons:{
+
+        color : COLORS.light
+
+    },
+    colorcreate:{
+
+        background : COLORS.testing,
+        color : COLORS.light
+
+    },
     searchingcolor:{
 
         color : COLORS.testing

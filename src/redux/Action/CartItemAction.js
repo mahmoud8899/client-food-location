@@ -4,33 +4,39 @@ import { Action_logout } from './Auth_Action'
 
 
 
-// loaction Path 
-export const LoactionPath = (data) => async (dispatch) => {
 
-    // console.log(data)
-}
 
 
 
 // cart Info 
-// GET /URL : /cartinfo/info/:id/
-export const CartInfoActionResturan = (id) => async (dispatch) => {
+// GET /URL : /api/cartinfo/info/user/
+export const CartInfoActionResturan = () => async (dispatch, getState) => {
     try {
-
+        const { userLogin: { token } } = getState()
         dispatch({ type: ActionTypes.ADD_CARTINFO_RESTURANG_LOADING })
 
-
-        const { data } = await axios.get(`/api/cartinfo/info/${id}/`)
-        // dispatch(AppenProductId(data?._id))
+        const { data } = await axios.get(`/api/cartinfo/info/user/`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         dispatch({ type: ActionTypes.ADD_CARTINFO_RESTURANG_SUCCESS, payload: data })
     } catch (error) {
+        const message = error.response &&
+            error.response.data.message ?
+            error.response.data.message :
+            error.message
+        if (message === 'token failed') {
+
+            return dispatch(Action_logout())
+        }
         dispatch({
             type: ActionTypes.ADD_CARTINFO_RESTURANG_FAIL,
-            payload: error.response &&
-                error.response.data.message ?
-                error.response.data.message :
-                error.message
+            payload: message
         })
+
+
+
     }
 }
 
@@ -243,9 +249,44 @@ export const UpdatedCartInfoAction = (user) => async (dispatch) => {
     }
 }
 
+// create cart info 
+// POST // URL : /api/cartinfo/create/
+export const CreateCartAction = (user) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: ActionTypes.ADD_UPDATED_CARTINFO_LOADING })
+        const { userLogin: { token } } = getState()
 
 
-export const UpdingImageAction = (user, updateInfo) => async (dispatch) => {
+        await axios.post(`/api/cartinfo/create/`, user, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+        return dispatch(CartInfoActionResturan())
+
+    } catch (error) {
+        const message = error.response &&
+            error.response.data.message ?
+            error.response.data.message :
+            error.message
+        if (message === 'token failed') {
+
+            return dispatch(Action_logout())
+        }
+        dispatch({
+            type: ActionTypes.ADD_UPDATED_CARTINFO_FAIL,
+            payload: message
+        })
+    }
+}
+
+
+
+
+// create Image uploading
+// POST // URL : /api/uploading/
+export const UpdatedImageAction = (user, updateInfo, Form) => async (dispatch) => {
 
     try {
         const { data } = await axios.post(`/api/uploading/`,
@@ -257,6 +298,7 @@ export const UpdingImageAction = (user, updateInfo) => async (dispatch) => {
             })
         const userData = {
             _id: updateInfo._id,
+            user: updateInfo.user,
             addressinfo: updateInfo.addressinfo,
             description: updateInfo.description,
             finishfood: updateInfo.finishfood,
@@ -268,7 +310,9 @@ export const UpdingImageAction = (user, updateInfo) => async (dispatch) => {
             restrangeDriver: updateInfo.restrangeDriver,
         }
 
-        dispatch(UpdatedCartInfoAction(userData))
+        console.log(userData)
+
+        Form ? dispatch(CreateCartAction(userData)) : dispatch(UpdatedCartInfoAction(userData))
 
     } catch (error) {
         dispatch({
@@ -284,24 +328,34 @@ export const UpdingImageAction = (user, updateInfo) => async (dispatch) => {
 
 
 
-        // const form_data = new FormData();
-        // form_data.set(user)
-        // for (var key in user) {
-        //     form_data.append(key, user[key]);
-        // }
-        // formData.append(user.foodType)
-        // formData.append(user.freeDelvery)
-        // formData.append(user.opentime)
-        // formData.append(user.productType)
-        // formData.append(user.restrangeDriver)
-        // console.log(user)
-        // formData.append('image', user.username)
 
-        // const username = user.username
-        // const restrangeDriver = user.restrangeDriver
-        // const productType = user.productType
-        // const freeDelvery = user.freeDelvery
-        // const description = user.description
-        // const addressinfo = user.addressinfo
-        // const finishfood = user.finishfood
-        // const opentime = user.opentime
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// loaction Path 
+export const LoactionPath = (data) => async (dispatch) => {
+
+    // console.log(data)
+}

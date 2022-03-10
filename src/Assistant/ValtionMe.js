@@ -77,7 +77,7 @@ function ValtionPrices(name) {
 function ValidationName(name){
     // console.log(name)
 
-    return name?.length >= 3
+    return name?.trim()?.length >= 3
 }
 
 

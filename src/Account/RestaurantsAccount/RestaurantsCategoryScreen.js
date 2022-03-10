@@ -4,7 +4,7 @@ import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CartItemsCategory from './Datils/CartItemsCategory'
-import { getCategoryAction } from '../../redux/Action/Category_Action'
+import { FetchCategoryUser } from '../../redux/Action/Category_Action'
 import CategoryEditOchCreate from './Datils/CategoryEditOchCreate'
 import CategoryNavBarSearching from './Datils/CategoryNavBarSearching'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
@@ -12,36 +12,53 @@ import UserName from './Datils/UserName'
 import './style.css'
 export default function RestaurantsCategoryScreen(props) {
 
+    const { history } = props
 
 
-
-
-    // cart info id
-    const resturantId = props?.match?.params?.id
     const dispatch = useDispatch()
+
+    // user check ut
+    const userLogin = useSelector((state) => state?.userLogin)
+    const { userInfo } = userLogin
+
+
     // open edit and create.....
     const [editCategory, setEditCategory] = useState({ value: false, object: '' })
 
 
-
+    // get all category to user.
+    const UserpageCategory = useSelector((state) => state?.UserpageCategory)
+    const { loading: UserpageCategoryloading, error: UserpageCategoryerror, usercategory } = UserpageCategory
 
 
     // event after reqqurest...
     const PageCategory = useSelector((state) => state?.PageCategory)
-    const { updated, create, remove, category: ListCategoryUX, error, loading } = PageCategory
+    const { updated, create, remove } = PageCategory
+
+
+    // console.log(usercategory)
 
     // requrest category
     useEffect(() => {
 
-        if (resturantId) {
-            return ListCategoryUX?.length === 0 && dispatch(getCategoryAction(resturantId))
+        if (userInfo?.restaurantid) {
+
+
+            usercategory?.length === 0 && dispatch(FetchCategoryUser())
+
+
+        } else {
+            return history.push('/uppsala/')
         }
 
 
+
+
     }, [
-        resturantId,
+        usercategory?.length,
         dispatch,
-        ListCategoryUX?.length,
+        userInfo,
+        history
     ])
 
 
@@ -50,12 +67,12 @@ export default function RestaurantsCategoryScreen(props) {
 
         if (updated || create || remove) {
 
-            console.log('helllo')
-            dispatch(getCategoryAction(resturantId))
+            // console.log('helllo')
+            dispatch(FetchCategoryUser())
             return
         }
 
-    }, [updated, create, dispatch, resturantId, remove])
+    }, [updated, create, dispatch, remove])
 
 
     // searching in category....
@@ -70,21 +87,23 @@ export default function RestaurantsCategoryScreen(props) {
 
 
 
-    return <Container>
+    return <LoadingErrorHandle
+        loading={UserpageCategoryloading}
+        error={UserpageCategoryerror}
+        home={usercategory}
+        TextNotItems='Empty'
+    >
 
-        <div className='box'>
-            <UserName />
-        </div>
+
+        <Container>
+
+            <div className='box'>
+                <UserName />
+            </div>
 
 
-        <Title TextTitle='product Admin' />
-        <LoadingErrorHandle
-            loading={loading}
-            error={error}
-            home={ListCategoryUX}
-            TextNotItems='Empty'
+            <Title TextTitle='product Admin' />
 
-        >
 
             <Row className='justify-content-center'>
 
@@ -100,11 +119,14 @@ export default function RestaurantsCategoryScreen(props) {
                     />
 
 
-                    <CartItemsCategory
-                        ListCategoryUX={search(ListCategoryUX)}
-                        setEditCategory={setEditCategory}
+                    {usercategory !== 'Empty' &&
+                        <CartItemsCategory
+                            ListCategoryUX={search(usercategory)}
+                            setEditCategory={setEditCategory}
 
-                    />
+                        />
+                    }
+
 
 
                 </Col>
@@ -112,15 +134,22 @@ export default function RestaurantsCategoryScreen(props) {
             </Row>
 
 
-        </LoadingErrorHandle>
-
-        <CategoryEditOchCreate
-            editCategory={editCategory}
-            setEditCategory={setEditCategory}
-        />
 
 
 
+            <CategoryEditOchCreate
+                editCategory={editCategory}
+                setEditCategory={setEditCategory}
+                userInfo={userInfo}
+            />
 
-    </Container>
+
+        </Container>
+
+
+    </LoadingErrorHandle>
+
+
+
 }
+

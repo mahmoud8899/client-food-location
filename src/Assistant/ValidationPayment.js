@@ -139,3 +139,26 @@ export function ValidationUpdatedAccount(NewData, OldData) {
 
 
 }
+
+
+
+
+// valdtion create caret
+export function ValidationCreateCart(productDetails, opentime,addressinfo,finishfood,changeImage) {
+
+
+
+    return productDetails?.username?.trim()?.length >= Number(3)
+        && productDetails?.description?.trim()?.length >= Number(3)
+        && productDetails?.productType?.trim()?.length >= Number(3)
+        && opentime?.oppen > '00:00'
+        && opentime?.close > '00:00'
+        && addressinfo?.city?.length >=  Number(3)
+        && addressinfo?.address?.length >=  Number(3)
+        && addressinfo?.telefon?.length >= Number(10)
+        && addressinfo?.website?.length >=  Number(3)
+        && finishfood?.to >= 1
+        && finishfood?.end >= 1
+        && changeImage?.length >= Number(2)
+
+}

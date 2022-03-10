@@ -12,26 +12,36 @@ import UserName from './Datils/UserName'
 
 export default function RestaurantsOrderScreen(props) {
 
+    const { match, history } = props
+
+    const resturantId = match?.params?.id
 
 
-    const resturantId = props?.match?.params?.id
+
     const dispatch = useDispatch()
-
+    // user check ut
+    const userLogin = useSelector((state) => state?.userLogin)
+    const { userInfo } = userLogin
     // get all orders
     const TheResturantShowsOrders = useSelector((state) => state?.TheResturantShowsOrders)
     const { ordersAllNumber, ShowOrders } = TheResturantShowsOrders
 
 
 
+
+
     useEffect(() => {
-
-        if (resturantId) {
-
-
-            return ShowOrders?.length === 0 && dispatch(ShowOrderAction(resturantId))
+        if (userInfo?.restaurantid) {
+            if (resturantId) {
+                return ShowOrders?.length === 0 && dispatch(ShowOrderAction(resturantId))
+            }
+        } else {
+            return history.push('/uppsala/')
         }
 
-    }, [dispatch, resturantId, ShowOrders?.length])
+
+
+    }, [dispatch, resturantId, ShowOrders?.length, history, userInfo])
 
 
 
@@ -79,6 +89,7 @@ export default function RestaurantsOrderScreen(props) {
         </Row>
 
     </Container>
+
 }
 
 

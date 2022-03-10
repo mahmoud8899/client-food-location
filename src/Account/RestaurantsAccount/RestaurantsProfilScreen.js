@@ -12,15 +12,23 @@ import { useEffect, useState } from 'react'
 import Styles from '../../Components/Update/StylesComponents/style'
 import './style.css'
 import AddAccountUser from './Datils/AddAccountUser'
-import {BiTaskX,BiNetworkChart}  from 'react-icons/bi'
+import { BiTaskX, BiNetworkChart, BiCheck, BiFolderOpen } from 'react-icons/bi'
 
 
 
 export default function RestaurantsProfilScreen(props) {
 
+
+
+    const { history } = props
     const dispatch = useDispatch()
-    //  cart info id
-    const resturantId = props?.match?.params?.id
+
+    // user check ut
+    const userLogin = useSelector((state) => state?.userLogin)
+    const { userInfo } = userLogin
+
+
+
 
     // add account bank and oppen page....
     const [openAddAccount, setOpenAddAccount] = useState(false)
@@ -35,14 +43,18 @@ export default function RestaurantsProfilScreen(props) {
 
     // get cart info from Server.....
     useEffect(() => {
-        if (resturantId) {
-            return info?.length === 0 && dispatch(CartInfoActionResturan(resturantId))
-        }
+        if (userInfo?.restaurantid) {
+            return info?.length === 0 && dispatch(CartInfoActionResturan())
 
+        } else {
+            return history.push('/uppsala/')
+        }
     }, [
-        resturantId,
+       
         dispatch,
-        info?.length
+        info?.length,
+        userInfo,
+        history
     ])
 
 
@@ -60,8 +72,8 @@ export default function RestaurantsProfilScreen(props) {
         <Title TextTitle='product Admin' />
         <div className='box'>
             <UserName />
-       
-           
+
+
         </div>
 
         <LoadingErrorHandle loading={loading} error={error} home={info}>
@@ -74,50 +86,66 @@ export default function RestaurantsProfilScreen(props) {
                     />
                 </Col>
                 <Col xs={12} sm={12} md={8} lg={9} >
-                    <NavBarList
-                        Other={
-                            <div className='Order-List-New-other'>
-                                <div style={Styles.colorback} className='Fistclass-handle'>
-                                    <div className='half-fistclass'>
-                                        <BiNetworkChart  className='Image-sales' />
-                                        <span>sales</span>
+                    {info === 'Empty' ?
+
+                        <div className='lagg-New-resta' style={Styles.colorcreate} onClick={() => setShow({ value: true, updated: true })}  >
+                            <BiFolderOpen className='font-icons icons-right' style={Styles.coloricons} />
+                            <span>Lägg till ny restaurang</span>
+                            <BiCheck className='font-icons icons-left' style={Styles.coloricons} />
+                        </div>
+
+                        :
+                        <>
+                            <NavBarList
+                                Other={
+                                    <div className='Order-List-New-other'>
+                                        <div style={Styles.colorback} className='Fistclass-handle'>
+                                            <div className='half-fistclass'>
+                                                <BiNetworkChart className='Image-sales' />
+                                                <span>sales</span>
+                                            </div>
+
+                                            <div className='Fistclass'>
+
+                                                <span>3029.00$</span>
+                                            </div>
+
+
+                                        </div>
+
                                     </div>
 
-                                    <div className='Fistclass'>
 
-                                        <span>3029.00$</span>
+                                }
+                                OtherLast={
+                                    <div className='Order-List-New-other'>
+                                        <div style={Styles.colorback} className='Fistclass-handle'>
+                                            <div className='half-fistclass'>
+                                                <BiTaskX className='Image-sales' />
+                                                <span>cancel</span>
+
+                                            </div>
+
+                                            <div className='Fistclass'>
+
+                                                <span>3 items</span>
+                                            </div>
+                                        </div>
                                     </div>
 
+                                }
+                            />
 
-                                </div>
+                            <CartItemsInfo
+                                info={info}
+                                setShow={setShow}
+                            />
+                        </>
 
-                            </div>
 
 
-                        }
-                        OtherLast={
-                            <div className='Order-List-New-other'>
-                                <div style={Styles.colorback} className='Fistclass-handle'>
-                                    <div className='half-fistclass'>
-                                        <BiTaskX  className='Image-sales' />
-                                        <span>cancel</span>
+                    }
 
-                                    </div>
-
-                                    <div className='Fistclass'>
-
-                                        <span>3 items</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        }
-                    />
-
-                    <CartItemsInfo
-                        info={info}
-                        setShow={setShow}
-                    />
                 </Col>
 
             </Row>
@@ -132,6 +160,7 @@ export default function RestaurantsProfilScreen(props) {
             show={show}
             setShow={setShow}
             info={info}
+            userInfo={userInfo}
         />
     </Container>
 }

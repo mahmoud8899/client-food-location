@@ -17,11 +17,16 @@ import UserName from './Datils/UserName'
 
 export default function RestaurantsProductScreen(props) {
 
+    const { match, history } = props
+
+    const resturantId = match?.params?.id
 
 
-    // id to user......
-    const resturantId = props?.match?.params?.id
     const dispatch = useDispatch()
+    // user check ut
+    const userLogin = useSelector((state) => state?.userLogin)
+    const { userInfo } = userLogin
+
     // get all products..
     const matProducts = useSelector((state) => state?.PaginationProducts)
     const { categoryProductsNextPagesxp, products } = matProducts
@@ -38,15 +43,24 @@ export default function RestaurantsProductScreen(props) {
 
     // get products...
     useEffect(() => {
-        if (resturantId) {
 
-            products?.length === 0 && dispatch(productpaginationAction(resturantId))
-            return
+        if (userInfo?.restaurantid) {
+            if (resturantId) {
+                return products?.length === 0 && dispatch(productpaginationAction(resturantId))
+            }
+
+        } else {
+            return history.push('/uppsala/')
         }
+
+
+
     }, [
         dispatch,
         resturantId,
         products?.length,
+        userInfo,
+        history
     ])
 
 
