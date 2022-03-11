@@ -1,6 +1,6 @@
 import * as ActionTypes from './Types'
 import axios from 'axios'
-import { Action_logout } from './Auth_Action'
+import { Action_logout, GetUserInfoAction } from './Auth_Action'
 
 
 
@@ -39,15 +39,6 @@ export const CartInfoActionResturan = () => async (dispatch, getState) => {
 
     }
 }
-
-
-
-// export const AppenProductId = (productid) => ({
-
-//     type: ActionTypes.ADD_CARTINFO_ID_SAVE,
-//     payload: { productid }
-// })
-
 
 // get cart info
 // GET / URL :/api/cartinfo/view/id
@@ -263,7 +254,8 @@ export const CreateCartAction = (user) => async (dispatch, getState) => {
             }
         })
 
-        return dispatch(CartInfoActionResturan())
+        dispatch(CartInfoActionResturan())
+        return dispatch(GetUserInfoAction())
 
     } catch (error) {
         const message = error.response &&
@@ -310,7 +302,7 @@ export const UpdatedImageAction = (user, updateInfo, Form) => async (dispatch) =
             restrangeDriver: updateInfo.restrangeDriver,
         }
 
-        console.log(userData)
+        // console.log(userData)
 
         Form ? dispatch(CreateCartAction(userData)) : dispatch(UpdatedCartInfoAction(userData))
 
@@ -327,35 +319,35 @@ export const UpdatedImageAction = (user, updateInfo, Form) => async (dispatch) =
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // loaction Path 
 export const LoactionPath = (data) => async (dispatch) => {
 
     // console.log(data)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

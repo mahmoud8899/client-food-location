@@ -4,7 +4,6 @@ import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import Input from '../../../Components/Input/Input'
 import ButtomClick from '../../../Components/Buttom/Buttom'
 import OppenImage from '../../../Components/Update/OppenImage/OppenImage'
-import { getCategoryAction } from '../../../redux/Action/Category_Action'
 import { ValtionMe } from '../../../Assistant/ValtionMe'
 import { ValidationProducts, ValidationUpdateProduct, ChangeCode } from '../../../Assistant/ValidationPayment'
 import { UploadingNewImageProduct, ProductUpdatedAction } from '../../../redux/Action/Product_Action'
@@ -13,23 +12,21 @@ import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/Hand
 import Styles from '../../../Components/Update/StylesComponents/style'
 import { Modal, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import '../style.css'
 import { useEffect, useState } from 'react'
 import PageSwitch from '../../../Components/Update/PageSwitch/PageSwitch'
 import CodeError from '../../../Components/CodeError/CodeError'
-
+import '../style.css'
 
 export default function ProductEditOchCreate(props) {
 
-    const { resturantId, setShow, show } = props
+    const {  setShow, show,userInfo ,ListCategoryUX } = props
     const dispatch = useDispatch()
     // show image 
     const [showImage, setShowImage] = useState({ value: false, image: '' })
     //handle error 
     const [handleError, setHandleError] = useState(false)
     // get all category 
-    const PageCategory = useSelector((state) => state?.PageCategory)
-    const { category: ListCategoryUX } = PageCategory
+
     // alret  updated and create successfully
     const [updateSuccessFully, setUpdateSuccessFully] = useState(false)
     //  create product and updated product 
@@ -46,8 +43,7 @@ export default function ProductEditOchCreate(props) {
 
     // updated when edit show product details
     useEffect(() => {
-        if (resturantId) {
-            ListCategoryUX?.length === 0 && dispatch(getCategoryAction(resturantId))
+
             return show?.object ? setProductDetails({
                 name: show?.object?.name ? show?.object?.name : '',
                 description: show?.object?.description ? show?.object?.description : '',
@@ -57,7 +53,7 @@ export default function ProductEditOchCreate(props) {
                 category: show?.object?.category?._id ? show?.object?.category?._id :
                     ListCategoryUX ? ListCategoryUX?.[0]?._id : ListCategoryUX?.[0]?._id,
                 _id: show?.object?._id ? show?.object?._id : '',
-                cartinfo: show?.object?.cartinfo ? show?.object?.cartinfo : '620d1f1084f54514ebb4dac8'
+                cartinfo: userInfo?.cartinfo ? userInfo?.cartinfo : ''
             }) : setProductDetails({
                 name: '',
                 description: '',
@@ -65,24 +61,13 @@ export default function ProductEditOchCreate(props) {
                 popular: false,
                 prices: Number(),
                 category: ListCategoryUX ? ListCategoryUX?.[0]?._id : ListCategoryUX?.[0]?._id,
-                cartinfo: show?.object?.cartinfo ? show?.object?.cartinfo : '620d1f1084f54514ebb4dac8'
+                cartinfo: userInfo?.cartinfo ? userInfo?.cartinfo : ''
             })
-        }
-
-
-
-
-
-        return () => {
-            setProductDetails([])
-
-        }
+        
 
         // eslint-disable-next-line
     }, [
-        resturantId,
-        ListCategoryUX?.length,
-        dispatch,
+        ListCategoryUX,
         show?.object,
         setProductDetails,
     ])

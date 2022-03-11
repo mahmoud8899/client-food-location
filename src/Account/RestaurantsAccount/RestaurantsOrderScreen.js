@@ -6,42 +6,44 @@ import { useSelector, useDispatch } from 'react-redux'
 import { ShowOrderAction } from '../../redux/Action/Order_Action'
 import CartItemsOrders from './Datils/CartItemsOrders'
 import OrderNavBarSearching from './Datils/OrderNavBarSearching'
+import { PageTextEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
+import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import { useEffect, useState } from 'react'
 import './style.css'
 import UserName from './Datils/UserName'
-
+import { ErrorServer } from '../../Assistant/TextError'
 export default function RestaurantsOrderScreen(props) {
 
-    const { match, history } = props
-
-    const resturantId = match?.params?.id
+    const { history } = props
 
 
 
+
+    const loading = false
     const dispatch = useDispatch()
     // user check ut
     const userLogin = useSelector((state) => state?.userLogin)
     const { userInfo } = userLogin
     // get all orders
     const TheResturantShowsOrders = useSelector((state) => state?.TheResturantShowsOrders)
-    const { ordersAllNumber, ShowOrders } = TheResturantShowsOrders
+    const { ordersAllNumber, ShowOrders, error } = TheResturantShowsOrders
 
 
 
 
-
+    // userInfo?.cartinfo
     useEffect(() => {
         if (userInfo?.restaurantid) {
-            if (resturantId) {
-                return ShowOrders?.length === 0 && dispatch(ShowOrderAction(resturantId))
-            }
+
+            return userInfo?.cartinfo && ShowOrders?.length === 0 && dispatch(ShowOrderAction(userInfo?.cartinfo))
+
         } else {
             return history.push('/uppsala/')
         }
 
 
 
-    }, [dispatch, resturantId, ShowOrders?.length, history, userInfo])
+    }, [dispatch, ShowOrders?.length, history, userInfo])
 
 
 
@@ -64,6 +66,8 @@ export default function RestaurantsOrderScreen(props) {
 
 
 
+
+
     return <Container>
         <div className='box'>
             <UserName />
@@ -76,13 +80,24 @@ export default function RestaurantsOrderScreen(props) {
             <Col xs={12} sm={12} md={8} lg={9} >
                 <OrderNavBarSearching setQuery={setQuery} />
 
+                <LoadingErrorHandle
+                    error={error}
+                    TextNotItems={ErrorServer}
+                    loading={loading}
+                    extraStyle
 
-                <CartItemsOrders
-                    ShowOrders={search(ShowOrders)}
-                    history={props?.history}
-                    ordersAllNumber={ordersAllNumber}
-                    resturantId={resturantId}
-                />
+                >
+                    {ShowOrders?.length === Number(0) ?
+                        <PageTextEmpty Pagetext='Du har inga beställningar' />
+                        :
+                        <CartItemsOrders
+                            ShowOrders={search(ShowOrders)}
+                            history={props?.history}
+                            ordersAllNumber={ordersAllNumber}
+                            resturantId={userInfo?.cartinfo}
+                        />
+                    }
+                </LoadingErrorHandle>
 
             </Col>
 

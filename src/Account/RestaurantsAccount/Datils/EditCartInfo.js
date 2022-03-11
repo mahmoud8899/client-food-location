@@ -14,13 +14,12 @@ import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/Hand
 import { ValidationCartInfo, ChangeCode, ValidationCreateCart } from '../../../Assistant/ValidationPayment'
 import { TheCartInfo } from '../../../Components/CloseScreen/CloseScreen'
 import { useEffect, useState } from 'react'
+import { BiEditAlt } from 'react-icons/bi'
 
 
 export default function EditCartInfo(props) {
 
     const { show, setShow, info, userInfo } = props
-
-
 
     const dispatch = useDispatch()
     // SHOW IMAGE
@@ -36,8 +35,6 @@ export default function EditCartInfo(props) {
     const [addressinfo, setAddressinfo] = useState([])
     const [changeImage, setChangeImage] = useState('')
     const [imageSave, setImageSave] = useState('')
-
-
     // handle after requirest.... 
     const updatedCartInfo = useSelector((state) => state?.updatedCartInfo)
     const { loading, updated, error } = updatedCartInfo
@@ -97,7 +94,11 @@ export default function EditCartInfo(props) {
     const HandleForm = (e) => {
         e.preventDefault()
         setHandleError(false)
-        if (opentime?.oppen > '00:00' && opentime?.close > '00:00' && finishfood?.to >= 1 && finishfood?.end >= 1 && addressinfo?.address?.length >= Number(3)
+        if (opentime?.oppen > '00:00'
+            && opentime?.close > '00:00'
+            && finishfood?.to >= 1
+            && finishfood?.end >= 1
+            && addressinfo?.address?.length >= Number(3)
             && addressinfo?.city?.length >= Number(3)
             && addressinfo?.telefon?.length >= Number(10)
             && addressinfo?.website?.length >= Number(3)
@@ -140,14 +141,7 @@ export default function EditCartInfo(props) {
                 }
             }
 
-
-
-
-
         } else {
-
-
-
             return setHandleError(true)
         }
     }
@@ -314,7 +308,12 @@ export default function EditCartInfo(props) {
                                     </Col>
                                 </Row>
 
+                                <div className='selection-name extrastyle'>
 
+                                    <BiEditAlt className='icons-class' />
+                                    <span className='selection-name'>din plats adress</span>
+
+                                </div>
                                 <Row className='justify-content-center'>
                                     <Col xs={6} sm={6} md={6} lg={6}>
                                         <Input
@@ -322,7 +321,7 @@ export default function EditCartInfo(props) {
                                             className='Input-type-style productdetials'
                                             title='Address'
                                             value={addressinfo?.address}
-                                            onChange={(e) => setAddressinfo({ ...addressinfo, address: e.target.value })}
+                                            onChange={(e) => setAddressinfo({ ...addressinfo, address:  e.target.value?.toLowerCase()  })}
                                             validation={ValtionMe(addressinfo?.address, 'inputname')?.toString()}
 
                                         />
@@ -333,7 +332,7 @@ export default function EditCartInfo(props) {
                                             title='Stad'
                                             className='Input-type-style productdetials'
                                             value={addressinfo?.city}
-                                            onChange={(e) => setAddressinfo({ ...addressinfo, city: e.target.value })}
+                                            onChange={(e) => setAddressinfo({ ...addressinfo, city: e.target.value?.toLowerCase()  })}
                                             validation={ValtionMe(addressinfo?.city, 'inputname')?.toString()}
 
                                         />
@@ -345,7 +344,7 @@ export default function EditCartInfo(props) {
                                             className='Input-type-style productdetials'
                                             type='number'
                                             value={addressinfo?.telefon}
-                                            onChange={(e) => setAddressinfo({ ...addressinfo, telefon: e.target.value })}
+                                            onChange={(e) => setAddressinfo({ ...addressinfo, telefon: e.target.value?.toLowerCase()  })}
                                             validation={ValtionMe(addressinfo?.telefon, 'isPhone')?.toString()}
 
                                         />
@@ -356,7 +355,7 @@ export default function EditCartInfo(props) {
                                             title='Website'
                                             className='Input-type-style productdetials'
                                             value={addressinfo?.website}
-                                            onChange={(e) => setAddressinfo({ ...addressinfo, website: e.target.value })}
+                                            onChange={(e) => setAddressinfo({ ...addressinfo, website: e.target.value?.toLowerCase()  })}
                                             validation={ValtionMe(addressinfo?.website, 'inputname')?.toString()}
 
                                         />
@@ -461,31 +460,4 @@ export default function EditCartInfo(props) {
 
 
 }
-
-
-
-
-
-
-
-
-//  <div className='switch-type' >
-
-//                                         <span className='checkOut-popluer'>
-
-//                                         </span>
-//                                         <span>butiker</span>
-//                                     </div>
-
-//                                     <div className='switch-type' >
-
-//                                         <span className='checkOut-popluer'>
-
-//                                         </span>
-//                                         <span>restaurant</span>
-
-
-
-//                                     </div>
-
 

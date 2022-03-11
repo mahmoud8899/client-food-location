@@ -10,18 +10,22 @@ import { TheClearing } from '../../Components/CloseScreen/CloseScreen'
 import ProductsNavBarSearching from './Datils/ProductsNavBarSearching'
 import './style.css'
 import UserName from './Datils/UserName'
-
-
+import { FetchCategoryUser } from '../../redux/Action/Category_Action'
+import { PageTextEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
+import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
+import { ErrorServer } from '../../Assistant/TextError'
 
 
 
 export default function RestaurantsProductScreen(props) {
 
-    const { match, history } = props
-
-    const resturantId = match?.params?.id
+    const { history } = props
 
 
+
+
+    // testing 
+    const loading = false
     const dispatch = useDispatch()
     // user check ut
     const userLogin = useSelector((state) => state?.userLogin)
@@ -29,7 +33,7 @@ export default function RestaurantsProductScreen(props) {
 
     // get all products..
     const matProducts = useSelector((state) => state?.PaginationProducts)
-    const { categoryProductsNextPagesxp, products } = matProducts
+    const { categoryProductsNextPagesxp, products, error } = matProducts
 
     // [1]  open create product --- show.value equal true
     // [2] show.object  has object product for edit 
@@ -40,28 +44,62 @@ export default function RestaurantsProductScreen(props) {
     const { updated, created, removeproduct } = PageUpdatedProduct
 
 
+    // get all category to user.
+    const UserpageCategory = useSelector((state) => state?.UserpageCategory)
+    const { usercategory: ListCategoryUX } = UserpageCategory
 
+
+
+
+
+    // console.log(userInfo?.cartinfo)
+    // '622b3885fc1613a48d2dc4fb1'
     // get products...
+    useEffect(() => {
+        if (userInfo?.restaurantid) {
+            return userInfo?.cartinfo && products?.length === 0 && dispatch(productpaginationAction(userInfo?.cartinfo))
+        } else {
+            return history.push('/uppsala/')
+        }
+
+    }, [
+        dispatch,
+        products,
+        userInfo,
+        history
+    ])
+
+
+
+    
+  
+  
+
     useEffect(() => {
 
         if (userInfo?.restaurantid) {
-            if (resturantId) {
-                return products?.length === 0 && dispatch(productpaginationAction(resturantId))
-            }
 
+
+            return products?.length === Number(0) &&  userInfo?.cartinfo
+                && ListCategoryUX?.length === 0 && dispatch(FetchCategoryUser())
         } else {
             return history.push('/uppsala/')
         }
 
 
-
     }, [
         dispatch,
-        resturantId,
-        products?.length,
         userInfo,
-        history
+        ListCategoryUX,
+        history,
+        products,
+        
+
     ])
+
+
+
+
 
 
 
@@ -95,7 +133,10 @@ export default function RestaurantsProductScreen(props) {
 
 
 
-    // console.log(show)
+
+
+
+
 
 
 
@@ -108,6 +149,7 @@ export default function RestaurantsProductScreen(props) {
         </div>
 
         <Title TextTitle='Alla Produkter...' />
+
         <Row className='justify-content-center'>
             <Col xs={12} sm={12} md={4} lg={3} >
                 <RestaurantsNavBarScreen ClassNameUpdate />
@@ -115,37 +157,71 @@ export default function RestaurantsProductScreen(props) {
 
             <Col xs={12} sm={12} md={8} lg={9} >
 
+                <LoadingErrorHandle
+                    loading={loading}
+                    error={error}
+                    home={products}
+                    TextNotItems={ErrorServer}
+                    TextData='ccc'
+                    extraStyle
+                >
+
+
+                    {ListCategoryUX?.length !== 0
+                        && ListCategoryUX !== 'Empty'
+                        && userInfo?.cartinfo &&
+                        <ProductsNavBarSearching setShow={setShow} setQuery={setQuery} />
+                    }
 
 
 
-                <ProductsNavBarSearching
-                    setShow={setShow}
-                    setQuery={setQuery}
-                />
+                    {products?.length === Number(0) ?
+                        <PageTextEmpty Pagetext='först måste du skapa kategori' />
+
+                        :
+                        <CartItemsProducts
+                            products={search(products)}
+                            setShow={setShow}
+                            categoryProductsNextPagesxp={categoryProductsNextPagesxp}
+                            resturantId={userInfo?.cartinfo}
+                        />
+                    }
 
 
 
-                <CartItemsProducts
-                    products={search(products)}
-                    setShow={setShow}
-                    categoryProductsNextPagesxp={categoryProductsNextPagesxp}
-                    resturantId={resturantId}
-                />
 
-            </Col>
 
-        </Row>
 
-        {show?.value &&
-            <ProductEditOchCreate
-                show={show}
-                setShow={setShow}
-                resturantId={resturantId}
-            />
+                    {show?.value &&
+                        <ProductEditOchCreate
+                            show={show}
+                            setShow={setShow}
+                            userInfo={userInfo}
+                            ListCategoryUX={ListCategoryUX}
+                        />
 
-        }
+                    }
 
-    </Container>
+
+
+                </LoadingErrorHandle>
+
+
+
+
+            </Col >
+
+        </Row >
+
+
+    </Container >
 }
+
+
+
+
+
+
+
 
 

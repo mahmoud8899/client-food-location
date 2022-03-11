@@ -60,7 +60,7 @@ export const CheckUser = (email) => async (dispatch) => {
 
 // forget password//
 // POST // url : api/user/forgetpassword/
-export const ForgetPasswordAction = (user) => async (dispatch, getState) => {
+export const ForgetPasswordAction = (user) => async (dispatch) => {
 
     try {
 
@@ -128,13 +128,15 @@ export const AddAdressUserAction = (user) => async (dispatch, getState) => {
 
 
         const { userLogin: { token }, } = getState()
-        const config = {
+
+
+        await axios.put(`/api/user/update/user/`, user, {
+
             headers: {
                 Authorization: `Bearer ${token}`,
             }
-        }
 
-        await axios.put(`/api/user/update/user/`, user, config)
+        })
         dispatch(GetUserInfoAction(token))
 
     } catch (error) {
@@ -332,18 +334,17 @@ export const user_Login = (user) => async (dispatch) => {
 
 // Get user Info .... 
 // GET // URL  /api/user/user/
-export const GetUserInfoAction = (token) => async (dispatch) => {
+export const GetUserInfoAction = (token) => async (dispatch, getState) => {
     try {
 
 
-        const config = {
+        const { userLogin: { token }, } = getState()
+
+        const { data } = await axios.get(`/api/user/user/`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
-        }
-
-        //  console.log('token', token)
-        const { data } = await axios.get(`/api/user/user/`, config)
+        })
 
         dispatch(setUser(data))
         localStorage.setItem(ActionTypes.KEY_USER, JSON.stringify(data))
@@ -409,7 +410,7 @@ export const AddAcountBAction = (user, token) => async (dispatch) => {
 
     try {
 
-       
+
         const { data } = await axios.put(`/api/user/addcount/user/`, user, {
             headers: {
                 Authorization: `Bearer ${token}`,

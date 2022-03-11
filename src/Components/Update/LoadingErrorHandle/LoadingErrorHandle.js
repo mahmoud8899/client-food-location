@@ -6,37 +6,23 @@ import LoadingScreen from '../../LoadingScreen/LoadingScreen'
 
 export default function LoadingErrorHandle(props) {
 
-    const { children, loading, error, home, TextNotItems } = props
+    const { children, loading, error, TextNotItems, extraStyle } = props
 
 
 
 
     return loading ?
-        <div className='Dev-Error'>
+        <div className={extraStyle ? 'Dev-Error extraStyle' : 'Dev-Error'}>
             <LoadingScreen />
         </div>
         :
         error ?
-            <div className='Dev-Error'>
-                <CodeError error='error server' />
+            <div className={extraStyle ? 'Dev-Error extraStyle' : 'Dev-Error'}>
+                <CodeError error={TextNotItems} />
             </div>
             :
-            home?.length === 0 ?
 
-                <div className='Dev-Error'>
-                    <CodeError error={TextNotItems} />
-                </div>
-
-                :
-                children
-
-
-
-
-
-
-
-
+            children
 
 }
 

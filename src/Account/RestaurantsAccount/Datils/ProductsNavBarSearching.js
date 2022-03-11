@@ -35,7 +35,7 @@ export default function ProductsNavBarSearching(props) {
                 <FormControl
                     className='with-input'
                     placeholder='Searching Product...'
-                    onChange={(e) => setQuery(e.target.value)}
+                    onChange={(e) => setQuery(e.target.value)?.toLowerCase()}
                     style={Styles.NavBarSearchingColorInput}
 
                 />

@@ -5,7 +5,7 @@ import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import LoadingErrorHandle from '../../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import { Col } from 'react-bootstrap'
 import Styles from '../../../Components/Update/StylesComponents/style'
-
+import {ErrorServer} from '../../../Assistant/TextError'
 
 export default function NotficationOrders(props) {
     const {
@@ -17,7 +17,12 @@ export default function NotficationOrders(props) {
 
 
 
-    return <LoadingErrorHandle loading={loading} error={error} home={orderNotfications}>
+    return <LoadingErrorHandle
+        loading={loading}
+        error={error}
+        extraStyle
+        TextNotItems={ErrorServer}
+    >
 
 
 

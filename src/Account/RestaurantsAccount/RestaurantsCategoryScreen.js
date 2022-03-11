@@ -1,73 +1,66 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
-import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CartItemsCategory from './Datils/CartItemsCategory'
 import { FetchCategoryUser } from '../../redux/Action/Category_Action'
 import CategoryEditOchCreate from './Datils/CategoryEditOchCreate'
 import CategoryNavBarSearching from './Datils/CategoryNavBarSearching'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
+import { PageTextEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
+import { useEffect, useState } from 'react'
 import UserName from './Datils/UserName'
 import './style.css'
+import { ErrorServer } from '../../Assistant/TextError'
+
+
 export default function RestaurantsCategoryScreen(props) {
 
     const { history } = props
 
-
+    // appen requrest category....
     const dispatch = useDispatch()
 
     // user check ut
     const userLogin = useSelector((state) => state?.userLogin)
     const { userInfo } = userLogin
-
-
     // open edit and create.....
     const [editCategory, setEditCategory] = useState({ value: false, object: '' })
-
-
     // get all category to user.
     const UserpageCategory = useSelector((state) => state?.UserpageCategory)
     const { loading: UserpageCategoryloading, error: UserpageCategoryerror, usercategory } = UserpageCategory
-
-
     // event after reqqurest...
     const PageCategory = useSelector((state) => state?.PageCategory)
     const { updated, create, remove } = PageCategory
 
 
-    // console.log(usercategory)
+
+
+
+
+
 
     // requrest category
     useEffect(() => {
 
         if (userInfo?.restaurantid) {
-
-
-            usercategory?.length === 0 && dispatch(FetchCategoryUser())
-
-
+            return userInfo?.cartinfo && usercategory?.length === 0 && dispatch(FetchCategoryUser())
         } else {
             return history.push('/uppsala/')
         }
+    }, [usercategory?.length, dispatch, userInfo, history])
 
 
-
-
-    }, [
-        usercategory?.length,
-        dispatch,
-        userInfo,
-        history
-    ])
 
 
     // updated and create category....
+    // fetch data after updated and remove 
+    // [1] : updated category
     useEffect(() => {
 
         if (updated || create || remove) {
 
-            // console.log('helllo')
+
             dispatch(FetchCategoryUser())
             return
         }
@@ -87,67 +80,86 @@ export default function RestaurantsCategoryScreen(props) {
 
 
 
-    return <LoadingErrorHandle
-        loading={UserpageCategoryloading}
-        error={UserpageCategoryerror}
-        home={usercategory}
-        TextNotItems='Empty'
-    >
+    return <Container>
+
+        <div className='box'>
+            <UserName />
+        </div>
 
 
-        <Container>
-
-            <div className='box'>
-                <UserName />
-            </div>
+        <Title TextTitle='product Admin' />
 
 
-            <Title TextTitle='product Admin' />
+
+        <Row className='justify-content-center'>
+
+            <Col xs={12} sm={12} md={4} lg={3} >
+                <RestaurantsNavBarScreen ClassCategoryActive />
+            </Col>
 
 
-            <Row className='justify-content-center'>
 
-                <Col xs={12} sm={12} md={4} lg={3} >
-                    <RestaurantsNavBarScreen ClassCategoryActive />
-                </Col>
 
-                <Col xs={12} sm={12} md={8} lg={9} >
+            <Col xs={12} sm={12} md={8} lg={9} >
 
+
+
+                {userInfo?.cartinfo  && !UserpageCategoryerror &&
                     <CategoryNavBarSearching
                         setEditCategory={setEditCategory}
                         setQuery={setQuery}
                     />
+                }
 
 
-                    {usercategory !== 'Empty' &&
+
+
+
+                {usercategory?.length === Number(0) || usercategory === 'Empty' ?
+
+                    <PageTextEmpty Pagetext='skapa ny kategori ' />
+
+                    :
+
+                    <LoadingErrorHandle
+                        loading={UserpageCategoryloading}
+                        error={UserpageCategoryerror}
+                        home={usercategory}
+                        TextNotItems={ErrorServer}
+                        extraStyle
+                    >
+
                         <CartItemsCategory
                             ListCategoryUX={search(usercategory)}
                             setEditCategory={setEditCategory}
 
                         />
-                    }
+                    </LoadingErrorHandle>
+
+                }
 
 
 
-                </Col>
-
-            </Row>
+            </Col>
 
 
 
 
 
-            <CategoryEditOchCreate
-                editCategory={editCategory}
-                setEditCategory={setEditCategory}
-                userInfo={userInfo}
-            />
+
+        </Row>
+
+        <CategoryEditOchCreate
+            editCategory={editCategory}
+            setEditCategory={setEditCategory}
+            userInfo={userInfo}
+        />
 
 
-        </Container>
+    </Container>
 
 
-    </LoadingErrorHandle>
+
 
 
 

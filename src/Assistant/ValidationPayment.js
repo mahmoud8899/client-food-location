@@ -102,7 +102,7 @@ export function ValidationCartInfo(
     changeImage
 ) {
 
-    return NewValue?.username?.normalize() === OldValue?.username?.normalize()
+    return NewValue?.username?.toLowerCase()?.normalize() === OldValue?.username?.toLowerCase()?.normalize()
         && NewValue?.description?.normalize() === OldValue?.description?.normalize()
         && NewValue?.productType?.normalize() === OldValue?.productType?.normalize()
         && NewValue?.freeDelvery === OldValue?.freeDelvery

@@ -5,14 +5,16 @@ import NavBarList from './Datils/NavBarList'
 import CartItemsInfo from './Datils/CartItemsInfo'
 import { CartInfoActionResturan } from '../../redux/Action/CartItemAction'
 import { useDispatch, useSelector } from 'react-redux'
+import Styles from '../../Components/Update/StylesComponents/style'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import EditCartInfo from './Datils/EditCartInfo'
 import UserName from './Datils/UserName'
 import { useEffect, useState } from 'react'
-import Styles from '../../Components/Update/StylesComponents/style'
-import './style.css'
 import AddAccountUser from './Datils/AddAccountUser'
-import { BiTaskX, BiNetworkChart, BiCheck, BiFolderOpen } from 'react-icons/bi'
+import { BiTaskX, BiNetworkChart } from 'react-icons/bi'
+import {ErrorServer} from '../../Assistant/TextError'
+import { PageEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
+import './style.css'
 
 
 
@@ -41,6 +43,8 @@ export default function RestaurantsProfilScreen(props) {
 
 
 
+   
+
     // get cart info from Server.....
     useEffect(() => {
         if (userInfo?.restaurantid) {
@@ -50,7 +54,7 @@ export default function RestaurantsProfilScreen(props) {
             return history.push('/uppsala/')
         }
     }, [
-       
+
         dispatch,
         info?.length,
         userInfo,
@@ -76,23 +80,21 @@ export default function RestaurantsProfilScreen(props) {
 
         </div>
 
-        <LoadingErrorHandle loading={loading} error={error} home={info}>
-            <Row className='justify-content-center'>
 
-                <Col xs={12} sm={12} md={4} lg={3} >
-                    <RestaurantsNavBarScreen
-                        classNameSitting
-                        OpenBankAcount={OpenBankAcount}
-                    />
-                </Col>
-                <Col xs={12} sm={12} md={8} lg={9} >
+        <Row className='justify-content-center'>
+
+            <Col xs={12} sm={12} md={4} lg={3} >
+                <RestaurantsNavBarScreen
+                    classNameSitting
+                    OpenBankAcount={OpenBankAcount}
+                />
+            </Col>
+
+            <Col xs={12} sm={12} md={8} lg={9} >
+                <LoadingErrorHandle loading={loading} error={error} home={info} TextNotItems={ErrorServer} extraStyle>
                     {info === 'Empty' ?
 
-                        <div className='lagg-New-resta' style={Styles.colorcreate} onClick={() => setShow({ value: true, updated: true })}  >
-                            <BiFolderOpen className='font-icons icons-right' style={Styles.coloricons} />
-                            <span>Lägg till ny restaurang</span>
-                            <BiCheck className='font-icons icons-left' style={Styles.coloricons} />
-                        </div>
+                        <PageEmpty onClick={() => setShow({ value: true, updated: true })} />
 
                         :
                         <>
@@ -145,16 +147,16 @@ export default function RestaurantsProfilScreen(props) {
 
 
                     }
+                </LoadingErrorHandle>
+            </Col>
 
-                </Col>
+        </Row>
 
-            </Row>
+        <AddAccountUser
+            openAddAccount={openAddAccount}
+            setOpenAddAccount={setOpenAddAccount}
+        />
 
-            <AddAccountUser
-                openAddAccount={openAddAccount}
-                setOpenAddAccount={setOpenAddAccount}
-            />
-        </LoadingErrorHandle>
 
         <EditCartInfo
             show={show}

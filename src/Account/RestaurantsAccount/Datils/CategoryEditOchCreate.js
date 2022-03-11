@@ -20,14 +20,14 @@ export default function CategoryEditOchCreate(props) {
 
 
 
-    const { editCategory, setEditCategory,userInfo } = props
+    const { editCategory, setEditCategory, userInfo } = props
 
 
     const dispatch = useDispatch()
     // handle input error 
     const [handleError, setHandleError] = useState(false)
     // input category 
-    const [categoryData, setCategoryData] = useState({ name: '', _id: '', cartinfo: userInfo?.cartinfo , user : '' })
+    const [categoryData, setCategoryData] = useState({ name: '', _id: '', cartinfo: userInfo?.cartinfo, user: '' })
     // event after reqqurest...
     const PageCategory = useSelector((state) => state?.PageCategory)
     const { updated, loading, error, create } = PageCategory
@@ -43,8 +43,8 @@ export default function CategoryEditOchCreate(props) {
             setCategoryData({
                 name: editCategory?.object?.name ? editCategory?.object?.name : '',
                 _id: editCategory?.object?._id ? editCategory?.object?._id : '',
-                cartinfo: userInfo?.cartinfo ? userInfo?.cartinfo  : '',
-                user : userInfo?._id ? userInfo?._id : ''
+                cartinfo: userInfo?.cartinfo ? userInfo?.cartinfo : '',
+                user: userInfo?._id ? userInfo?._id : ''
             })
         }
 
@@ -55,7 +55,7 @@ export default function CategoryEditOchCreate(props) {
 
 
         return () => {
-            setCategoryData({ name: '', _id: '', cartinfo: userInfo?.cartinfo, user : userInfo?._id })
+            setCategoryData({ name: '', _id: '', cartinfo: userInfo?.cartinfo, user: userInfo?._id })
             setSuccessFully(false)
         }
 
@@ -65,7 +65,7 @@ export default function CategoryEditOchCreate(props) {
         updated,
         create,
         successFully,
-        userInfo?._id
+        userInfo
     ])
 
 
@@ -80,15 +80,14 @@ export default function CategoryEditOchCreate(props) {
 
 
 
-       
+
 
             const CodeColenar = {
                 name: ChangeCode(categoryData?.name),
                 _id: categoryData?._id,
-                user : categoryData?._id,
+                user: categoryData?.user,
                 cartinfo: categoryData?.cartinfo,
             }
-
             if (editCategory?.object?.name) {
 
                 return dispatch(UpdatedCategoryAction(CodeColenar))
@@ -143,8 +142,8 @@ export default function CategoryEditOchCreate(props) {
 
                     <h1>
                         {editCategory?.object?.name ?
-                            `Edit - ${editCategory?.object?.name}` :
-                            `create new Category`
+                            `Uppdatering - ${editCategory?.object?.name}` :
+                            `Skapa ny kategori`
 
                         }
                     </h1>

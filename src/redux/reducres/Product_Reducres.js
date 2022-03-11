@@ -19,6 +19,10 @@ export const PaginationProductReducres = (state = {
 
 
 
+        case ActionTypes.ADD_PAGINATION_PRODUCT_LOADING :
+            return {
+                loading : true
+            }
 
 
 
@@ -27,6 +31,7 @@ export const PaginationProductReducres = (state = {
             return {
                 ...state,
                 products: [...state.products, ...action.payload],
+                loading : false
             };
 
 
@@ -34,16 +39,18 @@ export const PaginationProductReducres = (state = {
 
             return {
                 ...state,
-                categoryProductsNextPagesxp: action.payload
+                categoryProductsNextPagesxp: action.payload,
+                loading : false
             }
 
-        case ActionTypes.ADD_PAGINATION_PRODUCT_FAIL: return { error: action.payload }
+        case ActionTypes.ADD_PAGINATION_PRODUCT_FAIL: return { error: action.payload , loading : false}
 
 
         case ActionTypes.ADD_CALING_SATA: return {
             ...state,
             products: [],
-            categoryProductsNextPagesxp: Number(1)
+            categoryProductsNextPagesxp: Number(1),
+            loading : false
         }
 
 
