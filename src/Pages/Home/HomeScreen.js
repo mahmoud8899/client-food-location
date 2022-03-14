@@ -1,17 +1,21 @@
-import './Home.css'
-import { useEffect } from 'react'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import { useSelector, useDispatch } from 'react-redux'
 import { Container, Row, Col } from 'react-bootstrap'
 import { FirstNameRest } from '../../Assistant/Selection'
 import NavBarCity from '../NavBarCity/NavBarCity'
-import { FatchButik, FirDeliveryAction, FoodTypesAction, GetCartInfoHomeRestranges, NewRestrangesAction } from '../../redux/Action/CartItemAction'
-import CarouselItems from './Carousel/Carousel'
+// FatchButik, FirDeliveryAction, FoodTypesAction, GetCartInfoHomeRestranges,
+import {  NewRestrangesAction } from '../../redux/Action/CartItemAction'
+// import CarouselItems from './Carousel/Carousel'
 import RestrangeItems from './RestrangeItems/RestrangeItems'
 import LoadingErrorHandld from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import LoginDriverScreen from './LoginDriverScreen/LoginDriverScreen'
-import CategoryScreen from './CategoryScreen/CategoryScreen'
+// import LoginDriverScreen from './LoginDriverScreen/LoginDriverScreen'
+// import CategoryScreen from './CategoryScreen/CategoryScreen'
 import {ErrorServer} from '../../Assistant/TextError'
+import { useEffect } from 'react'
+import './Home.css'
+
+
+
 
 export default function HomeScreen(props) {
 

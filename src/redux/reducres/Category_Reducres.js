@@ -2,7 +2,7 @@ import * as ActionTypes from '../Action/Types'
 
 
 
-
+// only Admin  - Private
 // remove category and Updated , create
 export const UpdateRemoveReducres = (state = {
     loading: false,
@@ -10,7 +10,6 @@ export const UpdateRemoveReducres = (state = {
     updated: null,
     remove: null,
     create: null,
-    category: [],
 }, action) => {
     switch (action.type) {
 
@@ -36,17 +35,6 @@ export const UpdateRemoveReducres = (state = {
                 create: action.payload,
                 loading: false,
             }
-
-
-
-        case ActionTypes.ADD_CATEGORY_SUCCESS:
-            return {
-                ...state,
-                category: action.payload,
-                loading: false,
-            };
-
-
         case ActionTypes.ADD_CATEGORY_DELETE_FAIL:
             return {
                 ...state,
@@ -64,8 +52,8 @@ export const UpdateRemoveReducres = (state = {
 
 
 
-
-// category user 
+// only Admin  - Private
+// get Category Restaurant
 export const CategoryReducresUser = (state =
     {
         loading: false,
@@ -96,3 +84,52 @@ export const CategoryReducresUser = (state =
         default: return state
     }
 }
+
+
+
+
+
+// to restaurant -Public
+export const CategoryPublicReducres = (state =
+    {
+        nexCategory: {},
+        category: {},
+        error: null
+    }, action) => {
+    switch (action.type) {
+
+        case ActionTypes.ADD_PUBLIC_CATEGORY_NUMBER:
+            return {
+
+                ...state,
+                nexCategory: {
+                    ...state.nexCategory,
+                    [action.payload.nextpage]: action.payload.nextpage,
+                }
+            }
+
+        case ActionTypes.ADD_PUBLIC_CATEGORY_SUCCESS:
+            const categoryId = action.payload.categoryId
+            return {
+                loading: false,
+                ...state,
+                category: {
+                    ...state.category,
+                    [categoryId]: (state.category[categoryId] || []).concat(action.payload.data)
+                }
+
+            }
+
+        case ActionTypes.ADD_PUBLIC_CATEGORY_FAIL:
+            return {
+                error: action.payload,
+                loading: false,
+            };
+
+        default: return state
+    }
+}
+
+
+
+

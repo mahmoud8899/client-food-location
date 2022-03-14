@@ -3,7 +3,7 @@ import axios from 'axios'
 import { ChangeCode } from '../../Assistant/ValidationPayment'
 import { Action_logout } from './Auth_Action'
 
-
+// Only admin - Private
 // Remove product from user
 // // delete /product/product/:id/
 export const RemoveProductAction = (user) => async (dispatch) => {
@@ -79,6 +79,7 @@ export const product_IDAction = (id) => async (dispatch) => {
     }
 }
 
+// Only admin - Private
 // Start Product Pagination  //.................................................................>
 // append.... 
 export const AppendProductAndCategory = (data) => ({
@@ -122,7 +123,7 @@ export const productpaginationAction = (user) => async (dispatch, getState) => {
 
 
 
-
+// Only admin - Private
 // Create Product/
 // POST // URL : /api/product/create/
 export const CreateNewProductAction = (user) => async (dispatch, getState) => {
@@ -158,7 +159,7 @@ export const CreateNewProductAction = (user) => async (dispatch, getState) => {
 }
 
 
-
+// Only admin - Private
 // updated product
 // put  url : //  /api/product/product/updated/6210f00d5d48931ab7b5637c
 export const ProductUpdatedAction = (user) => async (dispatch) => {
@@ -178,7 +179,7 @@ export const ProductUpdatedAction = (user) => async (dispatch) => {
         })
     }
 }
-
+// Only admin - Private
 // Uploading Image/
 // POST // URL : /api/uploading/
 export const UploadingNewImageProduct = (user, UpdateProducts, CreateProduct) => async (dispatch) => {
@@ -211,6 +212,61 @@ export const UploadingNewImageProduct = (user, UpdateProducts, CreateProduct) =>
         })
     }
 }
+
+
+
+
+
+
+
+
+
+// to restaurant -Public
+// pagnation products...
+// append.... 
+export const AppendProductsWithUserId = (categoryId, data) => ({
+    type: ActionTypes.ADD_PRODUCTS_PUBLIC_DATA,
+    payload: { categoryId, data }
+})
+
+// count next pages...
+export const AppenNumberNextPages = (categoryId, nextpage) => ({
+    type: ActionTypes.ADD_PRODUCTS_PUBLIC_NUMBER,
+    payload: { categoryId, nextpage }
+})
+
+export const PorudtsActionPaganationPublic = (user) => async (dispatch, getState) => {
+
+    const calculatedPage = getState()?.PagePublicProducts?.productNextNumber[user]
+    const nextRequestPage = calculatedPage === undefined ? 1 : calculatedPage
+
+    if (nextRequestPage) {
+
+        try {
+            const { data } = await axios.get(`/api/product/cartinfo/${user}?pageNumber=${nextRequestPage}`)
+            dispatch(AppendProductsWithUserId(user, data.product))
+            if (data?.pages <= 1) return dispatch(AppenNumberNextPages(user, null))
+            const nextpage = data?.result?.next?.page > data?.pages ? null : data?.result?.next?.page
+           
+            dispatch(AppenNumberNextPages(user, nextpage))
+            return
+
+        } catch (error) {
+
+            dispatch({
+                type: ActionTypes.ADD_PRODUCTS_PUBLIC_FAIL,
+                payload: error.response &&
+                    error.response.data.error ?
+                    error.response.data.error :
+                    error.message
+            })
+        }
+
+    }
+
+}
+
+
 
 
 

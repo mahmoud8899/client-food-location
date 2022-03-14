@@ -1,6 +1,5 @@
 import { Container, Row } from 'react-bootstrap'
 import React, { useContext, useEffect, useState } from 'react'
-import './style.css'
 import RestaurantsYourOrderCart from './RestaurantsYourOrderCart'
 import RestaurantsNavBarCart from './RestaurantsNavBarCart'
 import RestaurangetsDescription from './RestaurangetsDescription'
@@ -16,6 +15,10 @@ import RestaurantsPagePhotoNavBar from './RestaurantsPagePhotoNavBar'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
+import { ErrorServer } from '../../Assistant/TextError'
+// import * as ActionTypes from '../../redux/Action/Types'
+// ActionTypes.ADD_CARTINFO_ID_SUCCESS
+import './style.css'
 export default function RestaurantsPageProductsScreen(props) {
 
     const { match } = props
@@ -35,35 +38,47 @@ export default function RestaurantsPageProductsScreen(props) {
     // open description restaurang
     const [openDescription, setOpenDescription] = useState(false)
 
+    // nav bar scroll from context....
     const { addTop, hiddenNavBar, NavBarScroll } = useContext(ScrollDrow)
 
+    // filter linke after thet send requrest to server 
     const ChangeParams = match.params.id.replace("-", " ")
     // const CityName = match.url?.slice(1, 5) === 'upps' ? 'uppsala' : 'gothenburg'
 
-    // console.log(ChangeParams,'city', CityName)
-    // state location ....
 
+    // send requrest to category och run
+    const [categoryRun, setcategoryRun] = useState(false)
 
-    // cart info.....
+    //get cart info 
+    // event error and loading.....
     const cartInfoid = useSelector((state) => state?.cartInfoid)
     const { loading: loadingCartInfo, cartinfo, error: errorCartInfo } = cartInfoid
 
 
-    const ListCategoryUX = useSelector((state) => state?.ListCategory?.category) 
+
+    // get all category to restrange.
+    const CategoryPublic = useSelector((state) => state?.PagePublicCategory?.category[cartinfo?._id]) || []
 
 
 
 
 
     // category.....
-    // cart info id
+    // cart info id   testing loading and error okey......
     useEffect(() => {
         if (ChangeParams) {
-
-            return dispatch(GetCartInfoIdAction(ChangeParams))
+            dispatch(GetCartInfoIdAction(ChangeParams))
+            setcategoryRun(true)
+            return
         }
-
+        // eslint-disable-next-line
     }, [ChangeParams, dispatch])
+
+
+
+
+
+
 
 
 
@@ -71,48 +86,26 @@ export default function RestaurantsPageProductsScreen(props) {
     // // get cart id to searching.... for searching products....
     useEffect(() => {
 
-        if (typeof cartinfo?._id === 'string' || typeof cartinfo?._id !== 'undefined') {
+        if (categoryRun)
+            if (typeof cartinfo?._id === 'string' || typeof cartinfo?._id !== 'undefined') {
+                CategoryPublic?.length === 0 && dispatch(getCategoryAction(cartinfo?._id))
+                return setLocationNotNu(cartinfo?._id)
 
-            ListCategoryUX?.length === 0 && dispatch(getCategoryAction(cartinfo?._id))
-            setLocationNotNu(cartinfo?._id)
-          
-         return   
-
-        }
-
-        return
+            }
 
         // eslint-disable-next-line
-    }, [
-        dispatch,
-        cartinfo?._id,
-        ListCategoryUX?.length,
-        setLocationNotNu
-     
-
-    ])
-
-
-
-
-
-
-
-
-
-
-
+    }, [cartinfo, dispatch, categoryRun, setLocationNotNu])
 
 
 
 
     return <Container fluid>
-        <LoadingErrorHandle loading={loadingCartInfo} error={errorCartInfo} home={cartinfo}  >
-
+        <LoadingErrorHandle
+            loading={loadingCartInfo}
+            error={errorCartInfo}
+            TextNotItems={ErrorServer}
+        >
             <Title TextTitle={ChangeParams} />
-
-
-
             {/* nav bar time o besket */}
             <RestaurantsNavBarCart
                 hiddenNavBar={hiddenNavBar}
@@ -122,31 +115,14 @@ export default function RestaurantsPageProductsScreen(props) {
                 setOpenDescription={setOpenDescription}
                 cartinfo={cartinfo}
             />
-
-
-
-
-
-
             <Row className='justify-content-center'>
 
-
-
-
                 {/* image to restrange */}
-
                 <PagePhotoResta cartinfo={cartinfo} />
-
-
-
                 <RestaurantsPagePhotoNavBar
-                    category={ListCategoryUX}
+                    category={CategoryPublic}
                     cartinfo={cartinfo}
                 />
-
-
-
-
 
                 {/* views all category och time rating   */}
 
@@ -155,20 +131,18 @@ export default function RestaurantsPageProductsScreen(props) {
                     openDescription={openDescription}
                     NavBarScroll={NavBarScroll}
                     addTop={addTop}
-                    category={ListCategoryUX}
+                    category={CategoryPublic}
 
                 />
-
-
-                {ListCategoryUX?.length >= 1 &&
+                {CategoryPublic?.length >= 1 &&
 
                     <PageItemsScreen
                         idRes={cartinfo?._id}
                     />
                 }
 
-            </Row>
 
+            </Row>
 
             {/* besket bottom */}
             <CartScreen
@@ -196,15 +170,9 @@ export default function RestaurantsPageProductsScreen(props) {
             />
 
 
-
         </LoadingErrorHandle>
+
     </Container>
-
-
-
-
-
-
 }
 
 
@@ -214,4 +182,32 @@ export default function RestaurantsPageProductsScreen(props) {
 
 
 
+
+
+
+    // if (typeof cartinfo?._id === 'string' || typeof cartinfo?._id !== 'undefined') {
+    //     //  console.log('run',cartinfo?._id)
+    //     CategoryPublic?.length === 0 &&  dispatch(getCategoryAction(cartinfo?._id))
+    //     return setLocationNotNu(cartinfo?._id)
+    // }
+
+    // useEffect(() => {
+
+    //     if (typeof cartinfo?._id === 'string' || typeof cartinfo?._id !== 'undefined') {
+
+    //         console.log('helllo', cartinfo?._id)
+
+
+
+    //         return
+
+    //     }
+
+    //     // eslint-disable-next-line
+    // }, [
+    //     dispatch,
+    //     cartinfo,
+
+    //     setLocationNotNu
+    // ])
 

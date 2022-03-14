@@ -3,12 +3,6 @@ import axios from 'axios'
 import { Action_logout } from './Auth_Action'
 
 
-
-
-// get category only restarng
-// url : // http://localhost:8000/api/category/all/
-
-
 // takes all Category .... 
 // GET URL : // .................
 
@@ -19,24 +13,51 @@ export const AppenCategoryId = (id) => ({
 
 
 
-// all category ......................................>
-// GET // URL : /api/category/restrange/list/:id cart info to restrange....../
-export const getCategoryAction = (id) => async (dispatch) => {
 
-    try {
-        dispatch({ type: ActionTypes.ADD_CATEGORY_DELETE_LOADING })
-        const { data } = await axios.get(`/api/category/restrange/list/${id}/`)
-        // dispatch(AppenCategoryId(id))
-        dispatch({ type: ActionTypes.ADD_CATEGORY_SUCCESS, payload: data })
-    } catch (error) {
-        dispatch({
-            type: ActionTypes.ADD_CATEGORY_DELETE_FAIL,
-            payload: error.response &&
-                error.response.data.message ?
-                error.response.data.message :
-                error.message
-        })
+// to restaurant -Public
+// pagnation products...
+// append.... 
+export const AppendProductsWithUserId = (categoryId, data) => ({
+    type: ActionTypes.ADD_PUBLIC_CATEGORY_SUCCESS,
+    payload: { categoryId, data }
+})
+
+// count next pages...
+export const AppenNumberNextPages = (nextpage) => ({
+    type: ActionTypes.ADD_PUBLIC_CATEGORY_NUMBER,
+    payload: { nextpage }
+})
+
+// to restaurant -Public
+// All category 
+// GET // URL : /api/category/restrange/list/:id cart info to restrange....../
+export const getCategoryAction = (id) => async (dispatch, getState) => {
+
+
+   
+    const calculatedPage = getState()?.PagePublicCategory?.nexCategory[id]
+    const listNext = calculatedPage === undefined ? id : calculatedPage
+
+ console.log(listNext)
+
+    if (listNext) {
+        try {
+            const { data } = await axios.get(`/api/category/restrange/list/${listNext}/`)
+            dispatch(AppendProductsWithUserId(id, data))
+            dispatch(AppenNumberNextPages(id))
+
+        } catch (error) {
+            dispatch({
+                type: ActionTypes.ADD_PUBLIC_CATEGORY_FAIL,
+                payload: error.response &&
+                    error.response.data.message ?
+                    error.response.data.message :
+                    error.message
+            })
+        }
     }
+
+
 
 
 }
@@ -44,6 +65,17 @@ export const getCategoryAction = (id) => async (dispatch) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+// only admin  - Private
 // Delete Category....
 // url : // /api//category/:id/
 export const DeleteCategoryAction = (user) => async (dispatch) => {
@@ -64,7 +96,7 @@ export const DeleteCategoryAction = (user) => async (dispatch) => {
     }
 }
 
-
+// only admin  - Private
 // Updated
 // PUT : // /api/category/:id/
 export const UpdatedCategoryAction = (user) => async (dispatch) => {
@@ -84,12 +116,8 @@ export const UpdatedCategoryAction = (user) => async (dispatch) => {
     }
 }
 
-
-
-
-
-
-// create category
+// only admin  - Private
+// Create category
 // POST : // /category/create/
 export const CategoryCategoryAction = (user) => async (dispatch, getState) => {
     try {
@@ -115,12 +143,9 @@ export const CategoryCategoryAction = (user) => async (dispatch, getState) => {
 }
 
 
-
-
-
-// get category User 
+// only admin  - Private
+// get category User only admin
 // GET // URL : http://localhost:8000/api/category/create/user
-
 export const FetchCategoryUser = () => async (dispatch, getState) => {
 
 
