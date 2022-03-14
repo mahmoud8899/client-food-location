@@ -11,9 +11,12 @@ const Styles = {
         width: '100%',
         borderRadius: '0.4rem',
         height: '45px',
-        boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
         cursor: 'pointer',
-        transition : '2s all'
+        transition : '2s all',
+        fontSize: '14px',
+        fontFamily: 'system-ui',
+        textTransform: 'capitalize'
+       
 
     },
     notDisabled: {

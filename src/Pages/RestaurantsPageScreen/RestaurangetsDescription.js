@@ -2,7 +2,7 @@
 import { Image, Modal } from 'react-bootstrap'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import './style.css'
-
+import { HiOutlineX  } from 'react-icons/hi'
 
 export default function RestaurangetsDescription(props) {
 
@@ -19,7 +19,8 @@ export default function RestaurangetsDescription(props) {
                 className='description-image' />
 
             <div className='close-yourOrder add-postion-close'>
-                <Image src={MyOderImage.close} className='close-pp-pp-image add-leftx-' onClick={() => setOpenDescription(!openDescription)} />
+            <HiOutlineX  className='close-pp-pp-image'   onClick={() => setOpenDescription(!openDescription)}/>
+
             </div>
         </div>
 

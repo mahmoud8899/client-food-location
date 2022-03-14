@@ -1,6 +1,4 @@
 import { Form, Modal } from 'react-bootstrap'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
-import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import Input from '../../../Components/Input/Input'
 import ButtomClick from '../../../Components/Buttom/Buttom'
 import { ChangeCode, ValidationCategory } from '../../../Assistant/ValidationPayment'
@@ -13,7 +11,7 @@ import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/Hand
 import Styles from '../../../Components/Update/StylesComponents/style'
 import '../style.css'
 import CodeError from '../../../Components/CodeError/CodeError'
-
+import {HiOutlineX} from 'react-icons/hi'
 
 
 export default function CategoryEditOchCreate(props) {
@@ -147,11 +145,8 @@ export default function CategoryEditOchCreate(props) {
 
                         }
                     </h1>
-                    <ImageScreen
-                        ImageIcon={MyOderImage.close}
-                        className='close-pp-pp-image'
-                        onClick={HandleClose}
-                    />
+                    <HiOutlineX  className='close-pp-pp-image'    onClick={HandleClose}/>
+                   
                 </div>
 
 

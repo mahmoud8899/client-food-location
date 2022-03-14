@@ -3,10 +3,8 @@ import ButtomClick from '../../Components/Buttom/Buttom'
 import PaymentDrivery from './HandleDetalis/PaymentDrivery'
 import PaymentDetailsAddres from './HandleDetalis/PaymentDetailsAddres'
 import PaymentDate from './HandleDetalis/PaymentDate'
-import ImageScreen from '../../Components/ImageScreen/ImageScreen'
-import { MyOderImage } from '../../Assistant/MyOrderImage'
 import Styles from '../../Components/Update/StylesComponents/style'
-
+import { HiOutlineX  } from 'react-icons/hi'
 export default function PaymentSelectOrderDerails(props) {
 
 
@@ -52,12 +50,7 @@ export default function PaymentSelectOrderDerails(props) {
                 </div>
 
                 
-
-                <ImageScreen  
-                ImageIcon={MyOderImage.close}
-                onClick={(e) => setOpenNavBarList(false)}
-                className='class-close-image' 
-                />
+                <HiOutlineX  className='close-pp-pp-image'   onClick={(e) => setOpenNavBarList(false)}/>
 
             </div>
 

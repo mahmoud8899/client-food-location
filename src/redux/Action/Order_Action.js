@@ -21,18 +21,18 @@ export const APPendUserOrderNumber = (nextpage) => ({
 // orders user .... 
 // GET : URL : /order/userid?pageNumber=1
 export const OrdersUserAction = () => async (dispatch, getState) => {
-    const { userLogin: { token }, } = getState()
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        }
-    }
+
+    const { userLogin: { token } } = getState()
+
     const CheckNumber = getState().myOrder.nextNumber
 
-    // console.log('check next page', CheckNumber)
     if (CheckNumber) {
         try {
-            const { data } = await axios.get(`/api/order/userid?pageNumber=${CheckNumber}`, config)
+            const { data } = await axios.get(`/api/order/userid?pageNumber=${CheckNumber}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            })
             dispatch(AppendUserListOrders(data.orders))
             if (data?.pages <= 1) return dispatch(APPendUserOrderNumber(null))
             const nextpage = data?.result?.next?.page > data?.pages ? null : data?.result?.next?.page
@@ -50,7 +50,7 @@ export const OrdersUserAction = () => async (dispatch, getState) => {
                 return dispatch(Action_logout())
             }
             dispatch({
-                type: ActionTypes.ADD_ORDER_FAIL,
+                type: ActionTypes.ADD_ORDERS_USER_FAIL,
                 payload: message
             })
         }
@@ -189,7 +189,7 @@ export const AppendOrderShowData = (data) => ({
 // Only admin show orders //
 export const ShowOrderAction = (id) => async (dispatch, getState) => {
 
-    
+
     const CheckNumber = getState().TheResturantShowsOrders.ordersAllNumber
     const nextRequestPage = CheckNumber === undefined ? 1 : CheckNumber
     if (nextRequestPage) {

@@ -253,9 +253,9 @@ export const CreateCartAction = (user) => async (dispatch, getState) => {
                 Authorization: `Bearer ${token}`
             }
         })
-
+        dispatch({ type: ActionTypes.ADD_UPDATED_CARTINFO_SUCCESS, payload: 'Update.' })
         dispatch(CartInfoActionResturan())
-        return dispatch(GetUserInfoAction())
+        dispatch(GetUserInfoAction())
 
     } catch (error) {
         const message = error.response &&
@@ -302,7 +302,6 @@ export const UpdatedImageAction = (user, updateInfo, Form) => async (dispatch) =
             restrangeDriver: updateInfo.restrangeDriver,
         }
 
-        // console.log(userData)
 
         Form ? dispatch(CreateCartAction(userData)) : dispatch(UpdatedCartInfoAction(userData))
 

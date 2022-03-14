@@ -1,4 +1,4 @@
-import Styles from '../style'
+import Styles from '../../../Components/Update/StylesComponents/style'
 import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen'
 import InfiniteScroll from 'react-infinite-scroll-component'
 

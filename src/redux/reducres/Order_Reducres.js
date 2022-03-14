@@ -36,6 +36,7 @@ export const ResturantOrdersNotfications = (state = {
 export const pagnationMyOrderReducres = (state = {
     UserOrders: [],
     nextNumber: Number(1),
+    error : null
 }, action) => {
 
     switch (action.type) {
@@ -57,6 +58,14 @@ export const pagnationMyOrderReducres = (state = {
             }
 
 
+            case ActionTypes.ADD_ORDERS_USER_FAIL : 
+            return {
+                ...state,
+                error : action.payload,
+               
+            }
+
+
         default: return state
     }
 }
@@ -69,6 +78,7 @@ export const OrderReducres = (state = {
 
     createOrder: {},
     orderID: {},
+    loading : false,
     error: null
 }, action) => {
     switch (action.type) {

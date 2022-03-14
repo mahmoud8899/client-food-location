@@ -1,137 +1,186 @@
-import { Alert, Col, Row, Image, Form } from 'react-bootstrap'
+import { Image, Modal } from 'react-bootstrap'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import Input from '../../Components/Input/Input'
 import ButtomClick from '../../Components/Buttom/Buttom'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ChangeUserInfo } from '../../redux/Action/Auth_Action'
 import { useDispatch, useSelector } from 'react-redux'
-import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen'
-import ScreenAlrt from '../../Components/ScreenAlrt/ScreenAlrt'
-import ImageScreen from '../ImageScreen/ImageScreen'
 import Styles from '../Update/StylesComponents/style'
+import { HiOutlineX } from 'react-icons/hi'
+import { ChangeCode, ValidationUsername } from '../../Assistant/ValidationPayment'
+import HandleLoadingPage from '../../Components/Update/HandleLoadingPage/HandleLoadingPage'
+import { ErrorServer, ErrorTextInput } from '../../Assistant/TextError'
+import { ValtionMe } from '../../Assistant/ValtionMe'
+import CodeError from '../CodeError/CodeError'
+import { CloseScreen } from '../../Components/CloseScreen/CloseScreen'
 export default function UserChange(props) {
 
 
-    const { setOpenName } = props
+    const { setOpenName, openName } = props
 
+    // user info 
     const userLogin = useSelector((state) => state.userLogin)
-    const { userInfo, loading } = userLogin
+    const { userInfo, loading, error } = userLogin
+
+    // successfuly 
+    const [updateSuccessFully, setUpdateSuccessFully] = useState(false)
+    // handle error input 
+    const [handleError, setHandleError] = useState(false)
 
 
 
 
     const dispatch = useDispatch()
 
-    const [firstname, setFirstname] = useState(userInfo?.firstname ? userInfo?.firstname : '')
-    const [lastname, setLastname] = useState(userInfo?.lastname ? userInfo?.lastname : '')
-    const [alertid, setAlertid] = useState(false)
+    // input change firstname and lastname
+    const [postData, setPostData] = useState({
+        firstname: userInfo?.firstname ? userInfo?.firstname : '',
+        lastname: userInfo?.lastname ? userInfo?.lastname : ''
+
+    })
 
 
-    useEffect(() => {
-
-        if (alertid) {
-
-            setTimeout(() => {
-
-                setAlertid(false)
-                return setOpenName(false)
-
-            }, 3000);
-        }
-
-    }, [alertid, setOpenName])
 
 
+    // handle send updated to server.....>
     const HandleChangeUserInfo = (e) => {
         e.preventDefault()
+        setHandleError(false)
 
-        const user = {
-            firstname: firstname?.toLowerCase(),
-            lastname: lastname?.toLowerCase()
+        if (postData?.firstname?.length >= Number(3) && postData?.lastname?.length >= Number(3)) {
+
+            const user = {
+                firstname: ChangeCode(postData?.firstname),
+                lastname: ChangeCode(postData?.lastname),
+            }
+
+            dispatch(ChangeUserInfo(user))
+            setUpdateSuccessFully(true)
+
+
+            return
+
+        } else {
+            setHandleError(true)
+
+            return
+
         }
-
-        dispatch(ChangeUserInfo(user))
-
-        return setAlertid(true)
 
 
     }
 
-    return <Row className='justify-content-center'>
 
-        <ScreenAlrt
-            userCheck
-            alertid={alertid}
-            textName='Change user Info...'
-        />
-        <Col xs={11} ms={4} md={4} lg={4} >
-            {loading ? <LoadingScreen /> :
-                <Alert variant="light">
+    // close 
+    const handleClose = () => {
 
-                    <ImageScreen
-                        ImageIcon={MyOderImage.close}
-                        onClick={(e) => setOpenName(false)}
-                        className='class-close-image add-left-black'
+        setOpenName(false)
+        setHandleError(false)
+        setUpdateSuccessFully(false)
+    }
+
+    // remove error 
+    const BackAndRemoveError = () => {
+        setHandleError(false)
+        setUpdateSuccessFully(false)
+        CloseScreen(dispatch)
+    }
+
+
+    return <Modal show={openName} onHide={handleClose}>
+
+        <HandleLoadingPage
+            loading={loading}
+            error={error}
+            updateSuccessFully={updateSuccessFully}
+            BackAndRemoveError={BackAndRemoveError}
+            HandleClose={handleClose}
+            ErrorText={ErrorServer}
+
+        >
+            <div className='box-alert'>
+
+                <div >
+                    <span></span>
+                </div>
+
+                <div className='title-add'>
+                    <span className='title-add-profile'>uppdatera adressuppgifter</span>
+                </div>
+
+                <HiOutlineX className='close-pp-pp-image' onClick={handleClose} />
+
+
+
+            </div>
+            <div className='box-children-input'>
+
+
+
+                <Image src={MyOderImage.foodname} className='foodname' />
+
+                <div className='Form-ckidren-box' >
+
+                    {handleError &&
+                        <div className='error-input-red add-bottom' >
+                            <CodeError error={ErrorTextInput} />
+                        </div>
+                    }
+
+                    <Input
+                        placeholder='First name'
+                        className='Input-type-style productdetials'
+                        name='firstname'
+                        type='text'
+                        onChange={(e) => setPostData({ ...postData, firstname: e.target.value })}
+                        value={postData?.firstname}
+                        validation={ValtionMe(postData?.firstname, 'inputname')?.toString()}
+
+                    />
+
+                    <Input
+                        placeholder='last name'
+                        className='Input-type-style productdetials'
+                        name='lastname'
+                        type='text'
+                        onChange={(e) => setPostData({ ...postData, lastname: e.target.value })}
+                        value={postData?.lastname}
+                        validation={ValtionMe(postData?.lastname, 'inputname')?.toString()}
+
                     />
 
 
-                    <Image src={MyOderImage.foodname} className='foodname' />
+                    <div className='buttom-box'>
 
 
-
-                    <div className='name-class'>
-                        <h1>Name</h1>
-                    </div>
-
-                    <Form onSubmit={HandleChangeUserInfo}>
-
-                        <Input
-                            placeholder='First name'
-                            style={Styles.input}
-                            value={firstname}
-                            name='firstname'
-                            type='text'
-                            onChange={(e) => setFirstname(e.target.value)}
-                            onKeyPress={(e) => e.key === 'Enter' ? HandleChangeUserInfo : null}
-                        />
-
-                        <Input
-
-                            placeholder='last name'
-                            style={Styles.input}
-                            value={lastname}
-                            name='lastname'
-                            type='text'
-                            onChange={(e) => setLastname(e.target.value)}
-                            onKeyPress={(e) => e.key === 'Enter' ? HandleChangeUserInfo : null}
-                        />
-
-
-                        <div className='buttom-box'>
-
-
-                            <div className='buttom-class'>
-                                <ButtomClick
-                                    title='Cancel'
-                                    style={Styles.buttomColorPagenot}
-                                />
-                            </div>
-
-                            <div className='buttom-class'>
-                                <ButtomClick
-                                    title='Save'
-                                    style={Styles.buttomColorPage}
-                                />
-                            </div>
-
+                        <div className='buttom-class'>
+                            <ButtomClick
+                                title='Cancel'
+                                style={Styles.buttomColorPagenot}
+                                onClick={handleClose}
+                            />
                         </div>
-                    </Form>
+
+                        <div className='buttom-class'>
+                            <ButtomClick
+                                title='uppdatering'
+                                style={Styles.buttomColorPage}
+                                onClick={HandleChangeUserInfo}
+                                disabled={
+                                    ValidationUsername(postData, userInfo)
+                                }
+                            />
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </HandleLoadingPage>
 
 
 
 
-                </Alert>
-            }
-        </Col>
-    </Row>
+    </Modal>
 }

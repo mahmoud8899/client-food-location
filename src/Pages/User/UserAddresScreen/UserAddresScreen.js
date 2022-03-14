@@ -1,105 +1,148 @@
 import { Container, Row, Col, Modal } from 'react-bootstrap'
 import UserNavBarScreen from '../UserNavBarScreen/UserNavBarScreen'
 import '../UserProfileScreen/Profile.css'
-import Styles from '../UserProfileScreen/style'
+import Styles from '../../../Components/Update/StylesComponents/style'
 import MyAddress from '../../../Components/MyAddress/MyAddress'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import UserAddressInfo from './UserAddressInfo'
-import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import Title from '../../../Components/ScreenTitle/ScreenTitle'
 import AddOpenComponent from '../../../Components/Update/AddOpenComponent/AddOpenComponent'
-import UserVerifiedID from '../../../Components/Update/UserVerifiedID/UserVerifiedID'
+import { HiOutlineX } from 'react-icons/hi'
+import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
+import { ErrorServer } from '../../../Assistant/TextError'
+import {CloseScreen} from '../../../Components/CloseScreen/CloseScreen'
+
 export default function UserAddresScreen(props) {
 
+    const { history } = props
+
+    const dispatch = useDispatch()
+
+    // open page add address
     const [openAddres, setOpenAddres] = useState(false)
-    const userInfo = useSelector((state) => state?.userLogin?.userInfo)
+    // user info 
+       // user Info.......
+       const userLogin = useSelector((state) => state?.userLogin)
+       const { userInfo, error, loading } = userLogin
+
+
+    // check user
+    useEffect(() => {
+        if (!userInfo?.firstname) return history.push('/uppsala')
 
 
 
-    return <UserVerifiedID>
-        <Container>
-
-            <Title TextTitle='Add Address' />
-            <Row className="justify-content-center margin-top-class" >
-
-                <Col xs={12} sm={12} md={12} lg={12} >
-                    <div className='myprofile'>
-                        <h1>Profile</h1>
-                    </div>
-
-                </Col>
+    }, [userInfo, history])
 
 
 
+    // updated successfully
+    const [updateSuccessFully, setUpdateSuccessFully] = useState(false)
+     // close page
+     const HandleClose = () => {
+        CloseScreen(dispatch)
+        setUpdateSuccessFully(false)
+        setOpenAddres(false)
+     }
+     // remove error 
+     const BackAndRemoveError = () => {
 
-                <Col xs={12} sm={12} md={12} lg={12}>
-
-
-                    <UserNavBarScreen ClassNameAddress />
-
-                    <div className='margin-bottom-class'>  </div>
-
-                </Col>
-
-
-                <Col xs={12} sm={12} md={12} lg={8} className='heigth-margin' >
-
-
-                    {userInfo?.firstname ?
-
-
-                        <UserAddressInfo
-                            userInfo={userInfo}
-                            setOpenAddres={setOpenAddres}
-                        />
-                        :
-
-                        <>
+        CloseScreen(dispatch)
+        setUpdateSuccessFully(false)
+        console.log('remove error')
+     }
 
 
+    return <Container>
 
-                            <div className='addToCart-option'>
-                                <span className='firstBack' >You haven’t saved any addresses yet
-                                </span>
-                                <span className='firstBack-option'>
-                                    Add a new address easily below
-                                </span>
-                            </div>
-                        </>
-                    }
+        <Title TextTitle='Add Address' />
+        <Row className="justify-content-center margin-top-class" >
 
-                    <div className='addToCart' onClick={(e) => setOpenAddres(true)}>
-                        <AddOpenComponent
-                            Titel='Add Your address'
-                            style={Styles.addPayment}
-                            className='className-link'
-                            classNameTitle='className-linkleft'
+            <Col xs={12} sm={12} md={12} lg={12} >
+                <div className='myprofile'>
+                    <h1>Profil</h1>
+                </div>
 
-                        />
-
-
-
-                    </div>
+            </Col>
 
 
 
 
-
-                    {openAddres &&
-
-                        <>
-
-                            <Row className="justify-content-center" >
+            <Col xs={12} sm={12} md={12} lg={12}>
 
 
-                                <Modal
-                                    show={openAddres}
-                                    fullscreen='sm-down'
-                                    onHide={() => setOpenAddres(false)}
+                <UserNavBarScreen ClassNameAddress />
+
+                <div className='margin-bottom-class'>  </div>
+
+            </Col>
+
+
+            <Col xs={12} sm={12} md={12} lg={8} className='heigth-margin' >
+
+
+                {userInfo?.firstname ?
+
+
+                    <UserAddressInfo
+                        userInfo={userInfo}
+                        setOpenAddres={setOpenAddres}
+                    />
+                    :
+
+                    <>
+
+
+
+                        <div className='addToCart-option'>
+                            <span className='firstBack' >Du har inte sparat några adresser än
+                            </span>
+                            <span className='firstBack-option'>
+                                Add a new address easily below
+                            </span>
+                        </div>
+                    </>
+                }
+
+                <div className='addToCart' onClick={(e) => setOpenAddres(true)}>
+                    <AddOpenComponent
+                        Titel='Add Your address'
+                        style={Styles.addPayment}
+                        className='className-link'
+                        classNameTitle='className-linkleft'
+
+                    />
+
+
+
+                </div>
+
+
+
+
+
+                {openAddres &&
+
+                    <>
+
+                        <Row className="justify-content-center" >
+
+
+                            <Modal
+                                show={openAddres}
+                                fullscreen='sm-down'
+                                onHide={() => HandleClose()}
+                            >
+                                <HandleLoadingPage
+                                    loading={loading}
+                                    error={error}
+                                    ErrorText={ErrorServer}
+                                    updateSuccessFully={updateSuccessFully}
+                                    HandleClose={HandleClose}
+                                    BackAndRemoveError={BackAndRemoveError}
+
                                 >
-
                                     <div className='box-alert'>
 
                                         <div >
@@ -107,15 +150,10 @@ export default function UserAddresScreen(props) {
                                         </div>
 
                                         <div className='title-add'>
-                                            <span className='title-add-profile'>Edit address details</span>
+                                            <span className='title-add-profile'>uppdatera adressuppgifter</span>
                                         </div>
 
-
-                                        <ImageScreen
-                                            ImageIcon={MyOderImage.close}
-                                            className='class-close-image'
-                                            onClick={(e) => setOpenAddres(false)}
-                                        />
+                                        <HiOutlineX className='close-pp-pp-image' onClick={(e) => setOpenAddres(false)} />
 
 
 
@@ -125,31 +163,34 @@ export default function UserAddresScreen(props) {
 
                                     <MyAddress
                                         setOpenAddres={setOpenAddres}
+                                        setUpdateSuccessFully={setUpdateSuccessFully}
                                     />
 
-                                </Modal>
-
-                            </Row>
 
 
 
-                        </>
+                                </HandleLoadingPage>
 
 
 
+                            </Modal>
+
+                        </Row>
 
 
-                    }
 
-
-
-
-                </Col>
+                    </>
 
 
 
 
 
+                }
+
+
+
+
+            </Col>
 
 
 
@@ -159,8 +200,13 @@ export default function UserAddresScreen(props) {
 
 
 
-            </Row>
-        </Container>
-    </UserVerifiedID>
+
+
+
+
+
+        </Row>
+    </Container>
+
 }
 

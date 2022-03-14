@@ -1,19 +1,20 @@
 import { Col,  Row } from 'react-bootstrap'
-import '../UserProfileScreen/Profile.css'
 import Input from '../../../Components/Input/Input'
-import Styles from '../UserProfileScreen/style'
 import CheckedMe from '../../../Components/CheckedMe/CheckedMe'
 import { useState } from 'react'
 import { ValtionMe } from '../../../Assistant/ValtionMe'
 import ButtomClick from '../../../Components/Buttom/Buttom'
 import {AddCardNumberSave} from '../../../redux/Action/Cart_Action'
 import {useDispatch} from 'react-redux'
+import Styles from '../../../Components/Update/StylesComponents/style'
+import '../UserProfileScreen/Profile.css'
 export default function UserPaymentDerail(props) {
     const { setOpenPayment, classNamePayment } = props
  
     const dispatch = useDispatch()
 
 
+    // input updated cartnumber
     const [dataPayment, setDataPayment] = useState({
         cartnumber: '',
         expiration: '',
@@ -22,10 +23,13 @@ export default function UserPaymentDerail(props) {
     })
 
 
+    // add okej
     const [addOkey, setAddOkey] = useState(false)
+    // handel error
     const [handleError, setHandleError] = useState('')
 
 
+     // save data
     const HandleCard = (e) => {
         e.preventDefault()
 
@@ -46,14 +50,11 @@ export default function UserPaymentDerail(props) {
                 style={classNamePayment ? null : Styles.back}
             >
 
-
-
-
                 <Input
                     placeholder='1214324536457647'
                     title='Cart number'
                     type='numner'
-                    style={Styles.input}
+                    className='Input-type-style productdetials'
                     value={dataPayment?.cartnumber}
                     onChange={(e) => setDataPayment({ ...dataPayment, cartnumber: e.target.value })}
                     validation={ValtionMe(dataPayment?.cartnumber, 'cartnumber').toString()}
@@ -64,8 +65,7 @@ export default function UserPaymentDerail(props) {
                         <Input
                             placeholder='MM/YY'
                             title='expiration'
-                            style={Styles.input}
-
+                            className='Input-type-style productdetials'
                             value={dataPayment?.expiration}
                             onChange={(e) => setDataPayment({ ...dataPayment, expiration: e.target.value })}
                             validation={ValtionMe(dataPayment?.expiration, 'Expiration')?.toString()}
@@ -77,7 +77,7 @@ export default function UserPaymentDerail(props) {
                         <Input
                             placeholder='Cvv'
                             title='security code'
-                            style={Styles.input}
+                            className='Input-type-style'
                             value={dataPayment?.secuity}
                             onChange={(e) => setDataPayment({ ...dataPayment, secuity: e.target.value })}
                             validation={ValtionMe(dataPayment?.secuity, 'xPcVV')?.toString()}
@@ -91,7 +91,7 @@ export default function UserPaymentDerail(props) {
                     <Input
                         placeholder='Cart name'
                         title='Cart name (optional)'
-                        style={Styles.input}
+                        className='Input-type-style productdetials'
                         value={dataPayment?.cartname}
                         onChange={(e) => setDataPayment({ ...dataPayment, cartname: e.target.value })}
                         validation={ValtionMe(dataPayment?.cartname, 'isUser')?.toString()}

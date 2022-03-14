@@ -22,8 +22,8 @@ const NavBar = () => {
 
     const dispatch = useDispatch()
 
-   // testing login ...
-   const [loginOpen, setLoginOpen] = useState(false)
+    // testing login ...
+    const [loginOpen, setLoginOpen] = useState(false)
 
 
 
@@ -37,7 +37,9 @@ const NavBar = () => {
 
 
 
- 
+
+
+
 
 
 
@@ -48,10 +50,10 @@ const NavBar = () => {
 
     return <Container fluid >
         <Row className='justify-content-center rowFexColo'>
-            <Col xs={3} sm={4} md={4} lg={4} className='testincode'>
-                    <Link className="HoME_link_Home" to={{pathname : '/uppsala/'}}>
-                        <span className='font-nav-login'  style={Styles.logText}>{FirstNameRest}</span>
-                    </Link>
+            <Col xs={4} sm={4} md={4} lg={4} className='testincode'>
+                <Link className="HoME_link_Home" to={{ pathname: '/uppsala/' }}>
+                    <span className='font-nav-login' style={Styles.logText}>{FirstNameRest}</span>
+                </Link>
             </Col>
             <Col xs={5} sm={3} md={3} lg={3} className='testincode'>
                 <div className='handel-navbar'>
@@ -60,7 +62,7 @@ const NavBar = () => {
 
             </Col>
 
-            <Col xs={2} sm={4} md={4} lg={4} className='testincode'>
+            <Col xs={3} sm={4} md={4} lg={4} className='testincode'>
                 <div className='handel-navbar'>
 
 
@@ -81,15 +83,16 @@ const NavBar = () => {
                             style={Styles.dropdown}
                         >
 
-                            <NavDropdown.Item onClick={(e) => TheProfile(history)}>
+                            <NavDropdown.Item onClick={(e) => TheProfile(history ,userInfo?.cartinfo)}>
+                                
                                 <div className='flex-profile'>
                                     <span>My Profiel</span>
                                     <span className='font-fex'>{userInfo?.firstname} {userInfo?.lastname}</span>
                                 </div>
                             </NavDropdown.Item>
 
-                            <NavDropdown.Item>
-                                <div style={Styles.Link_no} onClick={(e) => LogoUtUser(dispatch)}>
+                            <NavDropdown.Item onClick={(e) => LogoUtUser(dispatch)}>
+                                <div style={Styles.Link_no} >
                                     <span className='line-size' >logo ut</span>
                                 </div>
 

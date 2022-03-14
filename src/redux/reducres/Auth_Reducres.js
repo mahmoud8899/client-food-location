@@ -10,7 +10,6 @@ export const LoginReducres = (state = {
     forgetPassword: {},
     error: null,
     checkeduser: null,
-    successfully: null,
     updatedaccount: null,
 
 }, action) => {
@@ -40,19 +39,15 @@ export const LoginReducres = (state = {
             loading: false
         }
 
-     
-        case ActionTypes.ADD_ACOUNT_USER_SUCCESS: return{
-            ...state, 
-            updatedaccount: action.payload,
-            loading : false
-        }
 
-
-        case ActionTypes.ADDTELEFONUMBER: return {
+        case ActionTypes.ADD_ACOUNT_USER_SUCCESS: return {
             ...state,
-            successfully: action.payload,
+            updatedaccount: action.payload,
             loading: false
         }
+
+
+
         case ActionTypes.ADD_USER_CHECKIN: return {
             ...state,
             checkeduser: action.payload,
@@ -60,6 +55,7 @@ export const LoginReducres = (state = {
         }
 
         case ActionTypes.ADD_USER_FAIL: return {
+            ...state,
             error: action.payload,
             loading: false
         }
@@ -79,29 +75,31 @@ export const LoginReducres = (state = {
 
 
 
-// export const U = (state = {
-//     updatedaccount: null,
-//     loading: false,
-//     error: null
-// }, action) => {
-//     switch (action.type) {
-//         case ActionTypes.ADD_ACOUNT_USER_LOADING: return { loading: true }
-//         case ActionTypes.ADD_ACOUNT_USER_SUCCESS: return {
-//             ...state,
-//             updatedaccount: action.payload,
-//             loading: false
-//         }
 
 
-//         case ActionTypes.ADD_ACOUNT_USER_FAIL: return {
-//             error : action.payload,
-//             loading : false
-//         }
+export const AddNumberReducres = (state = {
+    successfully: null,
+    loading: false,
+    error: null
+}, action) => {
+    switch (action.type) {
+        case ActionTypes.ADDTELEFONUMBER_LOADING: return { loading: true }
+        case ActionTypes.ADDTELEFONUMBER: return {
+            ...state,
+            successfully: action.payload,
+            loading: false
+        }
 
 
-//         default: return state
-//     }
-// }
+        case ActionTypes.ADDTELEFONUMBER_FAIL: return {
+            error: action.payload,
+            loading: false
+        }
+
+
+        default: return state
+    }
+}
 
 
 

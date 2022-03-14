@@ -144,7 +144,7 @@ export function ValidationUpdatedAccount(NewData, OldData) {
 
 
 // valdtion create caret
-export function ValidationCreateCart(productDetails, opentime,addressinfo,finishfood,changeImage) {
+export function ValidationCreateCart(productDetails, opentime, addressinfo, finishfood, changeImage) {
 
 
 
@@ -153,12 +153,38 @@ export function ValidationCreateCart(productDetails, opentime,addressinfo,finish
         && productDetails?.productType?.trim()?.length >= Number(3)
         && opentime?.oppen > '00:00'
         && opentime?.close > '00:00'
-        && addressinfo?.city?.length >=  Number(3)
-        && addressinfo?.address?.length >=  Number(3)
+        && addressinfo?.city?.length >= Number(3)
+        && addressinfo?.address?.length >= Number(3)
         && addressinfo?.telefon?.length >= Number(10)
-        && addressinfo?.website?.length >=  Number(3)
+        && addressinfo?.website?.length >= Number(3)
         && finishfood?.to >= 1
         && finishfood?.end >= 1
         && changeImage?.length >= Number(2)
 
+}
+
+
+
+// validation user updated address
+export const ValidationUserAddress = (NewAddress, OldAddress) => {
+
+
+
+
+
+
+    return NewAddress?.addres?.trim()?.normalize() === OldAddress?.addres?.trim()?.normalize()
+        && NewAddress?.city?.trim()?.normalize() === OldAddress?.city?.trim()?.normalize()
+        && NewAddress?.homeNumber?.trim()?.normalize() === OldAddress?.homeNumber?.trim()?.normalize()
+        && NewAddress?.work?.trim()?.normalize() === OldAddress?.work?.trim()?.normalize()
+        && NewAddress?.zipcode?.trim()?.normalize() === OldAddress?.zipcode?.trim()?.normalize()
+}
+
+
+
+// validation firstname and lastname change 
+export const ValidationUsername = (NewInfon, OldInfo) => {
+
+    return NewInfon?.firstname?.trim()?.normalize() === OldInfo?.firstname?.trim()?.normalize()
+        && NewInfon?.lastname?.trim()?.normalize() === OldInfo?.lastname?.trim()?.normalize()
 }

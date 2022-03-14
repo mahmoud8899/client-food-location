@@ -6,6 +6,15 @@ Margin-top-home -- all Home screen
 
 */
 
+.Colse-Remove-Items{
+
+    position: relative;
+    left:  0.2rem;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 .box-name.aad-top-style{
 display: flex;
 align-items: center;

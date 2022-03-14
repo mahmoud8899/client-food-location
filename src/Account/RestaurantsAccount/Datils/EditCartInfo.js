@@ -1,5 +1,4 @@
 import { Form, Modal, Row, Col } from 'react-bootstrap'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ButtomClick from '../../../Components/Buttom/Buttom'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,7 +14,7 @@ import { ValidationCartInfo, ChangeCode, ValidationCreateCart } from '../../../A
 import { TheCartInfo } from '../../../Components/CloseScreen/CloseScreen'
 import { useEffect, useState } from 'react'
 import { BiEditAlt } from 'react-icons/bi'
-
+import {HiOutlineX} from 'react-icons/hi'
 
 export default function EditCartInfo(props) {
 
@@ -126,10 +125,7 @@ export default function EditCartInfo(props) {
 
                 if (imageSave) {
                     return dispatch(UpdatedImageAction(imageSave, dataInfo, true))
-                } else {
-                    return dispatch(UpdatedCartInfoAction(dataInfo))
-
-                }
+                } 
 
             } else {
 
@@ -206,12 +202,9 @@ export default function EditCartInfo(props) {
                     <div className='body-category'>
 
                         <div className='modal-title-edit-category'>
-                            <h1> ändring </h1>
-                            <ImageScreen
-                                ImageIcon={MyOderImage.close}
-                                className='close-pp-pp-image'
-                                onClick={HandleClose}
-                            />
+                            <h1> ändring </h1> 
+                            <HiOutlineX  className='close-pp-pp-image'  onClick={HandleClose}/>
+                           
                         </div>
 
                         {handleError &&

@@ -124,20 +124,24 @@ login-margin-top-bottom   margin-top and bottom
     box-sizing: inherit;
    
 }
-
+.POstion-form{
+    height: 430px;
+    overflow: hidden;
+    overflow-y: auto;
+}
 .modal-content {
     position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
     pointer-events: auto;
-    background-color: #fff;
     background-clip: padding-box;
     border: 1px solid white;
     outline: 0;
-    height: 520px;
+    height: 90vh;
     border-radius: 1.5rem;
     overflow: hidden;
+    margin-top: 0rem;
  
 }
  /* Start with facbook other */
@@ -234,9 +238,8 @@ login-margin-top-bottom   margin-top and bottom
 }
 .Input-type-style{
     height: 40px;
-    padding-left: 40px;
-    border-radius: 0.2rem;
-    background-color: white;
+    border-radius: 0.4rem;
+    border: 1px solid #ff9c97ba;
 }
 
 .Input-type-style.padding-left-none{
@@ -245,10 +248,10 @@ login-margin-top-bottom   margin-top and bottom
 }
 .Input-type-style:focus{
     color: #212529;
-    background-color:white;
-    border-color: #eee;
+    background-color: white;
+    border-color: #ff9d97;
     outline: 0;
-    box-shadow: 0 0 0 0rem #f6f6f6;
+    box-shadow: 0 0 0 0rem #ff9c97;
 }
 .login-text-bottom{
     font-size: 12px;

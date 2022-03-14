@@ -218,14 +218,17 @@ export const AddTelefonNumber = (user) => async (dispatch, getState) => {
     try {
 
 
+        dispatch({ type: ActionTypes.ADDTELEFONUMBER_LOADING })
+
         const { userLogin: { token }, } = getState()
-        const config = {
+
+
+        const { data } = await axios.put(`/api/user/telefonnumber/`,
+            user, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
-        }
-
-        const { data } = await axios.put(`/api/user/telefonnumber/`, user, config)
+        })
         dispatch(GetUserInfoAction(token))
         dispatch({ type: ActionTypes.ADDTELEFONUMBER, payload: data.message })
 
@@ -242,7 +245,7 @@ export const AddTelefonNumber = (user) => async (dispatch, getState) => {
 
         }
         dispatch({
-            type: ActionTypes.ADD_USER_FAIL,
+            type: ActionTypes.ADDTELEFONUMBER_FAIL,
             payload: message
 
         })
@@ -334,9 +337,8 @@ export const user_Login = (user) => async (dispatch) => {
 
 // Get user Info .... 
 // GET // URL  /api/user/user/
-export const GetUserInfoAction = (token) => async (dispatch, getState) => {
+export const GetUserInfoAction = () => async (dispatch, getState) => {
     try {
-
 
         const { userLogin: { token }, } = getState()
 
@@ -348,7 +350,7 @@ export const GetUserInfoAction = (token) => async (dispatch, getState) => {
 
         dispatch(setUser(data))
         localStorage.setItem(ActionTypes.KEY_USER, JSON.stringify(data))
-        // console.log('data data.....')
+        
     } catch (error) {
 
         const message = error.response &&
@@ -360,13 +362,10 @@ export const GetUserInfoAction = (token) => async (dispatch, getState) => {
             return dispatch(Action_logout())
         }
 
-        console.log('not return error', message)
-
-        //  dispatch(Action_logout())
-        // dispatch({
-        //     type: ActionTypes.ADD_USER_FAIL,
-        //     payload: message
-        // })
+        dispatch({
+            type: ActionTypes.ADD_USER_FAIL,
+            payload: message
+        })
     }
 }
 

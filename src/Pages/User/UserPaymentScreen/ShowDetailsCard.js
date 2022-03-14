@@ -9,12 +9,14 @@ import { RemoveCardNumberAction } from '../../../redux/Action/Cart_Action'
 
 
 export default function ShowDetailsCard(props) {
-const {TheCartNumber , classNamePayment} = props
+    const { TheCartNumber, classNamePayment } = props
 
     const dispatch = useDispatch()
 
+    // open page cartnumber....
     const [openDown, setOpenDown] = useState(false)
 
+    // remove cartnumber....
     const NoRemove = () => {
         dispatch(RemoveCardNumberAction())
     }
@@ -22,7 +24,7 @@ const {TheCartNumber , classNamePayment} = props
 
 
 
-    return <div className={classNamePayment ?  'add-selected-item addxpxp'  :'Edit-updateCart'   } >
+    return <div className={classNamePayment ? 'add-selected-item addxpxp' : 'Edit-updateCart'} >
 
         <div className='first-class-add-remove'>
             <ImageScreen
@@ -30,7 +32,7 @@ const {TheCartNumber , classNamePayment} = props
                 className='visa-image'
             />
 
-            <span  className={classNamePayment ? 'dddddddd' : ''}>{TheCartNumber?.cartnumber}</span>
+            <span className={classNamePayment ? 'dddddddd' : ''}>{TheCartNumber?.cartnumber}</span>
         </div>
 
 

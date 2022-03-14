@@ -1,11 +1,10 @@
-import { Modal, } from 'react-bootstrap'
-import ImageScreen from '../../Components/ImageScreen/ImageScreen'
-import { MyOderImage } from '../../Assistant/MyOrderImage'
+import { Modal } from 'react-bootstrap'
 import './NavBarCity.css'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import NotUserSerchingCity from './NotUserSerchingCity'
 import ActiveUserSearchCity from './ActiveUserSearchCity'
+import { HiOutlineX, HiArrowNarrowLeft } from 'react-icons/hi'
 export default function LoactionCity(props) {
 
     const { showCity, setShowCity } = props
@@ -31,7 +30,7 @@ export default function LoactionCity(props) {
     }
 
 
-  
+
 
 
 
@@ -39,8 +38,7 @@ export default function LoactionCity(props) {
         <div className='first-city-location add-padding-loaction'>
             <div>
                 {openAddres || openSelectionCity ?
-                    <ImageScreen
-                        ImageIcon={MyOderImage.left}
+                    <HiArrowNarrowLeft
                         className='close-pp-pp-image'
                         onClick={(e) => openAddres ? HandleOpenAdddress(e) : HandleCity(e)}
                     />
@@ -52,8 +50,8 @@ export default function LoactionCity(props) {
             <div className='font-edit'>
                 Edit address details
             </div>
-            <ImageScreen ImageIcon={MyOderImage.close} className='close-pp-pp-image'
-                onClick={() => setShowCity(false)} />
+            <HiOutlineX className='close-pp-pp-image' onClick={() => setShowCity(false)} />
+
         </div>
 
         <div className='loaction-bottom'></div>

@@ -25,32 +25,32 @@ export default function RestaurantsNavBarScreen(props) {
     const HomePage = (e) => {
         e.preventDefault()
 
-        return history.push(`/sw/restaurants/admin/620d1f1084f54514ebb4dac8`)
+        return history.push(`/sw/restaurants/admin/`)
     }
 
     const ProductPage = (e) => {
         e.preventDefault()
 
-        return history.push(`/sw/restaurants/admin/product/620d1f1084f54514ebb4dac8`)
+        return history.push(`/sw/restaurants/admin/product/`)
     }
 
     const CategoryPage = (e) => {
         e.preventDefault()
 
-        return history.push(`/sw/restaurants/admin/category/620d1f1084f54514ebb4dac8`)
+        return history.push(`/sw/restaurants/admin/category/`)
     }
 
     const OrderPage = (e) => {
         e.preventDefault()
 
-        return history.push(`/sw/restaurants/admin/order/620d1f1084f54514ebb4dac8`)
+        return history.push(`/sw/restaurants/admin/order/`)
     }
 
 
     const ProfilPage = (e) => {
         e.preventDefault()
 
-        return history.push(`/sw/restaurants/admin/profile/620d1f1084f54514ebb4dac8`)
+        return history.push(`/sw/restaurants/admin/profile/`)
     }
 
 

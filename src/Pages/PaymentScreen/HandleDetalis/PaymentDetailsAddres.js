@@ -33,12 +33,16 @@ export default function PaymentDetailsAddres(props) {
             {openAddresScreen ?
                 <>
 
-                <ImageScreen className='class-close-image add-left'  ImageIcon={MyOderImage.close} onClick={(e)=>HandlAddAddres(e)}  />
-                    
+                    <ImageScreen
+                        className='class-close-image'
+                        ImageIcon={MyOderImage.left}
+                        onClick={(e) => HandlAddAddres(e)}
+                    />
+
                     <div className='nothover' >
 
                         <MyAddress
-                            ClassNamePayment
+                            ClassPaymentAdd
                             setOpenAddres={setOpenAddresScreen}
 
                         />

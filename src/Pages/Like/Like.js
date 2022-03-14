@@ -1,17 +1,22 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import Rating from '../../Components/Rating/Rating'
-import '../Home/Home.css'
 import NavBarCity from '../NavBarCity/NavBarCity'
 import ImageScreen from '../../Components/ImageScreen/ImageScreen'
 import { Link } from 'react-router-dom'
 import { Conversion } from '../../Components/Update/Conversion/Conversion'
+import { FiArchive } from 'react-icons/fi'
+import '../Home/Home.css'
+import {removeLikeAction} from '../../redux/Action/Like_Action'
 const ScreenLike = (props) => {
 
 
     const { Hidding } = props
+
+
+    const dispatch = useDispatch()
 
 
 
@@ -22,6 +27,12 @@ const ScreenLike = (props) => {
 
 
 
+
+
+    const HandleRemove = (id) =>{
+
+        dispatch(removeLikeAction(id))
+    }
 
 
 
@@ -52,16 +63,20 @@ const ScreenLike = (props) => {
                     {likeCart?.map((slider, sliderIndex) => (
                         <Col xs={12} sm={6} md={4} lg={4} key={sliderIndex} >
 
-                            <div className='Favourites-items margin-top-'
-                                onClick={() => console.log('click')}
-                            >
+                            <div className='Favourites-items margin-top-'>
 
                                 <Link to={{ pathname: Conversion(slider) }}>
                                     <ImageScreen
                                         ImageIcon={slider?.image}
                                         className='Favourites-items-category'
                                     />
+
+
                                 </Link>
+                                <FiArchive
+                                    className='Colse-Remove-Items'
+                                    onClick={() => HandleRemove(slider?._id)}
+                                />
 
                                 <div className='box-name'>
                                     <span className='font-name-size'>{slider?.username}</span>

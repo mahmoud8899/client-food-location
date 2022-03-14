@@ -1,17 +1,13 @@
 /* font-family: 'Mochiy Pop P One', sans-serif; */
 .rowFexColo{
- 
     border-bottom: 1px solid #eee;
     flex-wrap: wrap;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 0.5rem;
-   
 }
 .testincode{
     padding: 0.2rem;
-  
 }
 
 .loin-style{
@@ -195,7 +191,7 @@
 }
 
 .font-nav-login{
-    font-size: 13px;
+    font-size: 17px;
 }
 
 
@@ -207,7 +203,7 @@
         transition: all 3s;
     }
     .font-nav-login{
-        font-size: 11px;
+        font-size: 18px;
     }
    
 }

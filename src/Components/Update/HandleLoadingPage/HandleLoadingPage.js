@@ -1,9 +1,7 @@
 import { Fragment } from 'react'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import CodeError from '../../CodeError/CodeError'
-import ImageScreen from '../../ImageScreen/ImageScreen'
 import LoadingScreen from '../../LoadingScreen/LoadingScreen'
-
+import { HiOutlineX, HiArrowNarrowLeft } from 'react-icons/hi'
 
 
 
@@ -19,6 +17,7 @@ export default function HandleLoadingPage(props) {
         HandleClose,
         BackAndRemoveError,
         updated,
+        ErrorText,
     } = props
 
 
@@ -33,22 +32,17 @@ export default function HandleLoadingPage(props) {
                 <div className='body-category'>
 
                     <div className='Handl-navBar'>
-                        <ImageScreen
-                            ImageIcon={MyOderImage.left}
-                            className='close-pp-pp-image'
-                            onClick={BackAndRemoveError}
+                        <HiArrowNarrowLeft className='close-pp-pp-image' onClick={BackAndRemoveError}
                         />
-                        <ImageScreen
-                            ImageIcon={MyOderImage.close}
-                            className='close-pp-pp-image'
-                            onClick={HandleClose}
-                        />
+                        <HiOutlineX className='close-pp-pp-image' onClick={HandleClose} />
+
+
                     </div>
 
 
 
                     <div className='Loading-Updated'>
-                        <CodeError error={error}
+                        <CodeError error={ErrorText ? ErrorText : error}
                             onClick={(e) => console.log('error')}
                         />
                     </div>
@@ -59,16 +53,14 @@ export default function HandleLoadingPage(props) {
                 updateSuccessFully
                     ?
                     <div className='body-category'>
-                        <ImageScreen
-                            ImageIcon={MyOderImage.close}
-                            className='close-pp-pp-image'
-                            onClick={() => HandleClose()}
-                        />
+
+                        <HiOutlineX className='close-pp-pp-image' onClick={() => HandleClose()} />
+
 
                         <div className='Loading-Updated'>
 
                             <div className='Text-Uploading'>
-                                {updated ? 'Updated your order' : 'successfully new product'}
+                                {updated ? 'Uppdaterad' : 'Uppdaterad'}
                             </div>
                             <LoadingScreen />
                         </div>

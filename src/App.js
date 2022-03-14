@@ -99,11 +99,11 @@ export default function App() {
 
 
 
-            <Route path='/sw/restaurants/admin/:id/' component={RestaurantsHomeScreen} exact />
-            <Route path='/sw/restaurants/admin/order/:id/' component={RestaurantsOrderScreen} exact />
-            <Route path='/sw/restaurants/admin/product/:id/' component={RestaurantsProductScreen} exact />
-            <Route path='/sw/restaurants/admin/category/:id/' component={RestaurantsCategoryScreen} exact />
-            <Route path='/sw/restaurants/admin/profile/:id/' component={RestaurantsProfilScreen} exact />
+            <Route path='/sw/restaurants/admin/' component={RestaurantsHomeScreen} exact />
+            <Route path='/sw/restaurants/admin/order/' component={RestaurantsOrderScreen} exact />
+            <Route path='/sw/restaurants/admin/product/' component={RestaurantsProductScreen} exact />
+            <Route path='/sw/restaurants/admin/category/' component={RestaurantsCategoryScreen} exact />
+            <Route path='/sw/restaurants/admin/profile/' component={RestaurantsProfilScreen} exact />
 
 
   

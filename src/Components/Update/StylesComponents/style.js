@@ -3,6 +3,117 @@ import COLORS from '../../../Assistant/Color'
 
 
 const Styles = {
+    ColorSetting: {
+        color: COLORS.firstRed,
+        fontSize: '16px',
+        fontWeight: 'bold',
+        textTransform: 'capitalize'
+    },
+    addPayment: {
+        backgroundColor: COLORS.firstRed,
+        color: COLORS.white,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: '19px',
+        borderRadius: '0.5rem',
+        cursor: 'pointer',
+        height : '100%'
+    },
+    Orderbox: {
+        boxShadow: `rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px`,
+        margin: '5px'
+    },
+
+    Ordersremove: {
+        width: '15px',
+        height: '15px',
+        marginLeft: 'auto',
+        display: 'block'
+    },
+    Orderstime: {
+        width: '15px',
+        height: '15px',
+        marginLeft: 20,
+    },
+    OrderstimenotLeft: {
+        width: '15px',
+        height: '15px',
+    },
+    Ordersbottom: {
+        marginTop: '10px'
+    },
+    Orderslooklike: {
+        background: COLORS.firstRed,
+        color: COLORS.white
+    },
+
+    Ordersfont: {
+        fontSize: 13,
+    },
+
+    Ordersboxpric: {
+        background: COLORS.notClick,
+        color: COLORS.white
+    },
+
+
+    colorCancel: {
+        background: '#00000063',
+        color: COLORS.white,
+        marginRight: '0.5rem'
+
+    },
+    addCartcolor: {
+        background: COLORS.firstRed,
+        width: '100%',
+        border: 'none',
+        height: '45px',
+        color: COLORS.white,
+        borderRadius: '10px',
+        fontSize: '14px'
+    },
+    back: {
+        background: COLORS.finds
+    },
+    newBox: {
+        color: COLORS.firstRed,
+        fontSize: '20px',
+        cursor: 'pointer'
+    },
+    
+    colorLine : {
+
+        border : `1px solid rgb(255 59 47 / 13%)`,
+        bordeRadius : '1rem'
+
+    },
+    buttomColorPageCancal:{
+        background : COLORS.finds,
+        width : '100%',
+        border : 'none',
+        height : '45px',
+        color : COLORS.light,
+        borderRadius : '10px',
+        fontSize : '14px',
+        fontFamily: 'system-ui',
+        textTransform: 'capitalize',
+    },
+    buttomColorPage : {
+        background : COLORS.firstRed,
+        width : '100%',
+        border : 'none',
+        height : '45px',
+        color : COLORS.white,
+        borderRadius : '10px',
+        fontSize: '14px',
+        fontFamily: 'system-ui',
+        textTransform: 'capitalize'
+  
+
+    },
+
+
 
     coloricons:{
 
@@ -298,17 +409,7 @@ const Styles = {
         color: COLORS.white
 
     },
-    buttomColorPage: {
-        background: COLORS.firstRed,
-        width: '100%',
-        border: 'none',
-        height: '45px',
-        color: COLORS.white,
-        borderRadius: '10px',
-        fontSize: '14px',
-        textTransform: 'capitalize',
 
-    },
     box: {
 
         fontSize: '19px',

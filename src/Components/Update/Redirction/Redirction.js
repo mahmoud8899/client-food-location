@@ -2,13 +2,13 @@
 
 
 // profile user
-export const TheProfile = (history) =>{
+export const TheProfile = (history, form) => {
 
-    return  history.push(`/sw/profil/personal/`)
+    return form ? history.push(`/sw/restaurants/admin/`) : history.push(`/sw/profil/personal/`)
 }
 
 // profile user
-export const LikePage = (history) =>{
+export const LikePage = (history) => {
 
-    return  history.push(`/sw/personal/like/`)
+    return history.push(`/sw/personal/like/`)
 }

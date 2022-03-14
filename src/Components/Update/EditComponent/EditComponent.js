@@ -20,8 +20,8 @@ export default function EditComponent(props) {
             <h1>...</h1>
         </div>
         <div className={optionMore ? 'class-edit-postion hidden' : 'class-edit-postion'}>
-            <span onClick={NoRemove}>remove</span>
-            {ENoption ? null :  <span onClick={OpenEditAddress}>edit</span>}
+            <span onClick={NoRemove}>ta bort</span>
+            {ENoption ? null :  <span onClick={OpenEditAddress}>uppdatering</span>}
             
         </div>
     </div>

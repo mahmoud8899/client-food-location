@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-
+import { HiPlus } from "react-icons/hi";
 
 
 
@@ -23,7 +23,9 @@ export default function AddOpenComponent(props) {
             pathname : PathName
         }}
     >
-        <span className={classNamePluse ? classNamePluse : 'pluse-class'} >+</span>
+
+           <HiPlus  className={classNamePluse ? classNamePluse : 'close-pp-pp-image'} />
+      
         <div className={classNameTitle ? classNameTitle : 'items-name-first-name'}>{Titel}</div>
     </Link>
 }

@@ -74,7 +74,7 @@ export default function InputSearchingRestrange(props) {
         <Input
             placeholder='Searching'
             ImageLog={MyOderImage.search}
-            className='Input-type-style'
+            className='Input-type-style add-leftpaddig'
             onChange={(e) => setSearching(e.target.value)}
             // onKeyPress={(e) => e.key === 'Enter' ? HandleSearching() : null}
 

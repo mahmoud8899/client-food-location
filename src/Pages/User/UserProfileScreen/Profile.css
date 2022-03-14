@@ -2,6 +2,15 @@
     margin-left: auto;
     position: relative;
 }
+.error-handle-error{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+.color-last-items-User{
+    text-transform: capitalize;
+}
 .className-linkleft{
     margin-left: 0.5rem;
 }
@@ -18,19 +27,24 @@
     justify-content: center;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
     background-color: #eee;
 }
-.routx- h1
-{
-    height: 30px;
-    line-height: 19px;
-    font-size: 30px;
-    color: black;
+
+.routx- h1{
+    color: rgba(255, 59, 47, 0.52);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 .class-edit-postion{
     transition: all 2s;
     display: none;
+}
+.class-edit-postion span{
+    padding: 0.4rem;
+}.class-edit-postion span:hover{
+    color: white;
 }
 .class-edit-postion.hidden{
     display: flex;
@@ -45,15 +59,8 @@
     transition: all 2s;
     border-top-left-radius: 1rem;
 
-}.class-edit-postion span{
-    padding: 0.5rem;
-    text-transform: capitalize;
-    font-size: 14px;
-    transition: all 1s;
-    color: black;
-}.class-edit-postion span:hover{
-    background-color: white;
 }
+
 .company.bottom-xp{
  
   margin-top: 1rem;
@@ -66,13 +73,10 @@
     height: 30px;
 }
 .Edit-updateCart{
-   
     display: flex;
-  
     justify-content: space-between;
     margin-bottom: 2rem;
     margin-top: 4rem;
-
 }
 
 .first-class-add-remove{
@@ -99,43 +103,8 @@
     font-family: "Mochiy Pop P One", sans-serif;
 }
 
-.Edit-updateCart-x{
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #eee;
-    color: black;
-    font-size: 17px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    cursor: pointer;
-    opacity: 0.7;
-    transition: all 2s;
-    position: relative;
-}
-.Edit-updateCart-x:hover{
-    opacity: 1;
-}
 
-.remove-icons{
 
-    width: 100px;
-    background-color: #eee;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-size: 17px;
-    font-weight: bold;
-    position: absolute;
-    top: 1.5rem;
-    
-    
-}
-.remove-icons.notdisplay{
-    display: none;
-}
 
 .bike-User{
     width: 30px;
@@ -143,8 +112,8 @@
     object-fit:cover
 }
 .bike-User.add-size{
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
 }
 .color-family-User
 {    color: black;
@@ -162,20 +131,9 @@
     padding: 1rem;
     cursor: pointer;
 }
-.CloseImagePhone{
-    width: 30px;
-    height: 30px;
-    margin-left: auto;
-    border-radius: 50%;
-    background-color: #eee;
-    padding: 3px;
-    display: block;
-}
+
 .flex-class-center{
-
-
     margin-top: 3rem;
-
 }
 .Type-Input-class{
     width: 100%;
@@ -185,7 +143,6 @@
     text-align: center;
     font-weight: bold;
     color: black;
-
 }
 
 .Type-Input-class:focus {
@@ -196,18 +153,17 @@
     box-shadow: 0 0 0 0.1rem #eee;
 }
 .foodname{
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     text-align: center;
     object-fit: cover;
     display: block;
     margin : 0rem auto
 }
-.plus-image{
-    width: 20px;
-    height: 20px;
-}
-.PAYMENT-FIX{
+
+.className-infoUser.PAYMENT-FIX{
+
+    margin-top: 0.5rem;
     display: flex;
 }
 .className-infoUser{
@@ -218,9 +174,10 @@
     cursor: pointer;
     transition: all 3s;
     border-radius: 0.4rem;
- 
 }
-
+.className-infoUser.REMOVE-BOTTOM{
+    margin-top: 0.5rem;
+}
 .first-left-box{
     margin-left: 1rem;
 }
@@ -228,42 +185,19 @@
 .myprofile h1{
     font-family: system-ui;
 }
+.Form-ckidren-box{
+    margin-top: 2rem;
+}
 .buttom-box{
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
-
+    margin-top: 2rem;
 }
 .buttom-class{
     width: 45%;
 }
-.name-class  h1{
-    font-family: system-ui;
-    color: black;
-}.name-class  h1:hover{
-    opacity: 1;
-}
-.close-close{
 
-    margin-left: auto;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: #eee;
-    text-align: center;
-    line-height: 45px;
-    font-weight: bold;
-    font-size: 40px;
-    font-family: 'Dongle', sans-serif;
-    cursor: pointer;
-    transition: all 0.20s;
-    opacity: 0.6;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 
-}
-.close-close:hover{
-    opacity: 1;
-}
 .padding-null{
     margin-top: 3rem;
 }
@@ -274,13 +208,6 @@
     height: 400px;
 }
 
-.addcardpassword{
-
-    width: 20px;
-    height: 20px;
-    object-fit: cover;
-
-}
 .animationRow{
    transition: all 2s;
    animation: leftxp 2s 1;
@@ -321,15 +248,12 @@ label {
 }
 
 .box-navbar{
-
    display: flex;
     padding: 0rem;
     cursor: pointer;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
-  
-   
 }
 
 .margin-bottom-class{
@@ -343,7 +267,7 @@ label {
     text-transform: capitalize;
     margin-right: 0.9rem;
     cursor: pointer;
-    font-size: 23px;
+    font-size: 18px;
     color: rgba(0, 0, 0, 0.733);
 }
 .action-personal{
@@ -351,17 +275,7 @@ label {
  border-bottom: 1px solid red;
   
 }
-.border-bottom-style{
- margin-top: 1rem;
-border-bottom : 1px solid black
 
-}
-
-.border-bottom-style-none{
-    margin-top: 1rem;
-   border-bottom : 1px solid black
-   
-   }
 
 .class-box{
     display: flex;
@@ -412,8 +326,8 @@ border-bottom : 1px solid black
 }
 .image-box-css{
 
-    width: 50px;
-    height: 50px;
+    width:  41px;
+    height: 41px;
     border-radius: 50%;
     background-color: #eee;
     text-align: center;
@@ -421,6 +335,11 @@ border-bottom : 1px solid black
     text-transform: capitalize;
     font-size: 15px;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  
 }
 
 .yourFavorutnavbar{
@@ -501,23 +420,7 @@ font-size: 13px;
 }.firstBack-option {
     opacity: 0.7;
 }
-.addtext-align{
-    
-    
-    width: 200px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin: 0rem auto;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    cursor: pointer;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-}
-.addtext-align span{
-    font-size: 17px;
-    font-weight: bold;
-}
+
 
 .des-text p{
     font-size: 10px;
@@ -532,9 +435,7 @@ font-size: 13px;
     
 
 }
-.box-cart-Info.extra{
-    box-shadow: 0rem 0rem 0rem 0rem;
-}
+
 @media only screen and (max-width: 900px) {
 
     .padding-null{
@@ -582,22 +483,7 @@ font-size: 13px;
 
 
 
-.col_order_bacgroun{
-    margin: 0.4rem auto;
-}
 
-.ass_test {
-    margin-top: 180px;
-}
-
-.Profile_User{
-    display: block;
-    margin: 0rem auto;
-    padding: 0rem;
-    border-radius: 0rem;
-    outline: none;
-    text-transform: capitalize;
-}
 .box-Setting{
     margin-top: 4rem;
 }
@@ -613,14 +499,18 @@ font-size: 13px;
     margin-bottom: 1rem
 
 
-}.box-setting-children h1{
-    font-size: 17px;
-    font-weight: bold;
+}.box-setting-children .cheildren-span{
+    color: black;
+    font-size: 16px;
+    font-family: system-ui;
     text-transform: capitalize;
-}.box-setting-children span:hover{
-    opacity: 1;
-}
 
+}
+.box-children-input{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
 .check-box-me{
     width: 60px;
     height: 30px;
@@ -656,44 +546,22 @@ border-left: ridge;
 }
 .Order_List_User_Info{
     margin-top: 4rem;
-  
     margin-left: 0rem;
     padding: 0rem;
+    height: 400px;
     
 }
 
 .Order_List_User_Info h1{
-    font-size: 24px;
+    color: black;
+    font-size: 16px;
     font-family: system-ui;
     text-transform: capitalize;
     text-align: center;
 }
-.List_user_profil{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    align-items: center;
-    
-    padding: 0rem;
-    flex-wrap: wrap;
-        
-}
-.List_user_profil li {
-    border-radius: 0.4rem;
-    height: 2rem;
-    line-height: 2rem;
-    width: 100%;
-    text-align: center;
-    margin: 0.2rem auto;
-    font-family: monospace;
-    font-size: 12px;;
-    cursor: pointer;
-}
 
-.List_user_profil li .add_color_style{
-    color: black;
-}
+
+
 
 
 .first_Order{
@@ -900,20 +768,13 @@ border-left: ridge;
 }
 
 
-.List_user_profil li span{
-    color: #ff000094;
-    margin-left: 0.4rem;
-}
-
 
 .class-dina-favoriter{
     margin-top: 5rem;
 
 }
-.class-profile-name.add-notleft{
-    margin-left: 0rem;
 
-}
+
 .Add-din{
     width: 40px;
     height: 40px;
@@ -932,4 +793,111 @@ border-left: ridge;
     align-items: center;
     flex-direction: row-reverse;
     cursor: pointer;
+}
+
+
+
+.ClassNamePayment{
+    padding: 1rem;
+    height: 73vh;
+    overflow: hidden;
+    overflow-y: auto;
+    
+}
+
+.postion-buttom{
+    padding: 1rem;
+    width: 100%;
+}
+
+.Input-type-style.productdetials.add-left-text{
+    padding-left: 40px;
+}
+.box-alert{
+   
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+   padding: 1rem;
+    border-bottom: 3px solid #eee;
+  
+}
+.class-close{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: #eee;
+    border-radius: 50%;
+    text-align: center;
+    
+
+    
+    
+}.class-close span{
+    line-height: 25px;
+    font-size: 19px;
+    font-weight: bold;
+}
+.title-add .title-add-profile{
+    color: black;
+    padding: 0rem;
+    margin: 0rem;
+    text-transform: capitalize;
+    font-size: 17px;
+    font-family: system-ui;
+
+}
+.scrollAlert{
+    height: 550px;
+    overflow:hidden;  
+}
+.scroll-bottom-style{
+    padding: 1rem;
+}
+
+.MyPhone{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.selectionHome{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.openSelection{
+    
+    padding: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 19px;
+
+}
+.openSelection.action{
+    background-color: #ff3b2f85;
+}
+
+.openSelection span {
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+}
+.Image-selection{
+
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+
+@media  (max-width: 400px) {
+    .scrollAlert{
+        height: 100vh;
+    }
 }

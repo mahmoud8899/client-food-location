@@ -720,6 +720,9 @@ class-padding-style  this is padding
     margin-bottom: 0rem;
    
 }
+.Input-type-style.add-leftpaddig{
+    padding-left: 40px;
+}
 .rating-views{
     height: 40px;
     line-height: 40px;
@@ -1364,9 +1367,10 @@ overflow: hidden;
     font-size: 14px;
 }
 .comment-image-top-text-last{
-    font-size: 14px;
-    color: black;
-    text-transform: capitalize;
+  
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
 }
 
 .comment-image-top-edit{
@@ -1404,14 +1408,18 @@ overflow: hidden;
     align-items: center;
 }
 .close-pp-pp-image{
-    width: 35px;
-    height: 35px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    background-color: #eee;
+    background-color: #ff9d97;
     overflow: hidden;
-    padding: 10px;
+    padding: 8px;
     cursor: pointer;
-    
+    color: white;
+    opacity: 0.7;
+    transition: all 1s;
+}.close-pp-pp-image:hover{
+    opacity: 1;
 }
 
 .comment-customs{

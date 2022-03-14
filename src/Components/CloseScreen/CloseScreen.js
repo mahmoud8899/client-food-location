@@ -128,3 +128,14 @@ export const closeUpdateAccount = (dispatch) => {
  
 
 }
+
+
+// remove error telefon 
+export const NumberRemove = (dispatch) => {
+    // const dispatch = useDispatch()
+    return dispatch({
+        type: ActionTypes.ADDTELEFONUMBER_FAIL,
+        payload: null
+    })
+
+}

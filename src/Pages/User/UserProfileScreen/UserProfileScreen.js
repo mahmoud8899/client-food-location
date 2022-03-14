@@ -1,20 +1,21 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Title from '../../../Components/ScreenTitle/ScreenTitle'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { GetUserInfoAction } from '../../../redux/Action/Auth_Action'
 import UserNavBarScreen from '../UserNavBarScreen/UserNavBarScreen'
-import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen'
 import { SliceNameNot } from '../../../Assistant/Slice'
 import ScreenLike from '../../Like/Like'
 import UserAddTelefonNumber from '../UserAddTelefonNumber/UserAddTelefonNumber'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import { LikePage } from '../../../Components/Update/Redirction/Redirction'
-import UserVerifiedID from '../../../Components/Update/UserVerifiedID/UserVerifiedID'
+import LoadingErrorHandle from '../../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
+import { ErrorServer } from '../../../Assistant/TextError'
+import Styles from '../../../Components/Update/StylesComponents/style'
 import './Profile.css'
-import Styles from './style'
+import { GetUserInfoAction } from '../../../redux/Action/Auth_Action'
+
 const UserProfileScreen = () => {
 
 
@@ -22,28 +23,31 @@ const UserProfileScreen = () => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-
-
     // user info...
-    const userLogin = useSelector((state) => state.userLogin)
-    const { token, userInfo, loading, successfully } = userLogin
+    const userLogin = useSelector((state) => state?.userLogin)
+    const { userInfo, loading, successfully, error } = userLogin
+
+    // class open page add number if user not has telefonunmber....
     const [openAddNumber, setOpenAddNumber] = useState(false)
 
 
+    // updated user info 
     useEffect(() => {
 
-        if (token) {
-            return dispatch(GetUserInfoAction(token))
+        if (!userInfo?.firstname) {
+
+            return history.push('/uppsala')
+        } else {
+            dispatch(GetUserInfoAction())
         }
 
-        // else {
-        //     history.push('/')
-        // }
+        // eslint-disable-next-line
 
-    }, [dispatch, history, token])
+    }, [userInfo?.firstname, dispatch, history])
+
+
 
     useEffect(() => {
-
         if (!userInfo?.telephone) {
             return setOpenAddNumber(true)
         }
@@ -56,138 +60,163 @@ const UserProfileScreen = () => {
 
 
 
+
+
+
+
+
+    // get all cart like
     const LikeLength = useSelector((state) => state.like?.likeCart)
 
 
 
 
-    return <UserVerifiedID>
+    return <Fragment>
+
+
+
         <Container>
 
             <Title TextTitle={`Profile : ${userInfo?.firstname}`} />
 
             <Row className="justify-content-center margin-top-class" >
-                {loading ?
-                    <LoadingScreen />
-                    :
-                    <>
 
 
-                        <Col xs={12} sm={12} md={12} lg={12} >
-                            <div className='myprofile'>
-                                <h1>Profile</h1>
+
+                <Col xs={12} sm={12} md={12} lg={12} >
+                    <div className='myprofile'>
+                        <h1>Profil</h1>
+                    </div>
+
+                </Col>
+
+                <Col xs={12} sm={12} md={12} lg={12}>
+
+
+                    <UserNavBarScreen ClassNameProfile />
+
+                    <div className='margin-bottom-class'>  </div>
+
+                </Col>
+
+
+                <LoadingErrorHandle
+                    loading={loading}
+                    error={error}
+                    TextNotItems={ErrorServer}
+                >
+
+                    <Col xs={12} sm={12} md={12} lg={8}>
+
+                        <div className='class-box'>
+                            <div className='image-box-css'>
+                                {SliceNameNot(userInfo?.firstname, 1)} {SliceNameNot(userInfo?.lastname, 1)}
                             </div>
 
-                        </Col>
+                            <div className='class-profile-name'>
+                                <h1>{userInfo?.firstname} {userInfo?.lastname}</h1>
+                                <div className='classInfo'>
+                                    <div className='classInfo-email'>
+                                        <span >Email</span>
+                                        <span >{userInfo?.email}</span>
+                                    </div>
 
-
-
-                        <Col xs={12} sm={12} md={12} lg={12}>
-
-
-                            <UserNavBarScreen
-                                ClassNameProfile
-
-                            />
-
-                            <div className='margin-bottom-class'>  </div>
-
-                        </Col>
-
-
-                        <Col xs={12} sm={12} md={12} lg={8}>
-
-                            <div className='class-box'>
-                                <div className='image-box-css'>
-                                    {SliceNameNot(userInfo?.firstname, 1)} {SliceNameNot(userInfo?.lastname, 1)}
-                                </div>
-
-                                <div className='class-profile-name'>
-                                    <h1>{userInfo?.firstname} {userInfo?.lastname}</h1>
-                                    <div className='classInfo'>
-                                        <div className='classInfo-email'>
-                                            <span >Email</span>
-                                            <span >{userInfo?.email}</span>
-                                        </div>
-
-                                        <div className='classInfo-email add-margin-left'>
-                                            <span >Phone number</span>
-                                            <span >{userInfo?.telephone}</span>
-                                        </div>
+                                    <div className='classInfo-email add-margin-left'>
+                                        <span >Phone number</span>
+                                        <span >{userInfo?.telephone}</span>
                                     </div>
                                 </div>
-
-
                             </div>
 
 
-                        </Col>
+                        </div>
 
-                        <Col xs={12} sm={12} md={12} lg={8}>
-                            {LikeLength?.length === 0 ?
 
-                                <div className='class-dina-favoriter'>
-                                    <div className='class-profile-name add-notleft'>
-                                        <h1>  Dina favoriter</h1>
+                    </Col>
+
+                    <Col xs={12} sm={12} md={12} lg={8}>
+                        {LikeLength?.length === 0 ?
+
+                            <div className='class-dina-favoriter'>
+                                <div className='class-profile-name add-notleft'>
+                                    <h1>  Dina favoriter</h1>
+                                </div>
+
+                                <div className='flex-boxc'>
+                                    <p>
+                                        Lägg till en restaurang eller butik bland dina favoriter genom att klicka på hjärtsymbolen som du hittar i menyn. Dina favoriter visas sedan här.
+                                    </p>
+                                    <div className='flex-boxc-left'>
+                                        <ImageScreen
+                                            ImageIcon={MyOderImage.heartFull}
+                                            className='Add-din'
+                                        />
+
                                     </div>
+                                </div>
 
-                                    <div className='flex-boxc'>
-                                        <p>
-                                            Lägg till en restaurang eller butik bland dina favoriter genom att klicka på hjärtsymbolen som du hittar i menyn. Dina favoriter visas sedan här.
-                                        </p>
-                                        <div className='flex-boxc-left'>
-                                            <ImageScreen
-                                                ImageIcon={MyOderImage.heartFull}
-                                                className='Add-din'
-                                            />
+                            </div>
 
+
+                            :
+
+                            <>
+
+                                <div className='yourFavorut margin-top-'>
+
+                                    <div className='yourFavorutnavbar'>
+                                        <h1>your Favourites</h1>
+                                        <div onClick={(e) => LikePage(history)} style={Styles.newBox}>
+                                            se all
                                         </div>
                                     </div>
-
                                 </div>
 
 
-                                :
+                                <Row>
+                                    <ScreenLike Hidding />
 
-                                <>
+                                </Row>
 
-                                    <div className='yourFavorut margin-top-'>
+                            </>
 
-                                        <div className='yourFavorutnavbar'>
-                                            <h1>your Favourites</h1>
-                                            <div onClick={(e) => LikePage(history)} style={Styles.newBox}>
-                                                se all
-                                            </div>
-                                        </div>
-                                    </div>
+                        }
+
+                    </Col>
 
 
-                                    <Row>
-                                        <ScreenLike Hidding />
 
-                                    </Row>
 
-                                </>
 
-                            }
+                </LoadingErrorHandle>
 
-                        </Col>
-                    </>
-                }
+
+
+
+
             </Row>
 
 
-            <UserAddTelefonNumber
-                openAddNumber={openAddNumber}
-                setOpenAddNumber={setOpenAddNumber}
-                successfully={successfully}
 
-            />
 
         </Container>
 
-    </UserVerifiedID>
 
+
+
+
+
+
+
+        <UserAddTelefonNumber
+            openAddNumber={openAddNumber}
+            setOpenAddNumber={setOpenAddNumber}
+            successfully={successfully}
+
+        />
+
+
+    </Fragment>
 
 
 
@@ -195,5 +224,8 @@ const UserProfileScreen = () => {
 
 
 export default UserProfileScreen
+
+
+
 
 

@@ -12,7 +12,7 @@
 }
 .Dev-Error.extraStyle{
     height: 0rem;
-    margin-top: 3rem;
+    margin-top: 1rem;
 }
 .loading-loading-lading{
     margin-bottom: 0.5rem;
@@ -277,6 +277,10 @@
 }
 .error-input-red{
     margin-top: 1rem;
+
+}
+.error-input-red.add-bottom{
+    margin-bottom: 0.5rem;
 }
 .Fistclass-handle{
     border-radius: 0.5rem;
@@ -303,6 +307,7 @@
     height: 20px;
     border-radius: 50%;
     object-fit: cover;
+    color: white;
 }
 
 

@@ -1,28 +1,22 @@
-import '../UserProfileScreen/Profile.css'
 import { WhichWork } from '../../../Assistant/Selection'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { useState } from 'react'
 import EditComponent from '../../../Components/Update/EditComponent/EditComponent'
 import { AddAdressUserAction } from '../../../redux/Action/Auth_Action'
 import { useDispatch } from 'react-redux'
+import '../UserProfileScreen/Profile.css'
 
 export default function UserAddressInfo(props) {
+    const { userInfo, ClassNamepAY, setOpenAddres ,ClASShOME } = props
 
 
 
-    const { userInfo, ClassNamepAY, setOpenAddres } = props
-
-
-    const [optionMore, setOptionMore] = useState(false)
     const dispatch = useDispatch()
+    // open nav bar updated or remove
+    const [optionMore, setOptionMore] = useState(false)
 
-
-
-
-
+    // open add address.
     const OpenEditAddress = () => {
-
-
 
         setOpenAddres(true)
         setOptionMore(false)
@@ -34,11 +28,11 @@ export default function UserAddressInfo(props) {
 
 
     return userInfo?.Adress ?
-        <div className={ClassNamepAY ? 'PAYMENT-FIX' : 'className-infoUser'}>
+        <div className={ClASShOME? 'className-infoUser REMOVE-BOTTOM' : 'className-infoUser' }>
             <div className='box-infoUser'>
                 <ImageScreen
                     ImageIcon={WhichWork(userInfo?.Adress?.work)}
-                    className={ClassNamepAY ? 'bike-User add-size' : 'bike-User'}
+                    className='bike-User'
                 />
 
             </div>

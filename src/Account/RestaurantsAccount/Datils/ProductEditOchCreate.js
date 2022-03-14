@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react'
 import PageSwitch from '../../../Components/Update/PageSwitch/PageSwitch'
 import CodeError from '../../../Components/CodeError/CodeError'
 import '../style.css'
-
+import {HiOutlineX} from 'react-icons/hi'
 export default function ProductEditOchCreate(props) {
 
     const {  setShow, show,userInfo ,ListCategoryUX } = props
@@ -217,11 +217,8 @@ export default function ProductEditOchCreate(props) {
 
                                 }
                             </h1>
-                            <ImageScreen
-                                ImageIcon={MyOderImage.close}
-                                className='close-pp-pp-image'
-                                onClick={() => setShow({ value: false, object: '' })}
-                            />
+                            <HiOutlineX  className='close-pp-pp-image'  onClick={() => setShow({ value: false, object: '' })}/>
+                           
                         </div>
 
 

@@ -100,7 +100,7 @@ export default function RestrangeItems(props) {
                                         </div>
 
                                         <div className='driver'>
-                                            <div > 10-30</div>
+                                            <div >{ho?.finishfood?.to}-{ho?.finishfood?.to}</div>
                                             <div className='class-last'> min</div>
                                         </div>
 

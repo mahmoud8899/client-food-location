@@ -44,8 +44,9 @@ const Styles = {
 
    
     text: {
-        fontSize: 13,
-        fontFamily: 'monospace',
+        fontSize: '15px',
+        fontFamily: `Open Sans, sans-serif`,
+        fontWeight: 'bold'
     },
     boxImage: {
         display: 'flex',

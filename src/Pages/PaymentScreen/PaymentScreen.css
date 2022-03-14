@@ -253,10 +253,11 @@ input:invalid+.validity:after {
      font-size: 18px;
 }
 .color-family{
-    color: #000000;
-    text-transform: capitalize;
-    font-size: 16px;
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
     font-weight: bold;
+    text-transform: capitalize;
+    color: black;
 }
 .color-family.add-diffren{
     color: white;
@@ -615,14 +616,17 @@ text-transform: capitalize;
 .how-class{
     margin-bottom: 1rem;
     margin-top: 1rem;
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    text-transform: capitalize;
 }
 .nothover {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 0.5rem;
     cursor: pointer;
-    margin: 0.1rem;
+    
 }
 .drivery-class{
     display: flex;
