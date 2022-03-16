@@ -1,46 +1,69 @@
+import { Fragment, useState } from "react";
+import { Form } from "react-bootstrap";
 import { FirstNameRest } from "../../../Assistant/Selection";
 import ButtomClick from "../../Buttom/Buttom";
-import Input from "../../Input/Input";
 import Styles from "../StylesComponents/style";
-
+import TheInputForm from '../../TheInputForm/TheInputForm'
+import { RiCheckFill } from 'react-icons/ri'
+import { ValtionMe } from '../../../Assistant/ValtionMe'
 
 
 
 export default function DriverComment(props) {
-    const {
-        setOpenComment
-    } = props
+
+
+
+    const [inputText, setInputText] = useState('')
+
+
+    const SendTextToDriver = (e) => {
+        e.preventDefault()
+        if (inputText?.trim()) {
+            console.log('M', inputText?.trim())
+        }
+
+    }
 
 
 
     return <div className='close-yourOrder add-heigth'>
 
-        <h1 className='your-h1'>Add comment</h1>
+        <h1 className='your-h1'>Lägg till kommentar</h1>
         <span className='comment-image-top-text-last'>
-            Your comment may be shared with {FirstNameRest} partners who prepare and deliver your order.
+
+            Din kommentar kan komma att delas med {FirstNameRest}  partners som förbereder och levererar din beställning.
 
         </span>
 
-        <Input
-            placeholder='Special requests, allergies, dietary. restrictions'
-            className='comment-customs'
-            as="textarea"
-            ows={6}
+        <Form onSubmit={SendTextToDriver} >
+            <TheInputForm
+                placeholder='Särskilda önskemål, allergier, diet. restriktioner'
+                className='comment-customs'
+                as="textarea"
+                value={inputText}
+                ows={6}
+                onChange={(e) => setInputText(e.target.value)}
+                FirstIcons={
+                    <Fragment>
+                        {ValtionMe(inputText, 'inputname')
+                            ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                        }
+                    </Fragment>
+                }
+            />
 
-
-        />
-
-
-
-
-        <div className='button-comment-box'>
-            <div className='button-comment-box-helf'>
-                <ButtomClick
-                    title='done'
-                    style={Styles.buttomColorPage}
-                    onClick={() => setOpenComment(false)}
-                />
+            <div className='button-comment-box'>
+                <div className='button-comment-box-helf'>
+                    <ButtomClick
+                        title='skicka in'
+                        style={Styles.buttomColorPage}
+                        disabled={!ValtionMe(inputText, 'inputname')}
+                        onClick={(e) => SendTextToDriver(e)}
+                    />
+                </div>
             </div>
-        </div>
+        </Form>
+
+
     </div>
 }

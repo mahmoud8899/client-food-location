@@ -206,7 +206,9 @@
     cursor: pointer;
     border: none;
     outline: none;
-
+}
+.with-input::placeholder{
+    color: #ff3b2f85;
 }
 
 .Searching-input

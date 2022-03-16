@@ -2,11 +2,10 @@ import { Row, Col } from 'react-bootstrap'
 import PaymentAddresDriverScreen from '../PaymentScreen/PaymentAddresDriverScreen'
 import Styles from '../../Components/Update/StylesComponents/style'
 import { TotalPrice, CollectOrder } from '../../Assistant/TotalPrice'
-import ImageScreen from '../../Components/ImageScreen/ImageScreen'
-import { MyOderImage } from '../../Assistant/MyOrderImage'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
 import { useContext } from 'react'
 import SetTimeout from '../../Components/Update/SetTimeout/SetTimeout'
+import {FiChevronRight } from 'react-icons/fi'
 export default function RestaurantsNavBarCart(props) {
 
     const {
@@ -31,21 +30,26 @@ export default function RestaurantsNavBarCart(props) {
 
 
 
+    // options here 
+    // [1]  selection selection takeway and delivery  .. PaymentAddresDriverScreen
+    // [2] : Optim time restruant and butiker
+    // [3] : set time nofation if restrurant closee.
+    // [4] : page order cart and check out 
+    // [5] : icons
+
 
     return <Row className={!hiddenNavBar ? 'justify-content-center color-row-testing dispalaynone' : 'justify-content-center color-row-testing removeMargin-top dispalaynone'}  >
         <Col xs={4} sm={4} md={4} lg={4}>
-
             <PaymentAddresDriverScreen ClassNameNavBarCart />
-
         </Col>
 
         <Col xs={4} sm={4} md={4} lg={3}>
             <div className='Open-today-time' onClick={() => setOpenDescription(!openDescription)}>
-                <span className='font-size-navbar'>Open today :</span>
+                <span className='font-size-navbar'>Öppet idag : </span>
                 <span className='font-size-navbar extra-font-time'>
                     {cartinfo?.opentime?.oppen}-{cartinfo?.opentime?.close}
                 </span>
-                <ImageScreen ImageIcon={MyOderImage.right} className='opentody-image' />
+                <FiChevronRight  className='opentody-image' />
 
                 <SetTimeout
                     cartinfo={cartinfo}

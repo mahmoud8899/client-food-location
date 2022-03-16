@@ -1,16 +1,21 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Image} from 'react-bootstrap'
+import { FiChevronRight } from 'react-icons/fi'
 import { useSelector } from 'react-redux'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import { Usercheck, CheckDriverUser } from '../../Assistant/SelectionPayment'
-import './PaymentScreen.css'
 import PaymentSelectOrderDerails from './PaymentSelectOrderDerails'
+import './PaymentScreen.css'
+
 
 
 
 export default function PaymentAddresDriverScreen(props) {
 
 
+    const {ClassNameNavBarCart}  = props
+
+    // console.log(ClassNameNavBarCart)
 
 
     // user Info.......
@@ -36,12 +41,6 @@ export default function PaymentAddresDriverScreen(props) {
 
             return setOpenNavBarList(true)
         }
-
-
-
-
-
-
     }
 
 
@@ -52,24 +51,27 @@ export default function PaymentAddresDriverScreen(props) {
 
 
 
-    return <>
+
+    return <Fragment>
 
             <div className='box-delivery' onClick={(e) => HandleAddresDriver(e)}>
                 <Image src={MyOderImage.bike2}
                     className='bike'
                 />
                 <div className='bike-text'>
+                
 
-                    <div className='color-family'>{Usercheck(driver, userInfo)}</div>
-                    <div className='color-last-items'>
+                    <div className={ClassNameNavBarCart ? 'color-family extrat' :'color-family'}>{Usercheck(driver, userInfo)}</div>
+                    <div className={ClassNameNavBarCart ? 'color-last-items extrat' :'color-last-items'}>
+                        
                         {CheckDriverUser(driver, userInfo)}
                     </div>
 
                 </div>
 
-                <Image src={MyOderImage.right}
+                <FiChevronRight  className='icons-color' />
 
-                    className='bike add-left-image' />
+              
             </div>
 
 
@@ -88,6 +90,6 @@ export default function PaymentAddresDriverScreen(props) {
 
 
 
-    </>
+    </Fragment>
 }
 

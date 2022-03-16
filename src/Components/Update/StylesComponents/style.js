@@ -3,6 +3,11 @@ import COLORS from '../../../Assistant/Color'
 
 
 const Styles = {
+    searchingcolor:{
+
+        color : COLORS.testing
+
+    },
     ColorSetting: {
         color: COLORS.firstRed,
         fontSize: '16px',
@@ -126,11 +131,7 @@ const Styles = {
         color : COLORS.light
 
     },
-    searchingcolor:{
 
-        color : COLORS.testing
-
-    },
     colorback: {
 
         background : COLORS.testing,

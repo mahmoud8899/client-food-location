@@ -38,10 +38,13 @@ export const getCategoryAction = (id) => async (dispatch, getState) => {
     const calculatedPage = getState()?.PagePublicCategory?.nexCategory[id]
     const listNext = calculatedPage === undefined ? id : calculatedPage
 
- console.log(listNext)
+//  console.log(listNext)
 
     if (listNext) {
         try {
+
+            dispatch({type :ActionTypes.ADD_PUBLIC_CATEGORY_LOADING})
+            
             const { data } = await axios.get(`/api/category/restrange/list/${listNext}/`)
             dispatch(AppendProductsWithUserId(id, data))
             dispatch(AppenNumberNextPages(id))

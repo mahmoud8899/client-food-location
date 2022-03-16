@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
-import './style.css'
 import { product_IDAction } from '../../redux/Action/Product_Action'
 import { useDispatch, useSelector } from 'react-redux'
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen'
@@ -9,6 +8,8 @@ import CurrentScreen from '../../Components/Update/CurrentScreen/CurrentScreen'
 import ImageScreen from '../../Components/ImageScreen/ImageScreen'
 import ProductBackDetail from '../../Components/Update/ProductBackDetail/ProductBackDetail'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
+import './style.css'
+import { HiOutlineX } from 'react-icons/hi'
 export default function RestaurantsOneProduct(props) {
     const {
         openCartProduct,
@@ -68,11 +69,10 @@ export default function RestaurantsOneProduct(props) {
                                 />
 
                                 <div className='box-close' onClick={(e) => setOpenCartProduct({ value: false, id: '' })}>
-                                    <ImageScreen
-                                        ImageIcon={MyOderImage.close}
-                                        className='CloseClass'
-
-                                    />
+                                <HiOutlineX
+                                
+                                className='close-pp-pp-image' />
+                                   
                                 </div>
 
 

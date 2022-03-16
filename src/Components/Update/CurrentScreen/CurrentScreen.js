@@ -1,11 +1,12 @@
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
-import ImageScreen from '../../ImageScreen/ImageScreen'
 import Styles from '../StylesComponents/style'
-import { useContext, useEffect, useState } from 'react'
+import { Fragment, useContext, useEffect, useState } from 'react'
 import { CollectNumber } from '../../../Assistant/CollectNumber'
 import { AddCart_Action, RemoveCart_Action } from '../../../redux/Action/Cart_Action'
-import { useDispatch } from 'react-redux'
 import { FilterCartDetials } from '../UseContext/FilterRestarangeProduct'
+import { BiPlus } from 'react-icons/bi'
+import { useDispatch } from 'react-redux'
+import { IoRemove,IoTrashOutline } from 'react-icons/io5'
+
 export default function CurrentScreen(props) {
     const {
         productId,
@@ -36,8 +37,6 @@ export default function CurrentScreen(props) {
 
 
     useEffect(() => {
-
-
 
         if (courrent && openArray) {
 
@@ -155,30 +154,32 @@ export default function CurrentScreen(props) {
 
 
 
-    return <>
+    return <Fragment>
 
 
         <div style={Styles.backgroundAll} className={YourOrderClass ? 'remove-your-order-create add-transtion' : 'curent-box'}>
-            <div style={CheckOutReload ? courrent === 0 ? Styles.backgroundSizenot : Styles.backgroundSize
-                :
-                courrent === 1 ? Styles.backgroundSizenot : Styles.backgroundSize
 
-            } className='add-more-plus'>
-                <ImageScreen
-                    ImageIcon={MyOderImage.minus}
-                    className='IMAGE-CURRENT'
-                    onClick={(e) => courrent <= 1 ? Testingup(e) : CurrentMinus()}
-                />
+
+            <div className='Icons_click' style={CheckOutReload ? courrent === 0 ? Styles.backgroundSizenot : Styles.backgroundSize
+                :
+                courrent === 1 ? Styles.backgroundSizenot : Styles.backgroundSize} >
+                <IoRemove
+                 className='Icons_click-color' 
+                onClick={(e) => courrent <= 1 ? Testingup(e) : CurrentMinus()} />
             </div>
             <div className='add-more-center'>
                 {courrent}
             </div>
-            <div style={Styles.backgroundSize} className='add-more-plus add-rigth-add' onClick={CourrentPlus}>
-                <ImageScreen ImageIcon={MyOderImage.plus} className='IMAGE-CURRENT' />
+
+            <div className='Icons_click' style={Styles.backgroundSize} onClick={CourrentPlus} >
+                <BiPlus className='Icons_click-color' />
+
             </div>
-            {YourOrderClass && <div className='add-more-plus addleft-right' onClick={(e) => dispatch(RemoveCart_Action(productId?._id))} >
-                <ImageScreen ImageIcon={MyOderImage.remove} className='image-remove-yourorder' />
-            </div>
+
+            {YourOrderClass &&
+                <div className='center-c-more' onClick={(e) => dispatch(RemoveCart_Action(productId?._id))} >
+                    <IoTrashOutline  className='center-c-more-style'  />
+                </div>
             }
 
 
@@ -207,5 +208,6 @@ export default function CurrentScreen(props) {
         }
 
 
-    </>
+    </Fragment>
 }
+

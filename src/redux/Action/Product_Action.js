@@ -243,6 +243,7 @@ export const PorudtsActionPaganationPublic = (user) => async (dispatch, getState
     if (nextRequestPage) {
 
         try {
+            dispatch({type : ActionTypes.ADD_PRODUCTS_PUBLIC_LOADING})
             const { data } = await axios.get(`/api/product/cartinfo/${user}?pageNumber=${nextRequestPage}`)
             dispatch(AppendProductsWithUserId(user, data.product))
             if (data?.pages <= 1) return dispatch(AppenNumberNextPages(user, null))

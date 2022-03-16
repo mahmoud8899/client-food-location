@@ -1,44 +1,44 @@
 import React from 'react'
 import { Col, } from 'react-bootstrap'
-import GoogleLogin from 'react-google-login'
+// import GoogleLogin from 'react-google-login'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import ImageScreen from '../../Components/ImageScreen/ImageScreen'
-import {LoginGoogle} from '../../redux/Action/Auth_Action'
-import {useDispatch} from 'react-redux'
+// import {LoginGoogle} from '../../redux/Action/Auth_Action'
+// import {useDispatch} from 'react-redux'
 export default function LoginWithOther() {
 
 
      
-const dispatch = useDispatch()
+// const dispatch = useDispatch()
 
-    const responseGoogle = async (res) => {
+    // const responseGoogle = async (res) => {
 
-        try {
+    //     try {
 
-            if (res.profileObj.email || res.profileObj.familyName || res.profileObj.givenName || res.profileObj.googleId) {
-                // console.log(res.profileObj.email, res.profileObj.name, res.profileObj.googleId, res.profileObj.imageUrl)
+    //         if (res.profileObj.email || res.profileObj.familyName || res.profileObj.givenName || res.profileObj.googleId) {
+    //             // console.log(res.profileObj.email, res.profileObj.name, res.profileObj.googleId, res.profileObj.imageUrl)
                 
-                   const user = {
-                    email: res.profileObj.email?.toLowerCase(),
-                    lastname: res.profileObj.familyName?.toLowerCase(),
-                    firstname: res.profileObj.givenName?.toLowerCase(),
-                    googleId: res.profileObj.googleId?.toLowerCase(),
+    //                const user = {
+    //                 email: res.profileObj.email?.toLowerCase(),
+    //                 lastname: res.profileObj.familyName?.toLowerCase(),
+    //                 firstname: res.profileObj.givenName?.toLowerCase(),
+    //                 googleId: res.profileObj.googleId?.toLowerCase(),
 
-                }
+    //             }
 
-                 dispatch(LoginGoogle(user))
-            }
-        } catch (error) {
+    //              dispatch(LoginGoogle(user))
+    //         }
+    //     } catch (error) {
 
-            return console.error(error.response &&
-                error.response.data.message ?
-                error.response.data.message :
-                error.message)
-        }
+    //         return console.error(error.response &&
+    //             error.response.data.message ?
+    //             error.response.data.message :
+    //             error.message)
+    //     }
 
 
 
-    }
+    // }
 
 
 
@@ -48,13 +48,13 @@ const dispatch = useDispatch()
             className='GOOLGELOGIN'>
 
 
-            <GoogleLogin
+            {/* <GoogleLogin
                 clientId='137354333475-4id7nm4un15d2kf811jh2jvg5b90cvk8.apps.googleusercontent.com'
                 onSuccess={responseGoogle}
                 buttonText='continuer with google'
                 className='xppsdpd'
                 isSignedIn={false}
-            />
+            /> */}
 
 
 

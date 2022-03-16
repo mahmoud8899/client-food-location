@@ -1,5 +1,4 @@
 import { Modal } from 'react-bootstrap'
-import './style.css'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import { useContext, useState, } from 'react'
 import ImageScreen from '../../Components/ImageScreen/ImageScreen'
@@ -9,6 +8,9 @@ import CartItemsScreen from '../../Components/Update/Cartitems/Cartitems'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
 import GoToCheckOut from '../../Components/Update/GoToCheckOut/GoToCheckOut'
 import Styles from '../../Components/Update/StylesComponents/style'
+import { HiOutlineX ,HiArrowNarrowLeft } from 'react-icons/hi'
+import {CgComment} from 'react-icons/cg'
+import './style.css'
 export default function RestaurantsYourOrderCart(props) {
 
     const { setYourOrder, yourOrder } = props
@@ -43,8 +45,10 @@ export default function RestaurantsYourOrderCart(props) {
         <div className='overflow-hidden'>
             <div className='close-yourOrder flex-box-box' >
 
-                {openComment && <ImageScreen ImageIcon={MyOderImage.left} className='close-pp-pp-image' onClick={() => setOpenComment(!openComment)} />}
-                <ImageScreen ImageIcon={MyOderImage.close} className={!openComment ? 'close-pp-pp-image add-leftx-' : 'close-pp-pp-image'} onClick={() => setYourOrder(!yourOrder)} />
+                {openComment && 
+                <HiArrowNarrowLeft  className='close-pp-pp-image' onClick={() => setOpenComment(!openComment)} />
+                }
+                <HiOutlineX  className={!openComment ? 'close-pp-pp-image add-leftx-' : 'close-pp-pp-image'} onClick={() => setYourOrder(!yourOrder)} />
 
 
 
@@ -92,19 +96,20 @@ export default function RestaurantsYourOrderCart(props) {
                             <div className='close-yourOrder top-border'>
 
                                 <div className='comment-image-top'>
-                                    <ImageScreen ImageIcon={MyOderImage.comment}
+                                    
+                                    <CgComment 
                                         className='comment-image-left'
                                     />
                                 </div>
 
                                 <div className='comment-image-top-text'>
-                                    <span className='comment-image-top-text-first'>Add comment for venue</span>
-                                    <span className='comment-image-top-text-last'>Special requests, allergies, dietary restrictions, etc.</span>
+                                    <span className='comment-image-top-text-first'>Lägg till kommentar för platsen</span>
+                                    <span className='comment-image-top-text-last'>Särskilda önskemål, allergier, kostrestriktioner, etc.</span>
                                 </div>
 
 
                                 <div style={Styles.backgroundAll} className='comment-image-top-edit' onClick={() => setOpenComment(!openComment)}>
-                                    <span>edit</span>
+                                    <span className='font-size-st'>edit</span>
                                 </div>
 
                             </div>

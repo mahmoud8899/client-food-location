@@ -9,6 +9,15 @@ export default function RestaurangetsDescription(props) {
 
     const { openDescription, setOpenDescription ,cartinfo} = props
 
+
+    // google maps...
+    const MpasClick = (e) => {
+        e.preventDefault()
+        return window.open((`http://${cartinfo?.addressinfo?.telefon}`), '_blank')
+    }
+
+
+
     return <Modal show={openDescription} onHide={() => setOpenDescription(!openDescription)}>
 
 
@@ -56,6 +65,10 @@ export default function RestaurangetsDescription(props) {
                 <div className='Addres-maps-res'>
                     <span> {cartinfo?.addressinfo?.city}</span>
                     <span>{cartinfo?.addressinfo?.address}</span>
+                    <span>+{cartinfo?.addressinfo?.telefon}</span>
+                   
+                   
+
                 </div>
 
                 <div className='Addres-font-size see_map'>
@@ -80,10 +93,10 @@ export default function RestaurangetsDescription(props) {
                 </div>
 
                 <div className='website-contact'>
-                    <span>
-                        website
-                    </span>
                     <span >
+                        website 
+                    </span>
+                    <span onClick={MpasClick}>
                         visit webeite
                     </span>
                 </div>

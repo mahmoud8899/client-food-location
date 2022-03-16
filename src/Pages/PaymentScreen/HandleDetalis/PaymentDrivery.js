@@ -36,7 +36,7 @@ export default function PaymentDrivery(props) {
     return <div className='FIrst-how add-padding-slider'>
         {loading ? <LoadingScreen /> :
             <div className='how-class color-family'>
-                How ?
+               Hur ?
             </div>
         }
 

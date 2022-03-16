@@ -7,11 +7,13 @@ export const SearchingContext = createContext()
 export default function SearchingResult({ children }) {
 
 
-    const [products, setProducts] = useState([]);
+
+    // input searching
     const [searching, setSearching] = useState('')
 
 
-    return <SearchingContext.Provider value={{ products, setProducts,searching, setSearching }}>
+
+    return <SearchingContext.Provider value={{ searching, setSearching }}>
         {children}
     </SearchingContext.Provider>
 

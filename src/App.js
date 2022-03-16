@@ -41,7 +41,7 @@ import NavBar from './Pages/NavBar/NavBar'
 import VisaProducts from './Pages/VisaProducts/VisaProducts'
 import FilterCategoryScreen from './Components/Update/UseContext/FilterCategoryScreen'
 import { FirstNameRest } from './Assistant/Selection'
-
+import PasswordScreen from './Password'
 export default function App() {
 
 
@@ -56,6 +56,8 @@ export default function App() {
 
 
             <NavBar />
+            
+            <Route path="/passwor/passwor/passwor/passwor/" component={PasswordScreen} exact />
             <Route path="/" component={LocationScreen} exact />
             <Route path="/:id/" component={HomeScreen} exact />
             <Route path='/:id/restaurant/:id/' component={RestaurantsPageProductsScreen} exact />

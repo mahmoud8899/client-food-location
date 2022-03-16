@@ -92,36 +92,49 @@ export const CategoryReducresUser = (state =
 // to restaurant -Public
 export const CategoryPublicReducres = (state =
     {
+        loading : false,
         nexCategory: {},
         category: {},
         error: null
     }, action) => {
     switch (action.type) {
 
+
+        case ActionTypes.ADD_PUBLIC_CATEGORY_LOADING : 
+            return {
+               ...state,
+                loading : true,
+            }
         case ActionTypes.ADD_PUBLIC_CATEGORY_NUMBER:
+
+           
+        
             return {
 
                 ...state,
                 nexCategory: {
                     ...state.nexCategory,
                     [action.payload.nextpage]: action.payload.nextpage,
-                }
+                },
+                loading : false
             }
 
         case ActionTypes.ADD_PUBLIC_CATEGORY_SUCCESS:
             const categoryId = action.payload.categoryId
             return {
-                loading: false,
+              
                 ...state,
                 category: {
                     ...state.category,
                     [categoryId]: (state.category[categoryId] || []).concat(action.payload.data)
-                }
+                },
+                loading: false,
 
             }
 
         case ActionTypes.ADD_PUBLIC_CATEGORY_FAIL:
             return {
+                ...state,
                 error: action.payload,
                 loading: false,
             };

@@ -129,7 +129,11 @@ input:invalid+.validity:after {
 .buuton_color_boot:hover, :focus {
     opacity: 1;
 }
-
+.icons-color{
+    color: black;
+    margin-left: auto;
+    font-size: 25px;
+}
 .bike-text{
     text-transform: capitalize;
     margin-left: 0.5rem;
@@ -144,7 +148,10 @@ input:invalid+.validity:after {
     font-size: 13px;
     color: black;
     text-transform: capitalize;
-    
+    word-break: break-word;
+}
+.color-last-items.extrat{
+    font-size: 12px;
 }
 .add-padding{
   margin-top: 4rem;
@@ -208,7 +215,7 @@ input:invalid+.validity:after {
     border: 1px solid rgba(32,33,37,0.12);
     border-radius: 0.4rem;
 }
-   
+
 
 .NOTpadding{
 
@@ -258,12 +265,15 @@ input:invalid+.validity:after {
     font-weight: bold;
     text-transform: capitalize;
     color: black;
+    
+}
+.color-family.extrat{
+    font-size: 13px;
 }
 .color-family.add-diffren{
     color: white;
-    text-transform: capitalize;
     font-size: 14px;
-  
+    font-weight: bold;
 }
 .bike{
     width:1.2rem;
@@ -712,9 +722,31 @@ text-transform: capitalize;
     margin: 0rem auto;
 }
 .add-scroll-to{
-    height: 354px;
-    overflow-x: auto;
+    height: 381px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1rem;
+    max-height: 75vh;
+    margin-bottom: 1rem;
+    box-sizing: inherit;
 }
+.add-scroll-to::-webkit-scrollbar {
+    width: 10px;
+  }
+  /* Track */
+  .add-scroll-to::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  .add-scroll-to::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  .add-scroll-to::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
 
 .radio-radio{
     width: 20px;

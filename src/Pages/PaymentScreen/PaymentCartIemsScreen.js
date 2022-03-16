@@ -1,7 +1,6 @@
 import { Fragment, useContext, useState } from 'react'
 import { Col } from 'react-bootstrap'
 import ImageScreen from '../../Components/ImageScreen/ImageScreen'
-import './PaymentScreen.css'
 import Styles from '../../Components/Update/StylesComponents/style'
 import RestaurantsOneProduct from '../RestaurantsPageScreen/RestaurantsOneProduct'
 import { CollectNumber } from '../../Assistant/CollectNumber'
@@ -10,6 +9,8 @@ import { Conversion } from '../../Components/Update/Conversion/Conversion'
 import AddOpenComponent from '../../Components/Update/AddOpenComponent/AddOpenComponent'
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen'
 import ScreenAlrt from '../../Components/ScreenAlrt/ScreenAlrt'
+import './PaymentScreen.css'
+import {SliceName} from '../../Assistant/Slice'
 export default function PaymentCartIemsScreen(props) {
 
 
@@ -69,7 +70,7 @@ export default function PaymentCartIemsScreen(props) {
                                         </div>
                                     </div>
                                     <div className='items-name-first-des color-last-items'>
-                                        {ca?.description}
+                                        {SliceName(ca?.description, 40)  }
                                     </div>
                                     <div style={Styles.colorcourrent} className='prics-font'>
                                         kr {CollectNumber(ca?.courrent, ca?.prices)}

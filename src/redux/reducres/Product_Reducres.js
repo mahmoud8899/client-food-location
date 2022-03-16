@@ -129,6 +129,7 @@ export const ShowPostIDReducres = (state = {
 // all products...
 // all products... 
 export const ProductsPublicReducres = (state = {
+    loading : false,
     allProducts: {},
     productNextNumber: {},
     error: null
@@ -138,15 +139,21 @@ export const ProductsPublicReducres = (state = {
 
 
 
+        case ActionTypes.ADD_PRODUCTS_PUBLIC_LOADING :
+        return {
+            ...state,
+            loading : true,
+        }
         case ActionTypes.ADD_PRODUCTS_PUBLIC_DATA:
             const categoryId = action.payload.categoryId
             return {
-                loading: false,
+            
                 ...state,
                 allProducts: {
                     ...state.allProducts,
                     [categoryId]: (state.allProducts[categoryId] || []).concat(action.payload.data)
-                }
+                },
+                loading : false,
 
             }
 
@@ -158,11 +165,14 @@ export const ProductsPublicReducres = (state = {
                 productNextNumber: {
                     ...state.productNextNumber,
                     [action.payload.categoryId]: action.payload.nextpage,
-                }
+                },
+                loading : false,
             }
         case ActionTypes.ADD_PRODUCTS_PUBLIC_FAIL:
             return {
-                error: action.payload
+                ...state,
+                error: action.payload,
+                loading : false,
             }
 
         default: return state

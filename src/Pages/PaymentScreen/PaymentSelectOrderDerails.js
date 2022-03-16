@@ -46,7 +46,7 @@ export default function PaymentSelectOrderDerails(props) {
                 </div>
 
                 <div className='title-add'>
-                    <span className='title-add-profile'>Select order details</span>
+                    <span className='title-add-profile'>Välj Orderdetaljer</span>
                 </div>
 
                 

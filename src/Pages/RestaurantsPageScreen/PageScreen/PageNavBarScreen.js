@@ -10,7 +10,8 @@ import { useContext, useState } from 'react'
 import {SearchingContext} from '../../../Components/Update/UseContext/SearchingResult'
 
 export default function PageNavBarScreen(props) {
-    const { setOpenDescription,
+    const { 
+        setOpenDescription,
         openDescription,
         NavBarScroll,
         addTop,
@@ -18,18 +19,20 @@ export default function PageNavBarScreen(props) {
     } = props
 
 
+
+       // searching input to context
     const {setSearching ,searching} = useContext(SearchingContext)
 
 
-    // cart info.....
+    // console.log(searching)
+
+
+    // cart info 
     const cartInfoid = useSelector((state) => state?.cartInfoid)
     const {  cartinfo, error } = cartInfoid
-
     // user info 
     const userLogin = useSelector((state) => state?.userLogin)
     const { userInfo } = userLogin
-
-
     // open the rating.... from user.... 
     const [showRating, setShowRating] = useState(false)
 

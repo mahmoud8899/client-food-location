@@ -44,7 +44,7 @@ export default function GoToCheckOut(props) {
                         <span className='checkout-dev-twe'> login</span>
 
                     </div>
-                    <span>kr {TotalPrice(props?.filterCartProduct)}</span>
+                    <span className='font-size-st'>kr {TotalPrice(props?.filterCartProduct)}</span>
                 </div>
             }
         </div>

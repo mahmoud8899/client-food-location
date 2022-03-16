@@ -4,9 +4,34 @@ class-padding-style  this is padding
 */
 
 
-
+.center-loading{
+    margin-top: 1rem;
+    text-align: center;
+}
  /* Start ItemsCart   */
+ .color-favourite.color-favourite{
+     color: #ff3b2f85;
+ }
 
+ .close-pp-pp-image.ADD-REMOVE{
+     position: absolute;
+       right: 1rem;
+       width: 20px;
+       height: 20px;
+       padding: 1px;
+ }
+
+ .Searching-Products{
+     
+     position: relative;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     
+ }
+ .Searching-Products .with-input{
+     width: 100%;
+ }
 .Cover-image{
     background-position: center;
     background-repeat: no-repeat;
@@ -146,8 +171,12 @@ class-padding-style  this is padding
     background-color: white;
     color: black;
     padding: 0.5rem;
-   border-radius: 0.5rem;
-   cursor: pointer;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: capitalize;
+    margin-left: 0.5rem;
+    font-weight: bold;
 }
 .searching-text-style-box{
     display: flex;
@@ -168,17 +197,19 @@ class-padding-style  this is padding
     color: #000000c9;
 }
 .searching-text-style{
-    font-size: 20px;
-    font-family: "Mochiy Pop P One", sans-serif;
     text-transform: capitalize;
     cursor: pointer;
+    font-size: 16px;
+    font-family: sans-serif;
     
 }
 .searching-text-style-box span{
     margin-left: auto;
     text-transform: capitalize;
-    font-size: 20px;
+    font-size: 16px;
     cursor: pointer;
+    color: #00000066;
+    font-family: sans-serif;
 }
 .Margin-top-lit{
     margin-top: 4rem;
@@ -268,13 +299,11 @@ class-padding-style  this is padding
     transition: all 2s;
     margin-left: auto;
 }
-.font-size-navbar
-{
-   
-    font-size: 15px;
-    cursor: pointer;
-}
+
 .Open-today-time span:nth-of-type(2){
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: capitalize;
     font-family: system-ui;
 
 }
@@ -301,10 +330,7 @@ class-padding-style  this is padding
 
     
 } */
-.font-size-navbar.extra-font-time{
-    font-size: 20;
-    
-}
+
 .margin-top-navbar{
     margin-top: 1rem;
 }
@@ -359,9 +385,10 @@ class-padding-style  this is padding
     text-align: center;
     color: black;
     margin-right: 0.5rem;
-    font-weight: bold;
     box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px, rgb(0 0 0 / 30%) 0px 1px 3px -1px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .empty-cart{
@@ -370,7 +397,11 @@ class-padding-style  this is padding
     justify-content: center;
     flex-direction: column;
 }
-
+.font-size-st{
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
 .font-h1{
     margin-bottom: 1rem;
     color: black;
@@ -449,16 +480,17 @@ class-padding-style  this is padding
     padding: 1rem;
 }
 .color-family-CART{
-    font-family: sans-serif;
+    font-family: system-ui;
     color: #000;
-    text-transform: capitalize;
     font-size: 16px;
+    text-transform: capitalize;
 }
 .cart-text-box-desc{
     margin-top: 2rem;
 }
 .color-family-CART.extra{
-    font-size: 30px;
+    font-size: 50px;
+    font-family: 'Mochiy Pop P One';
 }
 .color-last-items-CART{
     opacity: 0.7;
@@ -660,6 +692,7 @@ class-padding-style  this is padding
 {
     font-size: 50px;
     font-family: 'Mochiy Pop P One';
+    text-transform: capitalize;
 }
 .name-res.font{
     font-size: 20px;
@@ -672,12 +705,22 @@ class-padding-style  this is padding
 
 
 .text-favourit{
-      font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: capitalize;
+    margin-left: 0.5rem;
+    font-weight: bold;
+  }
+  .basket-price span{
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
   }
 
   .image-favourite{
-      width: 17px;
-      height: 17px;
+    width: 17px;
+    height: 17px;
+    color: #fe9d97;
   }
 
 
@@ -692,11 +735,10 @@ class-padding-style  this is padding
   
 }
 .NavBarRating-first{
-    /* background-color: rgba(255, 0, 0, 0.281); */
     margin: 0rem;
-    padding: 0rem;
     display: flex;
     justify-content: space-between;
+    padding: 0.2rem;
     
 }
 .favourite{
@@ -704,7 +746,7 @@ class-padding-style  this is padding
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    border: 1px solid #eee;
+    border: 1px solid #fe9d97;
     border-radius: 0.5rem;
     padding: 0.3rem;
    width: 120px;
@@ -737,28 +779,22 @@ class-padding-style  this is padding
 }
 .CategoryList ul li
 {
-    font-weight: bold;
+    font-size: 16px;
     text-transform: capitalize;
-    margin-right: 0.9rem;
-    cursor: pointer;
-   
-    color: rgba(0, 0, 0, 0.925);
+    margin-left: 0.5rem;
+    font-weight: bold;
 }
   /* End NavBar */
 
-.CategoryList{
- 
-    padding: 0rem;
-    margin: 0rem;
-}
+
 .CategoryList{
     list-style: none;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
     cursor: pointer;
     width: 100%;
     flex-wrap: wrap;
+    padding: 0.2rem;
     
 }
 
@@ -773,19 +809,21 @@ class-padding-style  this is padding
     align-items: center;
     cursor: pointer;
     width: 100%;
+    padding: 0.2rem;
     
 }
 .time-rest-buttom{
   display: none;
 }
 
-.CategoryList li {
+/* .CategoryList li {
     margin-right: 1rem;
     text-transform: capitalize;
     font-size: 15px;
     font-weight: bold;
     margin-top: 0.2rem;
-}
+   
+} */
 .CategoryList li:hover{
     opacity: 0.3;
 }
@@ -806,9 +844,10 @@ class-padding-style  this is padding
   border-bottom: 2px solid black;
 }
 .font-product{
-    font-weight: bold;
-    font-size: 20px;
+    cursor: pointer;
+    font-size: 16px;
     text-transform: capitalize;
+    font-family: system-ui;
     
 }
 
@@ -933,7 +972,6 @@ class-padding-style  this is padding
 .box-close{
     width: 35px;
     height: 35px;
-    background: none rgba(236, 236, 236, 0.08);
    padding: 0rem;
    margin:0rem;
     text-align: center;
@@ -944,7 +982,6 @@ class-padding-style  this is padding
     top: 0.3rem;
     right: 0.3rem;
     line-height: 30px;
-
     transform: 0.40s;
     
 }.box-close.ADD-RIGTH{
@@ -976,7 +1013,7 @@ class-padding-style  this is padding
 }
 .box-close:hover{
     opacity: 1;
-    background-color: #eee;
+  
 }
 
 .box-Image{
@@ -984,9 +1021,39 @@ class-padding-style  this is padding
     position: relative;
 }
 .scroll-CART{
-    overflow-y: auto;
    
+
+   
+    /* overflow-x: hidden; */
+    overflow-y: auto;
 }
+
+ .scroll-CART::-webkit-scrollbar {
+    width: 5px;
+    
+  } 
+  
+
+  .scroll-CART::-webkit-scrollbar-track {
+    background: white; 
+
+    
+  } 
+   
+
+  .scroll-CART::-webkit-scrollbar-thumb {
+    background: rgb(113, 108, 108); 
+  }
+  
+  /* Handle on hover */
+  .scroll-CART::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }  
+
+
+
+
+
 .CloseClass{
 
     width: 15px;
@@ -1003,16 +1070,22 @@ class-padding-style  this is padding
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: pointer;
 
 }
-
+.checkout-dev-twe{
+    font-size: 16px;
+    font-weight: bold;
+  
+}
 .cart-text-box {
-
     display: flex;
     flex-direction: column;
     margin-top: 0.2rem;
     text-transform: capitalize;
     cursor: pointer;
+    word-break: break-word;
+ 
    
 }
 .cart-text-box.extra{
@@ -1037,22 +1110,20 @@ class-padding-style  this is padding
 .addCart-box{
     position: absolute;
     bottom: 0rem;
-    height: 50px;
-  
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     height: 5rem;
-    box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
     border-bottom-right-radius: 22px;
     border-bottom-left-radius: 22px;
     overflow: hidden;
+    background: white;
 }
 .curent-box {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 35%;
     padding: 1rem;
@@ -1099,23 +1170,25 @@ class-padding-style  this is padding
     }
     .basket2{
         display: block;
-        width: 40px;
-        height: 40px;
-    
+        width: 25px;
+        height: 25px;
+        color: white;
     }
+    
+    
     .NavBarRating-first{
         display: flex;
         flex-direction: column;
+        padding: 0.2rem;
+      
         
     }
+    .time-rest{
+        padding: 0.2rem;
+       
+    }
     .CategoryList{
-      
         justify-content: center;
-        
-       
-        
-       
-       
     }
     .newPox{
         justify-content: center;
@@ -1139,7 +1212,7 @@ class-padding-style  this is padding
         margin-left: auto;
         padding: 0.5rem;
         text-transform: capitalize;
-        border: 1px solid #eee;
+        border: 1px solid #fe9d97;
         border-radius: 0.5rem;
         cursor: pointer;
     }
@@ -1200,8 +1273,8 @@ overflow: hidden;
 }
 
 .your-h1 {
-    font-family: 'Dongle';
     font-size: 50px;
+    font-family: 'Mochiy Pop P One';
 }
 
 .close-yourOrder-number{
@@ -1273,6 +1346,7 @@ overflow: hidden;
     height: 20px;
     line-height: 30px;
    
+   
 }
 .yourOrder-box{
     display: flex;
@@ -1317,16 +1391,31 @@ overflow: hidden;
     
 }
 
-
+.Icons_click{
+    min-width: 30px;
+    max-width: 40px;
+    min-height: 30px;
+    max-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 50%;
+    color: black;
+}
+.Icons_click-color{
+    font-size: 23px;
+    color: #000;
+}
 .add-more-plus{
     width: 28px;
     height: 28px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   border-radius: 50%;
-   margin-right: 0.5rem;
-   margin-left: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    padding: 1rem;
 }
 .add-more-plus.addleft-right{
     margin-left: 0.5rem;
@@ -1356,6 +1445,7 @@ overflow: hidden;
 .comment-image-left{
     width: 40px;
     height: 40px;
+    color: #0000006b;
 }
 
 .comment-image-top-text{
@@ -1364,12 +1454,13 @@ overflow: hidden;
     margin-left: 1rem;
 }
 .comment-image-top-text-first{
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: black;
 }
 .comment-image-top-text-last{
-  
-    font-size: 15px;
-    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
     font-weight: bold;
 }
 
@@ -1518,10 +1609,11 @@ overflow: hidden;
    
 }
 
+
 .color-row-testing.removeMargin-top{
     background-color: white;
     color: black;
-    margin-top: -3.1rem;
+    margin-top: -4.0rem;
     transition: all 2s;
     border-bottom: 1px solid #eee;
 }
@@ -1560,13 +1652,15 @@ overflow: hidden;
 .view-order-number-text{
     margin-left: 0.5rem;
     text-transform: capitalize;
+    cursor: pointer;
+    font-size: 16px;
  
 }
 .view-order-number-price{
     margin-left: auto;
     text-transform: capitalize;
-
-
+    font-size: 16px;
+    font-weight: bold;
 }
 
 

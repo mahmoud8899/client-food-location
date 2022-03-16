@@ -1,85 +1,69 @@
-import { useContext, useEffect } from 'react'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
-import Input from '../../Input/Input'
-import { useSelector, useDispatch } from 'react-redux'
-import LoadingScreen from '../../LoadingScreen/LoadingScreen'
-import { SearchingProductsAction } from '../../../redux/Action/SearchingProduct'
+import { useContext } from 'react'
 import { SearchingContext } from '../UseContext/SearchingResult'
+import { FormControl } from 'react-bootstrap'
+import { BiSearch } from 'react-icons/bi'
+import Styles from '../StylesComponents/style'
+import { HiOutlineX } from 'react-icons/hi'
+
+
 export default function InputSearchingRestrange(props) {
 
 
 
-    const dispatch = useDispatch()
 
-    const { products, setProducts, searching, setSearching } = useContext(SearchingContext)
-
-
-
-    // cart info.....
-    const cartInfoid = useSelector((state) => state?.cartInfoid)
-    const { loading, cartinfo } = cartInfoid
-
-    // searching product
-    const ProductsSearching = useSelector((state) => state?.ProductsSearching)
-    const { searchingHome } = ProductsSearching
+    // singe Page Searching with products......
+    const { searching, setSearching } = useContext(SearchingContext)
 
 
 
+    // tesing... console.log(searching)
 
+    return <div className='searching-rest'>
 
+        <div className='Searching-Products'>
+            <FormControl
+                className='with-input'
+                placeholder='Söker efter Produkter...'
+                onChange={(e) => setSearching(e.target.value?.toLowerCase())}
+                value={searching}
+                style={Styles.NavBarSearchingColorInput}
+            />
 
-    useEffect(() => {
-        setProducts(products?.concat(searchingHome))
+            <BiSearch
+                style={Styles.searchingcolor}
+                className='Searching-input'
+            />
+            {searching?.length >= 1 && <HiOutlineX
+                className='close-pp-pp-image ADD-REMOVE'
+                onClick={() => setSearching('')}
+            />}
 
-
-        return () => {
-            setProducts([])
-        }
-        // eslint-disable-next-line
-    }, [searchingHome, setProducts])
-
-
-
-
-
-
-
-
-
-
-    useEffect(() => {
-
-        setProducts([])
-
-        searching && HandleSearching()
-        // eslint-disable-next-line
-    }, [searching, setProducts])
-
-
-    const HandleSearching = () => {
-
-
-        if (!searching?.startsWith(' ') || !searching.endsWith(' ')) {
-
-            return dispatch(SearchingProductsAction(cartinfo?._id, searching, true))
-        }
-    }
-
-
-
-
-
-
-    return loading ? <LoadingScreen /> : <div className='searching-rest'>
-        <Input
-            placeholder='Searching'
-            ImageLog={MyOderImage.search}
-            className='Input-type-style add-leftpaddig'
-            onChange={(e) => setSearching(e.target.value)}
-            // onKeyPress={(e) => e.key === 'Enter' ? HandleSearching() : null}
-
-            value={searching}
-        />
+        </div>
     </div>
 
 }
+
+   // const dispatch = useDispatch()
+   // // cart info.....
+    // const cartInfoid = useSelector((state) => state?.cartInfoid)
+    // const { loading, cartinfo } = cartInfoid
+    // // searching product
+    // const ProductsSearching = useSelector((state) => state?.ProductsSearching)
+    // const { searchingHome } = ProductsSearching
+    // useEffect(() => {
+    //     setProducts(products?.concat(searchingHome))
+    //     return () => {
+    //         setProducts([])
+    //     }
+    //     // eslint-disable-next-line
+    // }, [searchingHome, setProducts])
+    // useEffect(() => {
+    //     setProducts([])
+    //     searching && HandleSearching()
+    //     // eslint-disable-next-line
+    // }, [searching, setProducts])
+    // const HandleSearching = () => {
+    //     if (!searching?.startsWith(' ') || !searching.endsWith(' ')) {
+    //         return dispatch(SearchingProductsAction(cartinfo?._id, searching, true))
+    //     }
+    // }

@@ -16,9 +16,8 @@ import Title from '../../Components/ScreenTitle/ScreenTitle'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import { ErrorServer } from '../../Assistant/TextError'
-// import * as ActionTypes from '../../redux/Action/Types'
-// ActionTypes.ADD_CARTINFO_ID_SUCCESS
 import './style.css'
+
 export default function RestaurantsPageProductsScreen(props) {
 
     const { match } = props
@@ -51,20 +50,25 @@ export default function RestaurantsPageProductsScreen(props) {
 
     //get cart info 
     // event error and loading.....
+    // testing loading okej
     const cartInfoid = useSelector((state) => state?.cartInfoid)
     const { loading: loadingCartInfo, cartinfo, error: errorCartInfo } = cartInfoid
 
 
 
     // get all category to restrange.
+    // get all category to restraurn
     const CategoryPublic = useSelector((state) => state?.PagePublicCategory?.category[cartinfo?._id]) || []
 
-
-
+    // category loading and error // event sometheig error 
+    // testing okey....
+    const CategoryPublicError = useSelector((state) => state?.PagePublicCategory)
+    const { error: errorCategoryPublicError, loading: loadingCategoryPublicError } = CategoryPublicError
 
 
     // category.....
-    // cart info id   testing loading and error okey......
+    // cart info id   
+    // testing and loading this is okej 
     useEffect(() => {
         if (ChangeParams) {
             dispatch(GetCartInfoIdAction(ChangeParams))
@@ -82,8 +86,9 @@ export default function RestaurantsPageProductsScreen(props) {
 
 
 
-    // // get all category.....
-    // // get cart id to searching.... for searching products....
+    // get all category.....
+    // get cart id to cart order
+    // testing and loading this is okej 
     useEffect(() => {
 
         if (categoryRun)
@@ -98,6 +103,13 @@ export default function RestaurantsPageProductsScreen(props) {
 
 
 
+
+
+    // options
+    // [1] : navbar cart add deliver and takeway open time  selection  besket cart ---- RestaurantsNavBarCart
+    // [2] :  photo restruang ---PagePhotoResta
+    // [3] :   restrurange name  --- RestaurantsPagePhotoNavBar
+    // [4] :    nav nar views all category och time rating  and searching.....
 
     return <Container fluid>
         <LoadingErrorHandle
@@ -119,27 +131,42 @@ export default function RestaurantsPageProductsScreen(props) {
 
                 {/* image to restrange */}
                 <PagePhotoResta cartinfo={cartinfo} />
-                <RestaurantsPagePhotoNavBar
-                    category={CategoryPublic}
-                    cartinfo={cartinfo}
-                />
 
-                {/* views all category och time rating   */}
 
-                <PageNavBarScreen
-                    setOpenDescription={setOpenDescription}
-                    openDescription={openDescription}
-                    NavBarScroll={NavBarScroll}
-                    addTop={addTop}
-                    category={CategoryPublic}
+                <LoadingErrorHandle
+                    error={errorCategoryPublicError}
+                    loading={loadingCategoryPublicError}
+                    TextNotItems={ErrorServer}
+                >
 
-                />
-                {CategoryPublic?.length >= 1 &&
-
-                    <PageItemsScreen
-                        idRes={cartinfo?._id}
+                    {/* name restrurang */}
+                    <RestaurantsPagePhotoNavBar
+                        category={CategoryPublic}
+                        cartinfo={cartinfo}
                     />
-                }
+
+                    {/* views all category och time rating  and seaching  */}
+                    <PageNavBarScreen
+                        setOpenDescription={setOpenDescription}
+                        openDescription={openDescription}
+                        NavBarScroll={NavBarScroll}
+                        addTop={addTop}
+                        category={CategoryPublic}
+
+                    />
+                    {CategoryPublic?.length >= 1 &&
+
+                        <PageItemsScreen
+                            idRes={cartinfo?._id}
+                            category={CategoryPublic}
+                        />
+                    }
+
+                </LoadingErrorHandle>
+
+
+
+
 
 
             </Row>
@@ -181,33 +208,4 @@ export default function RestaurantsPageProductsScreen(props) {
 
 
 
-
-
-
-
-    // if (typeof cartinfo?._id === 'string' || typeof cartinfo?._id !== 'undefined') {
-    //     //  console.log('run',cartinfo?._id)
-    //     CategoryPublic?.length === 0 &&  dispatch(getCategoryAction(cartinfo?._id))
-    //     return setLocationNotNu(cartinfo?._id)
-    // }
-
-    // useEffect(() => {
-
-    //     if (typeof cartinfo?._id === 'string' || typeof cartinfo?._id !== 'undefined') {
-
-    //         console.log('helllo', cartinfo?._id)
-
-
-
-    //         return
-
-    //     }
-
-    //     // eslint-disable-next-line
-    // }, [
-    //     dispatch,
-    //     cartinfo,
-
-    //     setLocationNotNu
-    // ])
 

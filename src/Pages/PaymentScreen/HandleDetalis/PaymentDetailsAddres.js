@@ -26,7 +26,7 @@ export default function PaymentDetailsAddres(props) {
         <div className='FIrst-how add-padding-slider' >
 
             <div className='how-class color-family'>
-                where to ?
+            Vart till?
             </div>
 
 

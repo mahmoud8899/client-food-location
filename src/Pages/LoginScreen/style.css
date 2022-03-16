@@ -124,6 +124,24 @@ login-margin-top-bottom   margin-top and bottom
     box-sizing: inherit;
    
 }
+.login-scroll-Heigth::-webkit-scrollbar {
+    width: 10px;
+  }
+  /* Track */
+  .login-scroll-Heigth::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  .login-scroll-Heigth::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  .login-scroll-Heigth::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
 .POstion-form{
     height: 430px;
     overflow: hidden;
@@ -190,6 +208,7 @@ login-margin-top-bottom   margin-top and bottom
 .text-align-center{
   
    text-align: center;
+   font-size: 16px;
 }
 .login-padding{
     padding: 0.5rem;
@@ -223,9 +242,11 @@ login-margin-top-bottom   margin-top and bottom
 
 
 .login-padding h1{
-    font-family: "Mochiy Pop P One", sans-serif;
-    font-size: 17px;
+    font-family: system-ui;
+    font-size: 27px;
     text-align: center;
+    text-transform: capitalize;
+    color: black;
 }.login-padding p{
     text-align: center;
     opacity: 0.6;
@@ -236,11 +257,24 @@ login-margin-top-bottom   margin-top and bottom
 .login-padding{
     margin-bottom: 1rem;
 }
+.center-c-more{
+    width: 42px;
+    text-align: center;
+}
+.center-c-more-style{
+    font-size: 24px;
+}
 .Input-type-style{
     height: 40px;
     border-radius: 0.4rem;
-    border: 1px solid #ff9c97ba;
+    border: 0.1rem solid #ff9c97ba;
+    cursor: pointer;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
 }
+/* .Input-type-style::placeholder{
+    color: #ff9c97ba;
+} */
 
 .Input-type-style.padding-left-none{
     padding: 10px
@@ -268,13 +302,47 @@ login-margin-top-bottom   margin-top and bottom
 .border-bottom-x{
     border-bottom: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.forgetPassword{
-    font-family: "Mochiy Pop P One", sans-serif;
-    font-size: 10px;
+.Login-Close-Image-rigth{
     cursor: pointer;
-    opacity: 0.6;
-    margin-bottom: 1rem;
+    color: white;
+}
+.Input-Handle-icons{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.Icons-LEFT{
+    position: absolute;
+    left: 0.5rem;
+    font-weight: bold;
+    font-size: 20px;
+    color: #ff9c97;
+}
+
+.Icons-LEFT-right{
+    position: absolute;
+    right: 0.5rem;
+    color: #ff9c97;
+    font-weight: bold;
+    font-size: 20px;
+}
+.Icons-LEFT-Show-password{
+    position: absolute;
+    right: 2rem;
+    color: #ff9c97;
+    font-weight: bold;
+    font-size: 20px;
+}
+.forgetPassword{
+    text-transform: capitalize;
+    font-size: 12px;
     margin-top: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}.forgetPassword:hover{
+    color: red;
 }
 .forget-password{
     width: 100%;
@@ -306,12 +374,13 @@ login-margin-top-bottom   margin-top and bottom
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    background-color: #eee;
+    background-color: #ff9d97;
     padding: 7px;
     opacity: 0.7;
     transition: all 1s;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     transition: all 2s;
+    color: white;
 }
 .Login-Close-Image-rigth:hover{
     opacity: 1;

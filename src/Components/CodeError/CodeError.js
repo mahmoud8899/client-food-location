@@ -5,19 +5,19 @@ import ImageScreen from '../ImageScreen/ImageScreen'
 const CodeError = (props) => {
 
 
-    const { error,onClick,AddClose } = props
+    const { error, onClick, AddClose } = props
 
 
     return <div className='handle-dev-image'>
         <span>{error}</span>
         {AddClose &&
-         <ImageScreen
-         ImageIcon={MyOderImage.close}
-         className='close-image-error'
-         onClick={onClick}
-     />
+            <ImageScreen
+                ImageIcon={MyOderImage.close}
+                className='close-image-error'
+                onClick={onClick}
+            />
         }
-       
+
     </div>
 
 
