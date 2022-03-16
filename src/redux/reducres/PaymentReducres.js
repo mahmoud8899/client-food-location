@@ -1,6 +1,6 @@
 import * as ActionTypes from '../Action/Types'
 
-
+// public to user
 // save user takeway or delivery
 export const PaymentDriverselection = (state = {
     driver: null, 

@@ -51,9 +51,9 @@ export default function PaymentCourierScreen() {
                 />
 
                 <div className='item-credit-text'>
-                    <div className='color-family'> Tip the courier</div>
+                    <div className='color-family'> Dricks till kurirpartern</div>
                     <div className='color-last-items'>
-                        Optional tip for the courier
+                    Frivillig dricks till kurirpartnern
                     </div>
                 </div>
 
@@ -68,12 +68,9 @@ export default function PaymentCourierScreen() {
 
                     <div className='courier-box'>
                         <div className='courier-item'>
-                            <p>Your tip will be paid to
-                                the courier together with their salary.
-                                {FirstNameRest}
-                                doesn’t deduct anything from the tip.
-                                If you want to change or remove your tip,
-                                please contact support for help.
+                            <p>
+                            De får 100 % av din dricks efter leveransen. 
+                            Om du vill ändra eller avbryta dricksen, vänligen kontakta supporten för hjälp.
                             </p>
                         </div>
                         <div className='courier-item'>
@@ -84,7 +81,7 @@ export default function PaymentCourierScreen() {
 
 
                             ))}
-                            <span style={Styles.colorButtom} onClick={(e) => HandelsumCunt(e)}>Other </span>
+                            <span style={Styles.colorButtom} onClick={(e) => HandelsumCunt(e)}>Annat belopp </span>
                         </div>
                     </div>
 

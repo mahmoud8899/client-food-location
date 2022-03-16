@@ -31,7 +31,7 @@ export default function GoToCheckOut(props) {
                 <Link style={Styles.backgroundBox} className='checkout-yourorder' to={{ pathname: ConversionCheckOut(cartinfo) }} >
                     <div className='checkout-dev'>
                         <span className='checkout-dev-one'>{CollectOrder(props?.filterCartProduct)}</span>
-                        <span className='checkout-dev-twe'> go to checkout</span>
+                        <span className='checkout-dev-twe'> Till kassan</span>
 
                     </div>
                     <span>kr {TotalPrice(props?.filterCartProduct)}</span>

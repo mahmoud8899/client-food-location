@@ -42,7 +42,7 @@ export default function PaymentCreditScreen() {
     return <Col xs={12} ms={12} md={12} lg={12} >
 
         <h1 className='Delivery-method-and-time'>
-            Payment details
+        Betalningsdetaljer
         </h1>
 
         <div className='box-delivery-cart '>
@@ -55,11 +55,11 @@ export default function PaymentCreditScreen() {
 
                 <div className='item-credit-text'>
                     <div className='color-family'>
-                        {TheCheckCart?.cartnumber ? TheCheckCart?.cartnumber : 'choose a payment method'}
+                        {TheCheckCart?.cartnumber ? TheCheckCart?.cartnumber : 'Välj betalningsmetod'}
 
                     </div>
                     <div className='color-last-items'>
-                        {TheCheckCart?.cartnumber ? 'valt betalmetod kommer att debiteras' : 'please add a payment method  to continue your order'}
+                        {TheCheckCart?.cartnumber ? 'valt betalmetod kommer att debiteras' : 'Vänligen lägg till betalningsmetod för att kunna fortsätta med din beställning. Tack!'}
 
                     </div>
                 </div>
@@ -98,7 +98,7 @@ export default function PaymentCreditScreen() {
                             <div onClick={() => setOpenAddCart(!openAddCart)}>
 
                                 <AddOpenComponent
-                                    Titel='Add new Card'
+                                    Titel='Lägg till ett nytt kort'
 
                                     className='add-selected-item addxpxp'
                                 />

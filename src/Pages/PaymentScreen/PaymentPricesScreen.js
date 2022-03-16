@@ -46,7 +46,7 @@ export default function PaymentPricesScreen(props) {
         <div className='parant-st'>
 
 
-            <h1 className='left-max'>Prices include </h1>
+            <h1 className='left-max'>Priser i SEK, inkl. moms </h1>
 
 
 

@@ -24,7 +24,7 @@ export default function AddOpenComponent(props) {
         }}
     >
 
-           <HiPlus  className={classNamePluse ? classNamePluse : 'close-pp-pp-image'} />
+           <HiPlus  className={classNamePluse ? classNamePluse : 'close-pp-pp-image-add'} />
       
         <div className={classNameTitle ? classNameTitle : 'items-name-first-name'}>{Titel}</div>
     </Link>

@@ -43,7 +43,7 @@ export default function RestaurantProducts(props) {
                 <Row className='justify-content-center' >
 
                     <Col xs={12} sm={12} md={8} lg={8} >
-                        <h1 className='name-res'>{xs?.name}</h1>
+                        <h1 className='name-res style-font'>{xs?.name}</h1>
                     </Col>
                 </Row>
 

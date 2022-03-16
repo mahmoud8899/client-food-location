@@ -1,41 +1,60 @@
-import { useState } from 'react'
-import { Image } from 'react-bootstrap'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import MyAddress from '../../../Components/MyAddress/MyAddress'
 import UserAddressInfo from '../../User/UserAddresScreen/UserAddressInfo'
-
-
+import { useEffect, useState } from 'react'
+import { HiArrowNarrowLeft } from 'react-icons/hi'
 
 export default function PaymentDetailsAddres(props) {
 
+    // params 
+    // [1] : driver info if customer selection this 
+    // [2] : that onther this is customer info
     const { driver, userInfo } = props
 
-
+    // option add addres 
     const [openAddresScreen, setOpenAddresScreen] = useState(false)
+    // succsfully  when change address
+    const [updateSuccessFully, setUpdateSuccessFully] = useState(false)
+
+
+    // updated add address....
+    useEffect(() => {
+        if (updateSuccessFully) {
+            setOpenAddresScreen(false)
+            return setUpdateSuccessFully(false)
+        }
+
+    }, [updateSuccessFully])
+
+
+
+
+    // function handle close add addres och open
     const HandlAddAddres = (e) => {
         e.preventDefault()
-
         return setOpenAddresScreen(!openAddresScreen)
     }
 
 
+    // options 
+    // [1] : if the customer chooese the delivery service, he must add a address
+    // [2] : page add addres if customer  name -- MyAddress
 
 
-    return driver?.name === 'takeaway' ? null :
+    return driver?.name === 'hämta själv' ? null :
         <div className='FIrst-how add-padding-slider' >
 
             <div className='how-class color-family'>
-            Vart till?
+                Vart till?
             </div>
 
 
             {openAddresScreen ?
                 <>
 
-                    <ImageScreen
+                    <HiArrowNarrowLeft
                         className='class-close-image'
-                        ImageIcon={MyOderImage.left}
                         onClick={(e) => HandlAddAddres(e)}
                     />
 
@@ -43,6 +62,7 @@ export default function PaymentDetailsAddres(props) {
 
                         <MyAddress
                             ClassPaymentAdd
+                            setUpdateSuccessFully={setUpdateSuccessFully}
                             setOpenAddres={setOpenAddresScreen}
 
                         />
@@ -60,13 +80,14 @@ export default function PaymentDetailsAddres(props) {
                             <UserAddressInfo
                                 userInfo={userInfo}
                                 ClassNamepAY
+                                ClASShOME
 
                             />
 
 
 
                             <div className='change-drivery' >
-                                <span className='color-family add-color-all'>Change</span>
+                                <span className='color-family add-color-all'>ändra</span>
                             </div>
 
                         </div>
@@ -75,20 +96,17 @@ export default function PaymentDetailsAddres(props) {
 
                         <div className='drivery-class' onClick={(e) => HandlAddAddres(e)}>
 
-                            <Image
-                                src={MyOderImage.mpablack}
-                                className='bike'
-                            />
+                            <ImageScreen ImageIcon={MyOderImage.mpablack} className='bike' />
 
                             <div className='drivery-text'>
                                 <span className='color-family'>
-                                    add a delivery address
+                                    lägg till en leveransadress
                                 </span>
 
                             </div>
 
                             <div className='change-drivery' >
-                                <span className='color-family add-color-all'>Change</span>
+                                <span className='color-family add-color-all'>ändra</span>
                             </div>
 
 

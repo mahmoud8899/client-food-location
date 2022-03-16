@@ -1,48 +1,14 @@
 import { MyOderImage } from './MyOrderImage'
 
+
+
+
+//--  Not   active 
+// current add more cart
 export const CurrentNumber = [0, 1, 2, 3, 4, 5]
 
-
-export const OrderSelection = [
-    {
-        _id: 1,
-        name: 'Door delivery',
-        driverPric: 30,
-
-    }, {
-        _id: 2,
-        name: 'Pick Up',
-        driverPric: 0
-    }
-]
-
-
-
-export const PaymentSelection = [
-    {
-        _id: 1,
-        name: 'Debit / Credit Card',
-        description: 'Payment with debit/credit cart',
-        image: `${MyOderImage.credit}`
-    },
-    {
-        _id: 2,
-        name: 'Banking',
-        description: 'Payment with Banking',
-        image: `${MyOderImage.bank}`
-    },
-    {
-        _id: 3,
-        name: 'Paypal',
-        description: 'Payment with Paypal',
-        image: `${MyOderImage.paypal}`
-    },
-
-]
-
-
-
-
+//-- active
+// address location
 export const addresSelection = [
 
     {
@@ -62,10 +28,11 @@ export const addresSelection = [
         image: `${MyOderImage.other}`
     }
 ]
-
-
+//-- active
+// page name..
 export const FirstNameRest = 'UppsalaMat'
-
+//-- active
+// pay money to the driver
 export const selectionCourier = [
     {
         _id: 1,
@@ -84,23 +51,26 @@ export const selectionCourier = [
         courier: 4.00
     },
 ]
-
-
+//-- active
+// choose the type of food order
+// id and name and image and description
 export const DeliveryTakeaway = [
     {
         _id: 1,
-        name: 'delivery',
-        des: 'You Haven T Selected An Address',
+        name: 'utkörning',
+        des: 'Du har inte valt en adress',
         image: `${MyOderImage.bike2}`
     },
     {
         _id: 2,
-        name: 'takeaway',
-        des: 'I Ll Pick It Up Myself',
+        name: 'hämta själv',
+        des: 'Jag hämtar själv',
         image: `${MyOderImage.takeaway}`
     }
 ]
 
+//-- active
+// week days 
 export const TheWeek = [
     'mon',
     'tue',
@@ -112,13 +82,10 @@ export const TheWeek = [
 ]
 
 
+//-- active
+// week days 
 export const AddSstich = (name) => {
-
-
     const newFilter = name?.slice(0, 3)
-
-
-
     switch (newFilter) {
 
         case 'mon': return 'Monday'
@@ -133,34 +100,27 @@ export const AddSstich = (name) => {
     }
 }
 
-export const TheWeekName = [
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday',
-]
 
-
+//-- active
+// choose the type of driver
 export const AskOne = [
     'car',
     'bike',
     'motorcycle'
 ]
 
+//-- active
+// selection city
 export const Stand = [
     'uppsala',
     'gothenburg'
 ]
 
 
+//-- active
+// selection image to address.
 export const WhichWork = (name) => {
-
-
     switch (name?.toLowerCase()) {
-
         case 'home': return `${MyOderImage.home}`
         case 'work': return `${MyOderImage.work}`
         case 'other': return `${MyOderImage.other}`
@@ -168,16 +128,11 @@ export const WhichWork = (name) => {
     }
 }
 
+//-- active
+// rating to comment
+export const TheRating = [1, 2, 3, 4, 5,]
 
 
-export const TheRating = [
-    1,
-    2,
-    3,
-    4,
-    5,
-
-]
 
 
 export const TheDoday = () => {
@@ -189,12 +144,6 @@ export const TheDoday = () => {
     return justNu
 
 }
-
-// console.log(TheDoday())
-
-export const RemoveItmes = "Restore unfinished order You created an order previously that you didn’t finish, would you like to continue from where you left off?"
-
-
 
 
 
@@ -235,46 +184,24 @@ export const timeFrom = (X) => {
 }
 
 
-
+// -- active
+// create time to pay order
 export const theTimeNow = (name, form) => {
-
-
-
-
-
-
-
     const theTimeJustNow = new Date()?.getHours() + 1
     const timeNu = Number(name?.oppen?.slice(0, 2))
     const timeMinuter = Number(name?.oppen?.slice(3, 5))
     const timeClose = Number(name?.close?.slice(0, 2))
     const CollectMinutes = new Date()?.getMinutes()
     var newTimeResu = Number()
-
-
-
-
     if (Number(theTimeJustNow) > timeNu) {
-
         newTimeResu = theTimeJustNow
 
     }
-
-
-
-
-
     let StratTheTimeNow = form ? timeNu : newTimeResu
     let CloseTime = timeClose ? timeClose : timeClose
 
-
-
-
-
     let LastMinutes = 59;
-
     let resultMintes = [];
-
     for (StratTheTimeNow; StratTheTimeNow < CloseTime; StratTheTimeNow++) {
         for (let mintes = form ? timeMinuter : CollectMinutes; mintes <= LastMinutes; mintes += 10) {
             resultMintes.push(`${StratTheTimeNow}:${mintes}`);
@@ -289,3 +216,57 @@ export const theTimeNow = (name, form) => {
 
 
 
+
+
+
+
+
+// console.log(TheDoday())
+// export const RemoveItmes = "Restore unfinished order You created an order previously that you didn’t finish, would you like to continue from where you left off?"
+// export const TheWeekName = [
+//     'Monday',
+//     'Tuesday',
+//     'Wednesday',
+//     'Thursday',
+//     'Friday',
+//     'Saturday',
+//     'Sunday',
+// ]
+
+
+// export const OrderSelection = [
+//     {
+//         _id: 1,
+//         name: 'Door delivery',
+//         driverPric: 30,
+
+//     }, {
+//         _id: 2,
+//         name: 'Pick Up',
+//         driverPric: 0
+//     }
+// ]
+
+
+
+// export const PaymentSelection = [
+//     {
+//         _id: 1,
+//         name: 'Debit / Credit Card',
+//         description: 'Payment with debit/credit cart',
+//         image: `${MyOderImage.credit}`
+//     },
+//     {
+//         _id: 2,
+//         name: 'Banking',
+//         description: 'Payment with Banking',
+//         image: `${MyOderImage.bank}`
+//     },
+//     {
+//         _id: 3,
+//         name: 'Paypal',
+//         description: 'Payment with Paypal',
+//         image: `${MyOderImage.paypal}`
+//     },
+
+// ]

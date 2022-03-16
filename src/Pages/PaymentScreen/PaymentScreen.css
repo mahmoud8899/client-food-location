@@ -158,11 +158,11 @@ input:invalid+.validity:after {
     padding: 0rem;
 }
 .Delivery-method-and-time{
-    font-family: system-ui;
-    font-size: 15px;
+    font-size: 16px;
     margin-bottom: 1.5rem;
     margin-top: 1.5rem;
     text-transform: capitalize;
+    font-family: 'Heebo', sans-serif;
     
 }
 .cart_item_overflow{
@@ -182,13 +182,12 @@ input:invalid+.validity:after {
 }
 
 .add_color_maps{
-
-    text-transform: capitalize;
     color: black;
     padding: 0rem;
     margin: 0rem;
-    font-family: "Mochiy Pop P One", sans-serif;
-    font-size: 22px;
+    font-size: 35px;
+    font-family: 'Heebo', sans-serif;
+    text-transform: capitalize;
 }
 
 .top-maps{
@@ -627,9 +626,9 @@ text-transform: capitalize;
     margin-bottom: 1rem;
     margin-top: 1rem;
     font-size: 15px;
-    font-family: "Open Sans", sans-serif;
     font-weight: bold;
     text-transform: capitalize;
+    font-family: 'Heebo', sans-serif;
 }
 .nothover {
     display: flex;

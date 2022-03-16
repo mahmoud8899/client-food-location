@@ -1,12 +1,11 @@
 
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
-import { useState } from 'react'
 import { Add_timeAction } from '../../../redux/Action/Cart_Action'
 import { useDispatch, useSelector } from 'react-redux'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import OrderTimeScreen from '../../../Components/Update/OrderTimeScreen/OrderTimeScreen'
 import { theTimeNow } from '../../../Assistant/Selection'
-
+import { useState } from 'react'
 
 export default function PaymentDate() {
 
@@ -14,18 +13,25 @@ export default function PaymentDate() {
 
     const dispatch = useDispatch()
 
+    // time booking and time and day
     const cart = useSelector((state) => state?.cart)
     const { timeBooking } = cart
+
+    console.log(timeBooking)
+
     // cart info restrange... 
     const cartInfoid = useSelector((state) => state?.cartInfoid)
     const { cartinfo } = cartInfoid
 
 
+    // console.log(cartinfo)
 
 
+    // input save time and doys
+    const [timeOrder, setTimeOrder] = useState('')
+    const [dateOrder, setDateOrder] = useState('')
 
 
-    // console.log(timeBooking)
 
     // time 
     const [openchangeTime, setOpenchangeTime] = useState(false)
@@ -41,21 +47,6 @@ export default function PaymentDate() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    const [timeOrder, setTimeOrder] = useState('')
-    const [dateOrder, setDateOrder] = useState('')
-
-
     // fick data
     const userOptimtim = {
         oppen: cartinfo?.opentime?.oppen,
@@ -67,12 +58,12 @@ export default function PaymentDate() {
 
     const HandleClickALL = (e) => {
         e.preventDefault()
-        if (timeOrder === '' ) {
+        if (timeOrder === '') {
 
             setTimeOrder(theTimeNow(userOptimtim)[0])
             dateOrder === '' && setDateOrder('today')
             return
-         
+
         }
 
         const data = {
@@ -95,7 +86,7 @@ export default function PaymentDate() {
     return <div className='FIrst-how add-padding-slider'>
 
         <div className='how-class color-family'>
-            when?
+            När?
         </div>
 
         <div className='drivery-class' onClick={HandleChangeDate}>
@@ -109,19 +100,19 @@ export default function PaymentDate() {
 
             <div className='drivery-text'>
                 <span className='color-family'>
-                    {timeBooking?.dateOrder ? timeBooking?.dateOrder : 'as soon as possible'}
+                    {timeBooking?.dateOrder ? timeBooking?.dateOrder : 'Så snart som möjligt'}
                     {timeBooking?.timeOrder && timeBooking?.timeOrder}
 
                 </span>
                 <span className='color-last-items '>
-                    {timeBooking?.dateOrder ? null : `You'll Get Your Order In 35 To 45 Minutes`}
+                    {timeBooking?.dateOrder ? null : `Din beställning förväntas att levereras om 10 till 30 minuter`}
 
                 </span>
 
             </div>
             {openchangeTime ? null :
                 <div className='change-drivery' >
-                    <span className='color-family add-color-all'>Change</span>
+                    <span className='color-family add-color-all'>ändra</span>
                 </div>
             }
 

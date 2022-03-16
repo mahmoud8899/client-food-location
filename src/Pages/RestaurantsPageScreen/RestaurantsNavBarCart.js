@@ -75,7 +75,7 @@ export default function RestaurantsNavBarCart(props) {
 
 
                     <div className='view-order-number-text'>
-                        view order
+                    Till kassan
                     </div>
 
 

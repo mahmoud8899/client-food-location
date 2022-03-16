@@ -64,8 +64,8 @@ export default function RestaurantsYourOrderCart(props) {
                 filterCartProduct?.length === 0 ?
                     <div className='empty-cart'>
                         <ImageScreen ImageIcon={MyOderImage.basket2} className='empty-cart-image' />
-                        <h1 className='font-h1'>No items in your order</h1>
-                        <p>Your order is lonely without items. Let's add some!</p>
+                        <h1 className='font-h1'>Inga varor i din beställning</h1>
+                        <p>Din beställning är ensam utan föremål. Låt oss lägga till några!</p>
 
 
                         <ButtomClick title='Add items' style={Styles.colorBox} onClick={() => setYourOrder(!yourOrder)} />
@@ -76,7 +76,7 @@ export default function RestaurantsYourOrderCart(props) {
                     <>
 
                         <div className='close-yourOrder'>
-                            <h1 className='your-h1' >Your order</h1>
+                            <h1 className='your-h1' >Din beställning</h1>
                         </div>
 
                         <div className='scroll-comment'>
@@ -103,13 +103,13 @@ export default function RestaurantsYourOrderCart(props) {
                                 </div>
 
                                 <div className='comment-image-top-text'>
-                                    <span className='comment-image-top-text-first'>Lägg till kommentar för platsen</span>
-                                    <span className='comment-image-top-text-last'>Särskilda önskemål, allergier, kostrestriktioner, etc.</span>
+                                    <span className='comment-image-top-text-first'>Lägg till kommentar</span>
+                                    <span className='comment-image-top-text-last'>Särskilda önskemål, allergier, kostpreferenser, etc.</span>
                                 </div>
 
 
                                 <div style={Styles.backgroundAll} className='comment-image-top-edit' onClick={() => setOpenComment(!openComment)}>
-                                    <span className='font-size-st'>edit</span>
+                                    <span className='font-size-st'>Ändra</span>
                                 </div>
 
                             </div>

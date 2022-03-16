@@ -195,7 +195,10 @@
 }
 
 
-
+.close-pp-pp-image-add{
+    color: #ff9d97;
+    font-size: 22px;
+}
 @media only screen and (max-width: 460px) {
 
     .image-searching-{

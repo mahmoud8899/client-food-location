@@ -690,9 +690,12 @@ class-padding-style  this is padding
 
   .name-res
 {
-    font-size: 50px;
-    font-family: 'Mochiy Pop P One';
+    font-size: 39px;
     text-transform: capitalize;
+    font-family: 'Heebo', sans-serif;
+}
+.name-res.style-font{
+    font-size: 20px;
 }
 .name-res.font{
     font-size: 20px;
@@ -1273,8 +1276,11 @@ overflow: hidden;
 }
 
 .your-h1 {
-    font-size: 50px;
-    font-family: 'Mochiy Pop P One';
+    font-size: 24px;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    text-transform: capitalize;
+    font-family: 'Heebo', sans-serif;
 }
 
 .close-yourOrder-number{
@@ -1499,12 +1505,12 @@ overflow: hidden;
     align-items: center;
 }
 .close-pp-pp-image{
-    width: 32px;
-    height: 32px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     background-color: #ff9d97;
     overflow: hidden;
-    padding: 8px;
+    padding: 3px;
     cursor: pointer;
     color: white;
     opacity: 0.7;
@@ -1560,6 +1566,8 @@ overflow: hidden;
     height: 400px;
     overflow: hidden;
     transition: all 2s;
+    animation: hiddenAnimation 1s 1;
+    padding: 1.5rem;
  
     animation: hiddenAnimation 1s 1;
 }
@@ -1655,6 +1663,11 @@ overflow: hidden;
     cursor: pointer;
     font-size: 16px;
  
+}
+.view-order-number-text.color-color{
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
 }
 .view-order-number-price{
     margin-left: auto;

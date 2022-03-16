@@ -1,21 +1,36 @@
-import { useState } from 'react'
-import { Image } from 'react-bootstrap'
+import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { DeliveryTakeaway } from '../../../Assistant/Selection'
 import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen'
 import { useDispatch } from 'react-redux'
 import { AddDriverySelection } from '../../../redux/Action/Payment_action'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
-
+import { useState } from 'react'
 
 
 export default function PaymentDrivery(props) {
 
+
+     // params 
+     // [1] : driver selection if customs
+     // [2] : other loading to selection customs
     const { driver, loading } = props
 
 
     const dispatch = useDispatch()
 
+
+
+    
+ // important  if user not selection takeway and delivery comming first delivery
+    // open and selection method delivery or takeway
     const [clickOpenNav, setClickOpenNav] = useState(true)
+
+
+
+
+
+
+    // Handle open and close selection method delivery or takway
     const HandelOpenDriver = (e) => {
         e.preventDefault()
         setClickOpenNav(!clickOpenNav)
@@ -23,14 +38,21 @@ export default function PaymentDrivery(props) {
         // setChangeDrivery(!changeDrivery)
 
     }
+
+
+
+    // save selection user takeway and delivery
+    // after that close selection
     const SaveSelection = (e, id) => {
         e.preventDefault()
         setClickOpenNav(!clickOpenNav)
-
         return dispatch(AddDriverySelection(id))
 
 
     }
+
+
+   
 
 
     return <div className='FIrst-how add-padding-slider'>
@@ -44,8 +66,8 @@ export default function PaymentDrivery(props) {
 
             <div className='drivery-class' onClick={(e) => HandelOpenDriver(e)} >
 
-                <Image
-                    src={driver?.image ? driver?.image : DeliveryTakeaway[0]?.image}
+                <ImageScreen
+                    ImageIcon={driver?.image ? driver?.image : DeliveryTakeaway[0]?.image}
                     className='bike'
                 />
 
@@ -55,7 +77,7 @@ export default function PaymentDrivery(props) {
                 </div>
 
                 <div className='change-drivery' >
-                    <span className='color-family add-color-all'>Change</span>
+                    <span className='color-family add-color-all'>ändra</span>
                 </div>
             </div>
             :
@@ -65,10 +87,7 @@ export default function PaymentDrivery(props) {
                 <div className='drivery-class' key={Index} onClick={(e) => SaveSelection(e, tak)} >
 
 
-                    <Image
-                        src={MyOderImage.checkedblack}
-                        className='bike'
-                    />
+                    <ImageScreen ImageIcon={MyOderImage.checkedblack} className='bike' />
                    
 
                     <div className='drivery-text'>

@@ -35,7 +35,7 @@ export default function PaymentCartIemsScreen(props) {
         <Col xs={12} ms={12} md={12} lg={12} >
 
             <h1 className='Delivery-method-and-time'>
-                Selected items
+            Valda artiklar
             </h1>
             {props?.loading ? <LoadingScreen />
                 : filterCartProduct?.length === 0
@@ -91,7 +91,7 @@ export default function PaymentCartIemsScreen(props) {
 
             <AddOpenComponent
                 PathName={Conversion(props?.cartinfo)}
-                Titel='Add more items'
+                Titel='lägg till artiklar'
                 className='add-selected-item'
             />
 

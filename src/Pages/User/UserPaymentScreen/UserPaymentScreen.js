@@ -82,7 +82,7 @@ export default function UserPaymentScreen(props) {
 
                         <div className='addToCart' onClick={(e) => setOpenPayment(true)}>
                             <AddOpenComponent
-                                Titel='Add new Card'
+                                Titel='Lägg till ett nytt kort'
                                 style={Styles.addPayment}
                                 className='className-link'
                                 classNameTitle='className-linkleft'

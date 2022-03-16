@@ -75,7 +75,12 @@ export default function CheckOutPaymentScreen(props) {
 
 
 
-    console.log(cartinfo)
+
+
+    // options
+    // [1] -  maps and restrurant name
+    // [2] - payment delivery and time and takeaway
+
 
 
     return <Container fluid>
@@ -101,7 +106,7 @@ export default function CheckOutPaymentScreen(props) {
                             <h1 className='Delivery-method-and-time'>
                             Leveranssätt och tid
                             </h1>
-                            <PaymentAddresDriverScreen   />
+                            <PaymentAddresDriverScreen  cartinfo={cartinfo} />
                         </Col>
 
 

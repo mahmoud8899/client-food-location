@@ -522,9 +522,10 @@ font-size: 13px;
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    background-color: #eee;
+    background-color: #ff9d97;
     overflow: hidden;
-    padding: 10px;
+    padding: 4px;
+    color: white;
     cursor: pointer;
 }
 .class-close-image.add-left-black{
@@ -844,8 +845,8 @@ border-left: ridge;
     padding: 0rem;
     margin: 0rem;
     text-transform: capitalize;
-    font-size: 17px;
-    font-family: system-ui;
+    font-size: 22px;
+    font-family: 'Heebo', sans-serif;
 
 }
 .scrollAlert{

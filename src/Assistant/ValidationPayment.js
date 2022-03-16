@@ -4,14 +4,14 @@
 // Before confirming the payment.......
 export const ValidationPayment = (TheCheckOutDriver, theCheckOutCard, CheckUserAddress) => {
 
-    if (TheCheckOutDriver?.name === 'delivery') {
-        return typeof CheckUserAddress === 'undefined' ? 'Please Add Delivery Address' :
-            typeof theCheckOutCard === 'undefined' ? 'check in payment Methode' : true
+    if (TheCheckOutDriver?.name === 'utkörning') {
+        return typeof CheckUserAddress === 'undefined' ? 'vänligen lägg till en leveransadress klicka för att se beställning detaljerna' :
+            typeof theCheckOutCard === 'undefined' ? 'vänligen lägg till betalning för kunna fortsätta med din beställning' : true
     }
 
 
-    if (TheCheckOutDriver?.name === 'takeaway') {
-        return typeof theCheckOutCard === 'undefined' ? 'check in payment Methode' : true
+    if (TheCheckOutDriver?.name === 'hämta själv') {
+        return typeof theCheckOutCard === 'undefined' ? 'vänligen lägg till betalning för kunna fortsätta med din beställning' : true
     }
 
 }

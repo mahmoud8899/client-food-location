@@ -1,8 +1,8 @@
 import { Col, Row } from 'react-bootstrap'
-import {TotalPrice} from '../../../Assistant/TotalPrice'
-import {FilterCartDetials} from '../UseContext/FilterRestarangeProduct'
-import { FiShoppingCart } from 'react-icons/fi'
+import { CollectOrder, TotalPrice } from '../../../Assistant/TotalPrice'
+import { FilterCartDetials } from '../UseContext/FilterRestarangeProduct'
 import { useContext } from 'react'
+import Styles from '../StylesComponents/style'
 
 
 
@@ -11,7 +11,7 @@ export default function CartScreen(props) {
 
     const { setYourOrder, yourOrder } = props
 
-    const {filterCartProduct} = useContext(FilterCartDetials)
+    const { filterCartProduct } = useContext(FilterCartDetials)
 
 
 
@@ -21,6 +21,8 @@ export default function CartScreen(props) {
 
 
 
+
+    console.log(filterCartProduct)
 
 
 
@@ -29,11 +31,20 @@ export default function CartScreen(props) {
         {filterCartProduct?.length === 0 ? null :
             <Col xs={12} ms={12} md={12} lg={12}>
                 <div className='basket-box' onClick={() => setYourOrder(!yourOrder)}>
-                    <div className='basket-image'>
-                        <FiShoppingCart 
-                         className='basket2'
+                    <div className='Open-today addColor-navbar'>
+                        <div style={Styles.backgroundSize} className='view-order-number'>
+
+                            <span>{CollectOrder(filterCartProduct)}</span>
+
                          
-                         />
+                        </div>
+
+                        <div className='view-order-number-text color-color'>
+                            Till kassan
+                        </div>
+
+
+
                     </div>
 
                     <div className='basket-price'>

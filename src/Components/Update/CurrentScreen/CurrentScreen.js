@@ -193,11 +193,11 @@ export default function CurrentScreen(props) {
             >
                 {courrent === 0 ?
                     <span>
-                        remove from order
+                       ta bort från beställning
                     </span>
                     :
                     <>
-                        <span className='color-family add-diffren'> add to order</span>
+                        <span className='color-family add-diffren'> Lägg till beställning</span>
                         <span className='color-family add-diffren'>kr
                             {CollectNumber(courrent, productId?.prices)}
                         </span>

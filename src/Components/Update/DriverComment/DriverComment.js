@@ -1,6 +1,5 @@
 import { Fragment, useState } from "react";
 import { Form } from "react-bootstrap";
-import { FirstNameRest } from "../../../Assistant/Selection";
 import ButtomClick from "../../Buttom/Buttom";
 import Styles from "../StylesComponents/style";
 import TheInputForm from '../../TheInputForm/TheInputForm'
@@ -31,7 +30,7 @@ export default function DriverComment(props) {
         <h1 className='your-h1'>Lägg till kommentar</h1>
         <span className='comment-image-top-text-last'>
 
-            Din kommentar kan komma att delas med {FirstNameRest}  partners som förbereder och levererar din beställning.
+        Vi kan behöva dela din kommentar med de som hanterar eller levererar din beställning.
 
         </span>
 

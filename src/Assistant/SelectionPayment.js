@@ -1,15 +1,18 @@
 
 
+// selection user takeway and delivery
+// what need method need user for food
+export const Usercheck = (data, user,cartinfo) => {
 
-export const Usercheck = (data, user) => {
+   // console.log(cartinfo?.finishfood?.to)
 
    switch (data?.name) {
 
-      case 'takeaway': return 'takeaway in 10-20'
+      case 'takeaway': return `Takeaway om ${cartinfo?.finishfood?.to}-${cartinfo?.finishfood?.end} min`
 
-      case 'delivery': return user?.Adress?.work ? `delivery in 25-35 min to ${user?.Adress?.work}` : 'please add delivery address'
+      case 'delivery': return user?.Adress?.work ? `Leverans om  ${cartinfo?.finishfood?.to}-${cartinfo?.finishfood?.end} min till ${user?.Adress?.work}` : 'lägg till leveransadress'
 
-      default: return 'please add delivery address'
+      default: return 'lägg till leveransadress'
 
 
    }

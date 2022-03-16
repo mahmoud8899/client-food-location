@@ -457,8 +457,9 @@ const Styles = {
     logText: {
 
         color: COLORS.firstRed,
-        fontFamily: `'Mochiy Pop P One', sans-serif`,
-
+        fontFamily: `'Heebo', sans-serif`,
+        fontSize: '17px'
+   
     },
 
     bottom: {
