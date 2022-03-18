@@ -103,7 +103,7 @@ export default function UserPaymentDerail(props) {
                         addOkey={addOkey}
                         setAddOkey={setAddOkey}
                     />
-                    <p className='text-error'>{handleError && 'Do You Agree'}</p>
+                    <p className='text-error'>{handleError && 'Håller du med'}</p>
                 </div>
 
 

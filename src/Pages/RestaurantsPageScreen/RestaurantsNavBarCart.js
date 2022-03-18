@@ -5,7 +5,8 @@ import { TotalPrice, CollectOrder } from '../../Assistant/TotalPrice'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
 import { useContext } from 'react'
 import SetTimeout from '../../Components/Update/SetTimeout/SetTimeout'
-import {FiChevronRight } from 'react-icons/fi'
+import { FiChevronRight } from 'react-icons/fi'
+import { useSelector } from 'react-redux'
 export default function RestaurantsNavBarCart(props) {
 
     const {
@@ -21,6 +22,10 @@ export default function RestaurantsNavBarCart(props) {
 
     const { filterCartProduct } = useContext(FilterCartDetials)
 
+
+    // products event....
+    const ProductList = useSelector((state) => state?.PagePublicProducts)
+    const {  error } = ProductList
 
 
 
@@ -40,7 +45,7 @@ export default function RestaurantsNavBarCart(props) {
 
     return <Row className={!hiddenNavBar ? 'justify-content-center color-row-testing dispalaynone' : 'justify-content-center color-row-testing removeMargin-top dispalaynone'}  >
         <Col xs={4} sm={4} md={4} lg={4}>
-            <PaymentAddresDriverScreen ClassNameNavBarCart />
+            <PaymentAddresDriverScreen ClassNameNavBarCart cartinfo={cartinfo} />
         </Col>
 
         <Col xs={4} sm={4} md={4} lg={3}>
@@ -49,7 +54,7 @@ export default function RestaurantsNavBarCart(props) {
                 <span className='font-size-navbar extra-font-time'>
                     {cartinfo?.opentime?.oppen}-{cartinfo?.opentime?.close}
                 </span>
-                <FiChevronRight  className='opentody-image' />
+                <FiChevronRight className='opentody-image' />
 
                 <SetTimeout
                     cartinfo={cartinfo}
@@ -59,38 +64,41 @@ export default function RestaurantsNavBarCart(props) {
         </Col>
 
 
-        <Col xs={4} sm={4} md={4} lg={4}>
-            {filterCartProduct?.length === 0 ? null :
-                <div
-                    style={Styles.backgroundAll}
-                    className='Open-today addColor-navbar'
-                    onClick={() => filterCartProduct?.length === 0 ? null : setYourOrder(!yourOrder)}
-                >
+        {error ? null :
+            <Col xs={4} sm={4} md={4} lg={4}>
+                {filterCartProduct?.length === 0 ? null :
+                    <div
+                        style={Styles.backgroundAll}
+                        className='Open-today addColor-navbar'
+                        onClick={() => filterCartProduct?.length === 0 ? null : setYourOrder(!yourOrder)}
+                    >
 
 
-                    <div style={Styles.backgroundSize} className='view-order-number'>
+                        <div style={Styles.backgroundSize} className='view-order-number'>
 
-                        <span>{CollectOrder(filterCartProduct)}</span>
+                            <span>{CollectOrder(filterCartProduct)}</span>
+                        </div>
+
+
+                        <div className='view-order-number-text'>
+                            Till kassan
+                        </div>
+
+
+                        <div className='view-order-number-price'>
+                            kr {TotalPrice(filterCartProduct)}
+                        </div>
+
+
+
+
+
+
                     </div>
+                }
+            </Col>
+        }
 
-
-                    <div className='view-order-number-text'>
-                    Till kassan
-                    </div>
-
-
-                    <div className='view-order-number-price'>
-                        kr {TotalPrice(filterCartProduct)}
-                    </div>
-
-
-
-
-
-
-                </div>
-            }
-        </Col>
     </Row>
 
 }

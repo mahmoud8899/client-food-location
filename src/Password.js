@@ -1,36 +1,61 @@
-import { Form ,Row,Col, Button } from "react-bootstrap";
+import { useState } from "react";
+import { Form } from "react-bootstrap";
+import DatePicker from 'react-datepicker';
+
+import "react-datepicker/dist/react-datepicker.css";
 
 
 
-export default function PasswordScreen(){
+export default function PasswordScreen() {
 
 
 
 
-    const HandleP = () =>{
-        console.log('click')
-    }
+  const HandleP = () => {
+    console.log('click')
+  }
 
 
-    return <Form onSubmit={HandleP}>
-    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-      <Form.Label column sm="2">
-        Email
-      </Form.Label>
-      <Col sm="10">
-        <Form.Control plaintext readOnly defaultValue="email@example.com" />
-      </Col>
-    </Form.Group>
-  
-    <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-      <Form.Label column sm="2">
-        Password
-      </Form.Label>
-      <Col sm="10">
-        <Form.Control type="password" autoComplete="username" />
-      </Col>
-    </Form.Group>
 
-    <Button variant="danger">Danger</Button> 
+
+
+  const [startDate, setStartDate] = useState(new Date());
+
+
+
+
+
+ 
+
+  let Mahmoud = new Date()
+  // Mahmoud.setHours(20, 20, 0)
+  let ACXD = new Date()
+  ACXD.setHours(23, 20, 0)
+
+
+  // console.log(startDate)
+
+
+
+
+  return <Form onSubmit={HandleP}>
+
+    <div className="xxxd">
+      <DatePicker
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+        showTimeSelect
+        showTimeSelectOnly
+        timeIntervals={10}
+        minTime={Mahmoud}
+        maxTime={ACXD}
+        timeCaption="Time"
+        dateFormat="HH:mm"
+        timeFormat="HH:mm"
+        className="masssss"
+      />
+    </div>
+
+
   </Form>
 }

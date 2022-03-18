@@ -22,7 +22,7 @@ export default function CartScreen(props) {
 
 
 
-    console.log(filterCartProduct)
+    // console.log(filterCartProduct)
 
 
 

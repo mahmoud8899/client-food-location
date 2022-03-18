@@ -4,13 +4,11 @@
 // what need method need user for food
 export const Usercheck = (data, user,cartinfo) => {
 
-   // console.log(cartinfo?.finishfood?.to)
-
    switch (data?.name) {
 
-      case 'takeaway': return `Takeaway om ${cartinfo?.finishfood?.to}-${cartinfo?.finishfood?.end} min`
+      case 'hämta själv': return `Takeaway om ${cartinfo?.finishfood?.to}-${cartinfo?.finishfood?.end} min`
 
-      case 'delivery': return user?.Adress?.work ? `Leverans om  ${cartinfo?.finishfood?.to}-${cartinfo?.finishfood?.end} min till ${user?.Adress?.work}` : 'lägg till leveransadress'
+      case 'utkörning' : return user?.Adress?.work ? `Leverans om  ${cartinfo?.finishfood?.to}-${cartinfo?.finishfood?.end} min till ${user?.Adress?.work}` : 'lägg till leveransadress'
 
       default: return 'lägg till leveransadress'
 
@@ -19,9 +17,10 @@ export const Usercheck = (data, user,cartinfo) => {
 }
 
 
+// selection if customs want dlivery show your address
 export const CheckDriverUser = (dri, use) => {
 
-   if (dri?.name === 'delivery' && use?.Adress?.addres) {
+   if (dri?.name === 'utkörning' && use?.Adress?.addres) {
 
       return `${use?.Adress?.addres} ${use?.Adress?.homeNumber} ${use?.Adress?.city} ${use?.Adress?.work} `
    }

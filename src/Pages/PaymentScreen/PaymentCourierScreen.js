@@ -1,7 +1,7 @@
 import { Image, Row, Col, } from 'react-bootstrap'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import './PaymentScreen.css'
-import { FirstNameRest, selectionCourier } from '../../Assistant/Selection'
+import {  selectionCourier } from '../../Assistant/Selection'
 import { useState } from 'react'
 import Input from '../../Components/Input/Input'
 import ButtomClick from '../../Components/Buttom/Buttom'

@@ -68,7 +68,7 @@ export default function RestaurantsYourOrderCart(props) {
                         <p>Din beställning är ensam utan föremål. Låt oss lägga till några!</p>
 
 
-                        <ButtomClick title='Add items' style={Styles.colorBox} onClick={() => setYourOrder(!yourOrder)} />
+                        <ButtomClick title='Lägg till artiklar' style={Styles.colorBox} onClick={() => setYourOrder(!yourOrder)} />
 
                     </div>
 

@@ -4,8 +4,8 @@ import { Add_timeAction } from '../../../redux/Action/Cart_Action'
 import { useDispatch, useSelector } from 'react-redux'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import OrderTimeScreen from '../../../Components/Update/OrderTimeScreen/OrderTimeScreen'
-import { theTimeNow } from '../../../Assistant/Selection'
 import { useState } from 'react'
+import { NewTime } from '../../../Assistant/SelctionTimeOrder'
 
 export default function PaymentDate() {
 
@@ -17,7 +17,7 @@ export default function PaymentDate() {
     const cart = useSelector((state) => state?.cart)
     const { timeBooking } = cart
 
-    console.log(timeBooking)
+    // console.log(timeBooking)
 
     // cart info restrange... 
     const cartInfoid = useSelector((state) => state?.cartInfoid)
@@ -47,7 +47,7 @@ export default function PaymentDate() {
 
 
 
-    // fick data
+    // time to restranges time oppen and closeee.
     const userOptimtim = {
         oppen: cartinfo?.opentime?.oppen,
         close: cartinfo?.opentime?.close
@@ -56,11 +56,16 @@ export default function PaymentDate() {
 
 
 
+
+    // handle time nu
     const HandleClickALL = (e) => {
+
         e.preventDefault()
         if (timeOrder === '') {
 
-            setTimeOrder(theTimeNow(userOptimtim)[0])
+            let CreatenewTime = NewTime(userOptimtim, dateOrder)
+            // console.log(new Date(CreatenewTime)?.toLocaleTimeString())
+            setTimeOrder(new Date(CreatenewTime)?.toLocaleTimeString())
             dateOrder === '' && setDateOrder('today')
             return
 
@@ -125,7 +130,7 @@ export default function PaymentDate() {
                     <ImageScreen ImageIcon={MyOderImage.checkedblack} className='bike' />
                     <div className='drivery-text'>
                         <span className='color-family'>
-                            {dateOrder} {timeOrder}
+                            {dateOrder}-{timeOrder}
                         </span>
                     </div>
 
@@ -139,6 +144,7 @@ export default function PaymentDate() {
                     setDateOrder={setDateOrder}
                     timeOrder={timeOrder}
                     cartinfo={cartinfo}
+                    dateOrder={dateOrder}
 
 
                 />

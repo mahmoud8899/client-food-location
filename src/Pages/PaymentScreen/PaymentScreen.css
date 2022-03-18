@@ -530,13 +530,12 @@ align-items: center;
 .item-pricesInclude{
     display: flex;
     justify-content: space-between;
-    height: 60px;
-    margin-top: 0.2rem;
-    margin-bottom: 0.2rem;
+    height: 35px;
     align-items: center;
     transition: all 1s;
     outline: none;
-    padding:   1rem;
+    padding: 1rem;
+    cursor: pointer;
    
 }
  .item-pricesInclude:hover{
@@ -544,7 +543,28 @@ align-items: center;
     
 } 
 .item-pricesInclude-text{
-text-transform: capitalize;
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.item-information{
+    display: flex;
+    justify-content: space-between;
+    height: 35px;
+    align-items: center;
+    transition: all 1s;
+    outline: none;
+    padding: 1rem;
+    cursor: pointer;
+   
+}
+.item-information .item-pricesInclude-text{
+    color:rgba(255, 59, 47, 0.52)
+}
+
+.item-information .item-pricesInclude-text:hover{
+    color:rgba(255, 59, 47, 0.52)
 }
 
 .item-pricesInclude-total{
@@ -563,8 +583,16 @@ text-transform: capitalize;
 }
 
 .left-max{
-    margin-left: 1rem;
+    font-family: 'Heebo', sans-serif;
+    font-size: 26px;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-transform: capitalize;
 }
+
+
+
 
 .flex-add-add{
     display: flex;

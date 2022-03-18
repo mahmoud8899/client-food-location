@@ -80,6 +80,7 @@ export default function CheckOutPaymentScreen(props) {
     // options
     // [1] -  maps and restrurant name
     // [2] - payment delivery and time and takeaway
+    // [3] - payment cart item cart remove add 
 
 
 

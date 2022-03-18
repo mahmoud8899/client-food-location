@@ -6,7 +6,7 @@ import ButtomClick from '../../Components/Buttom/Buttom'
 import Styles from '../../Components/Update/StylesComponents/style'
 import { useContext, useState } from 'react'
 import CheckOutSuccess from './CheckOutSuccess'
-import { TotalPrice, DliveryPrice, Totalsumma } from '../../Assistant/TotalPrice'
+import { TotalPrice, DliveryPrice,  Serviceavgift, LitenBeställning, LitenBeställningPrics } from '../../Assistant/TotalPrice'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
 export default function PaymentPricesScreen(props) {
 
@@ -24,17 +24,31 @@ export default function PaymentPricesScreen(props) {
     // oppen confirm order...... 
     const [openCheckOut, setOpenCheckOut] = useState(false)
 
+
+
+
+    // this is localstora cart items
     const { filterCartProduct } = useContext(FilterCartDetials)
 
 
 
 
-    
 
 
 
 
 
+
+
+
+
+     // options
+     // [1] : filterCartProduct only to User some restruans how may cart has
+     // [2] : Summa artiklar  total prices -- class name  TotalPrice
+     // [3] :  driver prics with  -- class name DliveryPrice
+     // [4] : // order less than 120   -- class name LitenBeställning , and prices class name  LitenBeställningPrics
+     // [5] :  servics 5 kr -- class name Serviceavgift
+     // [6] : information 
 
 
 
@@ -53,29 +67,40 @@ export default function PaymentPricesScreen(props) {
             <div className='parant'>
 
                 <div className='item-pricesInclude'>
-                    <span className='item-pricesInclude-text color-family ' >Items total</span>
+                    <span className='item-pricesInclude-text color-family ' >{`Summa artiklar (${filterCartProduct?.length} artikel)`}</span>
                     <span className='item-pricesInclude-text color-family '>kr {TotalPrice(filterCartProduct)}</span>
                 </div>
 
-                {TheCheckOutDriver?.name === 'takeaway' ? null :
+                {TheCheckOutDriver?.name === 'utkörning' ?
                     <div className='item-pricesInclude'>
-                        <span className='item-pricesInclude-text color-family' >Driver</span>
+                        <span className='item-pricesInclude-text color-family' >Utkörning</span>
                         <span className='item-pricesInclude-text color-family '>kr {DliveryPrice}</span>
                     </div>
+                    : null
                 }
 
 
 
-                <div className='item-pricesInclude'>
-                    <span className='item-pricesInclude-text color-family' >Totalsumma</span>
-                    <span className='item-pricesInclude-text color-family '>kr
-                        {Totalsumma(filterCartProduct,
-                         TheCheckOutDriver?.name === 'takeaway' ? null :   DliveryPrice
-                            
-                            )}
+                {LitenBeställning(TotalPrice(filterCartProduct)) &&
+                    <div className='item-pricesInclude'>
+                        <span className='item-pricesInclude-text color-family' >Tillägg för liten beställning</span>
+                        <span className='item-pricesInclude-text color-family '>kr {LitenBeställningPrics}</span>
+                    </div>
 
-                    </span>
+                }
+
+
+                <div className='item-pricesInclude'>
+                    <span className='item-pricesInclude-text color-family' >Serviceavgift</span>
+                    <span className='item-pricesInclude-text color-family '>kr {Serviceavgift}</span>
                 </div>
+
+
+
+                <div className='item-information'>
+                    <span className='item-pricesInclude-text color-family' > Hur våra avgifter funkar</span>
+                </div>
+               
 
 
                 <div className='item-pricesInclude-total'>
@@ -107,3 +132,17 @@ export default function PaymentPricesScreen(props) {
 
 
 }
+
+
+
+
+// <div className='item-pricesInclude'>
+// <span className='item-pricesInclude-text color-family' >Totalsumma</span>
+// <span className='item-pricesInclude-text color-family '>kr
+//     {Totalsumma(filterCartProduct,
+//         TheCheckOutDriver?.name === 'takeaway' ? null : DliveryPrice
+
+//     )}
+
+// </span>
+// </div>

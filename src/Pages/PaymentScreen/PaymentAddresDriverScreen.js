@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import { Usercheck, CheckDriverUser } from '../../Assistant/SelectionPayment'
 import PaymentSelectOrderDerails from './PaymentSelectOrderDerails'
-import { FaWalking } from "react-icons/fa";
 import './PaymentScreen.css'
 
 
@@ -29,6 +28,8 @@ export default function PaymentAddresDriverScreen(props) {
     const { driver, loading } = driverselection
 
 
+
+    // console.log(driver)
  
 
      // open page to selection navbar time and takeway 
@@ -53,8 +54,9 @@ export default function PaymentAddresDriverScreen(props) {
 
 
     // options pages 
-    // [1] : this is page se user
+    // [1] : this is page se user your addres if customrs selection deliver or show takeway time...
     // [2] : this is open options to uses and selection
+
     // console.log(driver)
 
 
@@ -82,7 +84,7 @@ export default function PaymentAddresDriverScreen(props) {
       
 
 
-
+           
 
         <PaymentSelectOrderDerails
             openNavBarList={openNavBarList}

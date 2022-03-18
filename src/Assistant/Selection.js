@@ -83,7 +83,8 @@ export const TheWeek = [
 
 
 //-- active
-// week days 
+// week days  
+// days of the week filter...
 export const AddSstich = (name) => {
     const newFilter = name?.slice(0, 3)
     switch (newFilter) {
@@ -190,8 +191,10 @@ export const theTimeNow = (name, form) => {
     const theTimeJustNow = new Date()?.getHours() + 1
     const timeNu = Number(name?.oppen?.slice(0, 2))
     const timeMinuter = Number(name?.oppen?.slice(3, 5))
+
     const timeClose = Number(name?.close?.slice(0, 2))
     const CollectMinutes = new Date()?.getMinutes()
+  
     var newTimeResu = Number()
     if (Number(theTimeJustNow) > timeNu) {
         newTimeResu = theTimeJustNow
@@ -202,8 +205,11 @@ export const theTimeNow = (name, form) => {
 
     let LastMinutes = 59;
     let resultMintes = [];
+    // console.log('result',form ? timeMinuter : CollectMinutes)
+
     for (StratTheTimeNow; StratTheTimeNow < CloseTime; StratTheTimeNow++) {
-        for (let mintes = form ? timeMinuter : CollectMinutes; mintes <= LastMinutes; mintes += 10) {
+
+        for (let mintes = form ? timeMinuter : CollectMinutes; mintes <= LastMinutes; mintes ++) {
             resultMintes.push(`${StratTheTimeNow}:${mintes}`);
         }
     }
