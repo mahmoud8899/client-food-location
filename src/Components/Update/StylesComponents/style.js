@@ -8,6 +8,24 @@ const Styles = {
         color : COLORS.testing
 
     },
+    Dist:{
+        background: COLORS.notClick,
+        width: '100%',
+        border: 'none',
+        height: '45px',
+        borderRadius: '0.4rem',
+        fontSize: '14px',
+        fontFamily: 'system-ui',
+        textTransform: 'capitalize',
+        cursor: 'pointer',
+        transition: 'all 2s ease 0s',
+        padding: '2rem',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        overflow: 'hidden',
+        color: 'black'
+    },
     ColorSetting: {
         color: COLORS.firstRed,
         fontSize: '16px',
@@ -113,7 +131,8 @@ const Styles = {
         borderRadius : '10px',
         fontSize: '14px',
         fontFamily: 'system-ui',
-        textTransform: 'capitalize'
+        textTransform: 'capitalize',
+       
   
 
     },

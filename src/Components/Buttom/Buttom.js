@@ -10,6 +10,7 @@ const ButtomClick = (props) => {
         disabled,
         type,
         style,
+        DisaBledStyle,
     } = props
 
 
@@ -18,11 +19,7 @@ const ButtomClick = (props) => {
         onClick={onClick}
         type={type}
         disabled={disabled}
-        style={disabled ? Styles.disabled : style}
-       
-       
-
-
+        style={disabled ? DisaBledStyle ? DisaBledStyle : Styles.disabled : style}
     >
         {title ? title : null}
     </button>

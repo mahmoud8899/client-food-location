@@ -1,18 +1,54 @@
 
 
-// valtion payment [1]: address   /[2] : card payment
-// Before confirming the payment.......
-export const ValidationPayment = (TheCheckOutDriver, theCheckOutCard, CheckUserAddress) => {
+// validation check everything before paying 
+// [1] :address 
+// [2]: cartnumber 
+// [3]: booking 
+// [4]: reatrurant time 
+export const ValidationPayment = (TheCheckOutDriver, theCheckOutCard, CheckUserAddress, CheckOutRestrange, TheCheckOutBookingTime, dataTime) => {
 
-    if (TheCheckOutDriver?.name === 'utkörning') {
-        return typeof CheckUserAddress === 'undefined' ? 'vänligen lägg till en leveransadress klicka för att se beställning detaljerna' :
-            typeof theCheckOutCard === 'undefined' ? 'vänligen lägg till betalning för kunna fortsätta med din beställning' : true
+    // get hour ans minues
+    const TheHours = dataTime ? dataTime?.getHours() : ''
+    const THEMinutes = dataTime ? dataTime?.getMinutes() : ''
+    // 
+    let timemintes = String(`${TheHours}:${THEMinutes}`)
+
+    if (CheckOutRestrange?.close >= timemintes) {
+
+
+        if (TheCheckOutDriver?.name === 'utkörning') {
+            return typeof CheckUserAddress === 'undefined' ? 'vänligen lägg till en leveransadress klicka för att se beställning detaljerna' :
+                typeof theCheckOutCard === 'undefined' ? 'vänligen lägg till betalning för kunna fortsätta med din beställning' :
+
+                    true
+
+        }
+
+
+        if (TheCheckOutDriver?.name === 'hämta själv') {
+            return typeof theCheckOutCard === 'undefined' ? 'vänligen lägg till betalning för kunna fortsätta med din beställning' : true
+        }
+
+    } else {
+
+
+
+
+        return TheCheckOutBookingTime?.timeOrder === null
+            || TheCheckOutBookingTime?.dateOrder === 'today' ?
+            'kontrollera tiden' : true
+
+
+
+
+
     }
 
 
-    if (TheCheckOutDriver?.name === 'hämta själv') {
-        return typeof theCheckOutCard === 'undefined' ? 'vänligen lägg till betalning för kunna fortsätta med din beställning' : true
-    }
+
+
+
+
 
 }
 
@@ -21,29 +57,29 @@ export const ValidationPayment = (TheCheckOutDriver, theCheckOutCard, CheckUserA
 
 // check out all confirming
 // check out time and today...
-export const CheckOutConfirming = (TheCheckOutBookingTime) => {
+export const CheckOutConfirming = (TheCheckOutBookingTime, CheckOutRestrange, dataTime) => {
 
-    let testingdate = new Date().getHours()
-    let testingdateMinutes = new Date().getMinutes()
-    let theTimeClose = '22:00'
-    let timemintes = String(`${testingdate}:${testingdateMinutes}`)
-    let timeNow = '23'
+    // get hour ans minues
+    const TheHours = dataTime ? dataTime?.getHours() : ''
+    const THEMinutes = dataTime ? dataTime?.getMinutes() : ''
+    // 
+    let timemintes = String(`${TheHours}:${THEMinutes}`)
 
-    if (theTimeClose >= timemintes) {
+    if (CheckOutRestrange?.close >= timemintes) {
+
 
         return TheCheckOutBookingTime?.timeOrder === null && TheCheckOutBookingTime?.dateOrder === null
-            ? 'booking time today after 45 minutes' :
+            ? 'Maten kommer inom 45 minuter eller mindre' :
             `${TheCheckOutBookingTime?.dateOrder}-${TheCheckOutBookingTime?.timeOrder}`
 
     } else {
-        return TheCheckOutBookingTime?.timeOrder === null && TheCheckOutBookingTime?.dateOrder === null
-            ? 'sorry du kan inte booking idag' :
-            TheCheckOutBookingTime?.dateOrder === 'today' && timeNow ? 'we are close to today' : 'thank you '
-
-
+        return TheCheckOutBookingTime?.timeOrder === null
+            || TheCheckOutBookingTime?.dateOrder === 'today' ?
+            'kontrollera tiden' :  `${TheCheckOutBookingTime?.dateOrder}-${TheCheckOutBookingTime?.timeOrder}`
 
     }
 }
+
 
 
 

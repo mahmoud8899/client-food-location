@@ -1,12 +1,15 @@
 import { Modal } from 'react-bootstrap'
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen'
-import './PaymentScreen.css'
 import { useSelector } from 'react-redux'
-import { CheckOutConfirming, ValidationPayment } from '../../Assistant/ValidationPayment'
+import { CheckOutConfirming } from '../../Assistant/ValidationPayment'
 import ImageScreen from '../../Components/ImageScreen/ImageScreen'
-import {MyOderImage} from '../../Assistant/MyOrderImage'
+import { MyOderImage } from '../../Assistant/MyOrderImage'
+import './PaymentScreen.css'
+import { Link } from 'react-router-dom'
 export default function CheckOutSuccess(props) {
-    const { openCheckOut, setOpenCheckOut } = props
+
+    // params [1] : time real time [2] : oppen check out and close [4] : reatrang oppen och closee
+    const { openCheckOut, setOpenCheckOut, dataTime, CheckOutRestrange } = props
 
 
 
@@ -16,15 +19,8 @@ export default function CheckOutSuccess(props) {
 
     // booking time.....
     const TheCheckOutBookingTime = useSelector((state) => state?.cart?.timeBooking)
-
-    // console.log(TheCheckOutBookingTime)
-
-    // check out driver 
-    const TheCheckOutDriver = useSelector((state) => state?.driverselection?.driver)
-    // check out card number
-    const theCheckOutCard = useSelector((state) => state?.Cartnumber?.usercard?.cartnumber)
-    // check out address
-    const CheckUserAddress = useSelector((state) => state?.userLogin?.userInfo?.Adress?.addres)
+    // user full name
+    const userFullName = useSelector((state) => state?.userLogin?.userInfo)
 
 
     // console.log(cartinfo?.opentime)
@@ -42,20 +38,23 @@ export default function CheckOutSuccess(props) {
 
     return <Modal show={openCheckOut} onHide={() => setOpenCheckOut(true)} >
         <div className='check-out-success'>
-            <h1 className='check-out-success-text' >check out </h1>
+            <h1 className='check-out-success-text' >kolla upp </h1>
             <div className='user-success'>
-                <p>  thenk you Mahmoud </p>
+                <p>  tack {userFullName?.firstname} {userFullName?.lastname} </p>
+            </div>
+            <div className='click-home'>
+                {CheckOutConfirming(TheCheckOutBookingTime, CheckOutRestrange, dataTime)}
             </div>
 
-            {CheckOutConfirming(TheCheckOutBookingTime)}
             <br />
-            {ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress)?.toString()
-                === 'true' ? 'thenk you  for buying' : ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress)?.toString()}
 
-
-             <div className='handle-image-Uppsala'>
-             <ImageScreen ImageIcon={MyOderImage.logindriver} className='Image-confirm'  />
-             </div>
+            <div className='click-home'>
+                <Link to={{ pathname: '/sw/profil/orders/' }} >om du vill se din beställning klicka här</Link>
+                <Link to={{ pathname: '/uppsala/' }} >om du vill gå till home</Link>
+            </div>
+            <div className='handle-image-Uppsala'>
+                <ImageScreen ImageIcon={MyOderImage.logindriver} className='Image-confirm' />
+            </div>
 
             <div className='loadingscreen'>
                 <LoadingScreen />

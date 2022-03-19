@@ -6,29 +6,54 @@ import ButtomClick from '../../Components/Buttom/Buttom'
 import Styles from '../../Components/Update/StylesComponents/style'
 import { useContext, useState } from 'react'
 import CheckOutSuccess from './CheckOutSuccess'
-import { TotalPrice, DliveryPrice,  Serviceavgift, LitenBeställning, LitenBeställningPrics } from '../../Assistant/TotalPrice'
+import { TotalPrice, DliveryPrice, Serviceavgift, LitenBeställning, LitenBeställningPrics } from '../../Assistant/TotalPrice'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
+import InformationServices from './HandleDetalis/InformationServices'
+import {TimePrive} from '../../Components/Update/UseContext/TimeContext'
 export default function PaymentPricesScreen(props) {
-
-
-
-    // check out driver 
-    const TheCheckOutDriver = useSelector((state) => state?.driverselection?.driver)
-    // check out card number
-    const theCheckOutCard = useSelector((state) => state?.Cartnumber?.usercard?.cartnumber)
-    // check out address
-    const CheckUserAddress = useSelector((state) => state?.userLogin?.userInfo?.Adress?.addres)
 
 
 
     // oppen confirm order...... 
     const [openCheckOut, setOpenCheckOut] = useState(false)
-
-
-
-
     // this is localstora cart items
     const { filterCartProduct } = useContext(FilterCartDetials)
+    // open information serives pries
+    const [show, setShow] = useState(false)
+
+
+
+
+    // run time real time
+    const {dataTime}  = useContext(TimePrive)
+ 
+
+    //----------------------- Start check everything before paying  --------------------->
+    // options 
+    // [1] : driver method 
+    // [2] : cartnumber 
+    // [3] : user address 
+    // [4] : time close and oppen
+    // [5] :booking time if customer has
+
+    // [1] :check out driver 
+    const TheCheckOutDriver = useSelector((state) => state?.driverselection?.driver)
+    // [2] :check out card number
+    const theCheckOutCard = useSelector((state) => state?.Cartnumber?.usercard?.cartnumber)
+    // [3] : check out address
+    const CheckUserAddress = useSelector((state) => state?.userLogin?.userInfo?.Adress?.addres)
+    // [4]: cart info restrange... 
+    const CheckOutRestrange = useSelector((state) => state?.cartInfoid?.cartinfo?.opentime)
+
+    // [5] :booking time if customer has
+    const TheCheckOutBookingTime = useSelector((state) => state?.cart?.timeBooking)
+    //----------------------- END check everything before paying  --------------------->
+
+
+
+    // testing....
+    // console.log(CheckOutRestrange)
+    //   console.log(TheCheckOutBookingTime)
 
 
 
@@ -42,13 +67,39 @@ export default function PaymentPricesScreen(props) {
 
 
 
-     // options
-     // [1] : filterCartProduct only to User some restruans how may cart has
-     // [2] : Summa artiklar  total prices -- class name  TotalPrice
-     // [3] :  driver prics with  -- class name DliveryPrice
-     // [4] : // order less than 120   -- class name LitenBeställning , and prices class name  LitenBeställningPrics
-     // [5] :  servics 5 kr -- class name Serviceavgift
-     // [6] : information 
+
+
+
+    // options
+    // [1] : filterCartProduct only to User some restruans how may cart has
+    // [2] : Summa artiklar  total prices -- class name  TotalPrice
+    // [3] :  driver prics with  -- class name DliveryPrice
+    // [4] : // order less than 120   -- class name LitenBeställning , and prices class name  LitenBeställningPrics
+    // [5] :  servics 5 kr -- class name Serviceavgift
+    // [6] : information  page -- class name InformationServices
+    // [7] : function collect all prices... class name Max...
+    // [8] : buttom real time payment to 
+
+
+
+
+
+
+    // collect the order value
+    function Max() {
+        // pries driver
+        const Driver = TheCheckOutDriver?.name === 'utkörning' ? DliveryPrice : Number(0)
+        // order less
+        const lessOrder = LitenBeställning(TotalPrice(filterCartProduct)) ? Number(LitenBeställningPrics) : Number(0)
+
+        return TotalPrice(filterCartProduct) + Driver + Serviceavgift + lessOrder
+    }
+
+
+
+
+
+
 
 
 
@@ -97,21 +148,25 @@ export default function PaymentPricesScreen(props) {
 
 
 
-                <div className='item-information'>
+                <div className='item-information' onClick={() => setShow(!show)}>
                     <span className='item-pricesInclude-text color-family' > Hur våra avgifter funkar</span>
                 </div>
-               
+
 
 
                 <div className='item-pricesInclude-total'>
                     <ButtomClick
                         title={
-                            ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress)?.toString()
-                                === 'true' ? 'now payment' : ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress)?.toString()
+                            ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress,CheckOutRestrange,TheCheckOutBookingTime,dataTime)?.toString()
+                                === 'true' ?
+                                'betalning nu  ' + Max() + " kr"
 
+                                :
+                                ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress,CheckOutRestrange,TheCheckOutBookingTime,dataTime)?.toString()
                         }
                         style={Styles.buttomColorPage}
-                        disabled={ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress) !== true}
+                        DisaBledStyle={Styles.Dist}
+                        disabled={ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress,CheckOutRestrange,TheCheckOutBookingTime,dataTime) !== true}
                         onClick={(e) => setOpenCheckOut(true)}
                     />
 
@@ -126,6 +181,14 @@ export default function PaymentPricesScreen(props) {
         <CheckOutSuccess
             openCheckOut={openCheckOut}
             setOpenCheckOut={setOpenCheckOut}
+            dataTime={dataTime}
+            CheckOutRestrange={CheckOutRestrange}
+        />
+
+
+        <InformationServices
+            show={show}
+            setShow={setShow}
         />
 
     </Col>

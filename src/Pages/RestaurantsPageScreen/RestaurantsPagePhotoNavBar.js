@@ -1,7 +1,7 @@
 import { Row, Col } from 'react-bootstrap'
-import './style.css'
 import { TheDoday } from '../../Assistant/Selection'
 import {SliceNameNot} from '../../Assistant/Slice'
+import './style.css'
 export default function RestaurantsPagePhotoNavBar(props) {
 
 

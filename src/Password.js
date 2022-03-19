@@ -17,6 +17,10 @@ export default function PasswordScreen() {
 
 
 
+  // let MAc = Number(9)
+  // const Mahmoudx = 
+  // console.log(Mahmoudx)
+
 
 
   const [startDate, setStartDate] = useState(new Date());
@@ -46,7 +50,7 @@ export default function PasswordScreen() {
         onChange={(date) => setStartDate(date)}
         showTimeSelect
         showTimeSelectOnly
-        timeIntervals={10}
+        timeIntervals={5}
         minTime={Mahmoud}
         maxTime={ACXD}
         timeCaption="Time"

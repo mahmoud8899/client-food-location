@@ -10,6 +10,7 @@ import RestrangeItems from './RestrangeItems/RestrangeItems'
 import LoadingErrorHandld from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 // import LoginDriverScreen from './LoginDriverScreen/LoginDriverScreen'
 // import CategoryScreen from './CategoryScreen/CategoryScreen'
+import TimeContext from '../../Components/Update/UseContext/TimeContext'
 import {ErrorServer} from '../../Assistant/TextError'
 import { useEffect } from 'react'
 import './Home.css'
@@ -62,6 +63,7 @@ export default function HomeScreen(props) {
 
 
 
+
     // [1]  LoadingErrorHandld this is check out error and loading if not error coming data  
     // [2]  Limit new restrange max 8 itmes.
     // [3] fir delivery
@@ -69,7 +71,8 @@ export default function HomeScreen(props) {
 
 
 
-    return <Container fluid>
+    return <TimeContext>
+<Container fluid>
         <Title TextTitle={FirstNameRest} />
 
 
@@ -111,6 +114,7 @@ export default function HomeScreen(props) {
 
 
     </Container>
+    </TimeContext>   
 
 
 

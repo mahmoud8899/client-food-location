@@ -1,4 +1,3 @@
-import '../Home.css'
 import { Row, Col } from 'react-bootstrap'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import Styles from '../../../Components/Update/StylesComponents/style'
@@ -6,15 +5,16 @@ import { Link } from 'react-router-dom'
 import Rating from '../../../Components/Rating/Rating'
 import { Conversion } from '../../../Components/Update/Conversion/Conversion'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
+import { SettingsSlider } from '../../../Assistant/SettingsSlider'
+import { TheTimeOppenProduct } from '../../../Assistant/TheTimeOppenProduct'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { SettingsSlider } from '../../../Assistant/SettingsSlider'
-import { TheTimeOppenProduct } from '../../../Assistant/TheTimeOppenProduct'
-
-
+import '../Home.css'
 export default function RestrangeItems(props) {
 
+
+    // params [1] : data '[2] : name data [3] : new restrange or butiker
     const { home, Title, newRest } = props
 
 
@@ -43,8 +43,8 @@ export default function RestrangeItems(props) {
                                         {ho?.image ? <ImageScreen ImageIcon={ho?.image}
                                             className='image-res'
                                         /> : <ImageScreen ImageIcon={MyOderImage.clock}
-                                        className='image-res'
-                                    /> }
+                                            className='image-res'
+                                        />}
                                     </Link>
 
 

@@ -10,6 +10,25 @@ add-padding-slider   padding left rigth
 
 
  /* Start last page check out success */
+
+ .click-home{
+     display: flex;
+     flex-direction: column;
+     padding: 0rem;
+     cursor: pointer;
+     justify-content: center;
+     align-items: center;
+ }
+ .click-home a{
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    text-transform: capitalize;
+    font-size: 14px;
+    color: rgba(255, 59, 47, 0.52);
+    font-family: system-ui;
+    text-decoration: none;
+
+ }
 .check-out-success{
     padding: 1rem;
 }
@@ -543,9 +562,11 @@ align-items: center;
     
 } 
 .item-pricesInclude-text{
-    text-transform: capitalize;
-    font-size: 16px;
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
     font-weight: bold;
+    text-transform: capitalize;
+    color: black;
 }
 
 .item-information{
@@ -560,8 +581,14 @@ align-items: center;
    
 }
 .item-information .item-pricesInclude-text{
-    color:rgba(255, 59, 47, 0.52)
+    color: rgba(255, 59, 47, 0.52);
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    text-transform: capitalize;
 }
+
+
 
 .item-information .item-pricesInclude-text:hover{
     color:rgba(255, 59, 47, 0.52)
@@ -584,7 +611,7 @@ align-items: center;
 
 .left-max{
     font-family: 'Heebo', sans-serif;
-    font-size: 26px;
+    font-size: 16px;
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -645,10 +672,27 @@ align-items: center;
    display: block;
    border-radius: 0.6rem;
    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  
-   
- 
-    
+}
+.box-levrans-uppsala{
+    padding: 2rem;
+}
+.box-levrans-uppsala h1
+{
+    color: black;
+    padding: 0rem;
+    margin: 0rem;
+    text-transform: capitalize;
+    font-size: 16px;
+    font-family: 'Heebo', sans-serif;
+}
+.box-levrans-uppsala p{
+    margin-top: 2rem;
+    text-transform: capitalize;
+    font-size: 17px;
+
+}.box-levrans-uppsala p::first-letter{
+    color: rgba(255, 59, 47, 0.52);
+    font-size: 20px;
 }
 .how-class{
     margin-bottom: 1rem;

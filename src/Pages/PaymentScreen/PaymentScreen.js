@@ -8,12 +8,14 @@ import PaymentPromoCodeScreen from './PaymentPromoCodeScreen'
 import PaymentPricesScreen from './PaymentPricesScreen'
 import PaymentMapsScreen from './PaymentMapsScreen'
 import { useContext, useEffect } from 'react'
-import { useSelector,useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { GetCartInfoIdAction } from '../../redux/Action/CartItemAction'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import {ErrorServer} from '../../Assistant/TextError'
+import { ErrorServer } from '../../Assistant/TextError'
+
 import './PaymentScreen.css'
+import TimeContext from '../../Components/Update/UseContext/TimeContext'
 export default function CheckOutPaymentScreen(props) {
 
 
@@ -21,6 +23,10 @@ export default function CheckOutPaymentScreen(props) {
 
     // location checkout.... 
     const ChangeParams = props?.match?.params.id.replace("-", " ")
+
+
+
+
 
     // this is products add items 
     const { setLocationNotNu } = useContext(FilterCartDetials)
@@ -84,62 +90,72 @@ export default function CheckOutPaymentScreen(props) {
 
 
 
-    return <Container fluid>
-        <Title TextTitle='Checkout' />
-        <LoadingErrorHandle 
-        loading={loading}
-         error={error}
-         TextNotItems={ErrorServer}
-         >
-
-
-            <Row className='justify-content-center'>
-                <PaymentMapsScreen cartinfo={cartinfo?.username} />
-
-                <Row className='row-box'>
-
-                    <Col xs={12} sm={12} md={10} lg={5} className='removePaddingmarggin'>
 
 
 
-                        <Col xs={12} ms={12} md={12} lg={12} >
 
-                            <h1 className='Delivery-method-and-time'>
-                            Leveranssätt och tid
-                            </h1>
-                            <PaymentAddresDriverScreen  cartinfo={cartinfo} />
+
+
+
+
+    return <TimeContext>
+        <Container fluid>
+            <Title TextTitle='Checkout' />
+            <LoadingErrorHandle
+                loading={loading}
+                error={error}
+                TextNotItems={ErrorServer}
+            >
+
+
+                <Row className='justify-content-center'>
+                    <PaymentMapsScreen cartinfo={cartinfo?.username} />
+
+                    <Row className='row-box'>
+
+                        <Col xs={12} sm={12} md={10} lg={5} className='removePaddingmarggin'>
+
+
+
+                            <Col xs={12} ms={12} md={12} lg={12} >
+
+                                <h1 className='Delivery-method-and-time'>
+                                    Leveranssätt och tid
+                                </h1>
+                                <PaymentAddresDriverScreen cartinfo={cartinfo} />
+                            </Col>
+
+
+
+
+
+                            <PaymentCartIemsScreen
+                                cartinfo={cartinfo}
+                                loading={loading}
+                            />
+
+                            <PaymentCreditScreen />
+                            <PaymentCourierScreen />
+                            <PaymentPromoCodeScreen />
+
                         </Col>
 
-
-
-
-
-                        <PaymentCartIemsScreen
+                        <PaymentPricesScreen
                             cartinfo={cartinfo}
-                            loading={loading}
                         />
+                    </Row>
 
-                        <PaymentCreditScreen />
-                        <PaymentCourierScreen />
-                        <PaymentPromoCodeScreen />
 
-                    </Col>
 
-                    <PaymentPricesScreen  
-                     cartinfo={cartinfo}
-                    />
+
+
                 </Row>
 
+            </LoadingErrorHandle>
 
 
-
-
-            </Row>
-
-        </LoadingErrorHandle>
-
-
-    </Container>
+        </Container>
+    </TimeContext>
 
 }
 

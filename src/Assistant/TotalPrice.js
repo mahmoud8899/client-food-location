@@ -1,7 +1,7 @@
 
 // collect all order
 export const TotalPrice = (data) => {
-    return data?.reduce((acc, item) => acc + item.prices * item.courrent, 0).toFixed(2)
+    return data?.reduce((acc, item) => acc + item.prices * item.courrent, 0)
 }
 
 
@@ -64,7 +64,7 @@ export const TotalDiscount = (name) => {
 
 
 // Serviceavgift
-export const Serviceavgift = Number(5).toFixed(2)
+export const Serviceavgift = Number(5)
 
 
 // order less than 120
@@ -84,6 +84,6 @@ export const LitenBeställning = (courrent) => {
 }
 
 // lite bestling
-export const LitenBeställningPrics = Number(20).toFixed(2)
+export const LitenBeställningPrics = Number(20)
 // Dlivery price 
 export const DliveryPrice = Number(30)
