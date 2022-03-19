@@ -50,7 +50,7 @@ export default function PaymentCartIemsScreen(props) {
                     : filterCartProduct?.map((ca, Index) => (
                         <div className='NOTpadding'
                             key={Index}
-                            onClick={(e) => setOpenCartProduct({ value: true, id: ca?._id })}
+                            onClick={(e) => setOpenCartProduct({ value: true, id: ca?.product })}
                         >
 
                             <div style={Styles.leftcOLOR}>
@@ -63,7 +63,7 @@ export default function PaymentCartIemsScreen(props) {
 
                                     <div className='items-name-first'>
                                         <div style={Styles.colorcourrent} className='items-name-first-qty color-family'>
-                                            {ca?.courrent}
+                                            {ca?.qty}
                                             <span className='leftmore'>x</span>
                                         </div>
                                         <div className='items-name-first-name color-family'>
@@ -74,7 +74,7 @@ export default function PaymentCartIemsScreen(props) {
                                         {SliceName(ca?.description, 40)  }
                                     </div>
                                     <div style={Styles.colorcourrent} className='prics-font'>
-                                        kr {CollectNumber(ca?.courrent, ca?.prices)}
+                                        kr {CollectNumber(ca?.qty, ca?.prices)}
                                     </div>
 
                                 </div>

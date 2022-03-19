@@ -25,7 +25,9 @@ export default function PaymentPricesScreen(props) {
     // run time real time
     const { dataTime } = useContext(TimePrive)
 
-    console.log(filterCartProduct)
+    const [itemsPrics, setItemsPrics] = useState('')
+
+
 
 
     //----------------------- Start check everything before paying  --------------------->
@@ -47,15 +49,23 @@ export default function PaymentPricesScreen(props) {
 
     // [1] :check out driver 
     const TheCheckOutDriver = useSelector((state) => state?.driverselection?.driver)
+
+
+
+
     // [2] :check out card number
     const theCheckOutCard = useSelector((state) => state?.Cartnumber?.usercard?.cartnumber)
     // [3] : check out address
     const CheckUserAddress = useSelector((state) => state?.userLogin?.userInfo?.Adress?.addres)
+
     // [4]: cart info restrange... 
     const CheckOutRestrange = useSelector((state) => state?.cartInfoid?.cartinfo?.opentime)
 
     // [5] :booking time if customer has
     const TheCheckOutBookingTime = useSelector((state) => state?.cart?.timeBooking)
+
+    // user info 
+    const UserInfo = useSelector((state) => state?.userLogin?.userInfo)
 
     // collect the order value
     function Max() {
@@ -64,50 +74,58 @@ export default function PaymentPricesScreen(props) {
         // order less
         const lessOrder = LitenBeställning(TotalPrice(filterCartProduct)) ? Number(LitenBeställningPrics) : Number(0)
 
+        // setItemsPrics(TotalPrice(filterCartProduct) + Driver + Serviceavgift + lessOrder)
         return TotalPrice(filterCartProduct) + Driver + Serviceavgift + lessOrder
     }
 
     //----------------------- END check everything before paying  --------------------->
 
 
+    // user info and address
+    const UserHandle = {
+        firstname: UserInfo?.firstname,
+        lastname: UserInfo.lastname,
+        yourEmail: UserInfo?.email,
+        homeNumber: UserInfo?.homeNumber,
+        yourAddress: UserInfo?.Adress?.addres,
+        city: UserInfo?.Adress?.city,
+        zipCode: UserInfo?.Adress?.zipcode,
+        telephone: UserInfo.telephone,
+    }
+    // [1] order time and today 
+    // if coustomer time
+    const TimeAdd = {
+        time: TheCheckOutBookingTime?.timeOrder !== null ? TheCheckOutBookingTime?.timeOrder : '',
+        today: TheCheckOutBookingTime?.dateOrder !== null ? TheCheckOutBookingTime?.dateOrder : '',
+
+    }
+    // [2] order time and today 
+    // other not has time after 45 minuter
+    const OtherTime = {
+        time: '45',
+        today: 'today'
+    }
 
 
-        // {
 
-        //     "orderitems" : [
-        //         {
-        //             "qty": 10,
-        //              "prics": 40,
-        //              "product" : "6210f00d5d48931ab7b5637c"
-        //         }, {
-        //             "qty": 2,
-        //              "prics": 100,
-        //              "product" : "6210f00d5d48931ab7b5637c"
-        //         }
-               
-        //     ],
-        //     "shippingAdress" : 
-        //         {
-        //             "firstName": "firstName",
-        //             "lastName" :"lastName",
-        //             "yourEmail" : "yourEmail",
-        //             "yourAddress": "yourAddress",
-        //             "city" : "city",
-        //             "zipCode": "zipCode",
-        //             "telephone" : "telephone"
-        //         },
-        
-            
-        //     "driver":"driver",
-        //     "orderTime" : "01-10-2021",
-        //     "paymentMethod" : "cart id",
-        //     "discountCode" : "OLL2o-n-d-y----b-CtKlo=6GL3-up",
-        //     "driverPric" : 30,
-        //     "client" : "client",
-        //     "itemsPrics": 322,
-        //     "cartinfo" : "620d1f1084f54514ebb4dac8"
-           
-        // }
+    // [1] orderitems : filterCartProduct
+    // [2]  shippingAdress :  UserHandle
+    // [3] driver : TheCheckOutDriver?.name
+    // [4] orderTime :  TheCheckOutBookingTime?.timeOrder !== null ? TimeAdd : OtherTime
+    // [5] paymentMethod : 'cart number'
+    // [6] discountCode : ''
+    // [7] driverPric :  TheCheckOutDriver?.name === 'utkörning' ? DliveryPrice : '0'
+    // [8] client : 'client'
+    // [8] cartinfo : props?.idcart
+    // [9] itemsPrics :
+
+
+
+
+
+
+
+
 
     // send required to server // create new order .
     const HandleCreateOrder = (e) => {
@@ -118,9 +136,7 @@ export default function PaymentPricesScreen(props) {
         console.log('create order...')
     }
 
-
-
-
+    // console.log(itemsPrics)
 
 
 

@@ -47,7 +47,7 @@ export const AddCart_Action = (data) => async (dispatch, getStat) => {
     }
 
 
-    console.log(FilterData)
+    // testing  console.log(FilterData)
 
 
     // console.log(FilterData ,data)

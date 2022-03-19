@@ -5,7 +5,7 @@ import { AddCart_Action, RemoveCart_Action } from '../../../redux/Action/Cart_Ac
 import { FilterCartDetials } from '../UseContext/FilterRestarangeProduct'
 import { BiPlus } from 'react-icons/bi'
 import { useDispatch } from 'react-redux'
-import { IoRemove,IoTrashOutline } from 'react-icons/io5'
+import { IoRemove, IoTrashOutline } from 'react-icons/io5'
 
 export default function CurrentScreen(props) {
     const {
@@ -19,9 +19,13 @@ export default function CurrentScreen(props) {
 
 
 
+
+
+
+
     const { mapsFil } = useContext(FilterCartDetials)
 
-    
+
     const dispatch = useDispatch()
 
     const [courrent, setCourrent] = useState(
@@ -34,15 +38,19 @@ export default function CurrentScreen(props) {
 
 
 
+
+  
+
+
     // this is object 
     const CartProduct = {
-        _id: productId?._id,
+        _id: productId?.product ? productId?.product : productId?._id,
         name: productId?.name,
         prices: productId?.prices,
         image: productId?.image,
         cartinfo: productId?.cartinfo,
         description: productId?.description,
-        qty : courrent
+        qty: courrent
     }
 
 
@@ -136,7 +144,7 @@ export default function CurrentScreen(props) {
 
 
         if (courrent === Number(1)) {
-            return dispatch(RemoveCart_Action(productId?.product))
+            return dispatch(RemoveCart_Action(productId?.product ? productId?.product : productId?._id))
         }
 
 
@@ -147,7 +155,7 @@ export default function CurrentScreen(props) {
     // this is remove cart 
     const TheRemove = (e) => {
         e.preventDefault()
-        dispatch(RemoveCart_Action(productId?.product))
+        dispatch(RemoveCart_Action(productId?.product ? productId?.product : productId?._id) )
         return setOpenCartProduct({ value: false, id: '' })
 
     }
@@ -167,8 +175,8 @@ export default function CurrentScreen(props) {
                 :
                 courrent === 1 ? Styles.backgroundSizenot : Styles.backgroundSize} >
                 <IoRemove
-                 className='Icons_click-color' 
-                onClick={(e) => courrent <= 1 ? Testingup(e) : CurrentMinus()} />
+                    className='Icons_click-color'
+                    onClick={(e) => courrent <= 1 ? Testingup(e) : CurrentMinus()} />
             </div>
             <div className='add-more-center'>
                 {courrent}
@@ -180,8 +188,8 @@ export default function CurrentScreen(props) {
             </div>
 
             {YourOrderClass &&
-                <div className='center-c-more' onClick={(e) => dispatch(RemoveCart_Action(productId?.product))} >
-                    <IoTrashOutline  className='center-c-more-style'  />
+                <div className='center-c-more' onClick={(e) => dispatch(RemoveCart_Action(productId?.product ? productId?.product : productId?._id) )} >
+                    <IoTrashOutline className='center-c-more-style' />
                 </div>
             }
 
@@ -196,7 +204,7 @@ export default function CurrentScreen(props) {
             >
                 {courrent === 0 ?
                     <span>
-                       ta bort från beställning
+                        ta bort från beställning
                     </span>
                     :
                     <>

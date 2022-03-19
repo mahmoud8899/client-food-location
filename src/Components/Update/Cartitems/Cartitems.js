@@ -20,7 +20,7 @@ export default function CartItemsScreen(props) {
 
 
 
-    console.log(cartItems)
+    // console.log(cartItems)
 
 
     return <div className='close-yourOrder'>

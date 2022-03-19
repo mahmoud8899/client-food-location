@@ -137,7 +137,7 @@ export default function CheckOutPaymentScreen(props) {
 
                         </Col>
 
-                        <PaymentPricesScreen />
+                        <PaymentPricesScreen   idcart={cartinfo?._id}  />
                     </Row>
 
 
