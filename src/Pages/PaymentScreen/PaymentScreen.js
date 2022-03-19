@@ -25,10 +25,7 @@ export default function CheckOutPaymentScreen(props) {
     const ChangeParams = props?.match?.params.id.replace("-", " ")
 
 
-
-
-
-    // this is products add items 
+    // filter restranges some order cart.. [1] : get _id restrurange och get all cart order..
     const { setLocationNotNu } = useContext(FilterCartDetials)
     const dispatch = useDispatch()
 
@@ -38,7 +35,7 @@ export default function CheckOutPaymentScreen(props) {
     const { loading, error, cartinfo } = cartInfoid
 
 
-    // useriNFO 
+    // user infor  
     const checkUseriNFO = useSelector((state) => state?.userLogin?.userInfo?.firstname)
 
 
@@ -140,9 +137,7 @@ export default function CheckOutPaymentScreen(props) {
 
                         </Col>
 
-                        <PaymentPricesScreen
-                            cartinfo={cartinfo}
-                        />
+                        <PaymentPricesScreen />
                     </Row>
 
 

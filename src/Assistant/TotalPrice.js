@@ -1,7 +1,7 @@
 
 // collect all order
 export const TotalPrice = (data) => {
-    return data?.reduce((acc, item) => acc + item.prices * item.courrent, 0)
+    return data?.reduce((acc, item) => acc + item.prices * item.qty, 0)
 }
 
 
@@ -17,9 +17,11 @@ export const Totalsumma = (firstorder, lastDleiver) => {
 
 
 
+// collect all cart order 
 export const CollectOrder = (data) => {
 
-    return data?.reduce((acc, item) => acc + item.courrent, 0)
+
+    return data?.reduce((acc, item) => acc + item.qty, 0)
 
 }
 

@@ -20,18 +20,30 @@ export default function CurrentScreen(props) {
 
 
     const { mapsFil } = useContext(FilterCartDetials)
+
+    
     const dispatch = useDispatch()
 
     const [courrent, setCourrent] = useState(
         ScreenAdd ?
-            mapsFil?.courrent ? mapsFil?.courrent : 1 :
-            productId?.courrent ? productId?.courrent : 1)
+            mapsFil?.qty ? mapsFil?.qty : 1 :
+            productId?.qty ? productId?.qty : 1)
     const [openArray, setOpenArray] = useState(false)
 
 
 
 
 
+    // this is object 
+    const CartProduct = {
+        _id: productId?._id,
+        name: productId?.name,
+        prices: productId?.prices,
+        image: productId?.image,
+        cartinfo: productId?.cartinfo,
+        description: productId?.description,
+        qty : courrent
+    }
 
 
 
@@ -57,16 +69,6 @@ export default function CurrentScreen(props) {
 
 
 
-    // this is object 
-    const CartProduct = {
-        _id: productId?._id,
-        name: productId?.name,
-        prices: productId?.prices,
-        image: productId?.image,
-        cartinfo: productId?.cartinfo,
-        description: productId?.description,
-        courrent
-    }
 
 
 
@@ -134,7 +136,7 @@ export default function CurrentScreen(props) {
 
 
         if (courrent === Number(1)) {
-            return dispatch(RemoveCart_Action(productId?._id))
+            return dispatch(RemoveCart_Action(productId?.product))
         }
 
 
@@ -142,9 +144,10 @@ export default function CurrentScreen(props) {
 
 
 
+    // this is remove cart 
     const TheRemove = (e) => {
         e.preventDefault()
-        dispatch(RemoveCart_Action(productId?._id))
+        dispatch(RemoveCart_Action(productId?.product))
         return setOpenCartProduct({ value: false, id: '' })
 
     }
@@ -177,7 +180,7 @@ export default function CurrentScreen(props) {
             </div>
 
             {YourOrderClass &&
-                <div className='center-c-more' onClick={(e) => dispatch(RemoveCart_Action(productId?._id))} >
+                <div className='center-c-more' onClick={(e) => dispatch(RemoveCart_Action(productId?.product))} >
                     <IoTrashOutline  className='center-c-more-style'  />
                 </div>
             }

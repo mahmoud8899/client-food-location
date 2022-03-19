@@ -3,6 +3,67 @@ import axios from 'axios'
 import { Action_logout } from './Auth_Action'
 
 
+
+
+
+// create order to user ... 
+// POST / create order..... 
+export const Order_Action = (user) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: ActionTypes.ADD_ORDER_LOADING })
+        const { userLogin: { token } } = getState()
+
+        const { data } = await axios.post(`/api/order/order/`,
+            user, {
+
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        dispatch({ type: ActionTypes.ADD_ORDER_SUCCESS, payload: data })
+
+        localStorage.removeItem('cartItems')
+    }
+    catch (error) {
+        const message = error.response &&
+            error.response.data.message ?
+            error.response.data.message :
+            error.message
+        if (message === 'Not authorized, token failed') {
+
+            dispatch(Action_logout())
+
+        }
+
+
+        dispatch({
+            type: ActionTypes.ADD_ORDER_FAIL,
+            payload: message
+
+
+        })
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // start Order User...............................................................................
 
 // append result orders uses.
@@ -89,45 +150,6 @@ export const orderId_action = (id) => async (dispatch) => {
     }
 }
 
-
-
-// create order to user ... 
-// POST / create order..... 
-export const Order_Action = (user) => async (dispatch, getState) => {
-    try {
-        dispatch({ type: ActionTypes.ADD_ORDER_LOADING })
-        const { userLogin: { token } } = getState()
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }
-        const { data } = await axios.post(`/api/order/order/`, user, config)
-        // console.log(data)
-        dispatch({ type: ActionTypes.ADD_ORDER_SUCCESS, payload: data.ClientOrder })
-
-        localStorage.removeItem('cartItems')
-    }
-    catch (error) {
-        const message = error.response &&
-            error.response.data.message ?
-            error.response.data.message :
-            error.message
-        if (message === 'Not authorized, token failed') {
-
-            dispatch(Action_logout())
-
-        }
-
-
-        dispatch({
-            type: ActionTypes.ADD_ORDER_FAIL,
-            payload: message
-
-
-        })
-    }
-}
 
 
 

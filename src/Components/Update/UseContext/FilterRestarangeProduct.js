@@ -13,21 +13,21 @@ export default function FilterRestarangeProduct({ children }) {
     const [mapsFil, setMapsFil] = useState(null)
     const [idProduct, setIdProduct] = useState('')
     const [filterCartProduct, setFilterCartProduct] = useState([])
-    const [loading,setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
     // cart info .... 
     const cart = useSelector((state) => state?.cart)
     const { cartItems } = cart
 
 
-  
+
 
     useEffect(() => {
         if (cartItems) {
-       
-        return  setFilterCartProduct(cartItems?.filter((x) => x?.cartinfo?._id?.toString() === locationNotNu?.toString()))
-           
+
+            return setFilterCartProduct(cartItems?.filter((x) => x?.cartinfo?._id?.toString() === locationNotNu?.toString()))
+
         }
-    
+
         // eslint-disable-next-line
 
     }, [locationNotNu, cartItems, setFilterCartProduct])
@@ -42,7 +42,8 @@ export default function FilterRestarangeProduct({ children }) {
         if (idProduct) {
             setLoading(true)
 
-            setMapsFil(filterCartProduct?.find((x) => x?._id.toString() === idProduct?.toString()))
+            // testing ...  this is cart after thet filter console.log('run', filterCartProduct)
+            setMapsFil(filterCartProduct?.find((x) => x?.product === idProduct))
             setLoading(false)
             return
         }
@@ -50,12 +51,12 @@ export default function FilterRestarangeProduct({ children }) {
         return () => {
             setMapsFil(null)
             setLoading(false)
-         
+
         }
 
 
         // eslint-disable-next-line
-    }, [filterCartProduct, setMapsFil, idProduct,setLoading])
+    }, [filterCartProduct, setMapsFil, idProduct, setLoading])
 
 
 
@@ -70,7 +71,7 @@ export default function FilterRestarangeProduct({ children }) {
 
 
 
-    return <FilterCartDetials.Provider value={{ filterCartProduct, setLocationNotNu, setIdProduct, mapsFil,loading }}>
+    return <FilterCartDetials.Provider value={{ filterCartProduct, setLocationNotNu, setIdProduct, mapsFil, loading }}>
         {children}
     </FilterCartDetials.Provider>
 }

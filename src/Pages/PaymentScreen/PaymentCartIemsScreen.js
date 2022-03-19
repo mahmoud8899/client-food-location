@@ -1,5 +1,4 @@
 import { Fragment, useContext, useState } from 'react'
-import { Col } from 'react-bootstrap'
 import ImageScreen from '../../Components/ImageScreen/ImageScreen'
 import Styles from '../../Components/Update/StylesComponents/style'
 import RestaurantsOneProduct from '../RestaurantsPageScreen/RestaurantsOneProduct'
@@ -9,8 +8,10 @@ import { Conversion } from '../../Components/Update/Conversion/Conversion'
 import AddOpenComponent from '../../Components/Update/AddOpenComponent/AddOpenComponent'
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen'
 import ScreenAlrt from '../../Components/ScreenAlrt/ScreenAlrt'
-import './PaymentScreen.css'
 import {SliceName} from '../../Assistant/Slice'
+import { Col } from 'react-bootstrap'
+import './PaymentScreen.css'
+
 export default function PaymentCartIemsScreen(props) {
 
 
@@ -40,7 +41,7 @@ export default function PaymentCartIemsScreen(props) {
             {props?.loading ? <LoadingScreen />
                 : filterCartProduct?.length === 0
                     ? <ScreenAlrt
-                        textName='we have not items....'
+                        textName='Det finns inga saker du kan begära, du kommer att omdirigeras till huvudsidan'
                         userCheck
                         alertid
                         PathName={Conversion(props?.cartinfo)}

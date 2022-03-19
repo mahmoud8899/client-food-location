@@ -9,11 +9,11 @@ export const CartReducres = (state = { cartItems: [], timeBooking: [] }, action)
 
             const item = action.payload
 
-            const checkItems = state?.cartItems?.find((x) => x?._id === item?._id)
+            const checkItems = state?.cartItems?.find((x) => x?.product === item?.product)
             if (checkItems) {
                 return {
                     ...state,
-                    cartItems: state.cartItems.map((x) => x._id === checkItems._id ? item : x)
+                    cartItems: state.cartItems.map((x) => x.product === checkItems.product ? item : x)
                 }
 
             } else {
@@ -27,7 +27,7 @@ export const CartReducres = (state = { cartItems: [], timeBooking: [] }, action)
             //    testing console.log('remove',action.payload)
             return {
                 ...state,
-                cartItems: state.cartItems.filter((x) => x._id !== action.payload)
+                cartItems: state.cartItems.filter((x) => x.product !== action.payload)
             }
 
         case ActionTypes.ADD_SAVE_TIME:

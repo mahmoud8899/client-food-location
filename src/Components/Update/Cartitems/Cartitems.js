@@ -20,14 +20,16 @@ export default function CartItemsScreen(props) {
 
 
 
+    console.log(cartItems)
+
 
     return <div className='close-yourOrder'>
 
 
-        {cartItems?.map((cart, Index) => (
+        {cartItems?.map((cart,Index) => (
             <div className='yourOrder-box' key={Index}>
 
-                {addCurrnt && saveId === cart?._id ?
+                {addCurrnt && saveId === cart?.product ?
 
                     <CurrentScreen
                         YourOrderClass
@@ -37,15 +39,15 @@ export default function CartItemsScreen(props) {
                     : null
                     
                 }
-                <div className='close-yourOrder-number' onClick={(e) => HandleMatchId(e, cart?._id)} >
+                <div className='close-yourOrder-number' onClick={(e) => HandleMatchId(e, cart?.product)} >
 
                     <div style={Styles.Boxshow} className='close-yourOrder-numer-rigth'>
-                        {cart?.courrent}
+                        {cart?.qty}
                     </div>
                     <div className='close-yourOrder-numer-text'>
                         <div className='font-famil-color'>{cart?.name}</div>
                         <div className='close-yourOrder-numer-text-culom-d-s'>
-                            <span>kr {CollectNumber(cart?.courrent, cart?.prices)}</span>
+                            <span>kr {CollectNumber(cart?.qty, cart?.prices)}</span>
                          
                             {cart?.popular && <span style={Styles.background} className='popular-popular'>popular</span>}
                             

@@ -19,7 +19,7 @@ export const Add_timeAction = (data) => async (dispatch) => {
 
 
 // remove Cart from items... 
-export const RemoveCart_Action = (id) => async (dispatch,getStat) => {
+export const RemoveCart_Action = (id) => async (dispatch, getStat) => {
     //  testing   console.log('remove action coming data...',id)
     dispatch({
         type: ActionTypes.REMOVE_CART_ITEMS,
@@ -35,10 +35,27 @@ export const RemoveCart_Action = (id) => async (dispatch,getStat) => {
 // save cart items 
 export const AddCart_Action = (data) => async (dispatch, getStat) => {
 
+    const FilterData = {
 
-    dispatch({ type: ActionTypes.CART_ADD_ITEMS, payload: data })
+        cartinfo: data.cartinfo,
+        qty: data.qty,
+        description: data.description,
+        image: data.image,
+        name: data.name,
+        prices: data.prices,
+        product: data._id,
+    }
+
+
+    console.log(FilterData)
+
+
+    // console.log(FilterData ,data)
+
+
+    dispatch({ type: ActionTypes.CART_ADD_ITEMS, payload: FilterData })
     localStorage.setItem(ActionTypes.SAVE_LOCAL_CH, JSON.stringify(getStat().cart.cartItems))
-   //testing console.log('save data....>....')
+    //testing console.log('save data....>....')
 
     return
 
@@ -51,11 +68,11 @@ export const AddCart_Action = (data) => async (dispatch, getStat) => {
 
 // card number info 
 // save cart number
-export const AddCardNumberSave = (data) => async (dispatch,getState)=>{
+export const AddCardNumberSave = (data) => async (dispatch, getState) => {
 
     dispatch({
-        type : ActionTypes.ADD_CARDNUMBER_SAVE,
-        payload : data
+        type: ActionTypes.ADD_CARDNUMBER_SAVE,
+        payload: data
     })
     localStorage.setItem(ActionTypes.ADD_LOCAT_CARTNUMBER, JSON.stringify(getState().Cartnumber.usercard))
 
@@ -63,11 +80,11 @@ export const AddCardNumberSave = (data) => async (dispatch,getState)=>{
 
 // card number info 
 // remove cart number
-export const RemoveCardNumberAction = () => async (dispatch,getState)=>{
+export const RemoveCardNumberAction = () => async (dispatch, getState) => {
 
     dispatch({
-        type : ActionTypes.ADD_CARDNUMBER_REMOVE,
-        payload : []
+        type: ActionTypes.ADD_CARDNUMBER_REMOVE,
+        payload: []
     })
     localStorage.setItem(ActionTypes.ADD_LOCAT_CARTNUMBER, JSON.stringify(getState().Cartnumber.usercard))
 

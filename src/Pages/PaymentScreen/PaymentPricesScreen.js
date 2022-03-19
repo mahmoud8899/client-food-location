@@ -1,32 +1,32 @@
-import { Col } from 'react-bootstrap'
-import './PaymentScreen.css'
 import { useSelector } from 'react-redux'
 import { ValidationPayment } from '../../Assistant/ValidationPayment'
 import ButtomClick from '../../Components/Buttom/Buttom'
 import Styles from '../../Components/Update/StylesComponents/style'
-import { useContext, useState } from 'react'
 import CheckOutSuccess from './CheckOutSuccess'
-import { TotalPrice, DliveryPrice, Serviceavgift, LitenBeställning, LitenBeställningPrics } from '../../Assistant/TotalPrice'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
 import InformationServices from './HandleDetalis/InformationServices'
-import {TimePrive} from '../../Components/Update/UseContext/TimeContext'
+import { TimePrive } from '../../Components/Update/UseContext/TimeContext'
+import { Order_Action } from '../../redux/Action/Order_Action'
+import {
+    TotalPrice, DliveryPrice,
+    Serviceavgift, LitenBeställning,
+    LitenBeställningPrics
+} from '../../Assistant/TotalPrice'
+import { Col } from 'react-bootstrap'
+import './PaymentScreen.css'
+import { useContext, useState } from 'react'
 export default function PaymentPricesScreen(props) {
-
-
-
     // oppen confirm order...... 
     const [openCheckOut, setOpenCheckOut] = useState(false)
     // this is localstora cart items
     const { filterCartProduct } = useContext(FilterCartDetials)
     // open information serives pries
     const [show, setShow] = useState(false)
-
-
-
-
     // run time real time
-    const {dataTime}  = useContext(TimePrive)
- 
+    const { dataTime } = useContext(TimePrive)
+
+    console.log(filterCartProduct)
+
 
     //----------------------- Start check everything before paying  --------------------->
     // options 
@@ -35,6 +35,15 @@ export default function PaymentPricesScreen(props) {
     // [3] : user address 
     // [4] : time close and oppen
     // [5] :booking time if customer has
+    // options
+    // [1] : filterCartProduct only to User some restruans how may cart has
+    // [2] : Summa artiklar  total prices -- class name  TotalPrice
+    // [3] :  driver prics with  -- class name DliveryPrice
+    // [4] : // order less than 120   -- class name LitenBeställning , and prices class name  LitenBeställningPrics
+    // [5] :  servics 5 kr -- class name Serviceavgift
+    // [6] : information  page -- class name InformationServices
+    // [7] : function collect all prices... class name Max...
+    // [8] : buttom real time payment to 
 
     // [1] :check out driver 
     const TheCheckOutDriver = useSelector((state) => state?.driverselection?.driver)
@@ -47,43 +56,6 @@ export default function PaymentPricesScreen(props) {
 
     // [5] :booking time if customer has
     const TheCheckOutBookingTime = useSelector((state) => state?.cart?.timeBooking)
-    //----------------------- END check everything before paying  --------------------->
-
-
-
-    // testing....
-    // console.log(CheckOutRestrange)
-    //   console.log(TheCheckOutBookingTime)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // options
-    // [1] : filterCartProduct only to User some restruans how may cart has
-    // [2] : Summa artiklar  total prices -- class name  TotalPrice
-    // [3] :  driver prics with  -- class name DliveryPrice
-    // [4] : // order less than 120   -- class name LitenBeställning , and prices class name  LitenBeställningPrics
-    // [5] :  servics 5 kr -- class name Serviceavgift
-    // [6] : information  page -- class name InformationServices
-    // [7] : function collect all prices... class name Max...
-    // [8] : buttom real time payment to 
-
-
-
-
-
 
     // collect the order value
     function Max() {
@@ -95,10 +67,56 @@ export default function PaymentPricesScreen(props) {
         return TotalPrice(filterCartProduct) + Driver + Serviceavgift + lessOrder
     }
 
+    //----------------------- END check everything before paying  --------------------->
 
 
 
 
+        // {
+
+        //     "orderitems" : [
+        //         {
+        //             "qty": 10,
+        //              "prics": 40,
+        //              "product" : "6210f00d5d48931ab7b5637c"
+        //         }, {
+        //             "qty": 2,
+        //              "prics": 100,
+        //              "product" : "6210f00d5d48931ab7b5637c"
+        //         }
+               
+        //     ],
+        //     "shippingAdress" : 
+        //         {
+        //             "firstName": "firstName",
+        //             "lastName" :"lastName",
+        //             "yourEmail" : "yourEmail",
+        //             "yourAddress": "yourAddress",
+        //             "city" : "city",
+        //             "zipCode": "zipCode",
+        //             "telephone" : "telephone"
+        //         },
+        
+            
+        //     "driver":"driver",
+        //     "orderTime" : "01-10-2021",
+        //     "paymentMethod" : "cart id",
+        //     "discountCode" : "OLL2o-n-d-y----b-CtKlo=6GL3-up",
+        //     "driverPric" : 30,
+        //     "client" : "client",
+        //     "itemsPrics": 322,
+        //     "cartinfo" : "620d1f1084f54514ebb4dac8"
+           
+        // }
+
+    // send required to server // create new order .
+    const HandleCreateOrder = (e) => {
+        e.preventDefault()
+
+
+
+        console.log('create order...')
+    }
 
 
 
@@ -157,17 +175,17 @@ export default function PaymentPricesScreen(props) {
                 <div className='item-pricesInclude-total'>
                     <ButtomClick
                         title={
-                            ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress,CheckOutRestrange,TheCheckOutBookingTime,dataTime)?.toString()
+                            ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress, CheckOutRestrange, TheCheckOutBookingTime, dataTime)?.toString()
                                 === 'true' ?
                                 'betalning nu  ' + Max() + " kr"
 
                                 :
-                                ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress,CheckOutRestrange,TheCheckOutBookingTime,dataTime)?.toString()
+                                ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress, CheckOutRestrange, TheCheckOutBookingTime, dataTime)?.toString()
                         }
                         style={Styles.buttomColorPage}
                         DisaBledStyle={Styles.Dist}
-                        disabled={ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress,CheckOutRestrange,TheCheckOutBookingTime,dataTime) !== true}
-                        onClick={(e) => setOpenCheckOut(true)}
+                        disabled={ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress, CheckOutRestrange, TheCheckOutBookingTime, dataTime) !== true}
+                        onClick={HandleCreateOrder}
                     />
 
 
