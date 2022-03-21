@@ -8,7 +8,8 @@ import { BiSearch } from 'react-icons/bi'
 
 
 export default function OrderNavBarSearching(props) {
-    const { setQuery } = props
+    // params [1] : seaching [2] : placeholder name [3] : text navbar
+    const { setQuery ,placeholder,textList } = props
 
 
 
@@ -21,7 +22,7 @@ export default function OrderNavBarSearching(props) {
                         ImageIcon={MyOderImage.delivery}
                         style={Styles.TabBoximage}
                     />
-                    <span>List Orders</span>
+                    <span className='TextList'>{textList ? textList : 'List Orders'}</span>
 
                 </div>
 
@@ -34,7 +35,7 @@ export default function OrderNavBarSearching(props) {
             <div className='Order-List-New-other'>
                 <FormControl
                     className='with-input'
-                    placeholder='Searching Orders...'
+                    placeholder={placeholder ? placeholder : 'Searching Orders...'}
                     onChange={(e) => setQuery(e.target.value)}
                     style={Styles.NavBarSearchingColorInput}
 

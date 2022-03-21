@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Form } from "react-bootstrap";
 import DatePicker from 'react-datepicker';
-
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -26,6 +25,25 @@ export default function PasswordScreen() {
   const [startDate, setStartDate] = useState(new Date());
 
 
+  const testing = '10'
+  const othertesting = '01'
+
+
+function Colle(testing,othertesting){
+
+  // const nes = othertesting.slice(0,2)
+  // const ness = othertesting.slice(4)
+
+  // console.log(nes,ness)
+
+  // console.log(nes)
+  
+  return testing  > othertesting ? true : othertesting
+
+
+}
+
+console.log(Colle(testing,othertesting))
 
 
 

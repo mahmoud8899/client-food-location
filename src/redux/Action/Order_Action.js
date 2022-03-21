@@ -5,6 +5,122 @@ import { Action_logout } from './Auth_Action'
 
 
 
+// ---------------------------------------- Start Order history  - private ------------------------------------------//  
+
+// append result orders uses.
+export const AppendUserListOrders = (data) => ({
+    type: ActionTypes.ADD_ORDERS_USER_SUCCESS,
+    payload: data
+})
+
+
+// apend page number,,,
+export const APPendUserOrderNumber = (nextpage) => ({
+    type: ActionTypes.ADD_ORDERS_USER_NUMBER,
+    payload: nextpage
+})
+
+// orders user .... 
+// GET : URL : /order/userid?pageNumber=1
+export const OrdersUserAction = () => async (dispatch, getState) => {
+
+    const { userLogin: { token } } = getState()
+
+    const CheckNumber = getState().myOrder.nextNumber
+
+    if (CheckNumber) {
+        try {
+
+            dispatch({ type: ActionTypes.ADD_ORDERS_USER_LOADING })
+            const { data } = await axios.get(`/api/order/userid?pageNumber=${CheckNumber}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            })
+            dispatch(AppendUserListOrders(data.orders))
+            if (data?.pages <= 1) return dispatch(APPendUserOrderNumber(null))
+            const nextpage = data?.result?.next?.page > data?.pages ? null : data?.result?.next?.page
+            dispatch(APPendUserOrderNumber(nextpage))
+
+        } catch (error) {
+
+            const message = error.response &&
+                error.response.data.message ?
+                error.response.data.message :
+                error.message
+            if (message === 'token failed') {
+
+                return dispatch(Action_logout())
+            }
+            dispatch({
+                type: ActionTypes.ADD_ORDERS_USER_FAIL,
+                payload: message
+            })
+        }
+
+    }
+
+
+
+}
+
+// ---------------------------------------- Start Order history ------------------------------------------//  
+
+// ADD_ORDER_LOADING
+// ADD_ORDER_FAIL
+// Cancel order from user or restrurant
+// PUT // private 
+// url : // /api/order/cancel/ => id order
+export const CancelOrderAction = (user) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: ActionTypes.ADD_ORDER_LOADING })
+        const { userLogin: { token } } = getState()
+
+        const { data } = await axios.put(`/api/order/cancel/${user._id}`,
+            user, {
+
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        dispatch({ type: ActionTypes.ADD_ORDER_SUCCESS_CANCEL, payload: data.message })
+
+    }
+    catch (error) {
+        const message = error.response &&
+            error.response.data.message ?
+            error.response.data.message :
+            error.message
+        if (message === 'Not authorized, token failed') {
+
+            dispatch(Action_logout())
+
+        }
+
+
+        dispatch({
+            type: ActionTypes.ADD_ORDER_FAIL,
+            payload: message
+
+
+        })
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // create order to user ... 
 // POST / create order..... 
@@ -22,7 +138,9 @@ export const Order_Action = (user) => async (dispatch, getState) => {
         })
         dispatch({ type: ActionTypes.ADD_ORDER_SUCCESS, payload: data })
 
-        localStorage.removeItem('cartItems')
+        // console.log('successful', data)
+
+        // localStorage.removeItem('cartItems')
     }
     catch (error) {
         const message = error.response &&
@@ -64,67 +182,7 @@ export const Order_Action = (user) => async (dispatch, getState) => {
 
 
 
-// start Order User...............................................................................
 
-// append result orders uses.
-export const AppendUserListOrders = (data) => ({
-    type: ActionTypes.ADD_ORDERS_USER_SUCCESS,
-    payload: data
-})
-
-
-// apend page number,,,
-export const APPendUserOrderNumber = (nextpage) => ({
-    type: ActionTypes.ADD_ORDERS_USER_NUMBER,
-    payload: nextpage
-})
-
-// orders user .... 
-// GET : URL : /order/userid?pageNumber=1
-export const OrdersUserAction = () => async (dispatch, getState) => {
-
-    const { userLogin: { token } } = getState()
-
-    const CheckNumber = getState().myOrder.nextNumber
-
-    if (CheckNumber) {
-        try {
-            const { data } = await axios.get(`/api/order/userid?pageNumber=${CheckNumber}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                }
-            })
-            dispatch(AppendUserListOrders(data.orders))
-            if (data?.pages <= 1) return dispatch(APPendUserOrderNumber(null))
-            const nextpage = data?.result?.next?.page > data?.pages ? null : data?.result?.next?.page
-            // console.log('c', nextpage)
-            dispatch(APPendUserOrderNumber(nextpage))
-
-        } catch (error) {
-
-            const message = error.response &&
-                error.response.data.message ?
-                error.response.data.message :
-                error.message
-            if (message === 'token failed') {
-
-                return dispatch(Action_logout())
-            }
-            dispatch({
-                type: ActionTypes.ADD_ORDERS_USER_FAIL,
-                payload: message
-            })
-        }
-
-    }
-
-
-
-}
-
-
-
-// END Order User...............................................................................
 
 // order id 
 // GET // /api/order/order/id...
@@ -168,6 +226,8 @@ export const OrderResturantNotifications = (id) => async (dispatch) => {
 
         const { data } = await axios.get(`/api/order/restrange/${id}`)
 
+
+        // testing console.log(data)
 
         dispatch({ type: ActionTypes.ADD_ORDER_NOTIFICATIONS_SUCCESS, payload: data })
     } catch (error) {

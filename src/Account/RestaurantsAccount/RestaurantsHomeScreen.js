@@ -6,7 +6,6 @@ import ImageScreen from '../../Components/ImageScreen/ImageScreen'
 import { OrderResturantNotifications } from '../../redux/Action/Order_Action'
 import { useDispatch, useSelector } from 'react-redux'
 import NotficationOrders from './Datils/NotficationOrders'
-import { PageTextEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
 import NavBarList from './Datils/NavBarList'
 import UserName from './Datils/UserName'
 import { useEffect } from 'react'
@@ -100,24 +99,25 @@ export default function RestaurantsHomeScreen(props) {
 
 
 
-                <Row className='justify-content-center'>
+            
+                
+                        <Row className='justify-content-center'>
 
-                    {orderNotfications?.length === Number(0) ||
-                        orderNotfications === 'Empty' ?
-                        <PageTextEmpty Pagetext='Det finns inga aviseringar för tillfället' />
-                        :
+             
 
+                                <NotficationOrders
+                                    error={error}
+                                    loading={loading}
+                                    orderNotfications={orderNotfications}
 
-                        <NotficationOrders
-                            error={error}
-                            loading={loading}
-                            orderNotfications={orderNotfications}
-
-                        />
-                    }
+                                />
+                         
 
 
-                </Row>
+                        </Row>
+
+      
+               
             </Col>
 
 
@@ -131,3 +131,15 @@ export default function RestaurantsHomeScreen(props) {
 
 }
 
+// {/* 
+//         <div className='Margin-top'>
+//     <LoadingErrorHandle loading={loading} error={error} TextNotItems={ErrorServer} extraStyle >
+//               </LoadingErrorHandle>
+//  </div>
+//                {orderNotfications?.length === Number(0) ||
+//                                 orderNotfications === 'Empty' ?
+//                                 <PageTextEmpty Pagetext='Det finns inga aviseringar för tillfället' />
+//                                 :
+
+//    }
+// */ }

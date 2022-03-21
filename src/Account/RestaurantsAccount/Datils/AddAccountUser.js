@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Form, Modal } from 'react-bootstrap'
+import { HiOutlineX } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import { ChangeCode, ValidationAccount, ValidationUpdatedAccount } from '../../../Assistant/ValidationPayment'
 import { ValtionMe } from '../../../Assistant/ValtionMe'
 import ButtomClick from '../../../Components/Buttom/Buttom'
 import { CloseScreen, closeUpdateAccount } from '../../../Components/CloseScreen/CloseScreen'
 import CodeError from '../../../Components/CodeError/CodeError'
-import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import Input from '../../../Components/Input/Input'
 import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
 import Styles from '../../../Components/Update/StylesComponents/style'
@@ -132,11 +131,12 @@ export default function AddAccountUser(props) {
                 <div className='modal-title-edit-category'>
 
                     <h1>Add Account bank </h1>
-                    <ImageScreen
+                    {/* <ImageScreen
                         ImageIcon={MyOderImage.close}
                         className='close-pp-pp-image'
                         onClick={HandleClose}
-                    />
+                    /> */}
+                        <HiOutlineX  className='close-pp-pp-image'  onClick={HandleClose}/>
                 </div>
 
                 {handleError &&

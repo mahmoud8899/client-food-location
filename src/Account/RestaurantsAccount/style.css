@@ -10,6 +10,9 @@
     justify-content: center;
   
 }
+.Margin-top{
+    margin-top: 3rem;
+}
 .Dev-Error.extraStyle{
     height: 0rem;
     margin-top: 1rem;
@@ -523,7 +526,18 @@ margin-top: 1rem;
 
 
 /* Start catgory css */
-
+.Format-time
+{
+    text-transform: capitalize;
+    font-size: 16px;
+    margin-left: auto;
+    background: #ffc3be;
+    color: white;
+    border-radius: 9999px;
+    padding: 0.2rem;
+    margin-bottom: 0.4rem;
+    cursor: pointer;
+}
 .body-category{
     padding: 1rem;
 }
@@ -534,7 +548,9 @@ margin-top: 1rem;
     text-transform: capitalize;
 }
 .modal-title-edit-category h1{
-    font-size: calc(0.375rem + 1.5vw);
+    font-size: 16px;
+    text-transform: capitalize;
+    font-family: system-ui;
 }
 .form-class-category{
 
@@ -560,6 +576,7 @@ margin-top: 1rem;
     flex-direction: column;
     margin-top: 1rem;
     box-shadow: 0rem 0rem 0rem 0.1rem #eee;
+    cursor: pointer;
 }
 .listrating{
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

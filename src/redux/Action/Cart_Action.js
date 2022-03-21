@@ -1,7 +1,26 @@
 import * as ActionTypes from './Types'
 
 
+// remove all cart
+export const RemoveAllCartOne = () => async (dispatch, getStat) => {
+    //  testing   console.log('remove action coming data...',id)
+    dispatch({
+        type: ActionTypes.REMOVE_ALL_CARTITEMS,
+    
+    })
+  return  localStorage.setItem(ActionTypes.SAVE_LOCAL_CH, JSON.stringify(getStat().cart.cartItems))
+}
 
+
+// remove Cart from items... 
+export const RemoveCart_Action = (id) => async (dispatch, getStat) => {
+    //  testing   console.log('remove action coming data...',id)
+    dispatch({
+        type: ActionTypes.REMOVE_CART_ITEMS,
+        payload: id
+    })
+    localStorage.setItem(ActionTypes.SAVE_LOCAL_CH, JSON.stringify(getStat().cart.cartItems))
+}
 
 
 
@@ -16,17 +35,6 @@ export const Add_timeAction = (data) => async (dispatch) => {
 }
 
 
-
-
-// remove Cart from items... 
-export const RemoveCart_Action = (id) => async (dispatch, getStat) => {
-    //  testing   console.log('remove action coming data...',id)
-    dispatch({
-        type: ActionTypes.REMOVE_CART_ITEMS,
-        payload: id
-    })
-    localStorage.setItem(ActionTypes.SAVE_LOCAL_CH, JSON.stringify(getStat().cart.cartItems))
-}
 
 
 

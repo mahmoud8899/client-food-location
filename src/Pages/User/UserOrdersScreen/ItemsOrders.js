@@ -1,14 +1,20 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import { format } from 'timeago.js'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import { SliceName } from '../../../Assistant/Slice'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import Styles from '../../../Components/Update/StylesComponents/style'
-
+import { BiEditAlt, BiTimeFive, BiCreditCard } from "react-icons/bi";
+import EditOrder from './EditOrder'
 export default function ItemsOrders(props) {
-    const { UserOrders ,history } = props
+    // params [1] : show data [2] : history
+    const { UserOrders, history } = props
 
+
+
+    // option oppen cancel and edit 
+    const [show, setShow] = useState({ value: false, object: '' })
 
 
 
@@ -21,126 +27,128 @@ export default function ItemsOrders(props) {
 
 
 
+    // console.log(show)
+
 
 
     return <Row className='justify-content-center'>
         <Fragment>
-            <div className="Order_List_User_Info">
-
-                <h1 >Du har inte gjort några beställningar än</h1>
-            </div>
-
-            {UserOrders ?
-
-                UserOrders?.map((order, orderIndex) => (
 
 
-                    <Col xs={11} sm={6} md={6} lg={6} key={orderIndex} >
+            {UserOrders?.length > Number(0) ? UserOrders?.map((order, orderIndex) => (
 
-                        <div style={Styles.Orderbox} className="xp_order">
 
-                            <div className="Remove_order_user">
-                                <ImageScreen ImageIcon={MyOderImage.remove} style={Styles.Ordersremove} />
+                <Col xs={12} sm={6} md={6} lg={6} key={orderIndex} >
+
+                    <div style={Styles.Orderbox} className="xp_order">
+
+                        <div className='navcancel'>
+                            <div className="time_buy">
+
+                                beställningstid :
+                                <span> {format(order?.createdAt)}</span>
+                                <BiTimeFive style={Styles.Orderstime} />
+
 
                             </div>
 
-                            <div className="Order_List_list">
-                                <h1 >Order # <span className="Order_List_list_color">{SliceName(order?._id, 15)}</span></h1>
+                            <div className="Remove_order_user" onClick={() => setShow({ value: true, object: order })}>
+                                <BiEditAlt style={Styles.Ordersremove} />
 
-                                <div className="time_buy">
-
-
-                                    <span>{format(order?.createdAt)}</span>
-                                    <ImageScreen ImageIcon={MyOderImage.time} style={Styles.Orderstime} />
-
-                                </div>
-
-                                <div className="Delivered">
-
-                                    <span className="add_delivered">{order?.OrderStatus}</span>
-                                    {order?.OrderStatus === 'processing' ?
-
-                                        <ImageScreen ImageIcon={MyOderImage.processing}
-                                            style={Styles.Orderstime} />
-                                        :
-                                        <ImageScreen ImageIcon={MyOderImage.delivery}
-                                            style={Styles.Orderstime} />
-
-                                    }
-
-
-
-
-                                </div>
-
-                                <p className="order_payment">pay Payment :
-                                    <span className="method_payment">{order?.paymentMethod}</span>
-                                    <span className="credit_card">
-
-                                        <ImageScreen ImageIcon={MyOderImage.credit}
-                                            style={Styles.OrderstimenotLeft} />
-                                    </span>
-
-                                </p>
 
                             </div>
 
+                        </div>
 
+                        <div className="Order_List_list">
 
+                            <div className="time_buy">
+                                Order  :
+                                <span className="add_delivered"> {SliceName(order?._id, 15)}</span>
 
-
-                            <div style={Styles.Ordersbottom} className="items_total_info">
-                                <span className="time_boking_info_info">
-                                    <span className="time_boking_info_info_time" >time boking :</span>
-                                    <span className="credit_card" >{format(order?.orderTime)}</span>
-                                    <span className="credit_card">
-                                        <ImageScreen ImageIcon={MyOderImage.delivery}
-                                            style={Styles.OrderstimenotLeft} />
-                                    </span>
-                                </span>
                             </div>
 
+                            <div className="time_buy">
+                                orderstatus :
+                                <span className="add_delivered"> {order?.OrderStatus}</span>
 
+                            </div>
 
+                            <p className="order_payment">betala Betalning :
+                                <span className="method_payment">{order?.paymentMethod}</span>
+                                <span className="credit_card">
 
-
-
-
-                            <div style={Styles.Ordersbottom} className="items_total_info">
-                                <span className="">
-                                    {order?.orderitems?.length}x items
+                                    <BiCreditCard style={Styles.OrderstimenotLeft} />
                                 </span>
 
-                            </div>
-
-                            <div style={Styles.Ordersbottom} className="items_total_info" onClick={(e) => HandleProductId(e, order?._id)}>
-                                <span style={Styles.Orderslooklike} className="Add_last">
-                                    <span style={Styles.Ordersfont}>detail </span>
-                                </span>
-                            </div>
-
-                            <div style={Styles.Ordersbottom} className="items_total_info">
-                                <span style={Styles.Ordersboxpric} className="Add_last">
-                                    <span>{order?.OrdersitemsPrics} Kr </span>
-                                </span>
-                            </div>
+                            </p>
 
                         </div>
 
 
 
-                    </Col>
-                ))
-
-                : null}
 
 
+                        <div className="items_total_info">
+                            <span className="time_boking_info_info">
+                                <span className="time_boking_info_info_time" >Tidsbokning :</span>
+                                <span className="credit_card" >{order?.orderTime?.time} - {order?.orderTime?.today}</span>
+                                <span className="credit_card">
+                                    <ImageScreen ImageIcon={MyOderImage.delivery}
+                                        style={Styles.OrderstimenotLeft} />
+                                </span>
+                            </span>
+                        </div>
 
 
 
+
+                        <div className="items_total_info">
+                            <span className="">
+                                {order?.orderitems?.length}x Föremål
+                            </span>
+
+                        </div>
+
+                        <div style={Styles.Ordersbottom} className="items_total_info" onClick={(e) => HandleProductId(e, order?._id)}>
+                            <span style={Styles.Orderslooklike} className="Add_last">
+                                <span style={Styles.Ordersfont}>Detalj </span>
+                            </span>
+                        </div>
+
+                        <div style={Styles.Ordersbottom} className="items_total_info">
+                            <span style={Styles.Ordersboxpric} className="Add_last">
+                                <span>{order?.itemsPrices} Kr </span>
+                            </span>
+                        </div>
+
+
+                    </div>
+                </Col>
+            ))
+
+                :
+                <div className="Order_List_User_Info">
+
+                    <h1 >Du har inte gjort några beställningar än</h1>
+                </div>
+            }
 
 
         </Fragment>
 
+
+        <EditOrder
+            show={show}
+            setShow={setShow}
+        />
+
     </Row>
 }
+
+
+
+
+
+
+

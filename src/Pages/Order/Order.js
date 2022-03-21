@@ -194,9 +194,9 @@ export default function Order(props) {
                                         <div className="MyAddress_Info_info">
                                             <ImageScreen ImageIcon={MyOderImage.user} style={Styles.image} />
                                             <span>Full Name :</span>
-                                            <span>{orderuserid?.shippingAdress?.firstName} </span>
+                                            <span>{orderuserid?.shippingAdress?.firstname} </span>
 
-                                            <span>{orderuserid?.shippingAdress?.lastName}</span>
+                                            <span>{orderuserid?.shippingAdress?.lastname}</span>
 
                                         </div>
 
@@ -266,7 +266,7 @@ export default function Order(props) {
                                 <div className="items_total_info">
                                     <span className="time_boking_info_info">
                                         <span className="time_boking_info_info_time" >time boking :</span>
-                                        <span style={Styles.color} className="credit_card" >{format(orderuserid?.orderTime)}</span>
+                                        <span style={Styles.color} className="credit_card" >  {orderuserid?.orderTime?.time} - {orderuserid?.orderTime?.today}</span>
                                         <span className="credit_card">
                                             <ImageScreen ImageIcon={MyOderImage.delivery} style={Styles.image} />
                                         </span>
@@ -288,7 +288,9 @@ export default function Order(props) {
 
                                 <div className="items_total_info">
                                     <span style={Styles.color} className="Add_last">
-                                        <span>{orderuserid?.itemsPrics} Kr </span>
+                                        <span>{orderuserid?.itemsPrices} Kr </span>
+                                      
+
                                     </span>
                                 </div>
 

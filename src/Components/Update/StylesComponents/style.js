@@ -72,7 +72,7 @@ const Styles = {
     },
 
     Ordersfont: {
-        fontSize: 13,
+        fontSize: '16px',
     },
 
     Ordersboxpric: {

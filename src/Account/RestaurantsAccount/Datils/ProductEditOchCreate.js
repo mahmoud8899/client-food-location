@@ -16,10 +16,10 @@ import { useEffect, useState } from 'react'
 import PageSwitch from '../../../Components/Update/PageSwitch/PageSwitch'
 import CodeError from '../../../Components/CodeError/CodeError'
 import '../style.css'
-import {HiOutlineX} from 'react-icons/hi'
+import { HiOutlineX } from 'react-icons/hi'
 export default function ProductEditOchCreate(props) {
 
-    const {  setShow, show,userInfo ,ListCategoryUX } = props
+    const { setShow, show, userInfo, ListCategoryUX } = props
     const dispatch = useDispatch()
     // show image 
     const [showImage, setShowImage] = useState({ value: false, image: '' })
@@ -44,26 +44,26 @@ export default function ProductEditOchCreate(props) {
     // updated when edit show product details
     useEffect(() => {
 
-            return show?.object ? setProductDetails({
-                name: show?.object?.name ? show?.object?.name : '',
-                description: show?.object?.description ? show?.object?.description : '',
-                image: show?.object?.image ? show?.object?.image : '',
-                popular: show?.object?.popular ? show?.object?.popular : false,
-                prices: show?.object?.prices ? show?.object?.prices : Number(),
-                category: show?.object?.category?._id ? show?.object?.category?._id :
-                    ListCategoryUX ? ListCategoryUX?.[0]?._id : ListCategoryUX?.[0]?._id,
-                _id: show?.object?._id ? show?.object?._id : '',
-                cartinfo: userInfo?.cartinfo ? userInfo?.cartinfo : ''
-            }) : setProductDetails({
-                name: '',
-                description: '',
-                image: '',
-                popular: false,
-                prices: Number(),
-                category: ListCategoryUX ? ListCategoryUX?.[0]?._id : ListCategoryUX?.[0]?._id,
-                cartinfo: userInfo?.cartinfo ? userInfo?.cartinfo : ''
-            })
-        
+        return show?.object ? setProductDetails({
+            name: show?.object?.name ? show?.object?.name : '',
+            description: show?.object?.description ? show?.object?.description : '',
+            image: show?.object?.image ? show?.object?.image : '',
+            popular: show?.object?.popular ? show?.object?.popular : false,
+            prices: show?.object?.prices ? show?.object?.prices : Number(),
+            category: show?.object?.category?._id ? show?.object?.category?._id :
+                ListCategoryUX ? ListCategoryUX?.[0]?._id : ListCategoryUX?.[0]?._id,
+            _id: show?.object?._id ? show?.object?._id : '',
+            cartinfo: userInfo?.cartinfo ? userInfo?.cartinfo : ''
+        }) : setProductDetails({
+            name: '',
+            description: '',
+            image: '',
+            popular: false,
+            prices: Number(),
+            category: ListCategoryUX ? ListCategoryUX?.[0]?._id : ListCategoryUX?.[0]?._id,
+            cartinfo: userInfo?.cartinfo ? userInfo?.cartinfo : ''
+        })
+
 
         // eslint-disable-next-line
     }, [
@@ -73,7 +73,7 @@ export default function ProductEditOchCreate(props) {
     ])
 
 
-    // console.log(productDetails)
+
 
     // updated and remove ...
     useEffect(() => {
@@ -187,7 +187,7 @@ export default function ProductEditOchCreate(props) {
 
     return <Modal
         show={props?.show?.value}
-        onHide={() => HandleClose()}
+        onHide={HandleClose()}
     >
         <HandleLoadingPage
             loading={loading}
@@ -217,8 +217,8 @@ export default function ProductEditOchCreate(props) {
 
                                 }
                             </h1>
-                            <HiOutlineX  className='close-pp-pp-image'  onClick={() => setShow({ value: false, object: '' })}/>
-                           
+                            <HiOutlineX className='close-pp-pp-image' onClick={() => setShow({ value: false, object: '' })} />
+
                         </div>
 
 

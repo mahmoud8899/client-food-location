@@ -7,29 +7,32 @@ import UserNavBarScreen from '../UserNavBarScreen/UserNavBarScreen'
 import LoadingErrorHandle from '../../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen'
 import { ErrorServer } from '../../../Assistant/TextError'
+import Title from '../../../Components/ScreenTitle/ScreenTitle'
+import OrderNavBarSearching from '../../../Account/RestaurantsAccount/Datils/OrderNavBarSearching'
 import '../UserProfileScreen/Profile.css'
 import ItemsOrders from './ItemsOrders'
-import { useEffect } from 'react'
-
+import { useEffect, useState } from 'react'
 
 const UserOrdersScreen = (props) => {
+    // params history
     const { history } = props
 
 
 
     const dispatch = useDispatch()
 
-    // check out....
-    const loading = false
+
     // user info check 
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
     // handle 
     const myOrder = useSelector((state) => state?.myOrder)
-    const { UserOrders, nextNumber, error } = myOrder
+    const { UserOrders, nextNumber, error, loading } = myOrder
 
 
+
+    // console.log(myOrder)
 
 
     // get all orders....
@@ -37,14 +40,15 @@ const UserOrdersScreen = (props) => {
     useEffect(() => {
 
         if (userInfo?.firstname) {
-            return UserOrders?.length === 0 && dispatch(OrdersUserAction())
+
+             return UserOrders?.length === 0 && dispatch(OrdersUserAction())
         } else {
 
-            return history.puhs('/uppsala')
+            return history.push('/uppsala/')
         }
 
 
-    }, [dispatch, UserOrders, nextNumber, userInfo,history])
+    }, [dispatch, UserOrders?.length, nextNumber, userInfo, history])
 
 
 
@@ -53,7 +57,7 @@ const UserOrdersScreen = (props) => {
 
     // fatch user.......... more data
     const fetchData = () => {
-        if (nextNumber >= 1) {
+        if (nextNumber >= Number(1)) {
             return dispatch(OrdersUserAction())
         }
     }
@@ -61,21 +65,35 @@ const UserOrdersScreen = (props) => {
 
 
 
+    // options 
+    // [1] : navbar selection to user.
+    // [2] : orders history...
+
+
+    // Searching...
+    const [query, setQuery] = useState("");
+    const keys = ["OrderStatus", "paymentMethod"];
+    const search = (data) => {
+        return data?.filter((item) =>
+            keys?.some((key) => item[key]?.toLowerCase()?.includes(query))
+        );
+    };
+
+
+
 
 
     return <Container>
+        
 
-
+        <Title  TextTitle='Orderhistorik' />
         <Row className="justify-content-center margin-top-class" >
-
-
             <Col xs={12} sm={12} md={12} lg={12} >
                 <div className='myprofile'>
                     <h1>Profil</h1>
                 </div>
 
             </Col>
-
 
             <Col xs={12} sm={12} md={12} lg={12}>
 
@@ -87,27 +105,42 @@ const UserOrdersScreen = (props) => {
             </Col>
 
             <Col xs={12} sm={12} md={12} lg={8} >
-                <div className={error ? 'error-handle-error' : ''}>
-                    <LoadingErrorHandle
-                        error={error}
-                        loading={loading}
-                        TextNotItems={ErrorServer}
+                <div className={error ? 'error-handle-error' : 'Fex-Order'}>
+                    <LoadingErrorHandle error={error} loading={loading} TextNotItems={ErrorServer} >
 
-                    >
+
+
+                        <div className='Margin-top'>
+                            <OrderNavBarSearching
+                                setQuery={setQuery}
+                                placeholder='beställningar sökning'
+                                textList='Lista beställningar'
+
+                            />
+
+
+                        </div>
                         <InfiniteScroll
                             style={Styles.hidden}
-                            dataLength={UserOrders.length}
+                            dataLength={UserOrders?.length}
                             next={fetchData}
                             hasMore={nextNumber === null ? false : true}
-                            loader={nextNumber === null ? false : <LoadingScreen />}
+                            loader={
+                                nextNumber === null ? false :
+                                    <div className='Center-loading'>
+                                        <LoadingScreen />
+                                    </div>
+                            }
                         >
 
-                            <ItemsOrders UserOrders={UserOrders} history={history} />
+                            <ItemsOrders UserOrders={search(UserOrders)} history={history} />
 
                         </InfiniteScroll>
-
                     </LoadingErrorHandle>
                 </div>
+
+
+
 
             </Col>
 
@@ -132,12 +165,6 @@ export default UserOrdersScreen
 
 
 
-
-
-
-//     </Col>
-// </Row>
-// </Container>
 
 
 

@@ -114,7 +114,7 @@ export const TheClearing = (dispatch) => {
         type: ActionTypes.ADD_CALING_SATA,
         payload: []
     })
- 
+
 
 }
 
@@ -125,7 +125,7 @@ export const closeUpdateAccount = (dispatch) => {
         type: ActionTypes.ADD_ACOUNT_USER_SUCCESS,
         payload: null
     })
- 
+
 
 }
 
@@ -138,4 +138,27 @@ export const NumberRemove = (dispatch) => {
         payload: null
     })
 
+}
+
+
+
+// remove order cancel 
+export function CancelOrderError(dispatch) {
+
+    return dispatch({
+        type: ActionTypes.ADD_ORDER_FAIL,
+        payload: null
+    })
+
+}
+
+
+// when user cancel order
+export function CleringData(dispatch) {
+
+    dispatch({
+        type: ActionTypes.ADD_ORDERS_USER_EMPTY,
+    })
+
+    return dispatch({ type: ActionTypes.ADD_ORDER_SUCCESS_CANCEL, payload: null })
 }

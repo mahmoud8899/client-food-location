@@ -292,10 +292,15 @@ export const singUp_action = (user) => async (dispatch) => {
 
 // logo ut.. 
 export const Action_logout = () => (dispatch) => {
+    // remove user info
     localStorage.removeItem(ActionTypes.KEY_USER)
+    // remove user token
     localStorage.removeItem(ActionTypes.KEY_TOKEN)
+
     dispatch({ type: ActionTypes.ADD_USER_LOGOUT })
     dispatch({ type: ActionTypes.ADD_USER_RESET })
+    // order empty 
+    dispatch({type : ActionTypes.ADD_ORDERS_USER_EMPTY})
 }
 
 

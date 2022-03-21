@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { ValidationPayment } from '../../Assistant/ValidationPayment'
 import ButtomClick from '../../Components/Buttom/Buttom'
 import Styles from '../../Components/Update/StylesComponents/style'
@@ -7,14 +7,17 @@ import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRest
 import InformationServices from './HandleDetalis/InformationServices'
 import { TimePrive } from '../../Components/Update/UseContext/TimeContext'
 import { Order_Action } from '../../redux/Action/Order_Action'
-import {
-    TotalPrice, DliveryPrice,
+import {TotalPrice, DliveryPrice,
     Serviceavgift, LitenBeställning,
     LitenBeställningPrics
 } from '../../Assistant/TotalPrice'
 import { Col } from 'react-bootstrap'
 import './PaymentScreen.css'
-import { useContext, useState } from 'react'
+import { useContext,  useState } from 'react'
+import { CollectTotla } from '../../Assistant/SelectionPayment'
+
+
+
 export default function PaymentPricesScreen(props) {
     // oppen confirm order...... 
     const [openCheckOut, setOpenCheckOut] = useState(false)
@@ -25,9 +28,11 @@ export default function PaymentPricesScreen(props) {
     // run time real time
     const { dataTime } = useContext(TimePrive)
 
-    const [itemsPrics, setItemsPrics] = useState('')
 
 
+
+
+    const dispatch = useDispatch()
 
 
     //----------------------- Start check everything before paying  --------------------->
@@ -49,34 +54,26 @@ export default function PaymentPricesScreen(props) {
 
     // [1] :check out driver 
     const TheCheckOutDriver = useSelector((state) => state?.driverselection?.driver)
-
-
-
-
     // [2] :check out card number
     const theCheckOutCard = useSelector((state) => state?.Cartnumber?.usercard?.cartnumber)
     // [3] : check out address
     const CheckUserAddress = useSelector((state) => state?.userLogin?.userInfo?.Adress?.addres)
-
     // [4]: cart info restrange... 
     const CheckOutRestrange = useSelector((state) => state?.cartInfoid?.cartinfo?.opentime)
-
     // [5] :booking time if customer has
     const TheCheckOutBookingTime = useSelector((state) => state?.cart?.timeBooking)
-
     // user info 
     const UserInfo = useSelector((state) => state?.userLogin?.userInfo)
-
     // collect the order value
-    function Max() {
-        // pries driver
-        const Driver = TheCheckOutDriver?.name === 'utkörning' ? DliveryPrice : Number(0)
-        // order less
-        const lessOrder = LitenBeställning(TotalPrice(filterCartProduct)) ? Number(LitenBeställningPrics) : Number(0)
+    // function Max() {
+    //     // pries driver
+    //     const Driver = TheCheckOutDriver?.name === 'utkörning' ? DliveryPrice : Number(0)
+    //     // order less
+    //     const lessOrder = LitenBeställning(TotalPrice(filterCartProduct)) ? Number(LitenBeställningPrics) : Number(0)
 
-        // setItemsPrics(TotalPrice(filterCartProduct) + Driver + Serviceavgift + lessOrder)
-        return TotalPrice(filterCartProduct) + Driver + Serviceavgift + lessOrder
-    }
+    //     // setItemsPrics(TotalPrice(filterCartProduct) + Driver + Serviceavgift + lessOrder)
+    //     return TotalPrice(filterCartProduct) + Driver + Serviceavgift + lessOrder
+    // }
 
     //----------------------- END check everything before paying  --------------------->
 
@@ -109,7 +106,7 @@ export default function PaymentPricesScreen(props) {
 
 
     // [1] orderitems : filterCartProduct
-    // [2]  shippingAdress :  UserHandle
+    // [2] shippingAdress :  UserHandle
     // [3] driver : TheCheckOutDriver?.name
     // [4] orderTime :  TheCheckOutBookingTime?.timeOrder !== null ? TimeAdd : OtherTime
     // [5] paymentMethod : 'cart number'
@@ -117,7 +114,7 @@ export default function PaymentPricesScreen(props) {
     // [7] driverPric :  TheCheckOutDriver?.name === 'utkörning' ? DliveryPrice : '0'
     // [8] client : 'client'
     // [8] cartinfo : props?.idcart
-    // [9] itemsPrics :
+    // [9] itemsPrics : Max()
 
 
 
@@ -127,16 +124,32 @@ export default function PaymentPricesScreen(props) {
 
 
 
-    // send required to server // create new order .
+
+    // oppen check out och send create order to user...
     const HandleCreateOrder = (e) => {
         e.preventDefault()
-
-
-
-        console.log('create order...')
+        setOpenCheckOut(true)
+        return dispatch(Order_Action({
+            orderitems: filterCartProduct,
+            shippingAdress: UserHandle,
+            driver: TheCheckOutDriver?.name,
+            orderTime: TheCheckOutBookingTime?.timeOrder !== null ? TimeAdd : OtherTime,
+            paymentMethod: 'cart number',
+            discountCode: '',
+            driverPrice: TheCheckOutDriver?.name === 'utkörning' ? DliveryPrice : '0',
+            client: 'client',
+            cartinfo: props?.idcart,
+            itemsPrices: CollectTotla(TheCheckOutDriver, filterCartProduct)
+        }))
+        // console.log('create order...')
     }
 
-    // console.log(itemsPrics)
+
+
+
+
+
+
 
 
 
@@ -193,7 +206,7 @@ export default function PaymentPricesScreen(props) {
                         title={
                             ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress, CheckOutRestrange, TheCheckOutBookingTime, dataTime)?.toString()
                                 === 'true' ?
-                                'betalning nu  ' + Max() + " kr"
+                                'betalning nu  ' + CollectTotla(TheCheckOutDriver, filterCartProduct) + " kr"
 
                                 :
                                 ValidationPayment(TheCheckOutDriver, theCheckOutCard, CheckUserAddress, CheckOutRestrange, TheCheckOutBookingTime, dataTime)?.toString()

@@ -5,15 +5,32 @@ import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import LoadingErrorHandle from '../../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import { Col } from 'react-bootstrap'
 import Styles from '../../../Components/Update/StylesComponents/style'
-import {ErrorServer} from '../../../Assistant/TextError'
-
+import { ErrorServer, OrderText } from '../../../Assistant/TextError'
+import { PageTextEmpty } from '../../../Components/Update/PageEmpty/PageEmpty'
+import { format } from 'timeago.js'
+import { BiCreditCard, BiGitCompare, BiMessageSquareCheck } from 'react-icons/bi'
+import { useState } from 'react'
+import EditOrder from '../../../Pages/User/UserOrdersScreen/EditOrder'
 export default function NotficationOrders(props) {
+    // params [1] error [2] loading [3] data
     const {
         error,
         loading,
         orderNotfications
     } = props
 
+
+
+    const [show, setShow] = useState({ value: false, object: '' })
+
+
+
+
+    // handle cancel order from resturant....
+    function HandleCancelOrder(data) {
+
+        return setShow({ value: true, object: data })
+    }
 
 
 
@@ -25,44 +42,39 @@ export default function NotficationOrders(props) {
     >
 
 
-
-
-        {orderNotfications ?
+        {orderNotfications?.length === Number(0) ||
+            orderNotfications === 'Empty' ?
+            <PageTextEmpty Pagetext={OrderText} />
+            :
 
             orderNotfications?.map((order, Index) => (
                 <Col xs={12} sm={6} md={6} lg={6} key={Index}>
-
-
-
                     <div className='List'>
 
+                        <span className='Format-time' >{format(order?.updatedAt)}</span>
+
                         <div className='item'>
-                            <ImageScreen
-                                ImageIcon={MyOderImage.number}
-                                style={Styles.processing}
-                            />
+
+                            <BiMessageSquareCheck style={Styles.processing} />
 
                             <span>order number : {SliceName(order?._id, 10)}</span>
                         </div>
 
 
                         <div className='item'>
-                            <ImageScreen
-                                ImageIcon={MyOderImage.credit}
-                                style={Styles.processing}
-                            />
+
+                            <BiCreditCard style={Styles.processing} />
 
                             <span>payment - </span>
                             <span className='Color-su' > {order?.paymentMethod}</span>
                         </div>
 
                         <div className='item'>
-                            <ImageScreen
-                                ImageIcon={MyOderImage.processing}
-                                style={Styles.processing}
-                            />
 
-                            <span> order status : {order?.OrderStatus}</span>
+                            <BiGitCompare style={Styles.processing} />
+
+                            <span> order status : </span>
+                            <span className='Color-su' > {order?.OrderStatus}</span>
                         </div>
 
 
@@ -74,7 +86,7 @@ export default function NotficationOrders(props) {
                                 style={Styles.processing}
                             />
 
-                            <span> driver  -  </span>
+                            <span> Förare  -  </span>
                             <span className='Color-su' >{order?.driver} </span>
 
                         </div>
@@ -87,7 +99,9 @@ export default function NotficationOrders(props) {
                             />
 
                             <span> last time -</span>
-                            <span className='Color-su' >{order?.orderTime} </span>
+                            <span className='Color-su' >
+                                {order?.orderTime?.time}-  {order?.orderTime?.today}
+                            </span>
                         </div>
 
 
@@ -108,7 +122,7 @@ export default function NotficationOrders(props) {
                             />
 
                             <span> totalsomu :</span>
-                            <span className='Color-su' >  {order?.itemsPrics}</span>
+                            <span className='Color-su' >  {order?.itemsPrices}</span>
                         </div>
 
 
@@ -160,6 +174,7 @@ export default function NotficationOrders(props) {
                                 <ButtomClick
                                     title='Cancel Order'
                                     style={Styles.TabButtomCreate}
+                                    onClick={() => HandleCancelOrder(order)}
                                 />
                             </div>
 
@@ -174,12 +189,20 @@ export default function NotficationOrders(props) {
                 </Col>
             ))
 
-            : null}
+
+        }
 
 
 
 
+        <EditOrder
+            show={show}
+            setShow={setShow}
+
+        />
 
 
     </LoadingErrorHandle>
 }
+
+

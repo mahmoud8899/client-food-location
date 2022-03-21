@@ -30,6 +30,14 @@ export const CartReducres = (state = { cartItems: [], timeBooking: [] }, action)
                 cartItems: state.cartItems.filter((x) => x.product !== action.payload)
             }
 
+
+            case ActionTypes.REMOVE_ALL_CARTITEMS :
+                return {
+                ...state,
+                cartItems : []
+
+            }
+
         case ActionTypes.ADD_SAVE_TIME:
             return {
                 ...state,

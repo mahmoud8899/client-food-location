@@ -34,35 +34,52 @@ export const ResturantOrdersNotfications = (state = {
 
 // user Order ............................................................................................>
 export const pagnationMyOrderReducres = (state = {
+    loading: false,
     UserOrders: [],
     nextNumber: Number(1),
-    error : null
+    error: null
 }, action) => {
 
     switch (action.type) {
-        case ActionTypes.ADD_ORDERS_USER_SUCCESS:
 
-
-
+        case ActionTypes.ADD_ORDERS_USER_LOADING:
             return {
                 ...state,
-                UserOrders: action.payload
+                loading: true
+            }
+
+
+        case ActionTypes.ADD_ORDERS_USER_SUCCESS:
+            return {
+                ...state,
+                UserOrders: [...state.UserOrders, ...action.payload],
+                loading: false,
             }
 
 
         case ActionTypes.ADD_ORDERS_USER_NUMBER:
-            // console.log('ddd',action.payload)
             return {
                 ...state,
-                nextNumber: action.payload
+                nextNumber: action.payload,
+                loading: false,
             }
 
 
-            case ActionTypes.ADD_ORDERS_USER_FAIL : 
+        case ActionTypes.ADD_ORDERS_USER_FAIL:
             return {
                 ...state,
-                error : action.payload,
-               
+                error: action.payload,
+                loading: false,
+            }
+
+        case ActionTypes.ADD_ORDERS_USER_EMPTY:
+            return {
+                ...state,
+                loading: false,
+                UserOrders: [],
+                nextNumber: Number(1),
+                error: null
+
             }
 
 
@@ -73,32 +90,42 @@ export const pagnationMyOrderReducres = (state = {
 
 
 
-// create order and se one order
+// [1] create order and se one order
+// [2] cancel order
+// [3] order id
 export const OrderReducres = (state = {
     createOrder: {},
     orderID: {},
-    loading : false,
+    loading: false,
+    ordercancel: null,
     error: null
 }, action) => {
     switch (action.type) {
 
-        case ActionTypes.ADD_ORDER_LOADING: return { loading: true }
+        case ActionTypes.ADD_ORDER_LOADING: return {
+            ...state,
+            loading: true
+        }
         case ActionTypes.ADD_ORDER_SUCCESS: return {
             ...state,
-            loading: false,
             createOrder: action.payload,
+            loading: false,
 
         }
         case ActionTypes.ADD_ORDER_ID_SUCCESS: return {
             ...state,
+            orderID: action.payload,
             loading: false,
-            orderID: action.payload
 
         }
 
-
-
+        case ActionTypes.ADD_ORDER_SUCCESS_CANCEL: return {
+            ...state,
+            ordercancel: action.payload,
+            loading: false
+        }
         case ActionTypes.ADD_ORDER_FAIL: return {
+            ...state,
             error: action.payload,
             loading: false,
 
@@ -139,12 +166,12 @@ export const ShowOrderReducres = (state = {
 
         case ActionTypes.ADD_SHOWS_ORDERS_RESTURANS_SUCCESS:
 
-           
 
-         return {
-             ...state,
-             ShowOrders: [...state.ShowOrders, ...action.payload],
-         }
+
+            return {
+                ...state,
+                ShowOrders: [...state.ShowOrders, ...action.payload],
+            }
 
 
 

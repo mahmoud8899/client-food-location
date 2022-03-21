@@ -1,14 +1,18 @@
 
 
 // selection user takeway and delivery
+import { DliveryPrice, LitenBeställning, LitenBeställningPrics, Serviceavgift, TotalPrice } from "./TotalPrice"
+
+
+
 // what need method need user for food
-export const Usercheck = (data, user,cartinfo) => {
+export const Usercheck = (data, user, cartinfo) => {
 
    switch (data?.name) {
 
       case 'hämta själv': return `Takeaway om ${cartinfo?.finishfood?.to}-${cartinfo?.finishfood?.end} min`
 
-      case 'utkörning' : return user?.Adress?.work ? `Leverans om  ${cartinfo?.finishfood?.to}-${cartinfo?.finishfood?.end} min till ${user?.Adress?.work}` : 'lägg till leveransadress'
+      case 'utkörning': return user?.Adress?.work ? `Leverans om  ${cartinfo?.finishfood?.to}-${cartinfo?.finishfood?.end} min till ${user?.Adress?.work}` : 'lägg till leveransadress'
 
       default: return 'lägg till leveransadress'
 
@@ -32,7 +36,7 @@ export const CheckDriverUser = (dri, use) => {
 
 
 
-export const classWeek = () =>{
+export const classWeek = () => {
 
 
    const TheWeek = [
@@ -70,5 +74,13 @@ export const classWeek = () =>{
 
 
 
+// collect total 
+export function CollectTotla(TheCheckOutDriver,filterCartProduct) {
+   // pries driver
+   const Driver = TheCheckOutDriver?.name === 'utkörning' ? DliveryPrice : Number(0)
+   // order less
+   const lessOrder = LitenBeställning(TotalPrice(filterCartProduct)) ? Number(LitenBeställningPrics) : Number(0)
 
-// export const 
+   // setItemsPrics(TotalPrice(filterCartProduct) + Driver + Serviceavgift + lessOrder)
+   return TotalPrice(filterCartProduct) + Driver + Serviceavgift + lessOrder
+}

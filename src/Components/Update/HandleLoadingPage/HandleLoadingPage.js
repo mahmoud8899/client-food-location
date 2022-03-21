@@ -21,6 +21,14 @@ export default function HandleLoadingPage(props) {
     } = props
 
 
+    // [1] : loading 
+    // [2] : error
+    // [3]  : updateSuccessFully requrest 200
+    // [4] : close  error
+    // [5] : BackAndRemoveError  -- remove error
+    // [6] :  updated : sussfully 
+    // [7] :  ErrorText  text error .... 
+    
 
 
     return <Fragment>

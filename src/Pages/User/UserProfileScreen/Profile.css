@@ -8,8 +8,17 @@
     align-items: center;
     height: 400px;
 }
+.Margin-top{
+ 
+    margin-bottom: 2rem;
+ 
+}
 .color-last-items-User{
     text-transform: capitalize;
+}
+.Center-loading{
+    margin-top: 1rem;
+    text-align: center;
 }
 .className-linkleft{
     margin-left: 0.5rem;
@@ -577,6 +586,22 @@ border-left: ridge;
 .first_Order:hover{
     opacity: 1;
 }
+.navcancel{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+.avbryta{
+    text-align: center;
+    margin-top: 3rem;
+    text-transform: capitalize;
+
+}
+
 .Order_List_list{
     padding: 0rem ;
     margin: 0rem auto;
@@ -585,21 +610,18 @@ border-left: ridge;
     display: flex;
     flex-direction: column;
 }
-.Order_List_list h1{
-    font-size: 13px;
-    font-family: cursive;
-    padding: 0rem;
-    margin-top: 1rem;
-    width: 100%;
-    display: block;
-    
- }
+.TextList{
+    font-size: 16px;
+    text-transform: capitalize;
+    margin-left: 0.5rem;
+}
 .Order_List_list p{
-    font-size: 13px;
+    font-size: 16px;
     padding: 0rem;
     width: 100%;
     display: block;
     margin: 0rem auto;
+    text-transform: capitalize;
 }
 
 .Order_List_Order{
