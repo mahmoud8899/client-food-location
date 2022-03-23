@@ -79,6 +79,14 @@ export const CategoryReducresUser = (state =
                 loading: false
             }
 
+        case ActionTypes.ADD_CATEGORY_USER_EMPTY:
+            return {
+                loading: false,
+                usercategory: [],
+                error: null
+
+            }
+
 
 
         default: return state
@@ -92,7 +100,7 @@ export const CategoryReducresUser = (state =
 // to restaurant -Public
 export const CategoryPublicReducres = (state =
     {
-        loading : false,
+        loading: false,
         nexCategory: {},
         category: {},
         error: null
@@ -100,15 +108,15 @@ export const CategoryPublicReducres = (state =
     switch (action.type) {
 
 
-        case ActionTypes.ADD_PUBLIC_CATEGORY_LOADING : 
+        case ActionTypes.ADD_PUBLIC_CATEGORY_LOADING:
             return {
-               ...state,
-                loading : true,
+                ...state,
+                loading: true,
             }
         case ActionTypes.ADD_PUBLIC_CATEGORY_NUMBER:
 
-           
-        
+
+
             return {
 
                 ...state,
@@ -116,13 +124,13 @@ export const CategoryPublicReducres = (state =
                     ...state.nexCategory,
                     [action.payload.nextpage]: action.payload.nextpage,
                 },
-                loading : false
+                loading: false
             }
 
         case ActionTypes.ADD_PUBLIC_CATEGORY_SUCCESS:
             const categoryId = action.payload.categoryId
             return {
-              
+
                 ...state,
                 category: {
                     ...state.category,

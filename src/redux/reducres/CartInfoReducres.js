@@ -5,6 +5,77 @@ import * as ActionTypes from '../Action/Types'
 
 
 
+// get  all restrants och city
+//  get all butiker and city 
+export const CartInfoReducres = (state = {
+    loading: false,
+    home: [],
+    error: null,
+    nextNumber: Number(1),
+    stores: [],
+    nextstoresnumber: Number(1),
+
+}, action) => {
+
+    switch (action.type) {
+
+        case ActionTypes.ADD_CART_INFO_LOADING_RESTAURANT_STORES: return {
+            ...state,
+            loading: true
+        }
+
+        case ActionTypes.ADD_CART_INFO_SUCCESS_RESTAURANT: return {
+            ...state,
+            home: [...state.home, ...action.payload],
+            loading: false
+        }
+
+        case ActionTypes.ADD_CART_INFO_SUCCESS_RESTAURANT_NUMBER:
+            return {
+                ...state,
+                nextNumber: action.payload,
+                loading: false
+            }
+
+
+
+
+        case ActionTypes.ADD_CART_INFO_SUCCESS_BUTIK: return {
+            ...state,
+            stores: [...state.stores, ...action.payload],
+            loading: false
+        }
+
+        case ActionTypes.ADD_CART_INFO_SUCCESS_BUTIK_NUMBER:
+            return {
+                ...state,
+                nextstoresnumber: action.payload,
+                loading: false
+            }
+
+
+
+
+
+
+
+        case ActionTypes.ADD_CART_INFO_FAIL_RESTAURANT: return {
+            ...state,
+            error: action.payload,
+            loading: false
+        }
+
+
+
+        default: return state
+    }
+}
+
+
+
+
+
+
 
 
 // Updated cart info
@@ -64,36 +135,11 @@ export const CartInfoActionResturanReducres = (state = {
             loading: false
         }
 
-
-
-        default: return state
-    }
-}
-
-
-
-
-
-// get  all restrange och city
-export const CartInfoReducres = (state = {
-    loading: false,
-    home: null,
-    error: null,
-}, action) => {
-
-    switch (action.type) {
-
-        case ActionTypes.ADD_CART_INFO_LOADING_RESTAURANT: return { loading: true }
-
-        case ActionTypes.ADD_CART_INFO_SUCCESS_RESTAURANT: return {
-            ...state,
+        case ActionTypes.ADD_CARTINFO_RESTURANG_EMPTY : 
+        return {
             loading: false,
-            home: action.payload
-        }
-        case ActionTypes.ADD_CART_INFO_FAIL_RESTAURANT: return {
-            ...state,
-            error: action.payload,
-            loading: false
+            info: [],
+            error: null, 
         }
 
 
@@ -101,6 +147,9 @@ export const CartInfoReducres = (state = {
         default: return state
     }
 }
+
+
+
 
 
 
@@ -121,7 +170,7 @@ export const CartInfoIdReducres = (state = {
             loading: false,
             cartinfo: action.payload
         }
-       
+
         case ActionTypes.ADD_CARTINFO_ID_FAIL: return {
             ...state,
             loading: false,
@@ -143,31 +192,6 @@ export const CartInfoIdReducres = (state = {
 //     }
 // }
 
-// get  all  butike info.......
-export const ButikerReducres = (state = {
-    loading: false,
-    error: null,
-    butik: null
-}, action) => {
-    switch (action.type) {
-
-        case ActionTypes.ADD_CART_INFO_LOADING_BUTIK: return { loading: true }
-        case ActionTypes.ADD_CART_INFO_SUCCESS_BUTIK: return {
-            ...state,
-            loading: false,
-            butik: action.payload
-        }
-        case ActionTypes.ADD_CART_INFO_FAIL_BUTIK: return {
-            ...state,
-            loading: false,
-            error: action.payload
-        }
-
-        default: return state
-    }
-}
-
-
 
 
 
@@ -177,21 +201,23 @@ export const ButikerReducres = (state = {
 export const newRestrangeReducres = (state = {
     loading: false,
     error: null,
-    nyrestranges: null,
+    newRestaurant: [],
 }, action) => {
     switch (action.type) {
 
-        case ActionTypes.ADD_NEW_RESTRANGE_LOADING: return { loading: true }
+        case ActionTypes.ADD_NEW_RESTRANGE_LOADING: return {
+            ...state,
+            loading: true
+        }
         case ActionTypes.ADD_NEW_RESTRANGE_SUCCESS: return {
             ...state,
+            newRestaurant: action.payload,
             loading: false,
-            nyrestranges: action.payload
         }
-
         case ActionTypes.ADD_NEW_RESTRANGE_FAIL: return {
             ...state,
+            error: action.payload,
             loading: false,
-            error: action.payload
         }
 
         default: return state
@@ -199,20 +225,22 @@ export const newRestrangeReducres = (state = {
 }
 
 
-// get fir delivery
-export const FirDeliverReducres = (state = {
+// get free delivery
+export const FreeDeliverReducres = (state = {
     loading: false,
     error: null,
-    firdelivery: null,
+    freedelivery: [],
 }, action) => {
     switch (action.type) {
 
-        case ActionTypes.ADD_NEW_FIRDELIVERY_LOADING: return { loading: true }
+        case ActionTypes.ADD_NEW_FIRDELIVERY_LOADING: return {
+            ...state,
+            loading: true
+        }
         case ActionTypes.ADD_NEW_FIRDELIVERY_SUCCESS: return {
             ...state,
-
-            firdelivery: action.payload,
-            loading : false,
+            freedelivery: action.payload,
+            loading: false,
         }
 
         case ActionTypes.ADD_NEW_FIRDELIVERY_FAIL: return {
@@ -234,22 +262,25 @@ export const FirDeliverReducres = (state = {
 // get all category 
 export const ALLcatgoryReducres = (
     state = {
-    loading: false,
-    error: null,
-    category: null
-}, action) => {
+        loading: false,
+        error: null,
+        category: []
+    }, action) => {
     switch (action.type) {
 
-        case ActionTypes.ADD_CATAGORY_ALL_LOADING: return { loading: true }
+        case ActionTypes.ADD_CATAGORY_ALL_LOADING: return {
+            ...state,
+            loading: true
+        }
         case ActionTypes.ADD_CATAGORY_ALL_SUCCESS: return {
             ...state,
+            category: action.payload,
             loading: false,
-            category: action.payload
         }
         case ActionTypes.ADD_CATAGORY_ALL_FAIL: return {
             ...state,
+            error: action.payload,
             loading: false,
-            error: action.payload
         }
 
         default: return state

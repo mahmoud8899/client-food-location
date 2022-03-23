@@ -11,27 +11,20 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import '../Home.css'
+
 export default function RestrangeItems(props) {
 
 
-    // params [1] : data '[2] : name data [3] : new restrange or butiker
+    // params [1] : data [2] : name data [3] : new restrange or butiker
     const { home, Title, newRest } = props
 
-
-
-
-
-
-
-
-
-    return <Row className='justify-content-center Margin-top-home'>
+    return <Row className='Margin-top-home'>
         <Col xs={12} sm={12} md={12} lg={12}>
             <div className='Handplockat-class'>
 
                 <h1>{Title}</h1>
 
-                <Slider {...SettingsSlider}>
+             <Slider {...SettingsSlider}>
 
                     {home?.map((ho, Index) => (
 
@@ -73,7 +66,7 @@ export default function RestrangeItems(props) {
 
                                     <div className='title'>
                                         <div className='map'>
-                                            <span>{ho?.username}</span>
+                                            <span className='Font-goo' >{ho?.username}</span>
                                             <span className='font-size'>{ho?.addressinfo?.city}</span>
 
                                         </div>
@@ -119,6 +112,7 @@ export default function RestrangeItems(props) {
                         </div>
 
                     ))}
+                    
                 </Slider>
 
             </div>

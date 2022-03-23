@@ -3,19 +3,22 @@ import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import { SettingsSlider } from '../../../Assistant/SettingsSlider'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
-import '../Home.css'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
-
+import '../Home.css'
 
 export default function CategoryScreen(props) {
 
-    const { category } = props
+
+    // params [data] : category  // class name title
+    const { category, Title } = props
 
     const location = useLocation()
+
+    // some city navigation...
     const FilterLocation = location?.pathname
 
- 
+
 
     useEffect(() => {
 
@@ -28,7 +31,7 @@ export default function CategoryScreen(props) {
             <div className='Handplockat-class'>
 
                 <h1>
-                    category
+                    {Title}
                 </h1>
                 <Slider {...SettingsSlider}>
 
@@ -36,9 +39,7 @@ export default function CategoryScreen(props) {
 
 
                         <Link key={Index} className='box-Slider-Show-home'
-                            to={{
-                                pathname: `${FilterLocation}${ho?.foodType}/`
-                            }}
+                            to={{ pathname: `${FilterLocation}${ho?.foodType}/` }}
                         >
                             <div className='box-Slider-Show-home-children add-cateory'>
                                 <div className='list-image add-cateory'  >

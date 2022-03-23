@@ -71,9 +71,8 @@ import {
 import {
     CartInfoReducres,
     CartInfoIdReducres,
-    ButikerReducres,
     newRestrangeReducres,
-    FirDeliverReducres,
+    FreeDeliverReducres,
     ALLcatgoryReducres,
     CartInfoActionResturanReducres,
     UpdatedCartiNFOReducres,
@@ -158,9 +157,8 @@ const reducer = combineReducers({
     // home page 
     PageHomeRestrange: CartInfoReducres,
     cartInfoid: CartInfoIdReducres,
-    pageHomeButiker: ButikerReducres,
-    pageHomeNewRestrange: newRestrangeReducres,
-    pageHomeFirDelivery: FirDeliverReducres,
+    pageHomeNewRestaurant: newRestrangeReducres,
+    pageHomeFreeDelivery: FreeDeliverReducres,
     pageHomeCategory: ALLcatgoryReducres,
     pageUserCartinfo : CartInfoActionResturanReducres,
     updatedCartInfo : UpdatedCartiNFOReducres,

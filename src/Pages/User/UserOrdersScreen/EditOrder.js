@@ -11,7 +11,7 @@ import { CancelOrderAction } from '../../../redux/Action/Order_Action'
 import { CancelOrderError, CleringData } from '../../../Components/CloseScreen/CloseScreen'
 import { RiCheckFill } from 'react-icons/ri'
 import { HiOutlineX } from 'react-icons/hi'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment,  useState } from 'react'
 export default function EditOrder(props) {
     // 
 

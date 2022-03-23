@@ -4,7 +4,114 @@ import { Action_logout, GetUserInfoAction } from './Auth_Action'
 
 
 
+// --------------------------------- Start pagantion scroll stores --------------------------------/
 
+// GET ALL Cart info to butiker... 
+// Url : /api/cartinfo/views/ option twe params 
+// [1] : city [2] : butiker
+//
+
+export const AppendListStores = (data) => ({
+    type: ActionTypes.ADD_CART_INFO_SUCCESS_BUTIK,
+    payload: data
+})
+
+
+// apend page number,,,
+export const APPendStoresNumber = (nextpage) => ({
+    type: ActionTypes.ADD_CART_INFO_SUCCESS_BUTIK_NUMBER,
+    payload: nextpage
+})
+
+
+
+
+export const FatchButik = (user) => async (dispatch, getState) => {
+
+    const CheckNumber = getState().PageHomeRestrange.nextstoresnumber
+    if (CheckNumber) {
+        try {
+            dispatch({ type: ActionTypes.ADD_CART_INFO_LOADING_RESTAURANT_STORES })
+            const { data } = await axios.get(`/api/cartinfo/views/${user?.city}/${user?.productType}/?pageNumber=${CheckNumber}`,)
+            dispatch(AppendListStores(data.data))
+            if (data?.pages <= 1) return dispatch(APPendStoresNumber(null))
+            const nextpage = data?.result?.next?.page > data?.pages ? null : data?.result?.next?.page
+            dispatch(APPendStoresNumber(nextpage))
+
+        } catch (error) {
+            dispatch({
+                type: ActionTypes.ADD_CART_INFO_FAIL_RESTAURANT,
+                payload: error.response &&
+                    error.response.data.message ?
+                    error.response.data.message :
+                    error.message
+            })
+        }
+    }
+
+
+
+}
+
+// --------------------------------- End pagantion scroll stores --------------------------------/
+
+
+
+
+
+
+
+//---------------------------------- Start Pagnation scroll restrant ------------------------------/
+
+// GET ALL Cart info to restaranges... 
+// Url : /api/cartinfo/views/ option twe params [1] : city [2] : restaranges
+
+export const AppendListRestaurant = (data) => ({
+    type: ActionTypes.ADD_CART_INFO_SUCCESS_RESTAURANT,
+    payload: data
+})
+
+
+// apend page number,,,
+export const APPendRestaurantNumber = (nextpage) => ({
+    type: ActionTypes.ADD_CART_INFO_SUCCESS_RESTAURANT_NUMBER,
+    payload: nextpage
+})
+
+
+
+
+
+// paganation 
+export const GetCartInfoHomeRestranges = (user) => async (dispatch, getState) => {
+
+
+    const CheckNumber = getState().PageHomeRestrange.nextNumber
+    if (CheckNumber) {
+        try {
+
+            dispatch({ type: ActionTypes.ADD_CART_INFO_LOADING_RESTAURANT_STORES })
+            const { data } = await axios.get(`/api/cartinfo/views/${user?.city}/${user?.productType}/?pageNumber=${CheckNumber}`,)
+            dispatch(AppendListRestaurant(data.data))
+            if (data?.pages <= 1) return dispatch(APPendRestaurantNumber(null))
+            const nextpage = data?.result?.next?.page > data?.pages ? null : data?.result?.next?.page
+            dispatch(APPendRestaurantNumber(nextpage))
+
+        } catch (error) {
+            dispatch({
+                type: ActionTypes.ADD_CART_INFO_FAIL_RESTAURANT,
+                payload: error.response &&
+                    error.response.data.message ?
+                    error.response.data.message :
+                    error.message
+            })
+        }
+    }
+
+
+}
+
+//---------------------------------- END Pagnation scroll restrant ------------------------------/
 
 
 
@@ -63,21 +170,21 @@ export const GetCartInfoIdAction = (ChangeParams) => async (dispatch) => {
 }
 
 
-// GET ALL Cart info to restaranges... 
-// Url : /api/cartinfo/views/ option twe params [1] : city [2] : restaranges
-export const GetCartInfoHomeRestranges = (user) => async (dispatch) => {
 
 
+
+
+// fir delivery 
+// GET // URL :  /api/cartinfo/freedelvery/
+export const FreeDeliveryAction = (user) => async (dispatch) => {
     try {
+        dispatch({ type: ActionTypes.ADD_NEW_FIRDELIVERY_LOADING })
 
-        dispatch({ type: ActionTypes.ADD_CART_INFO_LOADING_RESTAURANT })
-        const { data } = await axios.get(`/api/cartinfo/views/${user?.city}/${user?.productType}/`,)
-        dispatch({ type: ActionTypes.ADD_CART_INFO_SUCCESS_RESTAURANT, payload: data })
-
-
+        const { data } = await axios.get(`/api/cartinfo/freedelvery/${user}/`)
+        dispatch({ type: ActionTypes.ADD_NEW_FIRDELIVERY_SUCCESS, payload: data })
     } catch (error) {
         dispatch({
-            type: ActionTypes.ADD_CART_INFO_FAIL_RESTAURANT,
+            type: ActionTypes.ADD_NEW_FIRDELIVERY_FAIL,
             payload: error.response &&
                 error.response.data.message ?
                 error.response.data.message :
@@ -86,27 +193,7 @@ export const GetCartInfoHomeRestranges = (user) => async (dispatch) => {
     }
 }
 
-// GET ALL Cart info to butiker... 
-// Url : /api/cartinfo/views/ option twe params [1] : city [2] : butiker
-export const FatchButik = (user) => async (dispatch) => {
-    try {
 
-        dispatch({ type: ActionTypes.ADD_CART_INFO_LOADING_BUTIK })
-        const { data } = await axios.get(`/api/cartinfo/views/${user?.city}/${user?.productType}/`,)
-        dispatch({ type: ActionTypes.ADD_CART_INFO_SUCCESS_BUTIK, payload: data })
-
-    } catch (error) {
-        dispatch({
-            type: ActionTypes.ADD_CART_INFO_FAIL_BUTIK,
-            payload: error.response &&
-                error.response.data.message ?
-                error.response.data.message :
-                error.message
-        })
-    }
-
-
-}
 
 
 
@@ -149,10 +236,10 @@ export const CartInfoIdRatingAction = (user) => async (dispatch, getState) => {
 
 
 
-// get new restrange limit 8
+// get new restaurant limit 8
 // we have twe params.... [1] : city [2] : producttypes
 // GET // URL : // /api/cartinfo/limit/:city/:productType/
-export const NewRestrangesAction = (user) => async (dispatch) => {
+export const NewRestaurantsAction = (user) => async (dispatch) => {
     try {
         dispatch({ type: ActionTypes.ADD_NEW_RESTRANGE_LOADING })
 
@@ -195,26 +282,6 @@ export const FoodTypesAction = () => async (dispatch) => {
 }
 
 
-
-
-// fir delivery 
-// GET // URL : 
-export const FirDeliveryAction = () => async (dispatch) => {
-    try {
-        dispatch({ type: ActionTypes.ADD_NEW_FIRDELIVERY_LOADING })
-
-        const { data } = await axios.get(`/api/cartinfo/freedelvery/`)
-        dispatch({ type: ActionTypes.ADD_NEW_FIRDELIVERY_SUCCESS, payload: data })
-    } catch (error) {
-        dispatch({
-            type: ActionTypes.ADD_NEW_FIRDELIVERY_FAIL,
-            payload: error.response &&
-                error.response.data.message ?
-                error.response.data.message :
-                error.message
-        })
-    }
-}
 
 
 

@@ -522,16 +522,17 @@ const Styles = {
     firstClass: {
 
 
-        border: `1px solid ${COLORS.firstRed}`,
-        borderRadius: '10px',
+        border: `0.1rem solid rgb(255 59 47 / 28%)`,
+        borderRadius: '5px',
+        height: '330px'
     },
 
 
     CarouselItems: {
 
         width: '100%',
-        height: '300px',
-        borderRadius: '10px'
+        height: '330px',
+        borderRadius: '5px'
     },
 
 

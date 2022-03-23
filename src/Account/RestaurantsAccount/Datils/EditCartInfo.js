@@ -12,9 +12,10 @@ import OppenImage from '../../../Components/Update/OppenImage/OppenImage'
 import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
 import { ValidationCartInfo, ChangeCode, ValidationCreateCart } from '../../../Assistant/ValidationPayment'
 import { TheCartInfo } from '../../../Components/CloseScreen/CloseScreen'
+import { ChnageTime } from '../../../Assistant/Selection'
 import { useEffect, useState } from 'react'
 import { BiEditAlt } from 'react-icons/bi'
-import {HiOutlineX} from 'react-icons/hi'
+import { HiOutlineX } from 'react-icons/hi'
 
 export default function EditCartInfo(props) {
 
@@ -89,6 +90,12 @@ export default function EditCartInfo(props) {
     }, [updated, error, updateSuccessFully])
 
 
+
+
+
+
+
+
     // handle updated cart info.... 
     const HandleForm = (e) => {
         e.preventDefault()
@@ -106,6 +113,7 @@ export default function EditCartInfo(props) {
             && productDetails?.description?.length >= Number(3)
         ) {
 
+
             const dataInfo = {
                 _id: info?._id,
                 user: userInfo?._id,
@@ -117,7 +125,10 @@ export default function EditCartInfo(props) {
                 image: productDetails.image,
                 addressinfo,
                 finishfood,
-                opentime,
+                opentime : {
+                    oppen: ChnageTime(opentime.oppen),
+                    close: ChnageTime(opentime.close),
+                }
             }
 
             // console.log(dataInfo)
@@ -125,7 +136,7 @@ export default function EditCartInfo(props) {
 
                 if (imageSave) {
                     return dispatch(UpdatedImageAction(imageSave, dataInfo, true))
-                } 
+                }
 
             } else {
 
@@ -202,9 +213,9 @@ export default function EditCartInfo(props) {
                     <div className='body-category'>
 
                         <div className='modal-title-edit-category'>
-                            <h1> ändring </h1> 
-                            <HiOutlineX  className='close-pp-pp-image'  onClick={HandleClose}/>
-                           
+                            <h1> ändring </h1>
+                            <HiOutlineX className='close-pp-pp-image' onClick={HandleClose} />
+
                         </div>
 
                         {handleError &&
@@ -314,7 +325,7 @@ export default function EditCartInfo(props) {
                                             className='Input-type-style productdetials'
                                             title='Address'
                                             value={addressinfo?.address}
-                                            onChange={(e) => setAddressinfo({ ...addressinfo, address:  e.target.value?.toLowerCase()  })}
+                                            onChange={(e) => setAddressinfo({ ...addressinfo, address: e.target.value?.toLowerCase() })}
                                             validation={ValtionMe(addressinfo?.address, 'inputname')?.toString()}
 
                                         />
@@ -325,7 +336,7 @@ export default function EditCartInfo(props) {
                                             title='Stad'
                                             className='Input-type-style productdetials'
                                             value={addressinfo?.city}
-                                            onChange={(e) => setAddressinfo({ ...addressinfo, city: e.target.value?.toLowerCase()  })}
+                                            onChange={(e) => setAddressinfo({ ...addressinfo, city: e.target.value?.toLowerCase() })}
                                             validation={ValtionMe(addressinfo?.city, 'inputname')?.toString()}
 
                                         />
@@ -337,7 +348,7 @@ export default function EditCartInfo(props) {
                                             className='Input-type-style productdetials'
                                             type='number'
                                             value={addressinfo?.telefon}
-                                            onChange={(e) => setAddressinfo({ ...addressinfo, telefon: e.target.value?.toLowerCase()  })}
+                                            onChange={(e) => setAddressinfo({ ...addressinfo, telefon: e.target.value?.toLowerCase() })}
                                             validation={ValtionMe(addressinfo?.telefon, 'isPhone')?.toString()}
 
                                         />
@@ -348,7 +359,7 @@ export default function EditCartInfo(props) {
                                             title='Website'
                                             className='Input-type-style productdetials'
                                             value={addressinfo?.website}
-                                            onChange={(e) => setAddressinfo({ ...addressinfo, website: e.target.value?.toLowerCase()  })}
+                                            onChange={(e) => setAddressinfo({ ...addressinfo, website: e.target.value?.toLowerCase() })}
                                             validation={ValtionMe(addressinfo?.website, 'inputname')?.toString()}
 
                                         />

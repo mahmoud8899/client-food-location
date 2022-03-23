@@ -38,6 +38,7 @@
 .box-Slider-Show-home.notPadding{
 padding: 0rem;
 margin: 0rem;
+margin-bottom: 0.5rem;
 }
 .visaProduct-css-flex{
     display: flex;

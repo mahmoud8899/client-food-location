@@ -3,61 +3,99 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Container, Row, Col } from 'react-bootstrap'
 import { FirstNameRest } from '../../Assistant/Selection'
 import NavBarCity from '../NavBarCity/NavBarCity'
-// FatchButik, FirDeliveryAction, FoodTypesAction, GetCartInfoHomeRestranges,
-import {  NewRestrangesAction } from '../../redux/Action/CartItemAction'
-// import CarouselItems from './Carousel/Carousel'
+import {  FatchButik, FoodTypesAction, FreeDeliveryAction, NewRestaurantsAction } from '../../redux/Action/CartItemAction'
 import RestrangeItems from './RestrangeItems/RestrangeItems'
 import LoadingErrorHandld from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-// import LoginDriverScreen from './LoginDriverScreen/LoginDriverScreen'
-// import CategoryScreen from './CategoryScreen/CategoryScreen'
 import TimeContext from '../../Components/Update/UseContext/TimeContext'
-import {ErrorServer} from '../../Assistant/TextError'
+import {ErrorServer ,TextButiker, Textrestaurant,Textfree ,TextCategory} from '../../Assistant/TextError'
+import CategoryScreen from './CategoryScreen/CategoryScreen'
+import CarouselItems from './Carousel/Carousel'
 import { useEffect } from 'react'
 import './Home.css'
 
 
 
+// FatchButik, FirDeliveryAction, FoodTypesAction, GetCartInfoHomeRestranges,
+// import LoginDriverScreen from './LoginDriverScreen/LoginDriverScreen'
 
 export default function HomeScreen(props) {
 
+    // whoy params id
     const { match } = props
 
 
+    // city name
      const LocationPath = match.params.id
 
     const dispatch = useDispatch()
 
 
-    // get all butiker products...
-    const pageHomeNewRestrange = useSelector((state) => state?.pageHomeNewRestrange)
-    const { loading: loadingNyrestranges, nyrestranges, error: errorNyrestranges } = pageHomeNewRestrange
+    // get new restaurant
+    const pageHomeNewRestaurant = useSelector((state) => state?.pageHomeNewRestaurant)
+    const { loading: loadingnewRestaurant, newRestaurant, error: errornewRestaurant } = pageHomeNewRestaurant
+
+    // get all restrange and stores....
+    const PageHomeRestrange = useSelector((state) => state?.PageHomeRestrange)
+    const { loading, error,  stores } = PageHomeRestrange
 
 
+    // get free delivery from restrest and stores
+    const pageHomeFreeDelivery = useSelector((state) => state?.pageHomeFreeDelivery)
+    const { loading: loadingFreedelivery, freedelivery, error: errorFreedelivery } = pageHomeFreeDelivery
+
+     // category all 
+    const pageHomeCategory = useSelector((state) => state?.pageHomeCategory)
+    const { loading: loadingCategory, category, error: errorCategory } = pageHomeCategory
 
 
+ 
 
 
+    // get all restrange
     useEffect(() => {
-
-
-        
-
-
-        nyrestranges === null && dispatch(NewRestrangesAction({
+        newRestaurant?.length === Number(0) && dispatch(NewRestaurantsAction({
             city: LocationPath,
             productType: "restaurant"
         }))
+
+
+
     
-    }, [  LocationPath, dispatch,nyrestranges ])
+    }, [  LocationPath, dispatch,newRestaurant?.length  ])
+
+
+    // get all butiker
+    useEffect(()=>{
+        stores?.length === Number(0) && dispatch(FatchButik({
+            city: LocationPath,
+            productType: "butiker"
+        }))
+
+       
+
+    },[stores?.length,LocationPath,dispatch])
+
+
+
+        // free delivery
+        useEffect(()=>{
+            
+            freedelivery?.length === Number(0) && dispatch(FreeDeliveryAction(LocationPath))
+    
+        },[LocationPath,dispatch,freedelivery?.length])
 
 
 
 
 
+        // category
+        useEffect(()=>{
+            
+            category.length === Number(0) && dispatch(FoodTypesAction())
+    
+        },[dispatch,category.length])
 
-
-
-
+       
 
 
 
@@ -65,19 +103,19 @@ export default function HomeScreen(props) {
 
 
     // [1]  LoadingErrorHandld this is check out error and loading if not error coming data  
-    // [2]  Limit new restrange max 8 itmes.
-    // [3] fir delivery
-    // [4] cateory all
+    // [2]  Limit new restrange max 8 itmes. and Carousel some data
+    // [3] : stores 
+    // [4] : free category 
+    // [5]   class name category ....>   CategoryScreen  
 
 
+
+
+ 
 
     return <TimeContext>
-<Container fluid>
+      <Container fluid>
         <Title TextTitle={FirstNameRest} />
-
-
-
-
         <div className='margin-top-like'>
             <NavBarCity ClassNameHOMEactive />
         </div>
@@ -87,20 +125,25 @@ export default function HomeScreen(props) {
 
             <Col xs={12} sm={12} md={11} lg={11}>
 
-                <LoadingErrorHandld
-                    loading={loadingNyrestranges}
-                    error={errorNyrestranges}
-                    TextNotItems={ErrorServer}
+                <LoadingErrorHandld  loading={loadingnewRestaurant} error={errornewRestaurant} TextNotItems={ErrorServer} >
+                    <CarouselItems     home={newRestaurant}   />
+                    <RestrangeItems  home={newRestaurant} Title={Textrestaurant} newRest/>
+                </LoadingErrorHandld>
+
+                 <LoadingErrorHandld  loading={loading} error={error}  TextNotItems={ErrorServer} >
+                     <RestrangeItems  home={stores} Title={TextButiker}  />
+                 </LoadingErrorHandld>
 
 
-                >
+                 
 
 
-                    <RestrangeItems
-                        home={nyrestranges}
-                        Title='Nya Restauranger'
-                        newRest
-                    />
+                 <LoadingErrorHandld  loading={loadingFreedelivery} error={errorFreedelivery}  TextNotItems={ErrorServer} >
+                     <RestrangeItems  home={freedelivery} Title={Textfree}  />
+                 </LoadingErrorHandld>
+
+                 <LoadingErrorHandld loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer}>
+                    <CategoryScreen category={category} Title={TextCategory} />
                 </LoadingErrorHandld>
 
 
@@ -122,96 +165,4 @@ export default function HomeScreen(props) {
 
 
 }
-
-
-        // home === null && dispatch(GetCartInfoHomeRestranges({
-        //     city: LocationPath,
-        //     productType: "restaurant"
-        // }))
-            // butik === null && dispatch(FatchButik({
-        //     city: LocationPath,
-        //     productType: "butik"
-        // }))
-        // firdelivery === null && dispatch(FirDeliveryAction())
-        // category === null && dispatch(FoodTypesAction())
-                // home,
-            // butik,
-        // firdelivery,
-        // category
-
-    // const userInfo = useSelector((state) => state?.userLogin?.userInfo)
-
-        // // get all restrange products....
-    // const PageHomeRestrange = useSelector((state) => state?.PageHomeRestrange)
-    // const { loading, home, error } = PageHomeRestrange
-
-    // // get all butiker products...
-    // const pageHomeButiker = useSelector((state) => state?.pageHomeButiker)
-    // const { loading: loadingButik, butik, error: errorButik } = pageHomeButiker
-        // // get all category...
-    // const pageHomeCategory = useSelector((state) => state?.pageHomeCategory)
-    // const { loading: loadingCategory, category, error: errorCategory } = pageHomeCategory
-    // // fir delivery
-    // const pageHomeFirDelivery = useSelector((state) => state?.pageHomeFirDelivery)
-    // const { loading: loadingFirdelivery, firdelivery, error: errorFirdelivery } = pageHomeFirDelivery
-
-        
-                // <LoadingErrorHandld
-                //     loading={loading}
-                //     error={error}
-                //     home={home}
-                //     TextNotItems=''
-                // >
-                //     <CarouselItems
-                //         home={home}
-                //     />
-                //     <RestrangeItems
-                //         home={home}
-                //         Title='Handplockat! 💥'
-                //     />
-                // </LoadingErrorHandld>
-
-
-                // {/* onlay butik */}
-                // <LoadingErrorHandld
-                //     loading={loadingButik}
-                //     error={errorButik}
-                //     home={butik}
-                //     TextNotItems='Butiker Som Leverare Till Dig'
-                // >
-                //     <RestrangeItems
-                //         home={butik}
-                //         Title='Butiker Som Leverare Till Dig'
-                //     />
-
-                // </LoadingErrorHandld>
-
-                // <LoadingErrorHandld
-                //     loading={loadingFirdelivery}
-                //     error={errorFirdelivery}
-                //     home={firdelivery}
-                //     TextNotItems='Fri Leverans'
-                // >
-                //     <RestrangeItems
-                //         home={firdelivery}
-                //         Title='Fri Leverans'
-                //     />
-
-                // </LoadingErrorHandld>
-                // {userInfo?.firstname && <LoginDriverScreen />}
-
-                // <LoadingErrorHandld
-                //     loading={loadingCategory}
-                //     error={errorCategory}
-                //     home={category}
-                //     TextNotItems='not category....'
-
-                // >
-
-                //     <CategoryScreen category={category} />
-                // </LoadingErrorHandld>
-
-
-
-
 

@@ -1,34 +1,32 @@
 import { Fragment, useContext, useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
-import ImageScreen from '../../ImageScreen/ImageScreen'
 import { FoodTypesAction } from '../../../redux/Action/CartItemAction'
 import { useDispatch, useSelector } from 'react-redux'
 import LoadingErrorHandle from '../LoadingErrorHandle/LoadingErrorHandle'
 import { FilterCategory } from '../UseContext/FilterCategoryScreen'
+import { BsFilterRight } from 'react-icons/bs'
 
 
 export default function FilterProducts(props) {
 
 
 
-    const {setQueryData,showValue} = useContext(FilterCategory)
+    // filter category 
+    const { addCart, setAddCart } = useContext(FilterCategory)
+
+    // open and close. filter
+    const [show, setShow] = useState(false)
+
     // get all category...
     const pageHomeCategory = useSelector((state) => state?.pageHomeCategory)
     const { loading: loadingCategory, category, error: errorCategory } = pageHomeCategory
     const dispatch = useDispatch()
-    const [show, setShow] = useState(false)
+
+
+    // get category
     useEffect(() => {
-
-
-        return category === null && dispatch(FoodTypesAction())
-    }, [category, dispatch])
-
-
-
-
-
-  
+        return category?.length === Number(0) && dispatch(FoodTypesAction())
+    }, [category?.length, dispatch])
 
 
 
@@ -38,7 +36,29 @@ export default function FilterProducts(props) {
 
 
 
- 
+
+
+
+
+
+
+
+    // items testing
+    const FunctionAdd = (queryData) => {
+
+        const items = queryData
+        const filterItmes = addCart?.includes(items)
+
+        if (filterItmes) {
+
+            return setAddCart(prev => [...prev?.filter((x) => x !== items)])
+        } else {
+            return setAddCart(prev => [...prev, items])
+        }
+
+    }
+
+
 
 
 
@@ -54,7 +74,7 @@ export default function FilterProducts(props) {
                 Sorterat per Rekommenderas
             </div>
             <div className='text-filter-product-method'>
-                <ImageScreen ImageIcon={MyOderImage.filter} className='close-pp-pp-image notColor' />
+                <BsFilterRight className='close-pp-pp-image notColor' />
             </div>
         </div>
 
@@ -63,7 +83,7 @@ export default function FilterProducts(props) {
 
             <div className='Title-name-products-text  add-padding-filter'>
 
-                <h1>filter</h1>
+                <h1>filtrera</h1>
             </div>
 
 
@@ -73,11 +93,11 @@ export default function FilterProducts(props) {
 
             <LoadingErrorHandle loading={loadingCategory} error={errorCategory} home={category} >
                 <div className='filter-text add-padding-filter'>
-                    {category === null || category === 'undefined' ? null : category?.map((food, Index) => (
+                    {category?.map((food, Index) => (
                         <span
                             key={Index}
-                            onClick={(e) => setQueryData(food?.foodType)}
-                            className={showValue?.includes(food?.foodType) ? 'Active-items-filter active' : 'Active-items-filter'}
+                            onClick={(e) => FunctionAdd(food?.foodType)}
+                            className={addCart?.includes(food?.foodType) ? 'Active-items-filter active' : 'Active-items-filter'}
                         >{food?.foodType}</span>
                     ))}
                 </div>
@@ -85,7 +105,7 @@ export default function FilterProducts(props) {
 
 
             <div className='buttom-close' onClick={() => setShow(false)}>
-                <div>save</div>
+                <div>spara</div>
             </div>
 
         </Modal>
@@ -94,3 +114,4 @@ export default function FilterProducts(props) {
 
     </Fragment>
 }
+

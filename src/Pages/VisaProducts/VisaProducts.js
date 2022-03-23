@@ -1,15 +1,18 @@
 import './VisaProducts.css'
 import { Container, Row, Col } from 'react-bootstrap'
 import NavBarCity from '../NavBarCity/NavBarCity'
-import FilterProducts from '../../Components/Update/FilterProducts/FilterProducts'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
-import { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FatchButik, GetCartInfoHomeRestranges } from '../../redux/Action/CartItemAction'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import VisaProductItems from './VisaProductsItems'
+import { ErrorServer } from '../../Assistant/TextError'
+import { useContext, useEffect } from 'react'
+import FilterProducts from '../../Components/Update/FilterProducts/FilterProducts'
 import { FilterCategory } from '../../Components/Update/UseContext/FilterCategoryScreen'
-export default function VisaProducts({ match }) {
+export default function VisaProducts(props) {
+    // params 
+    const { match } = props
 
 
 
@@ -17,59 +20,58 @@ export default function VisaProducts({ match }) {
     const IdMatch = match?.params?.id
     const city = match?.url?.slice(1, 4) === 'upp' ? 'uppsala' : 'gothenburg'
 
-    const { setQueryData } = useContext(FilterCategory)
 
-
-
-
+    // filter category...
+    const { setAddCart } = useContext(FilterCategory)
 
     const dispatch = useDispatch()
-    // get all restrange products....
+
+    // get all restrange and stores....
     const PageHomeRestrange = useSelector((state) => state?.PageHomeRestrange)
-    const { loading, home, error } = PageHomeRestrange
-
-    // get all butiker products...
-    const pageHomeButiker = useSelector((state) => state?.pageHomeButiker)
-    const { loading: loadingButik, butik, error: errorButik } = pageHomeButiker
+    const { loading, home, error, nextNumber, stores, nextstoresnumber } = PageHomeRestrange
 
 
 
-   
 
 
 
+
+
+
+    // restrant and stores
     useEffect(() => {
 
-        if (IdMatch === 'restaurants') {
 
-            return home === null && dispatch(GetCartInfoHomeRestranges({
+
+        // console.log()
+
+        if (IdMatch === 'butiker') {
+
+            return stores?.length === Number(0) && dispatch(FatchButik({
+                city: city,
+                productType: "butiker"
+            }))
+        } else {
+           
+            home?.length === Number(0) && dispatch(GetCartInfoHomeRestranges({
                 city: city,
                 productType: "restaurant"
             }))
-
-        } else if (IdMatch === 'butiker') {
-
-            return butik === null && dispatch(FatchButik({
-                city: city,
-                productType: "butik"
-            }))
-        } else if (IdMatch) {
-
-            home === null && dispatch(GetCartInfoHomeRestranges({
-                city: city,
-                productType: "restaurant"
-            }))
-
-
-
-            return setQueryData(IdMatch)
+         return IdMatch !== 'restaurants'  && setAddCart([IdMatch])
         }
-
 
         // eslint-disable-next-line
 
 
-    }, [IdMatch, dispatch, home, butik, city, setQueryData])
+    }, [IdMatch,
+        dispatch,
+        home?.length,
+        city,
+        stores?.length,
+        setAddCart
+
+
+    ])
 
 
 
@@ -79,13 +81,22 @@ export default function VisaProducts({ match }) {
 
 
 
+
+
+
+    // option 
+    // [1] filter category with restrant  class name FilterCategoryScreen
+    // [2] : NavBarCity navbar selection restrant or butike
+    // [3] : class name what is selection match?.params?.id
+    // [4] : class name filter to category FilterProducts --- stopp now
+    // [5] : class name LoadingErrorHandle : error loading
 
 
     return <Container fluid>
 
-        <Title TextTitle='restauranger' />
+        <Title TextTitle={match?.params?.id} />
         <div className='margin-top-category'>
-            <NavBarCity ClassNameCategory />
+            <NavBarCity ClassNameCategory={IdMatch === 'restaurants'} ClassNameLike={IdMatch === 'butiker'} />
         </div>
         <Row className='justify-content-center'>
             <Col xs={12} sm={12} md={11} lg={11} className='extra-padding-dddd'>
@@ -94,32 +105,60 @@ export default function VisaProducts({ match }) {
                     <div className='Title-name-products-text'>
 
                         <h1>{match?.params?.id}</h1>
+
+
                     </div>
-
-                    <FilterProducts
-                  
-                    />
-
-
+                    <FilterProducts />
                 </div>
 
 
                 <LoadingErrorHandle
-                    loading={IdMatch === 'butiker' ? loadingButik : loading}
-                    error={IdMatch === 'butiker' ? errorButik : error}
-                    home={IdMatch === 'butiker' ? butik : home}
-                    TextNotItems={IdMatch === 'butiker' ? 'butik' : 'restrange'}
+                    loading={loading}
+                    error={error}
+                    TextNotItems={ErrorServer}
+
                 >
                     <Row>
-                        <VisaProductItems home={IdMatch === 'butiker' ? butik : home} />
+                        <VisaProductItems
+                            home={IdMatch === 'butiker' ? stores : home}
+                            fetchMore={IdMatch === 'butiker' ? nextstoresnumber : nextNumber}
+                            city={city}
+                            IdMatch={IdMatch}
+                        />
                     </Row>
 
                 </LoadingErrorHandle>
 
+
+
             </Col>
         </Row>
+
 
     </Container>
 
 }
+
+
+
+
+//<FilterProducts />
+// import { FilterCategory } from '../../Components/Update/UseContext/FilterCategoryScreen'
+
+
+
+    // home?.length
+
+// else if (IdMatch === 'butiker') {
+
+//     return butik === null && dispatch(FatchButik({
+//         city: city,
+//         productType: "butik"
+//     }))
+// } else if (IdMatch) {
+
+//     home === null && dispatch(GetCartInfoHomeRestranges({
+//         city: city,
+//         productType: "restaurant"
+//     }))
 

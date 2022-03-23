@@ -25,7 +25,7 @@ export default function RestaurantsNavBarScreen(props) {
     const HomePage = (e) => {
         e.preventDefault()
 
-        return history.push(`/sw/restaurants/admin/`)
+        return history.push(`/sw/restaurants/admin/notification/`)
     }
 
     const ProductPage = (e) => {

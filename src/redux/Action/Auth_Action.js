@@ -301,6 +301,17 @@ export const Action_logout = () => (dispatch) => {
     dispatch({ type: ActionTypes.ADD_USER_RESET })
     // order empty 
     dispatch({type : ActionTypes.ADD_ORDERS_USER_EMPTY})
+    // natication order...
+    dispatch({type : ActionTypes.ADD_ORDER_NOTIFICATIONS_SUCCESS_EMPTY})
+    // admin show all orders
+    dispatch({type : ActionTypes.ADD_SHOWS_ORDERS_RESTURANS_EMPTY})
+    // product category 
+    dispatch({type : ActionTypes.ADD_CALING_SATA})
+    dispatch({type :ActionTypes.ADD_CATEGORY_USER_EMPTY})
+    // cart info
+    dispatch({type :ActionTypes.ADD_CARTINFO_RESTURANG_EMPTY})
+    
+   
 }
 
 

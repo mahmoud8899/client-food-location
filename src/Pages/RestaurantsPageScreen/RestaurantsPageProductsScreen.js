@@ -45,6 +45,8 @@ export default function RestaurantsPageProductsScreen(props) {
     // const CityName = match.url?.slice(1, 5) === 'upps' ? 'uppsala' : 'gothenburg'
 
 
+
+    // console.log(ChangeParams)
     // send requrest to category och run
     const [categoryRun, setcategoryRun] = useState(false)
 

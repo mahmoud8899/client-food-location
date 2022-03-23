@@ -57,18 +57,18 @@ export default function App() {
 
             <NavBar />
             
-            <Route path="/passwor/passwor/passwor/passwor/" component={PasswordScreen} exact />
+     
             <Route path="/" component={LocationScreen} exact />
             <Route path="/:id/" component={HomeScreen} exact />
-            <Route path='/:id/restaurant/:id/' component={RestaurantsPageProductsScreen} exact />
+            <Route path='/:id/:id/:id/' component={RestaurantsPageProductsScreen} exact />
 
 
             <Route path="/changepassword/:id" component={ForgetPassword} exact />
-
-
             <Route path="/order/shipping/:id/" component={Order} exact />
-            <Route path="/test/test/" component={Testing} exact />
 
+
+            <Route path="/test/test/" component={Testing} exact />
+            <Route path="/passwor/passwor/passwor/passwor/" component={PasswordScreen} exact />
 
 
 
@@ -82,6 +82,8 @@ export default function App() {
             <Route path={`/sw/${FirstNameRest}/about/`} component={ScreenAbout} exact />
             <Route path={`/sw/${FirstNameRest}/driver/`} component={DriverFormScreen} exact />
 
+
+               
             <Route path="/:id/restaurant/:id/checkout/" component={CheckOutPaymentScreen} exact />
 
 
@@ -101,7 +103,7 @@ export default function App() {
 
 
 
-            <Route path='/sw/restaurants/admin/' component={RestaurantsHomeScreen} exact />
+            <Route path='/sw/restaurants/admin/notification/' component={RestaurantsHomeScreen} exact />
             <Route path='/sw/restaurants/admin/order/' component={RestaurantsOrderScreen} exact />
             <Route path='/sw/restaurants/admin/product/' component={RestaurantsProductScreen} exact />
             <Route path='/sw/restaurants/admin/category/' component={RestaurantsCategoryScreen} exact />

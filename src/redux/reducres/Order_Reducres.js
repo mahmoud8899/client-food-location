@@ -27,6 +27,13 @@ export const ResturantOrdersNotfications = (state = {
                 loading: false
             }
 
+            case ActionTypes.ADD_ORDER_NOTIFICATIONS_SUCCESS_EMPTY :
+            return {
+                loading: false,
+                orderNotfications: [],
+                error: null
+            }
+
 
         default: return state
     }
@@ -165,27 +172,22 @@ export const ShowOrderReducres = (state = {
             }
 
         case ActionTypes.ADD_SHOWS_ORDERS_RESTURANS_SUCCESS:
-
-
-
             return {
                 ...state,
                 ShowOrders: [...state.ShowOrders, ...action.payload],
             }
-
-
-
-
-
-
-
-
 
         case ActionTypes.ADD_SHOWS_ORDERS_RESTURANS_FAIL: return {
             ...state,
             error: action.payload,
 
 
+        }
+        case ActionTypes.ADD_SHOWS_ORDERS_RESTURANS_EMPTY : return{
+            loading: false,
+            error: null,
+            ShowOrders: [],
+            ordersAllNumber: Number(1),
         }
         default: return state
     }

@@ -9,11 +9,13 @@ export default function ImageScreen(props) {
         ImageIcon,
         className,
         style,
-        onClick
+        onClick,
+        fluid
     } = props
 
 
     return <Image
+    fluid={fluid}
         src={ImageIcon}
         className={className}
         alt={ImageIcon}

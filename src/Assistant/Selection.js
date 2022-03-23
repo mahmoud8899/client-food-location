@@ -1,7 +1,29 @@
 import { MyOderImage } from './MyOrderImage'
 
 
+// change time
+export function ChnageTime(restrantoppen) {
 
+    const nes = restrantoppen.slice(3)
+    var result
+    const mahmdou = '10'
+
+    if (mahmdou > nes) {
+
+        const xp = restrantoppen.slice(0, 2)
+        const lo = restrantoppen.slice(4)
+
+        return result = `${xp}:${lo}`
+
+
+    } else {
+
+        return restrantoppen
+
+    }
+
+
+}
 
 //--  Not   active 
 // current add more cart
@@ -194,7 +216,7 @@ export const theTimeNow = (name, form) => {
 
     const timeClose = Number(name?.close?.slice(0, 2))
     const CollectMinutes = new Date()?.getMinutes()
-  
+
     var newTimeResu = Number()
     if (Number(theTimeJustNow) > timeNu) {
         newTimeResu = theTimeJustNow
@@ -209,7 +231,7 @@ export const theTimeNow = (name, form) => {
 
     for (StratTheTimeNow; StratTheTimeNow < CloseTime; StratTheTimeNow++) {
 
-        for (let mintes = form ? timeMinuter : CollectMinutes; mintes <= LastMinutes; mintes ++) {
+        for (let mintes = form ? timeMinuter : CollectMinutes; mintes <= LastMinutes; mintes++) {
             resultMintes.push(`${StratTheTimeNow}:${mintes}`);
         }
     }

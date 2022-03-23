@@ -10,74 +10,72 @@ export default function PasswordScreen() {
 
 
 
-  const HandleP = () => {
-    console.log('click')
+
+
+  const restrantoppen = '12:10'
+  const restrantclose = '12:06'
+
+
+  function Colle(restrantoppen, restrantclose) {
+
+    const nes = restrantoppen.slice(3)
+    // const ness = othertesting.slice(4)
+    // console.log(nes,ness)
+    // console.log(nes)
+
+    var result 
+    const mahmdou = '10'
+
+    if (mahmdou > nes) {
+
+      const xp = restrantoppen.slice(0, 2)
+      const lo = restrantoppen.slice(4)
+
+      return result = `${xp}:${lo}`
+
+
+    } else {
+
+      return nes
+
+    }
+
+
   }
 
+  console.log(Colle(restrantoppen, restrantclose))
 
 
+
+
+
+
+
+
+
+  return <h1>tesing...</h1>
+}
+  // const HandleP = () => {
+  //   console.log('click')
+  // }
   // let MAc = Number(9)
-  // const Mahmoudx = 
+  // const Mahmoudx =
   // console.log(Mahmoudx)
-
-
-
-  const [startDate, setStartDate] = useState(new Date());
-
-
-  const testing = '10'
-  const othertesting = '01'
-
-
-function Colle(testing,othertesting){
-
-  // const nes = othertesting.slice(0,2)
-  // const ness = othertesting.slice(4)
-
-  // console.log(nes,ness)
-
-  // console.log(nes)
-  
-  return testing  > othertesting ? true : othertesting
-
-
-}
-
-console.log(Colle(testing,othertesting))
-
-
-
- 
-
-  let Mahmoud = new Date()
-  // Mahmoud.setHours(20, 20, 0)
-  let ACXD = new Date()
-  ACXD.setHours(23, 20, 0)
-
-
-  // console.log(startDate)
-
-
-
-
-  return <Form onSubmit={HandleP}>
-
-    <div className="xxxd">
-      <DatePicker
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-        showTimeSelect
-        showTimeSelectOnly
-        timeIntervals={5}
-        minTime={Mahmoud}
-        maxTime={ACXD}
-        timeCaption="Time"
-        dateFormat="HH:mm"
-        timeFormat="HH:mm"
-        className="masssss"
-      />
-    </div>
-
-
-  </Form>
-}
+  // // const [startDate, setStartDate] = useState(new Date());
+  // <Form onSubmit={HandleP}>
+  // <div className="xxxd">
+  //   <DatePicker
+  //     selected={startDate}
+  //     onChange={(date) => setStartDate(date)}
+  //     showTimeSelect
+  //     showTimeSelectOnly
+  //     timeIntervals={5}
+  //     minTime={Mahmoud}
+  //     maxTime={ACXD}
+  //     timeCaption="Time"
+  //     dateFormat="HH:mm"
+  //     timeFormat="HH:mm"
+  //     className="masssss"
+  //   />
+  // </div>
+  // </Form> 
