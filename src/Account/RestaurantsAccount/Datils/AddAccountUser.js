@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Form, Modal } from 'react-bootstrap'
 import { HiOutlineX } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,11 +7,11 @@ import { ValtionMe } from '../../../Assistant/ValtionMe'
 import ButtomClick from '../../../Components/Buttom/Buttom'
 import { CloseScreen, closeUpdateAccount } from '../../../Components/CloseScreen/CloseScreen'
 import CodeError from '../../../Components/CodeError/CodeError'
-import Input from '../../../Components/Input/Input'
 import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
 import Styles from '../../../Components/Update/StylesComponents/style'
 import { AddAcountBAction } from '../../../redux/Action/Auth_Action'
-
+import TheInputForm from '../../../Components/TheInputForm/TheInputForm'
+import { RiCheckFill } from 'react-icons/ri'
 
 
 
@@ -136,7 +136,7 @@ export default function AddAccountUser(props) {
                         className='close-pp-pp-image'
                         onClick={HandleClose}
                     /> */}
-                        <HiOutlineX  className='close-pp-pp-image'  onClick={HandleClose}/>
+                    <HiOutlineX className='close-pp-pp-image' onClick={HandleClose} />
                 </div>
 
                 {handleError &&
@@ -152,34 +152,69 @@ export default function AddAccountUser(props) {
                     onSubmit={HandleAccount}
                     className='form-class-category addaccount' >
 
-
-                    <Input
-                        title='Account number'
+                    <span className='selection-name'>Account number</span>
+                    <TheInputForm
                         placeholder='Account number'
                         className='Input-type-style notLeftinput'
                         value={addAccountNumber.Accountnumber}
                         onChange={(e) => setAddAccountNumber({ ...addAccountNumber, Accountnumber: e.target.value })}
-                        validation={ValtionMe(addAccountNumber?.Accountnumber, 'isUser')?.toString()}
+                        type='text'
+                        FirstIcons={
+                            <Fragment>
+
+                                {ValtionMe(addAccountNumber?.Accountnumber, 'isUser')
+                                    ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                }
+                            </Fragment>
+                        }
+
+
                     />
-                    <Input
-                        title='Account owner'
+
+
+
+
+                    <span className='selection-name'>Account owner</span>
+                    <TheInputForm
                         placeholder='Account owner'
                         required
                         className='Input-type-style notLeftinput'
                         value={addAccountNumber.Accountowner}
                         onChange={(e) => setAddAccountNumber({ ...addAccountNumber, Accountowner: e.target.value })}
-                        validation={ValtionMe(addAccountNumber.Accountowner, 'isUser')?.toString()}
+                        FirstIcons={
+                            <Fragment>
+
+                                {ValtionMe(addAccountNumber.Accountowner, 'isUser')
+                                    ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                }
+                            </Fragment>
+                        }
+
+
                     />
 
-                    <Input
-                        title='IBAN'
+
+                    <span className='selection-name'>IBAN</span>
+                    <TheInputForm
+
                         placeholder='IBAN'
                         required
                         className='Input-type-style notLeftinput'
                         value={addAccountNumber.iban}
                         onChange={(e) => setAddAccountNumber({ ...addAccountNumber, iban: e.target.value })}
-                        validation={ValtionMe(addAccountNumber.iban, 'isUser')?.toString()}
+                        FirstIcons={
+                            <Fragment>
+
+                                {ValtionMe(addAccountNumber.iban, 'isUser')
+                                    ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                }
+                            </Fragment>
+                        }
+
+
                     />
+
+
 
 
                     <div className='Buttom-class'>

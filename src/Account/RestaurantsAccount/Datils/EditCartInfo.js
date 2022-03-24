@@ -6,17 +6,18 @@ import Styles from '../../../Components/Update/StylesComponents/style'
 import PageSwitch from '../../../Components/Update/PageSwitch/PageSwitch'
 import { ValtionMe } from '../../../Assistant/ValtionMe'
 import CodeError from '../../../Components/CodeError/CodeError'
-import Input from '../../../Components/Input/Input'
 import { UpdatedCartInfoAction, UpdatedImageAction } from '../../../redux/Action/CartItemAction'
 import OppenImage from '../../../Components/Update/OppenImage/OppenImage'
 import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
 import { ValidationCartInfo, ChangeCode, ValidationCreateCart } from '../../../Assistant/ValidationPayment'
 import { TheCartInfo } from '../../../Components/CloseScreen/CloseScreen'
 import { ChnageTime } from '../../../Assistant/Selection'
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { BiEditAlt } from 'react-icons/bi'
 import { HiOutlineX } from 'react-icons/hi'
 import CreateFoodType from './CreateFoodType'
+import TheInputForm from '../../../Components/TheInputForm/TheInputForm'
+import { RiCheckFill } from 'react-icons/ri'
 
 export default function EditCartInfo(props) {
 
@@ -260,49 +261,77 @@ export default function EditCartInfo(props) {
                         <div className='form-Scrolling'>
 
                             <Form onSubmit={HandleForm} className='form-padding'>
-                                <Input
+
+                                <span className='selection-name'>Namnet på restaurangen eller butiken</span>
+                                <TheInputForm
                                     placeholder='Namnet på restaurangen eller butiken'
                                     onChange={(e) => setProductDetails({ ...productDetails, username: e.target.value })}
                                     value={productDetails?.username}
-                                    className='Input-type-style productdetials'
                                     type='text'
-                                    title='Namnet på restaurangen eller butiken'
-                                    validation={ValtionMe(productDetails?.username, 'inputname')?.toString()}
+
+                                    FirstIcons={
+                                        <Fragment>
+
+                                            {ValtionMe(productDetails?.username, 'inputname')
+                                                ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                            }
+                                        </Fragment>
+                                    }
+                                    className='Input-type-style productdetials'
 
                                 />
 
-                                <Input
+
+
+                                <span className='selection-name'>Description</span>
+                                <TheInputForm
                                     placeholder='Description'
-                                    className='Input-type-style productdetials hegith'
                                     as='textarea'
                                     type='text'
                                     onChange={(e) => setProductDetails({ ...productDetails, description: e.target.value })}
                                     value={productDetails.description}
-                                    title='Description'
-                                    validation={ValtionMe(productDetails.description, 'inputname')?.toString()}
+                                    FirstIcons={
+                                        <Fragment>
+
+                                            {ValtionMe(productDetails.description, 'inputname')
+                                                ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                            }
+                                        </Fragment>
+                                    }
+                                    className='Input-type-style productdetials hegith'
+
                                 />
+
+
 
 
                                 <Row className='justify-content-center'>
                                     <Col xs={6} sm={6} md={6} lg={6}>
-                                        <Input
+
+                                        <span className='selection-name'>öppnings tid</span>
+                                        <TheInputForm
                                             placeholder='öppnings tid'
                                             name="image"
                                             className='Input-type-style productdetials'
                                             type='time'
                                             onChange={(e) => setOpentime({ ...opentime, oppen: e.target.value })}
                                             value={opentime.oppen}
-                                            title='öppnings tid'
-                                            validation={ValtionMe(opentime.oppen, 'inputname')?.toString()}
+                                            FirstIcons={
+                                                <Fragment>
+
+                                                    {ValtionMe(opentime.oppen, 'inputname')
+                                                        ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                                    }
+                                                </Fragment>
+                                            }
+
 
                                         />
 
-
-
                                     </Col>
                                     <Col xs={6} sm={6} md={6} lg={6}>
-
-                                        <Input
+                                        <span className='selection-name'>stängningstid</span>
+                                        <TheInputForm
                                             placeholder='stängningstid'
                                             name="image"
                                             type='time'
@@ -310,9 +339,20 @@ export default function EditCartInfo(props) {
                                             className='Input-type-style productdetials'
                                             onChange={(e) => setOpentime({ ...opentime, close: e.target.value })}
                                             value={opentime.close}
-                                            validation={ValtionMe(opentime.close, 'inputname')?.toString()}
+                                            FirstIcons={
+                                                <Fragment>
+
+                                                    {ValtionMe(opentime.close, 'inputname')
+                                                        ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                                    }
+                                                </Fragment>
+                                            }
+
 
                                         />
+
+
+
                                     </Col>
                                 </Row>
 
@@ -320,28 +360,50 @@ export default function EditCartInfo(props) {
 
                                 <Row className='justify-content-center'>
                                     <Col xs={6} sm={6} md={6} lg={6}>
-                                        <Input
+                                        <span className='selection-name'>Matlagningstid</span>
+                                        <TheInputForm
                                             placeholder='från'
                                             className='Input-type-style productdetials'
-                                            title='Matlagningstid'
                                             onChange={(e) => setFinishfood({ ...finishfood, to: e.target.value })}
                                             value={finishfood.to}
                                             type='number'
-                                            validation={ValtionMe(finishfood.to, 'TheTime')?.toString()}
+                                            FirstIcons={
+                                                <Fragment>
+
+                                                    {ValtionMe(finishfood.to, 'TheTime')
+                                                        ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                                    }
+                                                </Fragment>
+                                            }
+
+
                                         />
+
+
+
                                     </Col>
                                     <Col xs={6} sm={6} md={6} lg={6}>
+                                        <span className='selection-name'>till</span>
+                                        <TheInputForm
 
-                                        <Input
                                             placeholder='till'
                                             className='Input-type-style productdetials'
-                                            title='till'
                                             onChange={(e) => setFinishfood({ ...finishfood, end: e.target.value })}
                                             value={finishfood.end}
                                             type='number'
-                                            validation={ValtionMe(finishfood.end, 'TheTime')?.toString()}
+                                            FirstIcons={
+                                                <Fragment>
+
+                                                    {ValtionMe(finishfood.end, 'TheTime')
+                                                        ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                                    }
+                                                </Fragment>
+                                            }
+
 
                                         />
+
+
                                     </Col>
                                 </Row>
 
@@ -353,49 +415,95 @@ export default function EditCartInfo(props) {
                                 </div>
                                 <Row className='justify-content-center'>
                                     <Col xs={6} sm={6} md={6} lg={6}>
-                                        <Input
+                                        <span className='selection-name'>Address</span>
+                                        <TheInputForm
                                             placeholder='Address'
                                             className='Input-type-style productdetials'
                                             title='Address'
                                             value={addressinfo?.address}
                                             onChange={(e) => setAddressinfo({ ...addressinfo, address: e.target.value?.toLowerCase() })}
-                                            validation={ValtionMe(addressinfo?.address, 'inputname')?.toString()}
+                                            type='text'
+                                            FirstIcons={
+                                                <Fragment>
+
+                                                    {ValtionMe(addressinfo?.address, 'inputname')
+                                                        ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                                    }
+                                                </Fragment>
+                                            }
+
 
                                         />
+
+
+
                                     </Col>
                                     <Col xs={6} sm={6} md={6} lg={6}>
-                                        <Input
+                                        <span className='selection-name'>Stad</span>
+                                        <TheInputForm
                                             placeholder='Stad'
-                                            title='Stad'
                                             className='Input-type-style productdetials'
                                             value={addressinfo?.city}
                                             onChange={(e) => setAddressinfo({ ...addressinfo, city: e.target.value?.toLowerCase() })}
-                                            validation={ValtionMe(addressinfo?.city, 'inputname')?.toString()}
+                                            type='text'
+                                            FirstIcons={
+                                                <Fragment>
+
+                                                    {ValtionMe(addressinfo?.city, 'inputname')
+                                                        ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                                    }
+                                                </Fragment>
+                                            }
+
 
                                         />
+
+
+
                                     </Col>
                                     <Col xs={6} sm={6} md={6} lg={6}>
-                                        <Input
+                                        <span className='selection-name'>Telefonnummber</span>
+                                        <TheInputForm
                                             placeholder='Telefonnummber'
-                                            title='Telefonnummber'
                                             className='Input-type-style productdetials'
                                             type='number'
                                             value={addressinfo?.telefon}
                                             onChange={(e) => setAddressinfo({ ...addressinfo, telefon: e.target.value?.toLowerCase() })}
-                                            validation={ValtionMe(addressinfo?.telefon, 'isPhone')?.toString()}
+                                            FirstIcons={
+                                                <Fragment>
+
+                                                    {ValtionMe(addressinfo?.telefon, 'isPhone')
+                                                        ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                                    }
+                                                </Fragment>
+                                            }
+
 
                                         />
+
+
+
                                     </Col>
                                     <Col xs={6} sm={6} md={6} lg={6}>
-                                        <Input
+                                        <span className='selection-name'>Website</span>
+                                        <TheInputForm
                                             placeholder='Website'
-                                            title='Website'
                                             className='Input-type-style productdetials'
                                             value={addressinfo?.website}
                                             onChange={(e) => setAddressinfo({ ...addressinfo, website: e.target.value?.toLowerCase() })}
-                                            validation={ValtionMe(addressinfo?.website, 'inputname')?.toString()}
+                                            FirstIcons={
+                                                <Fragment>
+
+                                                    {ValtionMe(addressinfo?.website, 'inputname')
+                                                        ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                                    }
+                                                </Fragment>
+                                            }
+
 
                                         />
+
+
                                     </Col>
                                 </Row>
 
@@ -446,14 +554,17 @@ export default function EditCartInfo(props) {
 
 
                                 <div className='edit-product-image-div'>
-                                    <Input
+
+                                    <TheInputForm
                                         placeholder='image'
                                         title='ladda upp bild'
                                         type="file"
                                         onChange={HandleIamge}
                                         name="image"
-
                                     />
+
+
+                                    
                                     <ImageScreen
                                         ImageIcon={changeImage ? changeImage : productDetails?.image ? productDetails?.image : null}
                                         className='image-xo'

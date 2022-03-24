@@ -168,9 +168,9 @@ export function ValidationAccount(name) {
 // valtion updated account..
 export function ValidationUpdatedAccount(NewData, OldData) {
 
-    return NewData?.Accountnumber?.trim()?.normalize() === OldData?.accountnumber?.normalize()
-        && NewData?.Accountowner?.trim()?.normalize() === OldData?.accountnowner?.normalize()
-        && NewData?.iban?.trim()?.normalize() === OldData?.iban?.normalize()
+    return NewData?.Accountnumber?.trim()?.toLowerCase()?.normalize() === OldData?.accountnumber?.toLowerCase()?.normalize()
+        && NewData?.Accountowner?.trim()?.toLowerCase()?.normalize() === OldData?.accountnowner?.toLowerCase()?.normalize()
+        && NewData?.iban?.trim()?.toLowerCase()?.normalize() === OldData?.iban?.toLowerCase()?.normalize()
 
 
 

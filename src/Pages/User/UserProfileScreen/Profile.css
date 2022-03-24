@@ -611,9 +611,10 @@ border-left: ridge;
     flex-direction: column;
 }
 .TextList{
-    font-size: 16px;
     text-transform: capitalize;
     margin-left: 0.5rem;
+    font-family: 'M PLUS 1', sans-serif;
+    font-size: 13px;
 }
 .Order_List_list p{
     font-size: 16px;

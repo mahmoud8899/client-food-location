@@ -22,7 +22,7 @@ export default function CategoryNavBarSearching(props) {
                         
                         style={Styles.TabBoximage}
                     />
-                    <span>Create Category</span>
+                    <span className='font-all'>Create Category</span>
                 </div>
 
 

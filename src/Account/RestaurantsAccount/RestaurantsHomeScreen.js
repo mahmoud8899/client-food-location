@@ -82,7 +82,7 @@ export default function RestaurantsHomeScreen(props) {
                     Other={
                         <div className='Order-List-New-other'>
                             <div className='AddClass-c add-left'>
-                                <span>Order List New</span>
+                                <span className='font-all'>Order List New</span>
                             </div>
                         </div>
                     }

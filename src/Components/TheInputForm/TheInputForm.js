@@ -13,6 +13,7 @@ export default function TheInputForm(props) {
         FirstIcons,
         as,
         ows,
+        name,
     } = props
 
 
@@ -29,6 +30,7 @@ export default function TheInputForm(props) {
             onKeyPress={onKeyPress}
             as={as}
             ows={ows}
+            name={name}
 
         />
         {FirstIcons ? FirstIcons : null}

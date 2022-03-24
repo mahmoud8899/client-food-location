@@ -17,17 +17,22 @@
     height: 0rem;
     margin-top: 1rem;
 }
+.font-all{
+    font-family: 'M PLUS 1', sans-serif;
+    font-size: 13px;
+    text-transform: capitalize;
+}
 .loading-loading-lading{
     margin-bottom: 0.5rem;
 }
 .Empty-uploading span
 {
     margin-top: 1rem;
-    font-size: 12px;
     text-transform: capitalize;
     font-weight: bold;
-    color: black;
     margin-bottom: 1rem;
+    font-family: 'M PLUS 1', sans-serif;
+    font-size: 13px;
 }
 
 .flex-switch{
@@ -330,6 +335,9 @@
 }
 .half-fistclass span:nth-last-of-type(1){
     margin-left: 0.3rem;
+    font-family: 'M PLUS 1', sans-serif;
+    font-size: 13px;
+    text-transform: capitalize;
 }
 .Image-sales{
     width: 20px;

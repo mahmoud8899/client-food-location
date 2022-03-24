@@ -1,19 +1,18 @@
 import { Form, Modal } from 'react-bootstrap'
-import Input from '../../../Components/Input/Input'
 import ButtomClick from '../../../Components/Buttom/Buttom'
 import { ChangeCode, ValidationCategory } from '../../../Assistant/ValidationPayment'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Fragment } from 'react'
 import { ValtionMe } from '../../../Assistant/ValtionMe'
 import { useSelector, useDispatch } from 'react-redux'
 import { UpdatedCategoryAction, CategoryCategoryAction } from '../../../redux/Action/Category_Action'
 import { TheRemoveUpdated } from '../../../Components/CloseScreen/CloseScreen'
 import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
 import Styles from '../../../Components/Update/StylesComponents/style'
-import '../style.css'
 import CodeError from '../../../Components/CodeError/CodeError'
-import {HiOutlineX} from 'react-icons/hi'
-
-
+import { HiOutlineX } from 'react-icons/hi'
+import TheInputForm from '../../../Components/TheInputForm/TheInputForm'
+import { RiCheckFill } from 'react-icons/ri'
+import '../style.css'
 export default function CategoryEditOchCreate(props) {
 
 
@@ -145,8 +144,8 @@ export default function CategoryEditOchCreate(props) {
 
                         }
                     </h1>
-                    <HiOutlineX  className='close-pp-pp-image'    onClick={HandleClose}/>
-                   
+                    <HiOutlineX className='close-pp-pp-image' onClick={HandleClose} />
+
                 </div>
 
 
@@ -158,16 +157,28 @@ export default function CategoryEditOchCreate(props) {
 
 
                 <Form onSubmit={HandleForm} className='form-class-category'>
-                    <Input
+
+                    <span className='selection-name'>create category</span>
+                    <TheInputForm
                         placeholder='Category name.....'
-                        onChange={(e) => setCategoryData({ ...categoryData, name: e.target.value })}
+                        onChange={(e) => setCategoryData({ ...categoryData, name: e.target.value.trim() })}
                         value={categoryData?.name}
                         className='Input-type-style notLeftinput'
-                        validation={ValtionMe(categoryData?.name, 'inputname')?.toString()}
+                        FirstIcons={
+                            <Fragment>
 
+                                {ValtionMe(categoryData?.name, 'inputname')
+                                    ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                }
+                            </Fragment>
+                        }
 
 
                     />
+
+
+
+
                     <div className='class-Margin-buttom'>
                         <ButtomClick
                             style={Styles.TabButtomCreate}

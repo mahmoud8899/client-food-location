@@ -20,7 +20,7 @@ export default function ProductsNavBarSearching(props) {
             <div className='Order-List-New-other'>
                 <div style={Styles.NavBarSearchingColor} className='AddClass-c'>
                     <BiCloudUpload style={Styles.TabBoximage} />
-                    <span>Create Product</span>
+                    <span className='font-all'>Create Product</span>
 
 
                 </div>

@@ -108,7 +108,7 @@ export default function RestaurantsProfilScreen(props) {
 
                                             <div className='Fistclass'>
 
-                                                <span>3029.00$</span>
+                                                <span className='font-all'>3029.00$</span>
                                             </div>
 
 
@@ -129,7 +129,7 @@ export default function RestaurantsProfilScreen(props) {
 
                                             <div className='Fistclass'>
 
-                                                <span>3 items</span>
+                                                <span className='font-all' >3 items</span>
                                             </div>
                                         </div>
                                     </div>
