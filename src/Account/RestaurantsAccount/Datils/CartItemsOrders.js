@@ -73,7 +73,7 @@ export default function CartItemsOrders(props) {
 
                                 </div>
                             }
-                            onClick={(e) => history.push(`/order/shipping/${order?._id}`)}
+                            onClick={(e) => history.push(`/sw/order/shipping/${order?._id}`)}
 
                             />
 

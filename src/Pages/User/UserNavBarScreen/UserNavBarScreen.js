@@ -19,28 +19,28 @@ const UserNavBarScreen = (props) => {
 
     const PageHome = (e) => {
         e.preventDefault()
-        return history.push('/sw/profil/personal/')
+        return history.push('/sw/fex/profil/personal/')
     }
 
     const PagePayment = (e) => {
 
         e.preventDefault()
 
-        return history.push('/sw/profil/payment/')
+        return history.push('/sw/fex/profil/payment/')
     }
 
 
     const PageAddres = (e) => {
         e.preventDefault()
 
-        return history.push('/sw/profil/address/')
+        return history.push('/sw/fex/profil/address/')
     }
 
 
     const PageOrders = (e) => {
         e.preventDefault()
 
-        return history.push('/sw/profil/orders/')
+        return history.push('/sw/fex/profil/orders/')
     }
 
 
@@ -48,7 +48,7 @@ const UserNavBarScreen = (props) => {
 
     const PageSetting = (e) => {
         e.preventDefault()
-        return history.push('/sw/profil/settings/')
+        return history.push('/sw/fex/profil/settings/')
     }
 
 

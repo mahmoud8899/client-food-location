@@ -24,6 +24,7 @@ export default function CartItemsInfo(props) {
                 <TabScreen TitleTh='finishfood' style={Styles.TabfontText} />
                 <TabScreen TitleTh='productType' style={Styles.TabfontText} />
                 <TabScreen TitleTh='comment' style={Styles.TabfontText} />
+                <TabScreen TitleTh='food type' style={Styles.TabfontText} />
                 <TabScreen TitleTh='free delivery' style={Styles.TabfontText} />
                 <TabScreen TitleTh='restaurant driver' style={Styles.TabfontText} />
                 <TabScreen TitleTh='edit' style={Styles.TabfontText} />
@@ -75,6 +76,7 @@ export default function CartItemsInfo(props) {
                     TitleTd={info?.numReviews?.toString()}
                     style={Styles.TabfontText}
                 />
+                  <TabScrrenDor TitleTd={info?.foodtype?.foodType ?info?.foodtype?.foodType: 'lägg till mattyp'} style={Styles.TabfontText} />
                 <TabScrrenDor
                     TitleTd={info?.freeDelvery === true ? 'yes' : 'no'}
                     style={Styles.TabfontText}
@@ -89,7 +91,7 @@ export default function CartItemsInfo(props) {
                 <TabScrrenDor other={
                     <div className='remove' style={Styles.TabButtomEdit}>
                         <ImageScreen ImageIcon={MyOderImage.edit} style={Styles.TabIconsremov} />
-                        <span>Edit</span>
+                        <span>Ändra</span>
 
                     </div>
                 }

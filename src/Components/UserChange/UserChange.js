@@ -2,7 +2,6 @@ import { Image, Modal } from 'react-bootstrap'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import Input from '../../Components/Input/Input'
 import ButtomClick from '../../Components/Buttom/Buttom'
-import { useState } from 'react'
 import { ChangeUserInfo } from '../../redux/Action/Auth_Action'
 import { useDispatch, useSelector } from 'react-redux'
 import Styles from '../Update/StylesComponents/style'
@@ -13,6 +12,8 @@ import { ErrorServer, ErrorTextInput } from '../../Assistant/TextError'
 import { ValtionMe } from '../../Assistant/ValtionMe'
 import CodeError from '../CodeError/CodeError'
 import { CloseScreen } from '../../Components/CloseScreen/CloseScreen'
+import { useState } from 'react'
+
 export default function UserChange(props) {
 
 

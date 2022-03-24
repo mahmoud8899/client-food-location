@@ -41,7 +41,7 @@ export default function ActiveUserSearchCity(props) {
                 }
                 <div className='Add-Addres add-padding-loaction'  onClick={(e) => HandleOpenAdddress(e)}>
                     <AddOpenComponent
-                        Titel='Add Your address'
+                        Titel='Lägg till din adress'
                         className='Font-address'
                         classNameTitle='classPluseTitel exstra-style'
                         classNamePluse='classPlusefont'

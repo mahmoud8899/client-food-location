@@ -41,7 +41,7 @@ import NavBar from './Pages/NavBar/NavBar'
 import VisaProducts from './Pages/VisaProducts/VisaProducts'
 import FilterCategoryScreen from './Components/Update/UseContext/FilterCategoryScreen'
 import { FirstNameRest } from './Assistant/Selection'
-import PasswordScreen from './Password'
+// import PasswordScreen from './Password'
 export default function App() {
 
 
@@ -64,11 +64,11 @@ export default function App() {
 
 
             <Route path="/changepassword/:id" component={ForgetPassword} exact />
-            <Route path="/order/shipping/:id/" component={Order} exact />
+            <Route path="/sw/order/shipping/:id/" component={Order} exact />
 
 
             <Route path="/test/test/" component={Testing} exact />
-            <Route path="/passwor/passwor/passwor/passwor/" component={PasswordScreen} exact />
+          
 
 
 
@@ -111,11 +111,11 @@ export default function App() {
 
 
   
-              <Route path="/sw/profil/personal/" component={UserProfileScreen} exact />
-              <Route path="/sw/profil/payment/" component={UserPaymentScreen} exact />
-              <Route path="/sw/profil/address/" component={UserAddresScreen} exact />
-              <Route path="/sw/profil/orders/" component={UserOrdersScreen} exact />
-              <Route path="/sw/profil/settings/" component={UserSettingsScreen} exact />
+              <Route path="/sw/fex/profil/personal/" component={UserProfileScreen} exact />
+              <Route path="/sw/fex/profil/payment/" component={UserPaymentScreen} exact />
+              <Route path="/sw/fex/profil/address/" component={UserAddresScreen} exact />
+              <Route path="/sw/fex/profil/orders/" component={UserOrdersScreen} exact />
+              <Route path="/sw/fex/profil/settings/" component={UserSettingsScreen} exact />
 
 
 

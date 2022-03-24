@@ -1,4 +1,4 @@
-
+import {BiDotsHorizontalRounded} from 'react-icons/bi'
 
 
 
@@ -17,7 +17,7 @@ export default function EditComponent(props) {
 
     return <div className='Remove-div-all'>
         <div className='routx-' onClick={(e) => setOptionMore(!optionMore)}>
-            <h1>...</h1>
+           <BiDotsHorizontalRounded  />
         </div>
         <div className={optionMore ? 'class-edit-postion hidden' : 'class-edit-postion'}>
             <span onClick={NoRemove}>ta bort</span>

@@ -154,6 +154,7 @@ export default function RestaurantsPageProductsScreen(props) {
                         NavBarScroll={NavBarScroll}
                         addTop={addTop}
                         category={CategoryPublic}
+                        ChangeParams={ChangeParams}
 
                     />
                     {CategoryPublic?.length >= 1 &&

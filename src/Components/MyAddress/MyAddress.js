@@ -1,17 +1,18 @@
 import { Row, Col, Form } from 'react-bootstrap'
 import ButtomClick from '../Buttom/Buttom'
-import Input from '../Input/Input'
 import { useSelector, useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { AddAdressUserAction } from '../../redux/Action/Auth_Action'
-import { MyOderImage } from '../../Assistant/MyOrderImage'
 import { addresSelection } from '../../Assistant/Selection'
 import ImageScreen from '../ImageScreen/ImageScreen'
 import { ValidationUserAddress, ChangeCode } from '../../Assistant/ValidationPayment'
 import Styles from '../Update/StylesComponents/style'
 import '../../Pages/User/UserProfileScreen/Profile.css'
 import CodeError from '../CodeError/CodeError'
-
+import TheInputForm from '../TheInputForm/TheInputForm'
+import { RiCheckFill } from 'react-icons/ri'
+import { FaCity } from 'react-icons/fa'
+import { BiClinic, BiPlus, BiStreetView } from 'react-icons/bi'
 const MyAddress = (props) => {
     const {
         ClassNamePayment,
@@ -112,50 +113,75 @@ const MyAddress = (props) => {
 
         <div className={ClassNamePayment ? null : 'scroll-bottom-style'}>
 
-
-
-
-            <Input
-                title='Street address and building number'
-                type='text'
+            <span className='selection-name'>Street address and building number</span>
+            <TheInputForm
                 placeholder='Street address and building number'
                 onChange={(e) => setPostData({ ...dataPost, addres: e.target.value })}
+                type='text'
                 value={dataPost?.addres}
                 name='address'
+                FirstIcons={
+                    <Fragment>
+                        <BiStreetView className='Icons-LEFT' />
+                        {validation(dataPost?.addres, 4)
+                            ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                        }
+                    </Fragment>
+                }
                 className='Input-type-style productdetials add-left-text'
-                ImageLog={MyOderImage.address}
-                validation={validation(dataPost?.addres, 4)}
-                onKeyPress={(e) => e.key === 'Enter' ? HandelChangeAddres(e) : null}
+                onKeyPress={(e) => e.key === 'Enter' ?
+                    validation(dataPost?.addres, 4) ?
+                        HandelChangeAddres(e) : null : null}
             />
 
 
-            <Input
-                title='Details (door number, apartment)'
-                type='text'
+
+
+            <span className='selection-name'>Details (door number, apartment)</span>
+            <TheInputForm
                 placeholder='Details (door number, apartment)'
                 onChange={(e) => setPostData({ ...dataPost, homeNumber: e.target.value })}
                 value={dataPost?.homeNumber}
                 name='homeNumber'
+                FirstIcons={
+                    <Fragment>
+                        <BiClinic className='Icons-LEFT' />
+                        {validation(dataPost?.homeNumber, 1)
+                            ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                        }
+                    </Fragment>
+                }
                 className='Input-type-style productdetials add-left-text'
-                ImageLog={MyOderImage.number}
-                validation={validation(dataPost?.homeNumber, 1)}
-                onKeyPress={(e) => e.key === 'Enter' ? HandelChangeAddres(e) : null}
+                onKeyPress={(e) => e.key === 'Enter' ?
+                    validation(dataPost?.homeNumber, 1) ?
+                        HandelChangeAddres(e) : null : null}
             />
 
 
-            <Input
-                title='stad'
-                type='text'
+
+
+
+            <span className='selection-name'>Stad</span>
+            <TheInputForm
                 placeholder='stad'
                 required
                 onChange={(e) => setPostData({ ...dataPost, city: e.target.value })}
                 value={dataPost.city}
                 name='stad'
+                FirstIcons={
+                    <Fragment>
+                        <FaCity className='Icons-LEFT' />
+                        {validation(dataPost?.city, 3)
+                            ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                        }
+                    </Fragment>
+                }
                 className='Input-type-style productdetials add-left-text'
-                ImageLog={MyOderImage.cityB}
-                validation={validation(dataPost?.city, 3)}
-                onKeyPress={(e) => e.key === 'Enter' ? HandelChangeAddres(e) : null}
+                onKeyPress={(e) => e.key === 'Enter' ?
+                    validation(dataPost?.city, 3) ?
+                        HandelChangeAddres(e) : null : null}
             />
+
 
 
 
@@ -167,19 +193,32 @@ const MyAddress = (props) => {
                 <span>+44{userInfo?.telephone}</span>
             </div>
 
-            <Input
-                title='Postnummer'
+            <span className='selection-name'>Postnummer</span>
+            <TheInputForm
+
                 type='text'
                 placeholder='Postnummer'
                 required
                 onChange={(e) => setPostData({ ...dataPost, zipcode: e.target.value })}
                 value={dataPost?.zipcode}
-                name='Postnummer'
+                FirstIcons={
+                    <Fragment>
+                        <BiPlus className='Icons-LEFT' />
+                        {validation(dataPost?.zipcode, 3)
+                            ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                        }
+                    </Fragment>
+                }
                 className='Input-type-style productdetials add-left-text'
-                ImageLog={MyOderImage.zip}
-                validation={validation(dataPost?.zipcode, 3)}
-                onKeyPress={(e) => e.key === 'Enter' ? HandelChangeAddres(e) : null}
+                onKeyPress={(e) => e.key === 'Enter' ?
+                    validation(dataPost?.zipcode, 3) ?
+                        HandelChangeAddres(e) : null : null}
             />
+
+
+
+
+
 
 
 
@@ -262,11 +301,5 @@ const MyAddress = (props) => {
 
 
 export default MyAddress
-
-
-
-
-
-
 
 

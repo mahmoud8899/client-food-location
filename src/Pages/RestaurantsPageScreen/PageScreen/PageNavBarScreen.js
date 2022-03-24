@@ -16,7 +16,8 @@ export default function PageNavBarScreen(props) {
         openDescription,
         NavBarScroll,
         addTop,
-        category
+        category,
+        ChangeParams
     } = props
 
 
@@ -30,7 +31,7 @@ export default function PageNavBarScreen(props) {
 
     // cart info 
     const cartInfoid = useSelector((state) => state?.cartInfoid)
-    const {  cartinfo, error } = cartInfoid
+    const {  cartinfo } = cartInfoid
     // user info 
     const userLogin = useSelector((state) => state?.userLogin)
     const { userInfo } = userLogin
@@ -109,7 +110,8 @@ export default function PageNavBarScreen(props) {
             showRating={showRating}
             setShowRating={setShowRating}
             cartid={cartinfo?._id}
-            error={error}
+            ChangeParams={ChangeParams}
+          
         />
 
 

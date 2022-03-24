@@ -133,10 +133,12 @@ export const closeUpdateAccount = (dispatch) => {
 // remove error telefon 
 export const NumberRemove = (dispatch) => {
     // const dispatch = useDispatch()
-    return dispatch({
+    dispatch({
         type: ActionTypes.ADDTELEFONUMBER_FAIL,
         payload: null
     })
+
+
 
 }
 
@@ -161,4 +163,21 @@ export function CleringData(dispatch) {
     })
 
     return dispatch({ type: ActionTypes.ADD_ORDER_SUCCESS_CANCEL, payload: null })
+}
+
+
+// remove error category///
+export function RemoveErrorCategory(dispatch) {
+
+
+     dispatch({ type: ActionTypes.ADD_CATAGORY_ALL_FAIL })
+    return dispatch({ type: ActionTypes.ADD_CATAGORY_ALL_CREATE, payload: null })
+}
+
+
+
+// remove error  rating 
+export function RatingError(dispatch){
+
+    return dispatch({type : ActionTypes.ADD_USER_RATING_FAIL , payload : null})
 }

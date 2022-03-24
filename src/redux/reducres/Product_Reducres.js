@@ -15,7 +15,8 @@ export const HandleUpdatedAndCreateProductReducres = (state = {
     switch (action.type) {
 
         case ActionTypes.ADD_PRODUCT_UPDATED_LOADING: return {
-            loading: true
+           ...state,
+           loading: true
         }
 
         case ActionTypes.ADD_PRODUCT_UPDATED_SUCCESS: return {

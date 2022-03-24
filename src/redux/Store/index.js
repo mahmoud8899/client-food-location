@@ -76,6 +76,7 @@ import {
     ALLcatgoryReducres,
     CartInfoActionResturanReducres,
     UpdatedCartiNFOReducres,
+    TheRatingReducres
 } from '../reducres/CartInfoReducres'
 
 
@@ -162,6 +163,7 @@ const reducer = combineReducers({
     pageHomeCategory: ALLcatgoryReducres,
     pageUserCartinfo : CartInfoActionResturanReducres,
     updatedCartInfo : UpdatedCartiNFOReducres,
+    theRating : TheRatingReducres,
 
 
 })

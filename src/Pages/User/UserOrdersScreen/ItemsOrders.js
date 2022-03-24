@@ -22,7 +22,7 @@ export default function ItemsOrders(props) {
     const HandleProductId = (e, id) => {
         e.preventDefault()
         // console.log('hello', id)
-        return history.push(`/order/shipping/${id}`)
+        return history.push(`/sw/order/shipping/${id}`)
     }
 
 

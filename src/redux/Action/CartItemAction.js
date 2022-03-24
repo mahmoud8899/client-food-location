@@ -156,7 +156,6 @@ export const GetCartInfoIdAction = (ChangeParams) => async (dispatch) => {
 
 
         const { data } = await axios.get(`/api/cartinfo/view/${ChangeParams}`)
-        // dispatch(AppenProductId(data?._id))
         dispatch({ type: ActionTypes.ADD_CARTINFO_ID_SUCCESS, payload: data })
     } catch (error) {
         dispatch({
@@ -200,19 +199,21 @@ export const FreeDeliveryAction = (user) => async (dispatch) => {
 
 // comment.....
 // POST  // URL :    /api/cartingo/comment/user/id
-export const CartInfoIdRatingAction = (user) => async (dispatch, getState) => {
+export const CartInfoIdRatingAction = (user,ChangeParams) => async (dispatch, getState) => {
     try {
 
         const { userLogin: { token } } = getState()
-        const config = {
+
+        dispatch({ type: ActionTypes.ADD_USER_RATING_LOADING })
+        const { data } = await axios.post(`/api/cartingo/comment/user/${user?._id}/`,
+            user, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }
-        const { data } = await axios.post(`/api/cartingo/comment/user/${user?._id}/`, user, config)
-        console.log('data', data)
+        })
 
-        dispatch(GetCartInfoIdAction(user._id))
+        dispatch({type : ActionTypes.ADD_USER_RATING_SUCCESS, payload : 'success'})
+        dispatch(GetCartInfoIdAction(ChangeParams))
     } catch (error) {
 
         const message = error.response &&
@@ -224,7 +225,7 @@ export const CartInfoIdRatingAction = (user) => async (dispatch, getState) => {
             return dispatch(Action_logout())
         }
         dispatch({
-            type: ActionTypes.ADD_CARTINFO_ID_FAIL,
+            type: ActionTypes.ADD_USER_RATING_FAIL,
             payload: message
         })
 
@@ -262,24 +263,7 @@ export const NewRestaurantsAction = (user) => async (dispatch) => {
 
 
 
-// category all restranges 
-// GET Url : /api/foodtypes/view/food/types/
-export const FoodTypesAction = () => async (dispatch) => {
-    try {
-        dispatch({ type: ActionTypes.ADD_CATAGORY_ALL_LOADING })
 
-        const { data } = await axios.get(`/api/foodtypes/view/food/category/list/`)
-        dispatch({ type: ActionTypes.ADD_CATAGORY_ALL_SUCCESS, payload: data })
-    } catch (error) {
-        dispatch({
-            type: ActionTypes.ADD_CATAGORY_ALL_FAIL,
-            payload: error.response &&
-                error.response.data.message ?
-                error.response.data.message :
-                error.message
-        })
-    }
-}
 
 
 
@@ -367,7 +351,10 @@ export const UpdatedImageAction = (user, updateInfo, Form) => async (dispatch) =
             productType: updateInfo.productType,
             username: updateInfo.username,
             restrangeDriver: updateInfo.restrangeDriver,
+            foodtype: updateInfo?.foodtype
         }
+
+        console.log(userData)
 
 
         Form ? dispatch(CreateCartAction(userData)) : dispatch(UpdatedCartInfoAction(userData))
@@ -393,6 +380,66 @@ export const LoactionPath = (data) => async (dispatch) => {
 
 
 
+
+// category all restranges 
+// GET Url : /api/foodtypes/view/food/types/
+export const FoodTypesAction = () => async (dispatch) => {
+    try {
+        dispatch({ type: ActionTypes.ADD_CATAGORY_ALL_LOADING })
+
+        const { data } = await axios.get(`/api/foodtypes/view/food/category/list/`)
+        dispatch({ type: ActionTypes.ADD_CATAGORY_ALL_SUCCESS, payload: data })
+    } catch (error) {
+        dispatch({
+            type: ActionTypes.ADD_CATAGORY_ALL_FAIL,
+            payload: error.response &&
+                error.response.data.message ?
+                error.response.data.message :
+                error.message
+        })
+    }
+}
+
+
+// create new food type
+// POST : URL : // /api/foodtypes/create/
+// Prevate 
+export const CreateNewfoodTypesAction = (user) => async (dispatch, getState) => {
+    try {
+
+        const { userLogin: { token } } = getState()
+
+        dispatch({ type: ActionTypes.ADD_CATAGORY_ALL_LOADING })
+
+        await axios.post(`/api/foodtypes/create/`,
+            user,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+        dispatch(FoodTypesAction())
+        dispatch({ type: ActionTypes.ADD_CATAGORY_ALL_CREATE, payload: 'successfully' })
+    } catch (error) {
+
+        const message = error.response &&
+            error.response.data.message ?
+            error.response.data.message :
+            error.message
+        if (message === 'token failed') {
+
+            return dispatch(Action_logout())
+        }
+        dispatch({
+            type: ActionTypes.ADD_CATAGORY_ALL_FAIL,
+            payload: message
+        })
+
+
+
+
+    }
+}
 
 
 

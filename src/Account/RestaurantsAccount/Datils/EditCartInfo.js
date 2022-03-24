@@ -16,10 +16,11 @@ import { ChnageTime } from '../../../Assistant/Selection'
 import { useEffect, useState } from 'react'
 import { BiEditAlt } from 'react-icons/bi'
 import { HiOutlineX } from 'react-icons/hi'
+import CreateFoodType from './CreateFoodType'
 
 export default function EditCartInfo(props) {
 
-    const { show, setShow, info, userInfo } = props
+    const { show, setShow, info, userInfo, category } = props
 
     const dispatch = useDispatch()
     // SHOW IMAGE
@@ -35,6 +36,10 @@ export default function EditCartInfo(props) {
     const [addressinfo, setAddressinfo] = useState([])
     const [changeImage, setChangeImage] = useState('')
     const [imageSave, setImageSave] = useState('')
+    const [foodType, setFoodType] = useState('')
+    // create new food type to restrant 
+    const [nytt, setNytt] = useState({ value: false, object: '' })
+    // console.log(nytt)
     // handle after requirest.... 
     const updatedCartInfo = useSelector((state) => state?.updatedCartInfo)
     const { loading, updated, error } = updatedCartInfo
@@ -59,11 +64,13 @@ export default function EditCartInfo(props) {
             })
             setOpentime({ oppen: info?.opentime?.oppen ? info?.opentime?.oppen : '', close: info?.opentime?.close ? info?.opentime?.close : '' })
             setFinishfood({ to: info?.finishfood?.to ? info?.finishfood?.to : '', end: info?.finishfood?.end ? info?.finishfood?.end : '' })
+            setFoodType(info?.foodtype?._id ? info?.foodtype?._id : '')
         } else {
             setAddressinfo({ address: '', city: '', telefon: '', website: '', })
             setProductDetails({ username: '', restrangeDriver: false, productType: '', image: '', freeDelvery: false, description: '', })
             setOpentime({ oppen: '', close: '' })
             setFinishfood({ to: '', end: '' })
+            setFoodType('')
 
         }
 
@@ -111,6 +118,7 @@ export default function EditCartInfo(props) {
             && productDetails?.username?.length >= Number(3)
             && productDetails?.productType?.length >= Number(3)
             && productDetails?.description?.length >= Number(3)
+            // && foodType >= Number(3)
         ) {
 
 
@@ -125,13 +133,12 @@ export default function EditCartInfo(props) {
                 image: productDetails.image,
                 addressinfo,
                 finishfood,
-                opentime : {
+                opentime: {
                     oppen: ChnageTime(opentime.oppen),
                     close: ChnageTime(opentime.close),
-                }
+                },
+                foodtype: foodType === '' ? category[0]?._id : foodType
             }
-
-            // console.log(dataInfo)
             if (info === 'Empty') {
 
                 if (imageSave) {
@@ -190,6 +197,22 @@ export default function EditCartInfo(props) {
     }
 
 
+
+
+    // console.log(foodType)
+
+    // value to food type selection
+    const SelectValueFunction = (data) => {
+
+        // console.log(data)
+
+        if (data?.toLowerCase() === 'nytt name') return setNytt({ value: true, object: info })
+        setFoodType(data)
+
+        // console.log('select', data?._id)
+
+    }
+
     return <Modal show={props?.show?.value} onHide={HandleClose}>
 
         <HandleLoadingPage
@@ -202,7 +225,12 @@ export default function EditCartInfo(props) {
         >
 
 
-            {
+
+
+            {nytt?.value ?
+                <CreateFoodType nytt={nytt} setNytt={setNytt} />
+
+                :
                 showImage?.value ?
                     <OppenImage
                         showImage={showImage}
@@ -225,7 +253,12 @@ export default function EditCartInfo(props) {
                         }
 
 
+
+
+
+
                         <div className='form-Scrolling'>
+
                             <Form onSubmit={HandleForm} className='form-padding'>
                                 <Input
                                     placeholder='Namnet på restaurangen eller butiken'
@@ -365,6 +398,30 @@ export default function EditCartInfo(props) {
                                         />
                                     </Col>
                                 </Row>
+
+                                <div className='selection-name'>food type</div>
+                                <Form.Control
+                                    as='select'
+                                    style={Styles.input_selector_user}
+                                    onChange={(e) => SelectValueFunction(e.target.value)}
+                                    value={foodType}
+                                >
+
+                                    {category?.length > Number(0) ? category?.map((data, Index) => (
+                                        <option
+                                            value={data._id}
+                                            key={Index}>
+                                            {data.foodType}
+                                        </option>
+                                    )) : <option > value</option>}
+
+                                    <option value='Nytt name' > Nytt name</option>
+
+                                </Form.Control>
+
+
+
+
                                 <div className='selection-name'>Produkttyp</div>
                                 <div className='flex-switch'>
 
@@ -433,9 +490,9 @@ export default function EditCartInfo(props) {
                                         onClick={HandleForm}
                                         disabled={
                                             info === 'Empty' ?
-                                                ValidationCreateCart(productDetails, opentime, addressinfo, finishfood, changeImage) !== true
+                                                ValidationCreateCart(productDetails, opentime, addressinfo, finishfood, changeImage, foodType) !== true
                                                 :
-                                                ValidationCartInfo(productDetails, info, opentime, addressinfo, finishfood, changeImage) === true
+                                                ValidationCartInfo(productDetails, info, opentime, addressinfo, finishfood, changeImage, foodType) === true
                                         }
                                     />
                                 </div>
@@ -444,13 +501,17 @@ export default function EditCartInfo(props) {
 
 
 
-
-
-
-
                     </div>
-
             }
+
+
+
+
+
+
+
+
+
 
 
 

@@ -52,13 +52,22 @@
   font-size: 15px;
     margin-right: 0.5rem;
 }
+
+.input-types{
+    margin-top: 2rem;
+}
+.Buttom-type{
+    position: relative;
+    top: 10rem;
+}
 .flex-switch :nth-child(2){
     margin-left: 2rem;
 }
 .selection-name{
-    font-size: 13px;
-    font-family: monospace;
-    margin-top: 1rem;
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
 }
 .Handl-navBar{
     display: flex;
@@ -258,6 +267,7 @@
 .class-sw span
 {
     font-size: 13px;
+    text-transform: capitalize;
 }
 .Image-info{
     width: 60px;
@@ -283,6 +293,20 @@
 .error-input-red{
     margin-top: 1rem;
 
+}
+.FOOD-TYPES{
+    padding: 1rem;
+}
+.error-input-red-color{
+    margin-top: 1rem;
+    background: #ffbbb7;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    text-align: center;
+   
+}.error-input-red-color span{
+    color: white;
+    font-size: 20px;
 }
 .error-input-red.add-bottom{
     margin-bottom: 0.5rem;

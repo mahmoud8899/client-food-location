@@ -107,7 +107,7 @@ export default function UserAddresScreen(props) {
 
                 <div className='addToCart' onClick={(e) => setOpenAddres(true)}>
                     <AddOpenComponent
-                        Titel='Add Your address'
+                        Titel='Lägg till din adress'
                         style={Styles.addPayment}
                         className='className-link'
                         classNameTitle='className-linkleft'

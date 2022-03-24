@@ -8,13 +8,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import ProductEditOchCreate from './Datils/ProductEditOchCreate'
 import { TheClearing } from '../../Components/CloseScreen/CloseScreen'
 import ProductsNavBarSearching from './Datils/ProductsNavBarSearching'
-import './style.css'
 import UserName from './Datils/UserName'
 import { FetchCategoryUser } from '../../redux/Action/Category_Action'
 import { PageTextEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import { ErrorServer } from '../../Assistant/TextError'
-
+import { ErrorServer,TextProduct } from '../../Assistant/TextError'
+import './style.css'
 
 
 export default function RestaurantsProductScreen(props) {
@@ -52,7 +51,7 @@ export default function RestaurantsProductScreen(props) {
 
 
 
-    // console.log(userInfo?.cartinfo)
+    // console.log(userInfo)
     // '622b3885fc1613a48d2dc4fb1'
     // get products...
     useEffect(() => {
@@ -75,6 +74,7 @@ export default function RestaurantsProductScreen(props) {
   
   
 
+    // get all category to restrant
     useEffect(() => {
 
         if (userInfo?.restaurantid) {
@@ -137,6 +137,9 @@ export default function RestaurantsProductScreen(props) {
 
 
 
+    
+
+
 
 
 
@@ -176,7 +179,7 @@ export default function RestaurantsProductScreen(props) {
 
 
                     {products?.length === Number(0) ?
-                        <PageTextEmpty Pagetext='först måste du skapa kategori' />
+                        <PageTextEmpty Pagetext={TextProduct} />
 
                         :
                         <CartItemsProducts
@@ -193,6 +196,8 @@ export default function RestaurantsProductScreen(props) {
 
 
                     {show?.value &&
+
+             
                         <ProductEditOchCreate
                             show={show}
                             setShow={setShow}

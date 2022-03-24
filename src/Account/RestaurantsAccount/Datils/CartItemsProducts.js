@@ -92,7 +92,9 @@ export default function CartItemsProducts(props) {
 
                                 </div>
                             }
-                                onClick={() => setShow({ value: true, object: product })}
+                             
+                            
+                                 onClick={() => setShow({ value: true, object: product })}
                             />
                             <TabScrrenDor other={
                                 <div className='remove' style={Styles.TabButtomRemove}>

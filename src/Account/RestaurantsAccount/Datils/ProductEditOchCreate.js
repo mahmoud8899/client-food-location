@@ -15,21 +15,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import PageSwitch from '../../../Components/Update/PageSwitch/PageSwitch'
 import CodeError from '../../../Components/CodeError/CodeError'
-import '../style.css'
 import { HiOutlineX } from 'react-icons/hi'
+import '../style.css'
 export default function ProductEditOchCreate(props) {
 
     const { setShow, show, userInfo, ListCategoryUX } = props
+
     const dispatch = useDispatch()
     // show image 
     const [showImage, setShowImage] = useState({ value: false, image: '' })
     //handle error 
     const [handleError, setHandleError] = useState(false)
     // get all category 
-
     // alret  updated and create successfully
     const [updateSuccessFully, setUpdateSuccessFully] = useState(false)
-    //  create product and updated product 
+   //  create product and updated product 
     const PageUpdatedProduct = useSelector((state) => state.PageUpdatedProduct)
     const { loading, error, updated, created } = PageUpdatedProduct
 
@@ -38,7 +38,8 @@ export default function ProductEditOchCreate(props) {
     const [imageSave, setImageSave] = useState('')
     // image uploading and show
     const [changeImage, setChangeImage] = useState('')
-    // product details
+
+    // input product 
     const [productDetails, setProductDetails] = useState({ name: '', description: '', image: '', popular: false, prices: Number(), category: '', _id: '', cartinfo: '' })
 
     // updated when edit show product details
@@ -71,6 +72,7 @@ export default function ProductEditOchCreate(props) {
         show?.object,
         setProductDetails,
     ])
+
 
 
 
@@ -139,14 +141,6 @@ export default function ProductEditOchCreate(props) {
 
             return setHandleError(true)
         }
-
-
-
-
-
-
-
-
     }
 
 
@@ -185,10 +179,8 @@ export default function ProductEditOchCreate(props) {
         return TheProductRemoveAndUpdated(dispatch)
     }
 
-    return <Modal
-        show={props?.show?.value}
-        onHide={HandleClose()}
-    >
+    return <Modal show={show?.value} onHide={() => HandleClose()} >
+
         <HandleLoadingPage
             loading={loading}
             error={error}
@@ -358,4 +350,3 @@ export default function ProductEditOchCreate(props) {
 
     </Modal>
 }
-

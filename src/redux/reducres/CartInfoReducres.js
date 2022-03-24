@@ -135,12 +135,12 @@ export const CartInfoActionResturanReducres = (state = {
             loading: false
         }
 
-        case ActionTypes.ADD_CARTINFO_RESTURANG_EMPTY : 
-        return {
-            loading: false,
-            info: [],
-            error: null, 
-        }
+        case ActionTypes.ADD_CARTINFO_RESTURANG_EMPTY:
+            return {
+                loading: false,
+                info: [],
+                error: null,
+            }
 
 
 
@@ -164,17 +164,20 @@ export const CartInfoIdReducres = (state = {
 }, action) => {
     switch (action.type) {
 
-        case ActionTypes.ADD_CARTINFO_ID_LOADIN: return { loading: true }
+        case ActionTypes.ADD_CARTINFO_ID_LOADIN: return {
+            ...state,
+            loading: true
+        }
         case ActionTypes.ADD_CARTINFO_ID_SUCCESS: return {
             ...state,
+            cartinfo: action.payload,
             loading: false,
-            cartinfo: action.payload
         }
 
         case ActionTypes.ADD_CARTINFO_ID_FAIL: return {
             ...state,
+            error: action.payload,
             loading: false,
-            error: action.payload
         }
 
         default: return state
@@ -264,7 +267,8 @@ export const ALLcatgoryReducres = (
     state = {
         loading: false,
         error: null,
-        category: []
+        category: [],
+        successfully: null
     }, action) => {
     switch (action.type) {
 
@@ -277,6 +281,11 @@ export const ALLcatgoryReducres = (
             category: action.payload,
             loading: false,
         }
+        case ActionTypes.ADD_CATAGORY_ALL_CREATE: return {
+            ...state,
+            successfully: action.payload,
+            loading: false,
+        }
         case ActionTypes.ADD_CATAGORY_ALL_FAIL: return {
             ...state,
             error: action.payload,
@@ -285,4 +294,37 @@ export const ALLcatgoryReducres = (
 
         default: return state
     }
+}
+
+
+
+//rating 
+//ADD_USER_RATING_FAIL
+export const TheRatingReducres = (state = {
+    loading: false,
+    error: null,
+    success: null
+}, action) => {
+
+    switch (action.type) {
+
+        case ActionTypes.ADD_USER_RATING_LOADING: return {
+            ...state,
+            loading: true
+        }
+
+        case ActionTypes.ADD_USER_RATING_SUCCESS: return {
+            ...state,
+            success: action.payload,
+            loading: false
+        }
+        case ActionTypes.ADD_USER_RATING_FAIL: return {
+            ...state,
+            error: action.payload,
+            loading: false
+        }
+
+        default: return state
+    }
+
 }

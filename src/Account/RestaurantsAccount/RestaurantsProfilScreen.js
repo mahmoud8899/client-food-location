@@ -3,7 +3,7 @@ import Title from '../../Components/ScreenTitle/ScreenTitle'
 import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
 import NavBarList from './Datils/NavBarList'
 import CartItemsInfo from './Datils/CartItemsInfo'
-import { CartInfoActionResturan } from '../../redux/Action/CartItemAction'
+import { CartInfoActionResturan, FoodTypesAction } from '../../redux/Action/CartItemAction'
 import { useDispatch, useSelector } from 'react-redux'
 import Styles from '../../Components/Update/StylesComponents/style'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
@@ -12,7 +12,7 @@ import UserName from './Datils/UserName'
 import { useEffect, useState } from 'react'
 import AddAccountUser from './Datils/AddAccountUser'
 import { BiTaskX, BiNetworkChart } from 'react-icons/bi'
-import {ErrorServer} from '../../Assistant/TextError'
+import { ErrorServer } from '../../Assistant/TextError'
 import { PageEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
 import './style.css'
 
@@ -28,10 +28,6 @@ export default function RestaurantsProfilScreen(props) {
     // user check ut
     const userLogin = useSelector((state) => state?.userLogin)
     const { userInfo } = userLogin
-
-
-
-
     // add account bank and oppen page....
     const [openAddAccount, setOpenAddAccount] = useState(false)
     // oppen Edit cart Info...
@@ -41,9 +37,11 @@ export default function RestaurantsProfilScreen(props) {
     const pageUserCartinfo = useSelector((state) => state.pageUserCartinfo)
     const { loading, info, error } = pageUserCartinfo
 
+    // get all category...
+    const pageHomeCategory = useSelector((state) => state?.pageHomeCategory)
+    const { category ,error :errorCategory , loading : loadingCategory} = pageHomeCategory
 
 
-   
 
     // get cart info from Server.....
     useEffect(() => {
@@ -53,19 +51,22 @@ export default function RestaurantsProfilScreen(props) {
         } else {
             return history.push('/uppsala/')
         }
-    }, [
+    }, [dispatch, info?.length, userInfo, history])
 
-        dispatch,
-        info?.length,
-        userInfo,
-        history
-    ])
+
+
+    // get category
+    useEffect(() => {
+        return category?.length === Number(0) && dispatch(FoodTypesAction())
+    }, [category?.length, dispatch])
+
+
+
 
 
     // open acount 
     const OpenBankAcount = (e) => {
         e.preventDefault()
-
         return setOpenAddAccount(true)
     }
 
@@ -76,8 +77,6 @@ export default function RestaurantsProfilScreen(props) {
         <Title TextTitle='product Admin' />
         <div className='box'>
             <UserName />
-
-
         </div>
 
 
@@ -91,7 +90,7 @@ export default function RestaurantsProfilScreen(props) {
             </Col>
 
             <Col xs={12} sm={12} md={8} lg={9} >
-                <LoadingErrorHandle loading={loading} error={error} home={info} TextNotItems={ErrorServer} extraStyle>
+                <LoadingErrorHandle loading={loading} error={error} TextNotItems={ErrorServer} extraStyle>
                     {info === 'Empty' ?
 
                         <PageEmpty onClick={() => setShow({ value: true, updated: true })} />
@@ -148,22 +147,22 @@ export default function RestaurantsProfilScreen(props) {
 
                     }
                 </LoadingErrorHandle>
+
             </Col>
 
         </Row>
 
-        <AddAccountUser
-            openAddAccount={openAddAccount}
-            setOpenAddAccount={setOpenAddAccount}
-        />
+        <AddAccountUser openAddAccount={openAddAccount} setOpenAddAccount={setOpenAddAccount} />
+        <LoadingErrorHandle loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer} extraStyle  >
+            <EditCartInfo
+                show={show}
+                setShow={setShow}
+                info={info}
+                userInfo={userInfo}
+                category={category}
+            />
+        </LoadingErrorHandle>
 
-
-        <EditCartInfo
-            show={show}
-            setShow={setShow}
-            info={info}
-            userInfo={userInfo}
-        />
     </Container>
 }
 

@@ -8,6 +8,18 @@ const Styles = {
         color : COLORS.testing
 
     },
+    input_selector_user:{
+        width: '100%',
+        height: 40,
+        marginBottom : 10,
+        boxShadow: `0rem 0rem 0rem 0.1rem  ${COLORS.firstRed}`,
+        borderRadius : 5,
+        border : 'none',
+        outline : 'none'
+       
+
+      
+    },
     Dist:{
         background: COLORS.notClick,
         width: '100%',

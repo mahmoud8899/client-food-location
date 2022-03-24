@@ -1,21 +1,27 @@
-import './VisaProducts.css'
 import { Container, Row, Col } from 'react-bootstrap'
 import NavBarCity from '../NavBarCity/NavBarCity'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import { useDispatch, useSelector } from 'react-redux'
 import { FatchButik, GetCartInfoHomeRestranges } from '../../redux/Action/CartItemAction'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
+import FilterProducts from '../../Components/Update/FilterProducts/FilterProducts'
+import { FilterCategory } from '../../Components/Update/UseContext/FilterCategoryScreen'
 import VisaProductItems from './VisaProductsItems'
 import { ErrorServer } from '../../Assistant/TextError'
 import { useContext, useEffect } from 'react'
-import FilterProducts from '../../Components/Update/FilterProducts/FilterProducts'
-import { FilterCategory } from '../../Components/Update/UseContext/FilterCategoryScreen'
+import './VisaProducts.css'
 export default function VisaProducts(props) {
-    // params 
+
+    // option   // params  
+    // [1] filter category with restrant  class name FilterCategoryScreen
+    // [2] : NavBarCity navbar selection restrant or butike
+    // [3] : class name what is selection match?.params?.id
+    // [4] : class name filter to category FilterProducts --- stopp now
+    // [5] : class name LoadingErrorHandle : error loading
+
+
+
     const { match } = props
-
-
-
     // restaurant or butik
     const IdMatch = match?.params?.id
     const city = match?.url?.slice(1, 4) === 'upp' ? 'uppsala' : 'gothenburg'
@@ -38,12 +44,10 @@ export default function VisaProducts(props) {
 
 
 
-    // restrant and stores
+    //  git all [1] :restrant 
+    //  [2] stores 
+    //  [3] set searching category    class name setAddCart
     useEffect(() => {
-
-
-
-        // console.log()
 
         if (IdMatch === 'butiker') {
 
@@ -52,44 +56,23 @@ export default function VisaProducts(props) {
                 productType: "butiker"
             }))
         } else {
-           
+
             home?.length === Number(0) && dispatch(GetCartInfoHomeRestranges({
                 city: city,
                 productType: "restaurant"
             }))
-         return IdMatch !== 'restaurants'  && setAddCart([IdMatch])
+            return IdMatch !== 'restaurants' && setAddCart([IdMatch])
         }
 
         // eslint-disable-next-line
 
 
-    }, [IdMatch,
-        dispatch,
-        home?.length,
-        city,
-        stores?.length,
-        setAddCart
-
-
-    ])
+    }, [IdMatch, dispatch, home?.length, city, stores?.length, setAddCart])
 
 
 
 
 
-
-
-
-
-
-
-
-    // option 
-    // [1] filter category with restrant  class name FilterCategoryScreen
-    // [2] : NavBarCity navbar selection restrant or butike
-    // [3] : class name what is selection match?.params?.id
-    // [4] : class name filter to category FilterProducts --- stopp now
-    // [5] : class name LoadingErrorHandle : error loading
 
 
     return <Container fluid>
@@ -112,12 +95,7 @@ export default function VisaProducts(props) {
                 </div>
 
 
-                <LoadingErrorHandle
-                    loading={loading}
-                    error={error}
-                    TextNotItems={ErrorServer}
-
-                >
+                <LoadingErrorHandle loading={loading} error={error} TextNotItems={ErrorServer} >
                     <Row>
                         <VisaProductItems
                             home={IdMatch === 'butiker' ? stores : home}
@@ -138,27 +116,3 @@ export default function VisaProducts(props) {
     </Container>
 
 }
-
-
-
-
-//<FilterProducts />
-// import { FilterCategory } from '../../Components/Update/UseContext/FilterCategoryScreen'
-
-
-
-    // home?.length
-
-// else if (IdMatch === 'butiker') {
-
-//     return butik === null && dispatch(FatchButik({
-//         city: city,
-//         productType: "butik"
-//     }))
-// } else if (IdMatch) {
-
-//     home === null && dispatch(GetCartInfoHomeRestranges({
-//         city: city,
-//         productType: "restaurant"
-//     }))
-

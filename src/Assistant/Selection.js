@@ -5,7 +5,7 @@ import { MyOderImage } from './MyOrderImage'
 export function ChnageTime(restrantoppen) {
 
     const nes = restrantoppen.slice(3)
-    var result
+    var result 
     const mahmdou = '10'
 
     if (mahmdou > nes) {

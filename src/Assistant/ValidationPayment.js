@@ -101,8 +101,8 @@ export function ValidationProducts(productDetails, changeImage) {
 export function ValidationUpdateProduct(OldValues, NewValues, changeImage) {
 
 
-    return NewValues?.name?.trim()?.normalize() === OldValues?.name?.normalize()
-        && NewValues?.description?.trim()?.normalize() === OldValues?.description?.normalize()
+    return NewValues?.name?.trim()?.toLowerCase()?.normalize() === OldValues?.name?.toLowerCase()?.normalize()
+        && NewValues?.description?.trim()?.toLowerCase()?.normalize() === OldValues?.description?.toLowerCase()?.normalize()
         && NewValues?.popular === OldValues?.popular
         && Number(NewValues?.prices) === Number(OldValues?.prices)
         && changeImage === ''
@@ -123,7 +123,7 @@ export function ChangeCode(CodeName) {
 // validation category
 export function ValidationCategory(NewValue, OldValue) {
 
-    return NewValue?.trim().normalize() === OldValue?.trim()?.normalize()
+    return NewValue?.trim()?.toLowerCase()?.normalize() === OldValue?.trim()?.toLowerCase()?.normalize()
 }
 
 
@@ -135,7 +135,8 @@ export function ValidationCartInfo(
     opentime,
     addressinfo,
     finishfood,
-    changeImage
+    changeImage,
+    foodType
 ) {
 
     return NewValue?.username?.toLowerCase()?.normalize() === OldValue?.username?.toLowerCase()?.normalize()
@@ -152,6 +153,7 @@ export function ValidationCartInfo(
         && addressinfo?.website?.normalize() === OldValue?.addressinfo?.website?.normalize()
         && Number(finishfood?.to) === Number(OldValue?.finishfood?.to)
         && Number(finishfood?.end) === Number(OldValue?.finishfood?.end)
+        && foodType?.normalize() === OldValue.foodtype?._id.normalize()
 
 
 }
@@ -180,7 +182,7 @@ export function ValidationUpdatedAccount(NewData, OldData) {
 
 
 // valdtion create caret
-export function ValidationCreateCart(productDetails, opentime, addressinfo, finishfood, changeImage) {
+export function ValidationCreateCart(productDetails, opentime, addressinfo, finishfood, changeImage,foodType) {
 
 
 
@@ -196,6 +198,7 @@ export function ValidationCreateCart(productDetails, opentime, addressinfo, fini
         && finishfood?.to >= 1
         && finishfood?.end >= 1
         && changeImage?.length >= Number(2)
+        && foodType?.length >= Number(5)
 
 }
 
@@ -209,11 +212,11 @@ export const ValidationUserAddress = (NewAddress, OldAddress) => {
 
 
 
-    return NewAddress?.addres?.trim()?.normalize() === OldAddress?.addres?.trim()?.normalize()
-        && NewAddress?.city?.trim()?.normalize() === OldAddress?.city?.trim()?.normalize()
-        && NewAddress?.homeNumber?.trim()?.normalize() === OldAddress?.homeNumber?.trim()?.normalize()
-        && NewAddress?.work?.trim()?.normalize() === OldAddress?.work?.trim()?.normalize()
-        && NewAddress?.zipcode?.trim()?.normalize() === OldAddress?.zipcode?.trim()?.normalize()
+    return NewAddress?.addres?.trim()?.toLowerCase()?.normalize() === OldAddress?.addres?.trim()?.toLowerCase()?.normalize()
+        && NewAddress?.city?.trim()?.toLowerCase()?.normalize() === OldAddress?.city?.trim()?.toLowerCase()?.normalize()
+        && NewAddress?.homeNumber?.trim()?.toLowerCase()?.normalize() === OldAddress?.homeNumber?.trim()?.toLowerCase()?.normalize()
+        && NewAddress?.work?.trim()?.toLowerCase()?.normalize() === OldAddress?.work?.trim()?.toLowerCase()?.normalize()
+        && NewAddress?.zipcode?.trim()?.toLowerCase()?.normalize() === OldAddress?.zipcode?.trim()?.toLowerCase()?.normalize()
 }
 
 
@@ -221,6 +224,6 @@ export const ValidationUserAddress = (NewAddress, OldAddress) => {
 // validation firstname and lastname change 
 export const ValidationUsername = (NewInfon, OldInfo) => {
 
-    return NewInfon?.firstname?.trim()?.normalize() === OldInfo?.firstname?.trim()?.normalize()
-        && NewInfon?.lastname?.trim()?.normalize() === OldInfo?.lastname?.trim()?.normalize()
+    return NewInfon?.firstname?.trim()?.toLowerCase()?.normalize() === OldInfo?.firstname?.trim()?.toLowerCase()?.normalize()
+        && NewInfon?.lastname?.trim()?.toLowerCase()?.normalize() === OldInfo?.lastname?.trim()?.toLowerCase()?.normalize()
 }
