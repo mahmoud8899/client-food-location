@@ -2,7 +2,7 @@ import * as ActionTypes from './Types'
 import axios from 'axios'
 import { ChangeCode } from '../../Assistant/ValidationPayment'
 import { Action_logout } from './Auth_Action'
-
+import { DeleteImageError } from './DeleteImageError'
 // Only admin - Private
 // Remove product from user
 // // delete /product/product/:id/
@@ -136,25 +136,32 @@ export const CreateNewProductAction = (user) => async (dispatch, getState) => {
                 Authorization: `Bearer ${token}`
             }
         })
-        dispatch({ type: ActionTypes.ADD_PRODUCT_CREATE_SUCCESS, payload: data })
+        return dispatch({ type: ActionTypes.ADD_PRODUCT_CREATE_SUCCESS, payload: data })
     } catch (error) {
 
         const message = error.response &&
-        error.response.data.message ?
-        error.response.data.message :
-        error.message
+            error.response.data.message ?
+            error.response.data.message :
+            error.message
 
-    if (message === 'token failed') {
+        if (message === 'token failed') {
 
-        dispatch(Action_logout())
+            dispatch(Action_logout())
+            // remove image uploading
+            return dispatch(DeleteImageError(user.image))
+            // return console.log('error token', user.image)
 
-    }
-    dispatch({
-        type: ActionTypes.ADD_PRODUCT_UPDATED_FAIL,
-        payload: message
+        }
 
-    })
-        
+        // remove image uploading
+        dispatch(DeleteImageError(user.image))
+        dispatch({
+            type: ActionTypes.ADD_PRODUCT_UPDATED_FAIL,
+            payload: message
+
+        })
+
+
     }
 }
 
@@ -170,6 +177,7 @@ export const ProductUpdatedAction = (user) => async (dispatch) => {
         const { data } = await axios.put(`/api/product/product/updated/${user._id}`, user)
         dispatch({ type: ActionTypes.ADD_PRODUCT_UPDATED_SUCCESS, payload: data })
     } catch (error) {
+        dispatch(DeleteImageError(user?.image))
         dispatch({
             type: ActionTypes.ADD_PRODUCT_UPDATED_FAIL,
             payload: error.response &&
@@ -243,12 +251,12 @@ export const PorudtsActionPaganationPublic = (user) => async (dispatch, getState
     if (nextRequestPage) {
 
         try {
-            dispatch({type : ActionTypes.ADD_PRODUCTS_PUBLIC_LOADING})
+            dispatch({ type: ActionTypes.ADD_PRODUCTS_PUBLIC_LOADING })
             const { data } = await axios.get(`/api/product/cartinfo/${user}?pageNumber=${nextRequestPage}`)
             dispatch(AppendProductsWithUserId(user, data.product))
             if (data?.pages <= 1) return dispatch(AppenNumberNextPages(user, null))
             const nextpage = data?.result?.next?.page > data?.pages ? null : data?.result?.next?.page
-           
+
             dispatch(AppenNumberNextPages(user, nextpage))
             return
 

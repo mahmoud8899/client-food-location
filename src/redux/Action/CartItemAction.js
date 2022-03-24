@@ -1,7 +1,7 @@
 import * as ActionTypes from './Types'
 import axios from 'axios'
 import { Action_logout, GetUserInfoAction } from './Auth_Action'
-
+import { DeleteImageError } from './DeleteImageError'
 
 
 // --------------------------------- Start pagantion scroll stores --------------------------------/
@@ -199,20 +199,20 @@ export const FreeDeliveryAction = (user) => async (dispatch) => {
 
 // comment.....
 // POST  // URL :    /api/cartingo/comment/user/id
-export const CartInfoIdRatingAction = (user,ChangeParams) => async (dispatch, getState) => {
+export const CartInfoIdRatingAction = (user, ChangeParams) => async (dispatch, getState) => {
     try {
 
         const { userLogin: { token } } = getState()
 
         dispatch({ type: ActionTypes.ADD_USER_RATING_LOADING })
-        const { data } = await axios.post(`/api/cartingo/comment/user/${user?._id}/`,
+        await axios.post(`/api/cartingo/comment/user/${user?._id}/`,
             user, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         })
 
-        dispatch({type : ActionTypes.ADD_USER_RATING_SUCCESS, payload : 'success'})
+        dispatch({ type: ActionTypes.ADD_USER_RATING_SUCCESS, payload: 'success' })
         dispatch(GetCartInfoIdAction(ChangeParams))
     } catch (error) {
 
@@ -281,6 +281,7 @@ export const UpdatedCartInfoAction = (user) => async (dispatch) => {
         dispatch({ type: ActionTypes.ADD_UPDATED_CARTINFO_SUCCESS, payload: data })
         dispatch(CartInfoActionResturan(user._id))
     } catch (error) {
+        dispatch(DeleteImageError(user?.image))
         dispatch({
             type: ActionTypes.ADD_UPDATED_CARTINFO_FAIL,
             payload: error.response &&
@@ -309,6 +310,8 @@ export const CreateCartAction = (user) => async (dispatch, getState) => {
         dispatch(GetUserInfoAction())
 
     } catch (error) {
+
+        dispatch(DeleteImageError(user?.image))
         const message = error.response &&
             error.response.data.message ?
             error.response.data.message :

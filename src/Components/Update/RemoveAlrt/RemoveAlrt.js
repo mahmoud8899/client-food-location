@@ -1,9 +1,7 @@
 import { Modal,Col,Row } from 'react-bootstrap'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ButtomClick from '../../Buttom/Buttom'
-import ImageScreen from '../../ImageScreen/ImageScreen'
 import Styles from '../StylesComponents/style'
-
+import { HiOutlineX  } from 'react-icons/hi'
 
 export default function RemoveAlrt(props) {
     const { show, setShow, HandleRemove, TextRemove } = props
@@ -26,11 +24,8 @@ export default function RemoveAlrt(props) {
                 <h1>
                     {TextRemove}
                 </h1>
-                <ImageScreen
-                    ImageIcon={MyOderImage.close}
-                    className='close-pp-pp-image'
-                    onClick={() => setShow({ value: false, object: '' })}
-                />
+                <HiOutlineX  className='close-pp-pp-image'    onClick={() => setShow({ value: false, object: '' })} />
+               
             </div>
 
 

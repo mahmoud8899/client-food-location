@@ -109,12 +109,12 @@
     margin-top: 1rem;
 }
  .Div-center{
-     text-align: center;
-     text-transform: capitalize;
-     font-size: 20px;
-     color: rgba(255, 59, 47, 0.52);
-     font-family: "Mochiy Pop P One", sans-serif;
-     margin-bottom: 3rem;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 20px;
+    color: rgba(255, 59, 47, 0.52);
+    margin-bottom: 3rem;
+    font-family: 'Heebo', sans-serif;
  }
 
 
@@ -572,9 +572,11 @@ margin-top: 1rem;
     text-transform: capitalize;
 }
 .modal-title-edit-category h1{
-    font-size: 16px;
+    padding: 0rem;
+    margin: 0rem;
     text-transform: capitalize;
-    font-family: system-ui;
+    font-size: 17px;
+    font-family: 'Heebo', sans-serif;
 }
 .form-class-category{
 

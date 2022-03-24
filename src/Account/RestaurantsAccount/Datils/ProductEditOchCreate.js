@@ -115,7 +115,7 @@ export default function ProductEditOchCreate(props) {
 
             if (changeImage?.length >= 1) {
                 // Updated image and delete old photo
-
+                  // create new product else updated product with image
                 return show?.object === '' ? dispatch(UploadingNewImageProduct(imageSave, productDetails, true))
                     : dispatch(UploadingNewImageProduct(imageSave, productDetails))
                 // console.log('add new image', imageSave, productDetails)
@@ -135,6 +135,7 @@ export default function ProductEditOchCreate(props) {
                 _id: productDetails?._id,
                 cartinfo: productDetails?.cartinfo,
             }
+            // updated product withut image....
             return dispatch(ProductUpdatedAction(ChekOutInput))
 
         } else {

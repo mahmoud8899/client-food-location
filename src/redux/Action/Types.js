@@ -3,7 +3,9 @@ export const SET_USER = 'SET_USER'
 export const KEY_USER = 'KEY_USER'
 export const KEY_TOKEN = 'KEY_TOKEN'
 
-
+// IMAGE
+export const ADD_IMAGE_LOADING = 'ADD_IMAGE_LOADING'
+export const ADD_IMAGE_FAIL = 'ADD_IMAGE_FAIL'
 
 // Products public 
 export const ADD_PRODUCTS_PUBLIC_LOADING = 'ADD_PRODUCTS_PUBLIC_LOADING'

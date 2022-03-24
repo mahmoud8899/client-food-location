@@ -300,13 +300,12 @@ color: white;
 }
 
 .font-edit{
-    
     color: black;
     padding: 0rem;
     margin: 0rem;
     text-transform: capitalize;
-    font-size: 17px;
-    font-family: system-ui;
+    font-size: 22px;
+    font-family: 'Heebo', sans-serif;
     
 }
 .loaction-bottom{
