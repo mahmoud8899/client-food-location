@@ -1,4 +1,14 @@
 /* font-family: 'Mochiy Pop P One', sans-serif; */
+
+.Searching-result-page{
+    position: absolute;
+    top: 3.5rem;
+    left: 1.3rem;
+    width: 90%;
+    z-index: 546446756756;
+   
+
+}
 .rowFexColo{
     border-bottom: 1px solid #eee;
     flex-wrap: wrap;
@@ -115,7 +125,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: #eee;
+    background: #ffb8b3;
     overflow: hidden;
     font-size: 10px;
     padding: 0.5rem;
@@ -124,12 +134,22 @@
     opacity: 0.8;
     box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 1px 3px 1px;
     text-transform: capitalize;
-    color: black;
+    color: white;
     font-weight: bold;
 
 }
 
-
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    color: #fec7c2;
+}
 
 
 

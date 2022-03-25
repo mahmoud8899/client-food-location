@@ -435,7 +435,24 @@
     width: 100%;
 }
 
+.Input-type-style.productdetials.text-searching{
+    text-align: center;
+    height: 35px;
+    border: 1px solid #ff9c97ba;
+    font-size: 14px;
+    transition: all 2s;
+}
 
+.Input-type-style.productdetials.text-searching-left{
+    text-align: left;
+    height: 35px;
+    border: 1px solid #ff9c97ba;
+    font-size: 14px;
+    transition: all 2s;
+}
+.Input-type-style.productdetials.text-searching::placeholder{
+    color: #ff9c97ba; 
+}
 .Input-type-style.hegith{
     height: 100px;
 }

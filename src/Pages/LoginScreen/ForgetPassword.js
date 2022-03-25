@@ -1,82 +1,94 @@
-import { Col, Container, Form, Row } from 'react-bootstrap'
-import Input from '../../Components/Input/Input'
+import { HandleError } from '../../Assistant/HandleError'
+import { Col, Container, Form, Row, Modal } from 'react-bootstrap'
 import ButtomClick from '../../Components/Buttom/Buttom'
-import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Fragment, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ChangePasswordForgetAction } from '../../redux/Action/Auth_Action'
 import { useDispatch, useSelector } from 'react-redux'
 import ScreenTitle from '../../Components/ScreenTitle/ScreenTitle'
-import ScreenAlrt from '../../Components/ScreenAlrt/ScreenAlrt'
-import './style.css'
-import { MyOderImage } from '../../Assistant/MyOrderImage'
 import { ValtionMe } from '../../Assistant/ValtionMe'
-import { HandleError } from '../../Assistant/HandleError'
-import {CloseScreen} from '../../Components/CloseScreen/CloseScreen'
-import  LoadingScreen  from '../../Components/LoadingScreen/LoadingScreen'
+import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen'
+import TheInputForm from '../../Components/TheInputForm/TheInputForm'
+import { RiCheckFill, RiLockPasswordLine } from 'react-icons/ri'
+import CodeError from '../../Components/CodeError/CodeError'
+import { BiShow } from 'react-icons/bi'
+import Styles from '../../Components/Update/StylesComponents/style'
+import './style.css'
+
+
+
+
+
+
+
+
 export default function ForgetPassword({ match }) {
 
 
+    // params id sand to server...
     const isToken = match.params.id
-    const history = useHistory()
+
     const dispatch = useDispatch()
-    const [routerLogin, setRouterLogin] = useState(null)
-    const [dataPost, setDataPost] = useState({
-        newPassword: '',
-        confirmPassword: ''
-    })
+
+    // input change password...
+    const [dataPost, setDataPost] = useState({ newPassword: '', confirmPassword: '' })
+
+    // input show password code.
     const [changeType, setChangeType] = useState(false)
+    // function show password
+    function ViewClick() {
+        return setChangeType(!changeType)
+    }
 
 
+
+
+    // event requrest user forget password....
     const userLogin = useSelector((state) => state.userLogin)
     const { loading, error, changepassword } = userLogin
-    const [timeError,setTimeError] = useState(false)
 
+    // error handle
+    const [handleError, setHandleError] = useState('')
+
+    // SUCCESSFULLY
+    const [successFully, setSuccessFully] = useState(false)
+
+
+
+    // redirect successfully 
     useEffect(() => {
+        if (changepassword === 'Change a password') {
 
-        if (!isToken) return history.push('/')
-
-        if (changepassword) {
-            return setRouterLogin('change Password')
+            return setSuccessFully(true)
         }
 
-        if(error){
-
-          
-
-            setTimeError(true)
-
-            setTimeout(()=>{
-                history.push('/')
-                setTimeError(false)
-                CloseScreen(dispatch)
-            },5000)
+        return () => {
+            setSuccessFully(false)
         }
 
-
-        return()=>{
-            setTimeError(false)
-            setRouterLogin('')
-        }
-
-
-    }, [isToken, changepassword, history,error,setTimeError,dispatch])
+    }, [changepassword])
 
 
 
 
 
 
+
+
+    // handel change Password.....
     const ChangePassword = (e) => {
         e.preventDefault()
+        setHandleError('')
 
         if (!ValtionMe(dataPost?.newPassword, 'isPassword') || !ValtionMe(dataPost?.confirmPassword, 'isPassword')) {
-            return alert('write new Password...')
+
+            return setHandleError('skriv nytt lösenord...')
         }
 
         if (dataPost?.newPassword !== dataPost?.confirmPassword) {
 
 
-            return alert('passwt is not match....')
+            return setHandleError('lösenordet stämmer inte....')
         }
 
 
@@ -86,28 +98,12 @@ export default function ForgetPassword({ match }) {
             _id: isToken,
             password: dataPost?.newPassword
         }
-        // console.log(user)
-        // console.log('pas',password)
 
         dispatch(ChangePasswordForgetAction(user))
-
-        // console.log(newPassword?.value, confirmPassword?.value)
     }
 
 
 
-    const ViewClick = () => {
-        setChangeType(!changeType)
-        // console.log('clcik', changeType)
-    }
-
-
-
-    // redirect
-    const PageHome = (e) =>{
-        e.preventDefault()
-        return history.push('/')
-    }
 
     return <Container fluid>
 
@@ -116,73 +112,143 @@ export default function ForgetPassword({ match }) {
             <Col xs={12} sm={10} md={6} lg={6}>
 
                 <Form onSubmit={(e) => ChangePassword(e)} className='change-password'>
-                    {loading ? <LoadingScreen /> :
-                        error ?
+                    <Fragment>
 
-                            <ScreenAlrt
-                                userCheck
-                                alertid={timeError}
-                                textName={HandleError(error)}
-                            />
-                            :
 
-                            routerLogin ?
-                                <div className="create_singUp" onClick={(e)=>PageHome(e)}>
-                                    Thank you, the password has been
-                                    changed. You can go to the
-                                    main page and log in
-                                    again
+                        <h1>Ändra ditt lösenord</h1>
+
+                        {handleError ?
+                            <div className='error-input-red add-bottom' >
+                                <CodeError error={handleError} />
+                            </div>
+                            : error ?
+                                <div className='error-input-red add-bottom' >
+                                    <CodeError error={HandleError(error)} />
                                 </div>
-                                :
+                                : loading &&
 
-                                <>
+                                <LoadingScreen />
 
-
-                                    <h1>change your Password</h1>
-
-                                    <Input
-
-                                        placeholder='Change password'
-                                        onChange={(e) => setDataPost({ ...dataPost, newPassword: e.target.value })}
-                                        value={dataPost?.newPassword}
-                                        onKeyPress={(e) => e.key === 'Enter' ? ChangePassword(e) : null}
-                                        className='Input-type-style'
-                                        ImageLog={MyOderImage.password}
-                                        ViewClick={ViewClick}
-                                        type={changeType ? 'text' : 'password'}
-                                        ImageView={dataPost?.newPassword?.length >= 1 ? 'true' : null}
-                                        validation={ValtionMe(dataPost?.newPassword, 'isPassword').toString()}
-
-                                    />
-
-                                    <Input
-                                        placeholder='Confirm password'
-                                        onChange={(e) => setDataPost({ ...dataPost, confirmPassword: e.target.value })}
-                                        value={dataPost?.confirmPassword}
-                                        className='Input-type-style'
-                                        validation={ValtionMe(dataPost?.confirmPassword, 'isPassword').toString()}
-                                        ViewClick={ViewClick}
-                                        type={changeType ? 'text' : 'password'}
-                                        ImageView={dataPost?.confirmPassword?.length >= 1 ? 'true' : null}
-                                        ImageLog={MyOderImage.password}
-                                        onKeyPress={(e) => e.key === 'Enter' ? ChangePassword(e) : null}
-                                    />
-                                    <div className='save-change'>
-                                        <ButtomClick
-                                            title='Save'
-                                            disabled={!ValtionMe(dataPost?.newPassword, 'isPassword') || !ValtionMe(dataPost?.confirmPassword, 'isPassword')}
-                                        />
-                                    </div>
+                        }
 
 
-                                </>
+                        <span className='selection-name'>ändra lösenord</span>
+                        <TheInputForm
+                            placeholder='ändra lösenord'
+                            onChange={(e) => setDataPost({ ...dataPost, newPassword: e.target.value })}
+                            value={dataPost?.newPassword}
+                            type={changeType ? 'text' : 'password'}
+                            autoComplete="username"
+                            FirstIcons={
+                                <Fragment>
+                                    <RiLockPasswordLine className='Icons-LEFT' />
+                                    {ValtionMe(dataPost?.newPassword, 'isPassword')
+                                        ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                    }
+                                    {dataPost?.newPassword?.length >= 1 && <BiShow className='Icons-LEFT-Show-password' onClick={ViewClick} />}
+                                </Fragment>
+                            }
+                            className='Input-type-style productdetials add-left-text'
+                        />
 
 
-                    }
+                        <span className='selection-name'>Bekräfta lösenord</span>
+                        <TheInputForm
+                            placeholder='Bekräfta lösenord'
+                            onChange={(e) => setDataPost({ ...dataPost, confirmPassword: e.target.value })}
+                            value={dataPost?.confirmPassword}
+                            type={changeType ? 'text' : 'password'}
+                            autoComplete="username"
+                            FirstIcons={
+                                <Fragment>
+                                    <RiLockPasswordLine className='Icons-LEFT' />
+                                    {ValtionMe(dataPost?.confirmPassword, 'isPassword')
+                                        ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                    }
+                                    {dataPost?.confirmPassword?.length >= 1 && <BiShow className='Icons-LEFT-Show-password' onClick={ViewClick} />}
+                                </Fragment>
+                            }
+                            className='Input-type-style productdetials add-left-text'
+                        />
 
+
+
+                        <div className='save-change'>
+                            <ButtomClick
+                                title='Save'
+                                onClick={ChangePassword}
+                                style={Styles.addCartcolor}
+                                disabled={!ValtionMe(dataPost?.newPassword, 'isPassword')
+                                    || !ValtionMe(dataPost?.confirmPassword, 'isPassword')}
+                            />
+                        </div>
+
+
+
+
+
+
+
+
+                    </Fragment>
                 </Form>
             </Col>
         </Row>
+
+        <Modal show={successFully} onHide={() => setSuccessFully(!successFully)} >
+            <Link className='add-padding-loaction' to={{ pathname: '/uppsala' }} >
+                <h1 className='font-edit'>lösenordet har ändrats</h1>
+                <span>Jag kan logga in härifrån eller gå till startsidan</span>
+
+                <div className='loading-loading'>
+                    <LoadingScreen />
+                </div>
+            </Link>
+        </Modal>
+
+
+
     </Container>
 }
 
+
+
+// {loading ?
+//     <LoadingScreen />
+//     : error ?
+
+//         <div className='error-input-red add-bottom' >
+//             <CodeError error={error} />
+//         </div>
+//         :
+
+//         routerLogin ?
+//             <div className="create_singUp" onClick={(e) => PageHome(e)}>
+//                 Tack, lösenordet har varit
+//                 ändrats. Du kan gå till
+//                 huvudsidan och logga in
+//                 om igen
+//             </div>
+//             :
+
+
+
+    // useEffect(() => {
+    //     if (!isToken) return history.push('/')
+    //     if (changepassword) {
+    //         return setRouterLogin('change Password')
+    //     }
+    //     if (error) {
+    //         setTimeError(true)
+    //         setTimeout(() => {
+    //             history.push('/')
+    //             setTimeError(false)
+    //             CloseScreen(dispatch)
+    //         }, 5000)
+    //     }
+    //     return () => {
+    //         setTimeError(false)
+    //         setRouterLogin('')
+    //     }
+    // }, [isToken, changepassword, history, error, setTimeError, dispatch])
+     // const [timeError, setTimeError] = useState(false)

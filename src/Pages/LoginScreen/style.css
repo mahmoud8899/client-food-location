@@ -12,7 +12,6 @@ login-margin-top-bottom   margin-top and bottom
     cursor: pointer;
 }
 .change-password{
-    background-color: #eee;
     margin-top: 5rem;
     padding: 3rem;
     border-radius: 0.5rem;
@@ -87,12 +86,18 @@ login-margin-top-bottom   margin-top and bottom
     opacity: 0.9;
     cursor: pointer;
 }
+.loading-loading{
+
+    text-align: center;
+    margin-top: 4rem;
+    cursor: pointer;
+}
 .handle-dev-image span
 {
-    font-size: 16px;
     text-transform: capitalize;
     color: white;
-    font-family: "Mochiy Pop P One", sans-serif;
+    font-family: Heebo, sans-serif;
+    font-size: 17px;
 }
 .close-image-error
 {
@@ -320,6 +325,12 @@ login-margin-top-bottom   margin-top and bottom
     font-size: 20px;
     color: #ff9c97;
 }
+.Icons-LEFT.halve-searching{
+
+  left: 2.5rem;
+  font-size: 17px;
+ 
+}
 
 .Icons-LEFT-right{
     position: absolute;
@@ -410,3 +421,11 @@ login-margin-top-bottom   margin-top and bottom
         font-size: 17px;
     }
 }
+
+@media only screen and (max-width: 390px) {
+    .Icons-LEFT.halve-searching{
+        display: none;
+    }
+}
+
+

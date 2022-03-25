@@ -23,26 +23,26 @@ export default function DriverNavBar(props) {
     // Start Home page
     const HomePage = (e) => {
         e.preventDefault()
-        return history.push('/driver/')
+        return history.push('/sw/driver/online/driver/')
     }
 
 
 
     const HomeProfilePage = (e) => {
         e.preventDefault()
-        return history.push('/driver/profile/')
+        return history.push('/sw/driver/online/driver/profile/')
     }
 
 
     const HomeCancelPage = (e) => {
         e.preventDefault()
-        return history.push('/driver/processing/')
+        return history.push('/sw/driver/online/driver/processing/')
     }
 
 
     const HomeMessageChat = (e) => {
         e.preventDefault()
-        return history.push('/driver/message/')
+        return history.push('/sw/driver/online/driver/message/')
     }
 
     return <Container fluid>

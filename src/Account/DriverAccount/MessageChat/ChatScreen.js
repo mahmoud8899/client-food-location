@@ -1,18 +1,17 @@
 import { useContext, useEffect, useState } from 'react'
 import { Col, Row, Container } from 'react-bootstrap'
 import Title from '../../../Components/ScreenTitle/ScreenTitle'
-import '../DriverScreen/style.css'
 import Styles from '../DriverScreen/style'
 import MessagesScreen from './MessagesScreen'
 import MessageInput from '../MessageChat/MessageInput'
 import DriverNavBar from '../DriverScreen/DriverNavBar'
 import { SocketContact } from '../../../Components/SocketScreen/SocketScreen'
 import MessageTopScreen from './MessageTopScreen'
-import axios from 'axios'
 import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen'
 import usex from '../../../Assistant/sound/sound.mp3'
-
+import axios from 'axios'
 import useSound from 'use-sound'
+import '../DriverScreen/style.css'
 export default function ChatScreen(props) {
 
 

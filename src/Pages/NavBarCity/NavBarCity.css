@@ -281,6 +281,11 @@ color: white;
  }
 .add-padding-loaction{
     padding: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}.add-padding-loaction:hover{
+    color: black;
 }
 
 .Add-nar-mig{

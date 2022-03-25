@@ -14,11 +14,14 @@ class-padding-style  this is padding
  }
 
  .close-pp-pp-image.ADD-REMOVE{
-     position: absolute;
-       right: 1rem;
-       width: 20px;
-       height: 20px;
-       padding: 1px;
+    position: absolute;
+    right: 0.5rem;
+    width: 15px;
+    height: 15px;
+    padding: 1px;
+ }
+ .xsssss{
+     background-color: #000;
  }
 
  .Searching-Products{

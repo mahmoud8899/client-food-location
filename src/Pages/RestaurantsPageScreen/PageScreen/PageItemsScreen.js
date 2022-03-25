@@ -72,7 +72,7 @@ export default function PageItemsScreen(props) {
     const search = (data) => {
         return data?.filter((item) =>
 
-            keys?.some((key) => item?.category[key]?.includes(searching))
+            keys?.some((key) => item?.category  ?  item?.category[key]?.includes(searching) : item[key]?.includes(searching)) 
             || keys?.some((key) => item[key]?.includes(searching))
 
         )

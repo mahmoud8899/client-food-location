@@ -1,20 +1,15 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
-import {  useEffect } from 'react'
 import { ABoutAction } from '../../redux/Action/About_action'
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen'
 import { useDispatch, useSelector } from 'react-redux'
 import ImageScreen from '../../Components/ImageScreen/ImageScreen'
-import './style.css'
 import { FirstNameRest } from '../../Assistant/Selection'
-
+import {  useEffect } from 'react'
+import './style.css'
 
 export default function ScreenAbout() {
 
-
-
-
-  
 
 
     const dispatch = useDispatch()

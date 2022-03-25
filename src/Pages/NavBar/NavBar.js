@@ -1,4 +1,3 @@
-import './NavBar.css'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, NavDropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,11 +10,14 @@ import { FirstNameRest } from '../../Assistant/Selection'
 import NavBarSearchingHome from '../../Components/Update/NavBarSearchingHome/NavBarSearchingHome'
 import { LogoUtUser } from '../../Components/CloseScreen/CloseScreen'
 import { TheProfile } from '../../Components/Update/Redirction/Redirction'
-const NavBar = () => {
+import './NavBar.css'
+
+const NavBar = (props) => {
 
 
 
     const history = useHistory()
+
     // user Info ....
     const userLogin = useSelector((state) => state?.userLogin)
     const { userInfo } = userLogin
@@ -49,6 +51,7 @@ const NavBar = () => {
 
 
     return <Container fluid >
+
         <Row className='justify-content-center rowFexColo'>
             <Col xs={4} sm={4} md={4} lg={4} className='testincode'>
                 <Link className="HoME_link_Home" to={{ pathname: '/uppsala/' }}>
@@ -57,7 +60,10 @@ const NavBar = () => {
             </Col>
             <Col xs={5} sm={3} md={3} lg={3} className='testincode'>
                 <div className='handel-navbar'>
-                    <NavBarSearchingHome />
+               
+                        <NavBarSearchingHome />
+           
+
                 </div>
 
             </Col>
@@ -83,8 +89,8 @@ const NavBar = () => {
                             style={Styles.dropdown}
                         >
 
-                            <NavDropdown.Item onClick={(e) => TheProfile(history ,userInfo?.cartinfo)}>
-                                
+                            <NavDropdown.Item onClick={(e) => TheProfile(history, userInfo?.cartinfo)}>
+
                                 <div className='flex-profile'>
                                     <span>My Profiel</span>
                                     <span className='font-fex'>{userInfo?.firstname} {userInfo?.lastname}</span>

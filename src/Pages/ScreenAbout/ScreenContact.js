@@ -1,26 +1,27 @@
 import Styles from './style'
 import { Container, Row, Col } from 'react-bootstrap'
-import Header from '../../Components/Header/Header'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import { useEffect } from 'react'
 import { ContactAction } from '../../redux/Action/contactAction'
 import { useDispatch, useSelector } from 'react-redux'
-import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen'
+
+import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
+import { ErrorServer } from '../../Assistant/TextError'
 const ScreenContact = () => {
 
 
 
 
     const allcontact = useSelector((state) => state.allcontact)
-    const { loading, contact } = allcontact
+    const { loading, contact, error } = allcontact
 
     const dispatch = useDispatch()
 
 
 
     useEffect(() => {
-        contact === null &&    dispatch(ContactAction())
-    }, [dispatch,contact])
+        contact === null && dispatch(ContactAction())
+    }, [dispatch, contact])
 
 
 
@@ -30,13 +31,8 @@ const ScreenContact = () => {
     return <Container  >
         <Title TextTitle='Contact us' />
 
+        <LoadingErrorHandle loading={loading} error={error} TextNotItems={ErrorServer}   >
 
-        <Header
-            Tital='Contact us'
-            linkName='Go to Home'
-            back='/'
-        />
-        {loading ? <LoadingScreen /> :
             <Row className='justify-content-center'>
                 <Col sm={12} xs={12} md={12} lg={12} >
                     <div style={Styles.row}>
@@ -85,7 +81,9 @@ const ScreenContact = () => {
                 </Col>
 
             </Row>
-        }
+        </LoadingErrorHandle>
+
+
 
     </Container>
 }

@@ -28,20 +28,20 @@ export const ConversionCheckOut = (conv) => {
 // navigation work
 export const RouterWork = (history) => {
 
-    return history.push(`/sw/${FirstNameRest}/work`)
+    return history.push(`/sw/mig/${FirstNameRest}/work`)
 }
 
 // navigation canact
 export const ContactPage = (history) => {
 
-    return history.push(`/sw/${FirstNameRest}/contact`)
+    return history.push(`/sw/mig/${FirstNameRest}/contact`)
 }
 
 
 // Navigation About ...
 export const AboutPage = (history) => {
 
-    return history.push(`/sw/${FirstNameRest}/about`)
+    return history.push(`/sw/mig/${FirstNameRest}/about`)
 }
 
 

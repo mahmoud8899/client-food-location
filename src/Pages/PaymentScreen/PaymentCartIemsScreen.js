@@ -7,8 +7,7 @@ import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRest
 import { Conversion } from '../../Components/Update/Conversion/Conversion'
 import AddOpenComponent from '../../Components/Update/AddOpenComponent/AddOpenComponent'
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen'
-import ScreenAlrt from '../../Components/ScreenAlrt/ScreenAlrt'
-import {SliceName} from '../../Assistant/Slice'
+import { SliceName } from '../../Assistant/Slice'
 import { Col } from 'react-bootstrap'
 import './PaymentScreen.css'
 
@@ -36,17 +35,11 @@ export default function PaymentCartIemsScreen(props) {
         <Col xs={12} ms={12} md={12} lg={12} >
 
             <h1 className='Delivery-method-and-time'>
-            Valda artiklar
+                Valda artiklar
             </h1>
             {props?.loading ? <LoadingScreen />
                 : filterCartProduct?.length === 0
-                    ? <ScreenAlrt
-                        textName='Det finns inga saker du kan begära, du kommer att omdirigeras till huvudsidan'
-                        userCheck
-                        alertid
-                        PathName={Conversion(props?.cartinfo)}
-
-                    />
+                    ? <h1> empty </h1>
                     : filterCartProduct?.map((ca, Index) => (
                         <div className='NOTpadding'
                             key={Index}
@@ -71,7 +64,7 @@ export default function PaymentCartIemsScreen(props) {
                                         </div>
                                     </div>
                                     <div className='items-name-first-des color-last-items'>
-                                        {SliceName(ca?.description, 40)  }
+                                        {SliceName(ca?.description, 40)}
                                     </div>
                                     <div style={Styles.colorcourrent} className='prics-font'>
                                         kr {CollectNumber(ca?.qty, ca?.prices)}

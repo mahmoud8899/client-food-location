@@ -1,19 +1,16 @@
-
-import React from 'react'
-import { Container, Col, Row, Image } from 'react-bootstrap'
-import Styles from './style'
+import { Container, Col, Row } from 'react-bootstrap'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
-import './Footer.css'
 import { AiOutlineApple } from 'react-icons/ai'
 import { useHistory } from 'react-router-dom'
 import { FirstNameRest } from '../../Assistant/Selection'
-import {
-    RouterWork,
-    ContactPage,
-    AboutPage,
-} from '../../Components/Update/Conversion/Conversion'
+import { RouterWork, ContactPage, AboutPage, } from '../../Components/Update/Conversion/Conversion'
+import ImageScreen from '../../Components/ImageScreen/ImageScreen'
+import './Footer.css'
+import Styles from './style'
+import React from 'react'
 
-const Footer = () => {
+
+export default function Footer() {
 
 
     const history = useHistory()
@@ -52,7 +49,7 @@ const Footer = () => {
 
                         <div style={Styles.test} >
                             <div style={Styles.app}>
-                                <Image src={MyOderImage.android} style={Styles.mat} />
+                                <ImageScreen ImageIcon={MyOderImage.android} style={Styles.mat} />
                                 <div style={Styles.textflex}>
                                     <span>Download on The</span>
                                     <span>Apple Store</span>
@@ -128,14 +125,14 @@ const Footer = () => {
 
                         <div style={Styles.last}>
                             <div style={Styles.lastbox}>
-                                <Image src={MyOderImage.face} style={Styles.image} alt={MyOderImage.face} />
+                                <ImageScreen ImageIcon={MyOderImage.face} style={Styles.image} />
                             </div>
                             <div style={Styles.lastbox}>
-                                <Image src={MyOderImage.instagram} style={Styles.image} alt={MyOderImage.instagram} />
+                                <ImageScreen ImageIcon={MyOderImage.instagram} style={Styles.image} />
                             </div>
 
                             <div style={Styles.lastbox}>
-                                <Image src={MyOderImage.twitter} style={Styles.image} alt={MyOderImage.twitter} />
+                                <ImageScreen ImageIcon={MyOderImage.twitter} style={Styles.image} />
                             </div>
 
                         </div>
@@ -151,7 +148,6 @@ const Footer = () => {
 
 
 
-export default Footer
 
 
 

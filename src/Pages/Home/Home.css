@@ -41,21 +41,20 @@ justify-content: flex-start
      font-weight: bold;
      text-decoration: none;
    
-}.list-image-close:hover{
+}
+.list-image-close:hover{
  color: white;
+}
+.postion-abs{
+    position: absolute;
+    z-index: 434334;
 }
 .result-col{
   
-    background-color: white;
-    margin-top: 0.3rem;
-    border-radius: 0.5rem;
-    position: absolute;
     z-index: 44444444;
-    background: white; 
+    background: white;
     border-radius: 0.4rem;
-	box-shadow: 1px 3px 17px rgba(0, 0, 0, 0.2)  ; 
-	-webkit-box-shadow: 1px 3px 17px rgba(0, 0, 0, 0.2)  ; 
-	-moz-box-shadow: 1px 3px 17px rgba(0, 0, 0, 0.2)  ; 
+    box-shadow: 0rem 0rem 0rem 0.1rem rebeccapurple;
 }
 
 
@@ -67,16 +66,24 @@ justify-content: flex-start
     flex-wrap: wrap;
     border-top: 1px solid #eee;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 1rem;
+    text-decoration: none;
+    color: black;
     
    
 }
 .result-image{
     width: 60px;
     height: 60px;
-    
     object-fit: cover;
-
+}
+.Driver-pri{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.left-rating{
+    margin-left: 0.4rem;
 }
 .rigth-result{
     margin-left: 0.5rem;
@@ -86,9 +93,12 @@ justify-content: flex-start
     font-size: 13px;
 }
 .rigth-result-first{
-    color: black;
-}.rigth-result-last{
-    color: rgb(106, 99, 99);
+    font-family: 'M PLUS 1', sans-serif;
+    font-size: 14px;
+}
+.rigth-result-last{
+    opacity: 0.6;
+    font-size: 13px;
 }
 
 

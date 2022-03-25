@@ -1,12 +1,11 @@
 import { Col, Image, Row, Container } from 'react-bootstrap'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import Title from '../../../Components/ScreenTitle/ScreenTitle'
-import DriverNavBar from './DriverNavBar'
-import Styles from './style'
 import { useState, useEffect, useContext } from 'react'
 import { SocketContact } from '../../../Components/SocketScreen/SocketScreen'
 import { useHistory } from 'react-router-dom'
-import SocketScreen from '../../../Components/SocketScreen/SocketScreen'
+import DriverNavBar from './DriverNavBar'
+import Styles from './style'
 
 
 export default function DriverItemsScreen() {
@@ -18,29 +17,26 @@ export default function DriverItemsScreen() {
     const history = useHistory()
 
 
-   
-
-
-
 
 
     const [availableOrder, setAvailableOrder] = useState([])
     // who is Online Users 
     useEffect(() => {
 
-        if(!userInfo?.username){
+        if (!userInfo?.firstname) {
 
 
             return history.push('/')
-        }else if (socket) {
+        } else if (socket) {
 
 
             socket.emit('confirm', 'testing')
-            
+
             socket.on('available', (data) => {
 
-             
-                setAvailableOrder(data.order)
+                console.log(data)
+
+                // setAvailableOrder(data.order)
             })
 
         }
@@ -48,11 +44,11 @@ export default function DriverItemsScreen() {
 
 
 
-            return () => {
-                setAvailableOrder([])
-            }
+        // return () => {
+        //     setAvailableOrder([])
+        // }
 
-        }, [socket, setAvailableOrder, history,userInfo?.username])
+    }, [socket, setAvailableOrder, history, userInfo?.firstname])
 
 
 
@@ -88,8 +84,7 @@ export default function DriverItemsScreen() {
 
 
 
-    return <SocketScreen>
-       <Container fluid>
+    return <Container fluid>
 
         <Title TextTitle='Driver Live' />
         <Row className='justify-content-center'>
@@ -224,7 +219,7 @@ export default function DriverItemsScreen() {
             </Col>
         </Row>
     </Container>
-    </SocketScreen>
+
 }
 
 

@@ -3,15 +3,16 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Container, Row, Col } from 'react-bootstrap'
 import { FirstNameRest } from '../../Assistant/Selection'
 import NavBarCity from '../NavBarCity/NavBarCity'
-import {  FatchButik, FoodTypesAction, FreeDeliveryAction, NewRestaurantsAction } from '../../redux/Action/CartItemAction'
+import { FatchButik, FoodTypesAction, FreeDeliveryAction, NewRestaurantsAction } from '../../redux/Action/CartItemAction'
 import RestrangeItems from './RestrangeItems/RestrangeItems'
 import LoadingErrorHandld from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import TimeContext from '../../Components/Update/UseContext/TimeContext'
-import {ErrorServer ,TextButiker, Textrestaurant,Textfree ,TextCategory} from '../../Assistant/TextError'
+import { ErrorServer, TextButiker, Textrestaurant, Textfree, TextCategory } from '../../Assistant/TextError'
 import CategoryScreen from './CategoryScreen/CategoryScreen'
 import CarouselItems from './Carousel/Carousel'
 import { useEffect } from 'react'
 import './Home.css'
+import SearchingResultHome from '../../Components/Update/NavBarSearchingHome/SearchingResultHome'
 
 
 
@@ -25,7 +26,7 @@ export default function HomeScreen(props) {
 
 
     // city name
-     const LocationPath = match.params.id
+    const LocationPath = match.params.id
 
     const dispatch = useDispatch()
 
@@ -36,19 +37,19 @@ export default function HomeScreen(props) {
 
     // get all restrange and stores....
     const PageHomeRestrange = useSelector((state) => state?.PageHomeRestrange)
-    const { loading, error,  stores } = PageHomeRestrange
+    const { loading, error, stores } = PageHomeRestrange
 
 
     // get free delivery from restrest and stores
     const pageHomeFreeDelivery = useSelector((state) => state?.pageHomeFreeDelivery)
     const { loading: loadingFreedelivery, freedelivery, error: errorFreedelivery } = pageHomeFreeDelivery
 
-     // category all 
+    // category all 
     const pageHomeCategory = useSelector((state) => state?.pageHomeCategory)
     const { loading: loadingCategory, category, error: errorCategory } = pageHomeCategory
 
 
- 
+
 
 
     // get all restrange
@@ -60,42 +61,42 @@ export default function HomeScreen(props) {
 
 
 
-    
-    }, [  LocationPath, dispatch,newRestaurant?.length  ])
+
+    }, [LocationPath, dispatch, newRestaurant?.length])
 
 
     // get all butiker
-    useEffect(()=>{
+    useEffect(() => {
         stores?.length === Number(0) && dispatch(FatchButik({
             city: LocationPath,
             productType: "butiker"
         }))
 
-       
-
-    },[stores?.length,LocationPath,dispatch])
 
 
-
-        // free delivery
-        useEffect(()=>{
-            
-            freedelivery?.length === Number(0) && dispatch(FreeDeliveryAction(LocationPath))
-    
-        },[LocationPath,dispatch,freedelivery?.length])
+    }, [stores?.length, LocationPath, dispatch])
 
 
 
+    // free delivery
+    useEffect(() => {
+
+        freedelivery?.length === Number(0) && dispatch(FreeDeliveryAction(LocationPath))
+
+    }, [LocationPath, dispatch, freedelivery?.length])
 
 
-        // category
-        useEffect(()=>{
-            
-            category.length === Number(0) && dispatch(FoodTypesAction())
-    
-        },[dispatch,category.length])
 
-       
+
+
+    // category
+    useEffect(() => {
+
+        category.length === Number(0) && dispatch(FoodTypesAction())
+
+    }, [dispatch, category.length])
+
+
 
 
 
@@ -111,53 +112,62 @@ export default function HomeScreen(props) {
 
 
 
- 
+
 
     return <TimeContext>
-      <Container fluid>
-        <Title TextTitle={FirstNameRest} />
-        <div className='margin-top-like'>
-            <NavBarCity ClassNameHOMEactive />
-        </div>
+        <Container fluid>
+            <Title TextTitle={FirstNameRest} />
+
+                    <SearchingResultHome />
+  
+
+            <div className='margin-top-like'>
+                <NavBarCity ClassNameHOMEactive />
+            </div>
 
 
-        <Row className='justify-content-center'>
-
-            <Col xs={12} sm={12} md={11} lg={11}>
-
-                <LoadingErrorHandld  loading={loadingnewRestaurant} error={errornewRestaurant} TextNotItems={ErrorServer} >
-                    <CarouselItems     home={newRestaurant}   />
-                    <RestrangeItems  home={newRestaurant} Title={Textrestaurant} newRest/>
-                </LoadingErrorHandld>
-
-                 <LoadingErrorHandld  loading={loading} error={error}  TextNotItems={ErrorServer} >
-                     <RestrangeItems  home={stores} Title={TextButiker}  />
-                 </LoadingErrorHandld>
+            <Row className='justify-content-center'>
 
 
-                 
 
 
-                 <LoadingErrorHandld  loading={loadingFreedelivery} error={errorFreedelivery}  TextNotItems={ErrorServer} >
-                     <RestrangeItems  home={freedelivery} Title={Textfree}  />
-                 </LoadingErrorHandld>
-
-                 <LoadingErrorHandld loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer}>
-                    <CategoryScreen category={category} Title={TextCategory} />
-                </LoadingErrorHandld>
+                <Col xs={12} sm={12} md={11} lg={11}>
 
 
-            </Col>
 
-        </Row>
+                    <LoadingErrorHandld loading={loadingnewRestaurant} error={errornewRestaurant} TextNotItems={ErrorServer} >
+                        <CarouselItems home={newRestaurant} />
+                        <RestrangeItems home={newRestaurant} Title={Textrestaurant} newRest />
+                    </LoadingErrorHandld>
+
+                    <LoadingErrorHandld loading={loading} error={error} TextNotItems={ErrorServer} >
+                        <RestrangeItems home={stores} Title={TextButiker} />
+                    </LoadingErrorHandld>
 
 
 
 
 
+                    <LoadingErrorHandld loading={loadingFreedelivery} error={errorFreedelivery} TextNotItems={ErrorServer} >
+                        <RestrangeItems home={freedelivery} Title={Textfree} />
+                    </LoadingErrorHandld>
 
-    </Container>
-    </TimeContext>   
+                    <LoadingErrorHandld loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer}>
+                        <CategoryScreen category={category} Title={TextCategory} />
+                    </LoadingErrorHandld>
+
+
+                </Col>
+
+            </Row>
+
+
+
+
+
+
+        </Container>
+    </TimeContext>
 
 
 

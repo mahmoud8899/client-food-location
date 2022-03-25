@@ -25,12 +25,12 @@ const DriverProfile = (props) => {
 
     useEffect(()=>{
 
-        if(!userInfo?.username){
+        if(!userInfo?.firstname){
 
             return history.push('/')
         }
 
-    },[userInfo,history])
+    },[userInfo?.firstname,history])
 
 
 
