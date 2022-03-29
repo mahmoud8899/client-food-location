@@ -1,19 +1,20 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
-import { useEffect, useState } from 'react'
 import CartItemsProducts from './Datils/CartItemsProducts'
 import { productpaginationAction } from '../../redux/Action/Product_Action'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductEditOchCreate from './Datils/ProductEditOchCreate'
 import { TheClearing } from '../../Components/CloseScreen/CloseScreen'
-import ProductsNavBarSearching from './Datils/ProductsNavBarSearching'
-import UserName from './Datils/UserName'
 import { FetchCategoryUser } from '../../redux/Action/Category_Action'
-import { PageTextEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
+import { PageTextEmpty  } from '../../Components/Update/PageEmpty/PageEmpty'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import { ErrorServer,TextProduct } from '../../Assistant/TextError'
+import { ErrorServer, TextProduct,IconText ,PlaceholderProduct } from '../../Assistant/TextError'
+import { useEffect, useState } from 'react'
+import {BiCloudUpload}  from 'react-icons/bi'
 import './style.css'
+import UserName from './Datils/UserName'
+import NavBarSearchingTopAll from '../../Components/Update/NavBarSearchingTopAll/NavBarSearchingTopAll'
 
 
 export default function RestaurantsProductScreen(props) {
@@ -70,9 +71,9 @@ export default function RestaurantsProductScreen(props) {
 
 
 
-    
-  
-  
+
+
+
 
     // get all category to restrant
     useEffect(() => {
@@ -80,7 +81,7 @@ export default function RestaurantsProductScreen(props) {
         if (userInfo?.restaurantid) {
 
 
-            return products?.length === Number(0) &&  userInfo?.cartinfo
+            return products?.length === Number(0) && userInfo?.cartinfo
                 && ListCategoryUX?.length === 0 && dispatch(FetchCategoryUser())
         } else {
             return history.push('/uppsala/')
@@ -93,7 +94,7 @@ export default function RestaurantsProductScreen(props) {
         ListCategoryUX,
         history,
         products,
-        
+
 
     ])
 
@@ -137,7 +138,7 @@ export default function RestaurantsProductScreen(props) {
 
 
 
-    
+
 
 
 
@@ -173,7 +174,15 @@ export default function RestaurantsProductScreen(props) {
                     {ListCategoryUX?.length !== 0
                         && ListCategoryUX !== 'Empty'
                         && userInfo?.cartinfo &&
-                        <ProductsNavBarSearching setShow={setShow} setQuery={setQuery} />
+                        <NavBarSearchingTopAll
+                        onClick={(e) => setShow({ value: true, object: '' })}
+                            setQuery={setQuery}
+                            query={query}
+                            Icons={BiCloudUpload}
+                            TextIcons={IconText}
+                            Placeholder={PlaceholderProduct}
+                            IconStyle
+                        />
                     }
 
 
@@ -197,7 +206,7 @@ export default function RestaurantsProductScreen(props) {
 
                     {show?.value &&
 
-             
+
                         <ProductEditOchCreate
                             show={show}
                             setShow={setShow}

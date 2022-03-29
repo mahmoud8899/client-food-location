@@ -34,8 +34,10 @@ import HomeDriverProfile from './Account/DriverAccount/DriverProfile/HomeDriverP
 import HomeDriverMessage from './Account/DriverAccount/MessageChat/HomeDriverMessage'
 import HomeCancelDriver from './Account/DriverAccount/DriverScreen/HomeCancelDriver'
 import SearchingHome from './Components/Update/UseContext/SearchingHome'
+// import HomePage from './Pages/SomethingFail/SomethingFail'
 import NavBar from './Pages/NavBar/NavBar'
 import Testing from './test'
+import SearchingPage from './Pages/SearchingPage/SearchingPage'
 
 
 export default function App() {
@@ -55,64 +57,32 @@ export default function App() {
     <SearchingResult>
       <FilterRestarangeProduct>
         <FilterCategoryScreen>
-          <SearchingHome>
+          <SearchingHome >
             <BrowserRouter>
 
-
-              <NavBar />
-
-
-              <Route path="/" component={LocationScreen} exact />
-              <Route path="/:id/" component={HomeScreen} exact />
-              <Route path='/:id/:id/:id/' component={RestaurantsPageProductsScreen} exact />
+         
+                <NavBar />
 
 
-              <Route path="/sw/password/changepassword/:id" component={ForgetPassword} exact />
-              <Route path="/sw/order/shipping/:id/" component={Order} exact />
+                <Route path="/" component={LocationScreen} exact />
+                <Route path="/:id/" component={HomeScreen} exact />
+                <Route path='/:id/:id/:id/' component={RestaurantsPageProductsScreen} exact />
 
 
-              <Route path="/test/test/" component={Testing} exact />
-
-              <Route path={`/sw/mig/${FirstNameRest}/work/`} component={ScreenWork} exact />
-              <Route path={`/sw/mig/${FirstNameRest}/contact/`} component={ScreenContact} exact />
-              <Route path={`/sw/mig/${FirstNameRest}/about/`} component={ScreenAbout} exact />
-              <Route path={`/sw/mig/${FirstNameRest}/driver/`} component={DriverFormScreen} exact />
-
-              <Route path="/sw/personal/like/" component={ScreenLike} exact />
-
-              <Route path="/:id/restaurant/:id/checkout/" component={CheckOutPaymentScreen} exact />
+                <Route path="/sw/password/changepassword/:id" component={ForgetPassword} exact />
+                <Route path="/sw/order/shipping/:id/" component={Order} exact />
 
 
+                <Route path="/test/test/" component={Testing} exact />
 
+                <Route path={`/sw/mig/${FirstNameRest}/work/`} component={ScreenWork} exact />
+                <Route path={`/sw/mig/${FirstNameRest}/contact/`} component={ScreenContact} exact />
+                <Route path={`/sw/mig/${FirstNameRest}/about/`} component={ScreenAbout} exact />
+                <Route path={`/sw/mig/${FirstNameRest}/driver/`} component={DriverFormScreen} exact />
 
+                <Route path="/sw/personal/like/" component={ScreenLike} exact />
 
-
-
-
-
-
-              <Route path='/sw/driver/online/driver/' component={HomeDriver} exact />
-              <Route path='/sw/driver/online/driver/profile/' component={HomeDriverProfile} exact />
-              <Route path='/sw/driver/online/driver/processing/' component={HomeCancelDriver} exact />
-              <Route path='/sw/driver/online/driver/message/' component={HomeDriverMessage} exact />
-
-
-
-
-
-              <Route path='/sw/restaurants/admin/notification/' component={RestaurantsHomeScreen} exact />
-              <Route path='/sw/restaurants/admin/order/' component={RestaurantsOrderScreen} exact />
-              <Route path='/sw/restaurants/admin/product/' component={RestaurantsProductScreen} exact />
-              <Route path='/sw/restaurants/admin/category/' component={RestaurantsCategoryScreen} exact />
-              <Route path='/sw/restaurants/admin/profile/' component={RestaurantsProfilScreen} exact />
-
-
-
-              <Route path="/sw/fex/profil/personal/" component={UserProfileScreen} exact />
-              <Route path="/sw/fex/profil/payment/" component={UserPaymentScreen} exact />
-              <Route path="/sw/fex/profil/address/" component={UserAddresScreen} exact />
-              <Route path="/sw/fex/profil/orders/" component={UserOrdersScreen} exact />
-              <Route path="/sw/fex/profil/settings/" component={UserSettingsScreen} exact />
+                <Route path="/:id/restaurant/:id/checkout/" component={CheckOutPaymentScreen} exact />
 
 
 
@@ -123,14 +93,37 @@ export default function App() {
 
 
 
+                <Route path='/sw/driver/online/driver/' component={HomeDriver} exact />
+                <Route path='/sw/driver/online/driver/profile/' component={HomeDriverProfile} exact />
+                <Route path='/sw/driver/online/driver/processing/' component={HomeCancelDriver} exact />
+                <Route path='/sw/driver/online/driver/message/' component={HomeDriverMessage} exact />
 
 
 
-              <Route path='/:id/:id/' component={VisaProducts} exact />
+
+
+                <Route path='/sw/restaurants/admin/notification/' component={RestaurantsHomeScreen} exact />
+                <Route path='/sw/restaurants/admin/order/' component={RestaurantsOrderScreen} exact />
+                <Route path='/sw/restaurants/admin/product/' component={RestaurantsProductScreen} exact />
+                <Route path='/sw/restaurants/admin/category/' component={RestaurantsCategoryScreen} exact />
+                <Route path='/sw/restaurants/admin/profile/' component={RestaurantsProfilScreen} exact />
 
 
 
-              <Footer />
+                <Route path="/sw/fex/profil/personal/" component={UserProfileScreen} exact />
+                <Route path="/sw/fex/profil/payment/" component={UserPaymentScreen} exact />
+                <Route path="/sw/fex/profil/address/" component={UserAddresScreen} exact />
+                <Route path="/sw/fex/profil/orders/" component={UserOrdersScreen} exact />
+                <Route path="/sw/fex/profil/settings/" component={UserSettingsScreen} exact />
+
+                <Route path='/:id/:id/' component={VisaProducts} exact />
+
+                <Route path='/sw/filter/result/:id/' component={SearchingPage} exact />                
+             
+   
+                <Footer />
+
+       
 
 
             </BrowserRouter>
@@ -149,3 +142,5 @@ export default function App() {
 
 }
 
+// <Route path="*" exact={true} component={HomePage} />
+//  

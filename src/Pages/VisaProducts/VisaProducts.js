@@ -7,7 +7,7 @@ import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/Loadi
 import FilterProducts from '../../Components/Update/FilterProducts/FilterProducts'
 import { FilterCategory } from '../../Components/Update/UseContext/FilterCategoryScreen'
 import VisaProductItems from './VisaProductsItems'
-import { ErrorServer } from '../../Assistant/TextError'
+import { ErrorServer ,LoadingSkeletonHomeCart} from '../../Assistant/TextError'
 import { useContext, useEffect } from 'react'
 import './VisaProducts.css'
 export default function VisaProducts(props) {
@@ -21,7 +21,10 @@ export default function VisaProducts(props) {
 
 
 
-    const { match } = props
+    const { match, location } = props
+
+
+
     // restaurant or butik
     const IdMatch = match?.params?.id
     const city = match?.url?.slice(1, 4) === 'upp' ? 'uppsala' : 'gothenburg'
@@ -29,6 +32,7 @@ export default function VisaProducts(props) {
 
     // filter category...
     const { setAddCart } = useContext(FilterCategory)
+
 
     const dispatch = useDispatch()
 
@@ -49,6 +53,7 @@ export default function VisaProducts(props) {
     //  [3] set searching category    class name setAddCart
     useEffect(() => {
 
+
         if (IdMatch === 'butiker') {
 
             return stores?.length === Number(0) && dispatch(FatchButik({
@@ -64,6 +69,9 @@ export default function VisaProducts(props) {
             return IdMatch !== 'restaurants' && setAddCart([IdMatch])
         }
 
+
+
+
         // eslint-disable-next-line
 
 
@@ -75,27 +83,30 @@ export default function VisaProducts(props) {
 
 
 
+
+
+
     return <Container fluid>
 
         <Title TextTitle={match?.params?.id} />
+
         <div className='margin-top-category'>
             <NavBarCity ClassNameCategory={IdMatch === 'restaurants'} ClassNameLike={IdMatch === 'butiker'} />
         </div>
+
+
         <Row className='justify-content-center'>
             <Col xs={12} sm={12} md={11} lg={11} className='extra-padding-dddd'>
 
                 <div className='visaProduct-css-flex'>
                     <div className='Title-name-products-text'>
-
                         <h1>{match?.params?.id}</h1>
-
-
                     </div>
-                    <FilterProducts />
+
+                 <FilterProducts location={location?.search} />
+
                 </div>
-
-
-                <LoadingErrorHandle loading={loading} error={error} TextNotItems={ErrorServer} >
+                <LoadingErrorHandle loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
                     <Row>
                         <VisaProductItems
                             home={IdMatch === 'butiker' ? stores : home}
@@ -104,9 +115,7 @@ export default function VisaProducts(props) {
                             IdMatch={IdMatch}
                         />
                     </Row>
-
                 </LoadingErrorHandle>
-
 
 
             </Col>
@@ -116,3 +125,5 @@ export default function VisaProducts(props) {
     </Container>
 
 }
+
+

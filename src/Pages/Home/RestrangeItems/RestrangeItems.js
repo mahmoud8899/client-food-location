@@ -1,16 +1,17 @@
 import { Row, Col } from 'react-bootstrap'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
-import Styles from '../../../Components/Update/StylesComponents/style'
-import { Link } from 'react-router-dom'
-import Rating from '../../../Components/Rating/Rating'
-import { Conversion } from '../../../Components/Update/Conversion/Conversion'
-import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { SettingsSlider } from '../../../Assistant/SettingsSlider'
-import { TheTimeOppenProduct } from '../../../Assistant/TheTimeOppenProduct'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import '../Home.css'
+import CartItemsScreen from '../../CartItemsScreen/CartItemsScreen'
+// import { TheTimeOppenProduct } from '../../../Assistant/TheTimeOppenProduct'
+// import { MyOderImage } from '../../../Assistant/MyOrderImage'
+// import Styles from '../../../Components/Update/StylesComponents/style'
+// import { Link } from 'react-router-dom'
+// import Rating from '../../../Components/Rating/Rating'
+// import { Conversion } from '../../../Components/Update/Conversion/Conversion'
+// import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 
 export default function RestrangeItems(props) {
 
@@ -24,95 +25,17 @@ export default function RestrangeItems(props) {
 
                 <h1>{Title}</h1>
 
-             <Slider {...SettingsSlider}>
+                <Slider {...SettingsSlider}>
 
-                    {home?.map((ho, Index) => (
+                    {home?.map((item, Index) => (
 
-
-                        <div key={Index} className='box-Slider-Show-home'>
-                            <div className='box-Slider-Show-home-children'>
-                                <div className='list-image'>
-                                    <Link to={{ pathname: Conversion(ho) }}>
-                                        {ho?.image ? <ImageScreen ImageIcon={ho?.image}
-                                            className='image-res'
-                                        /> : <ImageScreen ImageIcon={MyOderImage.clock}
-                                            className='image-res'
-                                        />}
-                                    </Link>
-
-
-                                    {newRest && <div className='new-restrange'>
-                                        new
-                                    </div>
-                                    }
-
-                                    {TheTimeOppenProduct(ho?.opentime)?.toString() === 'true' ?
-
-                                        <></>
-                                        :
-                                        <Link className='list-image-close' to={{ pathname: Conversion(ho) }} >
-                                            stängd
-                                        </Link>
-
-                                    }
-
-
-                                </div>
-
-
-
-                                <div className='medi-size'>
-
-
-                                    <div className='title'>
-                                        <div className='map'>
-                                            <span className='Font-goo' >{ho?.username}</span>
-                                            <span className='font-size'>{ho?.addressinfo?.city}</span>
-
-                                        </div>
-
-
-
-                                    </div>
-
-
-                                    <div className='title-bottom' style={Styles.buttom}>
-
-
-
-                                        <ImageScreen
-                                            ImageIcon={MyOderImage.delivery}
-                                            className='driver-image'
-                                        />
-
-                                        <div className='title-bottom-price'>
-                                            SEK0.00
-                                        </div>
-                                        <div className='title-bottom-price dispay'>
-                                            <Rating value={ho?.rating} text={ho?.numReviews} />
-                                        </div>
-
-                                        <div className='driver'>
-                                            <div >{ho?.finishfood?.to}-{ho?.finishfood?.to}</div>
-                                            <div className='class-last'> min</div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-
-
-
-
-
-                            </div>
-
-
+                        <div className='box-Slider-Show-home' key={Index}>
+                            <CartItemsScreen item={item} newRest={newRest} />
                         </div>
 
+
                     ))}
-                    
+
                 </Slider>
 
             </div>

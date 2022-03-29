@@ -1,10 +1,10 @@
 import { Fragment, useContext, useEffect, useState } from 'react'
-import { Modal } from 'react-bootstrap'
 import { FoodTypesAction } from '../../../redux/Action/CartItemAction'
 import { useDispatch, useSelector } from 'react-redux'
 import LoadingErrorHandle from '../LoadingErrorHandle/LoadingErrorHandle'
 import { FilterCategory } from '../UseContext/FilterCategoryScreen'
 import { BsFilterRight } from 'react-icons/bs'
+import { Modal } from 'react-bootstrap'
 
 
 export default function FilterProducts(props) {
@@ -25,6 +25,8 @@ export default function FilterProducts(props) {
 
     // get category
     useEffect(() => {
+
+        // if(props?.location) return 
         return category?.length === Number(0) && dispatch(FoodTypesAction())
     }, [category?.length, dispatch])
 

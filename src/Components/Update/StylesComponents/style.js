@@ -183,7 +183,13 @@ const Styles = {
     },
     NavBarSearchingColor: {
         background: COLORS.testing,
-        color: COLORS.light
+        color: COLORS.light,
+        height: '43px',
+        borderRadius: '999px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '165px'
     },
 
     NavBarSearchingColorInput: {

@@ -11,7 +11,7 @@ import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import { LikePage } from '../../../Components/Update/Redirction/Redirction'
 import LoadingErrorHandle from '../../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import { ErrorServer } from '../../../Assistant/TextError'
+import { ErrorServer ,LoadingSkeletonProductPage } from '../../../Assistant/TextError'
 import Styles from '../../../Components/Update/StylesComponents/style'
 import './Profile.css'
 import { GetUserInfoAction } from '../../../redux/Action/Auth_Action'
@@ -104,6 +104,7 @@ const UserProfileScreen = () => {
                     loading={loading}
                     error={error}
                     TextNotItems={ErrorServer}
+                    type={LoadingSkeletonProductPage}
                 >
 
                     <Col xs={12} sm={12} md={12} lg={8}>

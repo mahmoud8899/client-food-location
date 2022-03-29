@@ -42,28 +42,3 @@ export default function InputSearchingRestrange(props) {
     </div>
 
 }
-
-   // const dispatch = useDispatch()
-   // // cart info.....
-    // const cartInfoid = useSelector((state) => state?.cartInfoid)
-    // const { loading, cartinfo } = cartInfoid
-    // // searching product
-    // const ProductsSearching = useSelector((state) => state?.ProductsSearching)
-    // const { searchingHome } = ProductsSearching
-    // useEffect(() => {
-    //     setProducts(products?.concat(searchingHome))
-    //     return () => {
-    //         setProducts([])
-    //     }
-    //     // eslint-disable-next-line
-    // }, [searchingHome, setProducts])
-    // useEffect(() => {
-    //     setProducts([])
-    //     searching && HandleSearching()
-    //     // eslint-disable-next-line
-    // }, [searching, setProducts])
-    // const HandleSearching = () => {
-    //     if (!searching?.startsWith(' ') || !searching.endsWith(' ')) {
-    //         return dispatch(SearchingProductsAction(cartinfo?._id, searching, true))
-    //     }
-    // }

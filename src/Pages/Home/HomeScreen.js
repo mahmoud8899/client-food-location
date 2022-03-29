@@ -6,16 +6,15 @@ import NavBarCity from '../NavBarCity/NavBarCity'
 import { FatchButik, FoodTypesAction, FreeDeliveryAction, NewRestaurantsAction } from '../../redux/Action/CartItemAction'
 import RestrangeItems from './RestrangeItems/RestrangeItems'
 import LoadingErrorHandld from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import TimeContext from '../../Components/Update/UseContext/TimeContext'
-import { ErrorServer, TextButiker, Textrestaurant, Textfree, TextCategory } from '../../Assistant/TextError'
+import { ErrorServer, TextButiker, Textrestaurant, Textfree, TextCategory ,LoadingSkeletonHomeCart } from '../../Assistant/TextError'
+import SearchingResultHome from '../../Components/Update/NavBarSearchingHome/SearchingResultHome'
 import CategoryScreen from './CategoryScreen/CategoryScreen'
 import CarouselItems from './Carousel/Carousel'
 import { useEffect } from 'react'
 import './Home.css'
-import SearchingResultHome from '../../Components/Update/NavBarSearchingHome/SearchingResultHome'
 
 
-
+// import TimeContext from '../../Components/Update/UseContext/TimeContext'
 // FatchButik, FirDeliveryAction, FoodTypesAction, GetCartInfoHomeRestranges,
 // import LoginDriverScreen from './LoginDriverScreen/LoginDriverScreen'
 
@@ -58,9 +57,6 @@ export default function HomeScreen(props) {
             city: LocationPath,
             productType: "restaurant"
         }))
-
-
-
 
     }, [LocationPath, dispatch, newRestaurant?.length])
 
@@ -114,12 +110,17 @@ export default function HomeScreen(props) {
 
 
 
-    return <TimeContext>
-        <Container fluid>
+    return  <Container fluid>
             <Title TextTitle={FirstNameRest} />
 
+            <Row className='justify-content-center'>
+
+                <Col xs={12} sm={12} md={6} lg={6} className='postion-abs'  >
                     <SearchingResultHome />
-  
+                </Col>
+            </Row>
+
+
 
             <div className='margin-top-like'>
                 <NavBarCity ClassNameHOMEactive />
@@ -135,12 +136,12 @@ export default function HomeScreen(props) {
 
 
 
-                    <LoadingErrorHandld loading={loadingnewRestaurant} error={errornewRestaurant} TextNotItems={ErrorServer} >
+                    <LoadingErrorHandld loading={loadingnewRestaurant} error={errornewRestaurant} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
                         <CarouselItems home={newRestaurant} />
                         <RestrangeItems home={newRestaurant} Title={Textrestaurant} newRest />
                     </LoadingErrorHandld>
 
-                    <LoadingErrorHandld loading={loading} error={error} TextNotItems={ErrorServer} >
+                    <LoadingErrorHandld loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
                         <RestrangeItems home={stores} Title={TextButiker} />
                     </LoadingErrorHandld>
 
@@ -148,11 +149,11 @@ export default function HomeScreen(props) {
 
 
 
-                    <LoadingErrorHandld loading={loadingFreedelivery} error={errorFreedelivery} TextNotItems={ErrorServer} >
+                    <LoadingErrorHandld loading={loadingFreedelivery} error={errorFreedelivery} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
                         <RestrangeItems home={freedelivery} Title={Textfree} />
                     </LoadingErrorHandld>
 
-                    <LoadingErrorHandld loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer}>
+                    <LoadingErrorHandld loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}>
                         <CategoryScreen category={category} Title={TextCategory} />
                     </LoadingErrorHandld>
 
@@ -167,7 +168,7 @@ export default function HomeScreen(props) {
 
 
         </Container>
-    </TimeContext>
+
 
 
 

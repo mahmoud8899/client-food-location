@@ -55,6 +55,7 @@ export default function VisaProductItems(props) {
 
 
 
+  // fliter ..... sort.... 
   const Searching = (home) => {
 
     return home?.filter((item) =>
@@ -65,21 +66,12 @@ export default function VisaProductItems(props) {
 
 
 
-// console.log(addCart)
 
-  return <InfiniteScrollData
-    products={home}
-    categoryProductsNextPagesxp={fetchMore}
-    fetchData={IdMatch === 'butiker' ? fetchStores : fetchData}
-  >
+
+  return <InfiniteScrollData products={home} categoryProductsNextPagesxp={fetchMore} fetchData={IdMatch === 'butiker' ? fetchStores : fetchData}>
     <Row>
-
-
       <ProductsChildrenItems home={Searching(home)} />
-      
     </Row>
-
-
   </InfiniteScrollData>
 
 
@@ -89,11 +81,7 @@ export default function VisaProductItems(props) {
 
 }
 
-// const { home } = props
-// const { showValue } = useContext(FilterCategory)
-// import { FilterCategory } from '../../Components/Update/UseContext/FilterCategoryScreen'
-// import { useContext } from 'react'
-// return home === null || home === 'undefined' ? null :
+
 
 
 

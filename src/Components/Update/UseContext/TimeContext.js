@@ -13,13 +13,11 @@ export default function TimeContext({ children }) {
     useEffect(() => {
 
 
-        const TheClearTime = setInterval(() => {
+        const TheClearTime = setTimeout(() => {
             setDataTime(new Date())
 
         }, 1000);
-        return () => {
-            clearInterval(TheClearTime)
-        }
+        return () => clearTimeout(TheClearTime)
 
 
     }, [])

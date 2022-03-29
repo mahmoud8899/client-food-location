@@ -2,36 +2,51 @@ import * as ActionTypes from '../Action/Types'
 
 const MpasSearching = {
 
-    page : 1,
-    search : []
+    loading: false,
+    error: null,
+    page: Number(0),
+    search: [],
+    searchingLength : Number(0)
 }
 
 
-export const SearchingHomeReducres = (state = MpasSearching,action)=>{
+export const SearchingHomeReducres = (state = MpasSearching, action) => {
 
-    switch(action.type){
+    switch (action.type) {
 
 
-        case ActionTypes.ADD_SEARCHING_PRODUCT_DETAILS_SUCCESS :
+        case ActionTypes.ADD_SEARCHING_PRODUCT_DETAILS_LOADING:
             return {
                 ...state,
-                searchingHome : action.payload
+                loading: false
             }
 
 
-            case ActionTypes.ADD_SEARCHING_PRODUCT_DETAILS_NUMBER :
-                // console.log('next page',action.payload)
-                return {
+        case ActionTypes.ADD_SEARCHING_PRODUCT_DETAILS_SUCCESS:
+            // console.log('successfully',action.payload.data)
+            return {
                 ...state,
-                page: action.payload
+                searchingHome: action.payload.data,
+                searchingLength : action.payload.LengthProduct,
+                loading: false
             }
 
-            case  ActionTypes.ADD_SEARCHING_PRODUCT_DETAILS_FAIL :
-                return {
-                    error : action.payload
-                } 
+
+        case ActionTypes.ADD_SEARCHING_PRODUCT_DETAILS_NUMBER :
+            return {
+                ...state,
+                page: action.payload,
+                loading: false
+            }
+
+        case ActionTypes.ADD_SEARCHING_PRODUCT_DETAILS_FAIL:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            }
 
 
-        default : return state
+        default: return state
     }
 }

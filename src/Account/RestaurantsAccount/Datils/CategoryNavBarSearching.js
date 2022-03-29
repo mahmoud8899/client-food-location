@@ -14,7 +14,7 @@ export default function CategoryNavBarSearching(props) {
 
 
     return <NavBarList
-        onClick={() => setEditCategory({ value: true })}
+      
         Other={
             <div className='Order-List-New-other'>
                 <div style={Styles.NavBarSearchingColor} className='AddClass-c'>

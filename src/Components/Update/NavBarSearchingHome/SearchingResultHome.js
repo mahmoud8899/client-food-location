@@ -1,98 +1,82 @@
-import { Col, Row } from 'react-bootstrap'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
-import ImageScreen from '../../ImageScreen/ImageScreen'
-import { GetCartInfoHomeRestranges } from '../../../redux/Action/CartItemAction'
-import { useSelector, useDispatch } from 'react-redux'
-import LoadingErrorHandle from '../LoadingErrorHandle/LoadingErrorHandle'
-import { ErrorServer } from '../../../Assistant/TextError'
-import '../../../Pages/Home/Home.css'
-import { useContext, useEffect } from 'react'
-import { useHistory } from "react-router-dom";
-import InfiniteScrollData from '../../../Account/RestaurantsAccount/Datils/InfiniteScrollData'
 import { SearchingHomeDatilas } from '../UseContext/SearchingHome'
-import { SliceName } from '../../../Assistant/Slice'
-import Rating from '../../Rating/Rating'
-import { MdDirectionsBike } from "react-icons/md";
+import { Fragment, useContext } from 'react'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import LoadingErrorHandle from '../LoadingErrorHandle/LoadingErrorHandle'
+import { ErrorServer ,LoadingSkeletonFilterHome} from '../../../Assistant/TextError'
 import Items from './Items'
+import '../../../Pages/Home/Home.css'
+// import SkeletonLoading from '../SkeletonLoading/SkeletonLoading'
+// import { useState } from 'react'
+// import { SearchingProductsAction } from '../../../redux/Action/SearchingProduct'
 export default function SearchingResultHome(props) {
 
-    const history = useHistory()
 
-
-    // filter params id city....
-    const LastLength = history?.location?.pathname?.length
-    const city = history?.location?.pathname?.slice(1, LastLength - 1)
+    // const history = useHistory()
 
 
 
+    //filter params id city....
+    // const LastLength = history?.location?.pathname?.length
+    // const city = history?.location?.pathname?.slice(1, LastLength - 1)
+    // input searching....
+    const { inputSearching, setInputSearching ,products } = useContext(SearchingHomeDatilas)
 
-    const { inputSearching, setInputSearching } = useContext(SearchingHomeDatilas)
-
-
-
-
-
-
-    const dispatch = useDispatch()
-
-    // get all restrange and stores....
-    const PageHomeRestrange = useSelector((state) => state?.PageHomeRestrange)
-    const { loading, home, error, nextNumber, } = PageHomeRestrange
-
-
-    // get restrants cart....
-    useEffect(() => {
-        home?.length === Number(0) && dispatch(GetCartInfoHomeRestranges({
-            city: city,
-            productType: "restaurant"
-        }))
-    }, [home?.length, city])
-
-
-
-
-    // fetch more data....
-    const fetchData = () => {
-        console.log('dddd')
-
-    }
+    // import { useContext } from 'react'
 
 
 
 
 
-    const keys = ["username", "description"];
-    const search = (data) => {
-        return data?.filter((item) =>
-            keys?.some((key) => item[key]?.toLowerCase()?.includes(inputSearching))
-        )
-    };
 
 
 
-// onClick={() => setInputSearching('')}
-    return inputSearching?.length > Number(1) && <Row className='justify-content-center'>
-        <Col xs={12} md={12} md={6} xl={6} className='postion-abs'  >
-            <LoadingErrorHandle loading={loading} error={error} TextNotItems={ErrorServer} >
-                <div className='result-col'>
-                    <InfiniteScrollData products={home} categoryProductsNextPagesxp={nextNumber} fetchData={fetchData}>
-                        <Row className='justify-content-center'>
+
+    // searching product
+    const ProductsSearching = useSelector((state) => state?.ProductsSearching)
+    const { loading, error, searchingLength } = ProductsSearching
 
 
 
-                            <Items home={search(home)} />
-                        </Row>
 
-                    </InfiniteScrollData>
 
-                </div>
+
+
+
+    return inputSearching?.length > Number(1) && <div className='flex-ddd' onClick={() => setInputSearching('')}>
+        <div className='result-col'>
+
+            <LoadingErrorHandle loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonFilterHome} >
+                {products?.length > Number(0) ?
+                    <Fragment>
+                        <Items home={products} />
+                        <Link className='empty-hitta add-color'
+                            to={{
+                                pathname: `/sw/filter/result/search=`,
+                                search: `${inputSearching}`,
+                                state: { fromDashboard: true }
+
+                            }} >
+                            <span className='hitta-style'>
+                                Visa alla {searchingLength} träffar
+                            </span>
+                        </Link>
+
+                    </Fragment>
+
+                    :
+
+                    <div className='empty-hitta'   >
+                        <span>
+                            Inget hittades. Vänligen försök på nytt. 😕
+                        </span>
+                    </div>
+                }
 
             </LoadingErrorHandle>
+        </div>
 
-        </Col>
-
-    </Row>
-
+    </div>
 
 
 
@@ -100,27 +84,27 @@ export default function SearchingResultHome(props) {
 
 
 
+    // {/* <Col xs={12} md={12} md={6} xl={6} className='postion-abs'>
+    // </Col> */}
+    // inputSearching?.length > Number(1) &&
+    // // get all restrange and stores....
+    // const PageHomeRestrange = useSelector((state) => state?.PageHomeRestrange)
+    // const { loading, home, error, nextNumber } = PageHomeRestrange
+    // // get restrants cart....
+    // useEffect(() => {
+    //     inputSearching?.length > Number(1)
 
-// <div className='searching-result'>
-//     <ImageScreen
-//         ImageIcon={MyOderImage.food}
-//         className='result-image'
-//     />
-//     <div className='rigth-result'>
-//         <span className='rigth-result-first'>food uppsala</span>
-//         <span className='rigth-result-last'>this is foood god</span>
-//     </div>
-// </div>
-
-
-// <div className='searching-result'>
-//     <ImageScreen
-//         ImageIcon={MyOderImage.food}
-//         className='result-image'
-//     />
-//     <div className='rigth-result'>
-//         <span className='rigth-result-first'>food uppsala</span>
-//         <span className='rigth-result-last'>this is foood god</span>
-//     </div>
-// </div>
-// </Col>
+    //     && home?.length === Number(0) && dispatch(GetCartInfoHomeRestranges({
+    //         city: city,
+    //         productType: "restaurant"
+    //     }))
+    //     // eslint-disable-next-line
+    // }, [home, city, dispatch,inputSearching])
+    // // fetch more data....
+    // const fetchData = () => alert('ddd')
+    // const keys = ["username", "description"];
+    // const search = (data) => {
+    //     return data?.filter((item) =>
+    //         keys?.some((key) => item[key]?.toLowerCase()?.includes(inputSearching))
+    //     )
+    // };

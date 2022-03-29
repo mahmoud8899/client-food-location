@@ -5,13 +5,14 @@ import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
 import { useSelector, useDispatch } from 'react-redux'
 import { ShowOrderAction } from '../../redux/Action/Order_Action'
 import CartItemsOrders from './Datils/CartItemsOrders'
-import OrderNavBarSearching from './Datils/OrderNavBarSearching'
 import { PageTextEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
+import { ErrorServer ,OrderList ,PlaceholderOrder } from '../../Assistant/TextError'
+import NavBarSearchingTopAll from '../../Components/Update/NavBarSearchingTopAll/NavBarSearchingTopAll'
+import {BiWalk} from 'react-icons/bi'
 import { useEffect, useState } from 'react'
-import './style.css'
 import UserName from './Datils/UserName'
-import { ErrorServer } from '../../Assistant/TextError'
+import './style.css'
 export default function RestaurantsOrderScreen(props) {
 
     const { history } = props
@@ -78,7 +79,15 @@ export default function RestaurantsOrderScreen(props) {
                 <RestaurantsNavBarScreen ClassNameOrder />
             </Col>
             <Col xs={12} sm={12} md={8} lg={9} >
-                <OrderNavBarSearching setQuery={setQuery} />
+
+                <NavBarSearchingTopAll
+                    query={query}
+                    TextIcons={OrderList}
+                    Icons={BiWalk}
+                    Placeholder={PlaceholderOrder}
+                    setQuery={setQuery}
+                />
+
 
                 <LoadingErrorHandle
                     error={error}

@@ -15,7 +15,7 @@ import RestaurantsPagePhotoNavBar from './RestaurantsPagePhotoNavBar'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import { ErrorServer } from '../../Assistant/TextError'
+import { ErrorServer ,LoadingSkeletonProductPage} from '../../Assistant/TextError'
 import './style.css'
 
 export default function RestaurantsPageProductsScreen(props) {
@@ -118,6 +118,7 @@ export default function RestaurantsPageProductsScreen(props) {
             loading={loadingCartInfo}
             error={errorCartInfo}
             TextNotItems={ErrorServer}
+            type={LoadingSkeletonProductPage}
         >
             <Title TextTitle={ChangeParams} />
             {/* nav bar time o besket */}

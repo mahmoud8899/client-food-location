@@ -11,46 +11,48 @@ export const AppendNextSearching = (nextPage) => ({
 
 
 // apend page number,,,
-export const AppendProductSearching = (data) => ({
+export const AppendProductSearching = (data, LengthProduct) => ({
     type: ActionTypes.ADD_SEARCHING_PRODUCT_DETAILS_SUCCESS,
-    payload: data
+    payload: {data,LengthProduct}
 })
 
 
 
 
 // searching products
-// GET // URL : /api/product/product/61f72059c3c4460f9145c4e5?keyword
-export const SearchingProductsAction = (id, query = '', form) => async (dispatch,getState)=>{
+// GET // URL : 
+export const SearchingProductsAction = (city, query = '', form) => async (dispatch, getState) => {
 
     const nextPage = form ? 1 : getState()?.ProductsSearching?.page
 
- if(nextPage){
-    try{
+    if (nextPage) {
+        try {
 
-        const {data} = await axios.get(`/api/product/product/${id}?pageNumber=${nextPage}&keyword=${query}`)
+            dispatch({ type: ActionTypes.ADD_SEARCHING_PRODUCT_DETAILS_LOADING })
 
-        dispatch(AppendProductSearching(data.product))
+            const { data } = await axios.get(`/api/cartinfo/filter/?city=${city}&keyword=${query}&pageNumber=${nextPage}`)
 
-        if (data?.pages <= 1) return dispatch(AppendNextSearching(null))
-        const nextpage = data?.result?.next?.page > data?.pages ? null : data?.result?.next?.page
+            dispatch(AppendProductSearching(data.data, data.LengthProduct))
 
-
-        // console.log('nextpage', nextpage)
-        dispatch(AppendNextSearching(nextpage))
+            if (data?.pages <= 1) return dispatch(AppendNextSearching(null))
+            const nextpage = data?.result?.next?.page > data?.pages ? null : data?.result?.next?.page
 
 
+            // console.log('nextpage', nextpage)
+            dispatch(AppendNextSearching(nextpage))
 
-    }catch(error){
-        dispatch({
-            type: ActionTypes.ADD_SEARCHING_PRODUCT_DETAILS_FAIL,
-            payload: error.response &&
-                error.response.data.message ?
-                error.response.data.message :
-                error.message
-        })
+
+
+        } catch (error) {
+            dispatch({
+                type: ActionTypes.ADD_SEARCHING_PRODUCT_DETAILS_FAIL,
+                payload: error.response &&
+                    error.response.data.message ?
+                    error.response.data.message :
+                    error.message
+            })
+        }
     }
- }
 
-   
+
 }

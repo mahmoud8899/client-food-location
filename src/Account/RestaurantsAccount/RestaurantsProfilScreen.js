@@ -1,7 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
-import NavBarList from './Datils/NavBarList'
 import CartItemsInfo from './Datils/CartItemsInfo'
 import { CartInfoActionResturan, FoodTypesAction } from '../../redux/Action/CartItemAction'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,6 +13,7 @@ import AddAccountUser from './Datils/AddAccountUser'
 import { BiTaskX, BiNetworkChart } from 'react-icons/bi'
 import { ErrorServer } from '../../Assistant/TextError'
 import { PageEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
+import NavBarList from '../../Components/Update/NavBarSearchingTopAll/NavBarList'
 import './style.css'
 
 

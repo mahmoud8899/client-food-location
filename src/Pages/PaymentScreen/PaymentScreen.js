@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { GetCartInfoIdAction } from '../../redux/Action/CartItemAction'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import { ErrorServer } from '../../Assistant/TextError'
+import { ErrorServer,LoadingSkeletonProductPage } from '../../Assistant/TextError'
 
 import './PaymentScreen.css'
 import TimeContext from '../../Components/Update/UseContext/TimeContext'
@@ -102,6 +102,7 @@ export default function CheckOutPaymentScreen(props) {
                 loading={loading}
                 error={error}
                 TextNotItems={ErrorServer}
+                type={LoadingSkeletonProductPage}
             >
 
 

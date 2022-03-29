@@ -6,12 +6,13 @@ import { OrdersUserAction } from '../../../redux/Action/Order_Action'
 import UserNavBarScreen from '../UserNavBarScreen/UserNavBarScreen'
 import LoadingErrorHandle from '../../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen'
-import { ErrorServer } from '../../../Assistant/TextError'
+import { ErrorServer ,LoadingSkeletonHomeCart } from '../../../Assistant/TextError'
 import Title from '../../../Components/ScreenTitle/ScreenTitle'
-import OrderNavBarSearching from '../../../Account/RestaurantsAccount/Datils/OrderNavBarSearching'
+import NavBarSearchingTopAll from '../../../Components/Update/NavBarSearchingTopAll/NavBarSearchingTopAll'
 import '../UserProfileScreen/Profile.css'
 import ItemsOrders from './ItemsOrders'
 import { useEffect, useState } from 'react'
+import {BiWalk} from 'react-icons/bi'
 
 const UserOrdersScreen = (props) => {
     // params history
@@ -106,17 +107,21 @@ const UserOrdersScreen = (props) => {
 
             <Col xs={12} sm={12} md={12} lg={8} >
                 <div className={error ? 'error-handle-error' : 'Fex-Order'}>
-                    <LoadingErrorHandle error={error} loading={loading} TextNotItems={ErrorServer} >
+                    <LoadingErrorHandle error={error} loading={loading} TextNotItems={ErrorServer}  type={LoadingSkeletonHomeCart}>
 
 
 
                         <div className='Margin-top'>
-                            <OrderNavBarSearching
-                                setQuery={setQuery}
-                                placeholder='beställningar sökning'
-                                textList='Lista beställningar'
 
-                            />
+                           <NavBarSearchingTopAll  
+                            setQuery={setQuery}
+                            query={query}
+                            Placeholder='beställningar sökning'
+                            TextIcons='Lista beställningar'
+                            Icons={BiWalk} 
+                           
+                           />   
+                           
 
 
                         </div>

@@ -16,16 +16,18 @@ export default function SetTimeout(props) {
 
     useEffect(() => {
 
+       
         if (!visaTime) {
-            const TheClearTime = setInterval(() => {
+            const TheClearTime = setTimeout(() => {
                 // setData(new Date().toLocaleTimeString())
                 seVisaTime(true)
             }, 7000);
-            return () => {
-                clearInterval(TheClearTime)
-            }
+            return () => clearTimeout(TheClearTime)
 
         }
+
+
+
         
 
     }, [visaTime])

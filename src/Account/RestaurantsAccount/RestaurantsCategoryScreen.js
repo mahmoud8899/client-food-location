@@ -5,13 +5,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import CartItemsCategory from './Datils/CartItemsCategory'
 import { FetchCategoryUser } from '../../redux/Action/Category_Action'
 import CategoryEditOchCreate from './Datils/CategoryEditOchCreate'
-import CategoryNavBarSearching from './Datils/CategoryNavBarSearching'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import { PageTextEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
+import NavBarSearchingTopAll from '../../Components/Update/NavBarSearchingTopAll/NavBarSearchingTopAll'
+import { ErrorServer, CategoryTextCeate, categorySearching } from '../../Assistant/TextError'
 import { useEffect, useState } from 'react'
 import UserName from './Datils/UserName'
 import './style.css'
-import { ErrorServer } from '../../Assistant/TextError'
+
+import { BiCloudUpload } from 'react-icons/bi'
 
 
 export default function RestaurantsCategoryScreen(props) {
@@ -104,11 +106,20 @@ export default function RestaurantsCategoryScreen(props) {
 
 
 
-                {userInfo?.cartinfo  && !UserpageCategoryerror &&
-                    <CategoryNavBarSearching
-                        setEditCategory={setEditCategory}
+                {userInfo?.cartinfo && !UserpageCategoryerror &&
+
+                    <NavBarSearchingTopAll
+                    onClick={() => setEditCategory({ value: true })}
                         setQuery={setQuery}
+                        query={query}
+                        Icons={BiCloudUpload}
+                        TextIcons={CategoryTextCeate}
+                        Placeholder={categorySearching}
+                        IconStyle
                     />
+
+
+                   
                 }
 
 
