@@ -34,12 +34,12 @@
 }
 
 .successfully-successfully-text{
-    font-family: "Mochiy Pop P One", sans-serif;
-    font-size: 20px;
     word-wrap: break-word;
     text-transform: capitalize;
     text-align: center;
     margin-top: 3rem;
+    font-family: Heebo, sans-serif;
+    font-size: 20px;
 }
 
 .ClassForm-form{
@@ -69,7 +69,9 @@
 }
 .started-driver h1
 {
-    font-family: "Mochiy Pop P One", sans-serif;
+    font-family: Heebo, sans-serif;
+    font-size: 25px;
+
 }.started-driver span{
     font-size: 18px;
 }

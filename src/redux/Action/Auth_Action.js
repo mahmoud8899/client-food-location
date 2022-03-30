@@ -17,6 +17,26 @@ export const setUser = user => ({
 
 
 
+//send Work 
+// Post // url /api/user/work/
+export const DriverWork = (send) => async (dispatch) => {
+    try {
+        dispatch({ type: ActionTypes.DRIVER_WORK_LOADING, payload: 'successfully' })
+        await axios.post(`/api/user/work/`, send)
+        dispatch({ type: ActionTypes.DRIVER_WORK_SUCSSFULLY, payload: 'successfully' })
+
+    } catch (error) {
+
+        dispatch({
+            type: ActionTypes.DRIVER_WORK_FAIL,
+            payload: error.response &&
+                error.response.data.message ?
+                error.response.data.message :
+                error.message
+        })
+
+    }
+}
 
 
 
@@ -300,18 +320,18 @@ export const Action_logout = () => (dispatch) => {
     dispatch({ type: ActionTypes.ADD_USER_LOGOUT })
     dispatch({ type: ActionTypes.ADD_USER_RESET })
     // order empty 
-    dispatch({type : ActionTypes.ADD_ORDERS_USER_EMPTY})
+    dispatch({ type: ActionTypes.ADD_ORDERS_USER_EMPTY })
     // natication order...
-    dispatch({type : ActionTypes.ADD_ORDER_NOTIFICATIONS_SUCCESS_EMPTY})
+    dispatch({ type: ActionTypes.ADD_ORDER_NOTIFICATIONS_SUCCESS_EMPTY })
     // admin show all orders
-    dispatch({type : ActionTypes.ADD_SHOWS_ORDERS_RESTURANS_EMPTY})
+    dispatch({ type: ActionTypes.ADD_SHOWS_ORDERS_RESTURANS_EMPTY })
     // product category 
-    dispatch({type : ActionTypes.ADD_CALING_SATA})
-    dispatch({type :ActionTypes.ADD_CATEGORY_USER_EMPTY})
+    dispatch({ type: ActionTypes.ADD_CALING_SATA })
+    dispatch({ type: ActionTypes.ADD_CATEGORY_USER_EMPTY })
     // cart info
-    dispatch({type :ActionTypes.ADD_CARTINFO_RESTURANG_EMPTY})
-    
-   
+    dispatch({ type: ActionTypes.ADD_CARTINFO_RESTURANG_EMPTY })
+
+
 }
 
 
@@ -366,7 +386,7 @@ export const GetUserInfoAction = () => async (dispatch, getState) => {
 
         dispatch(setUser(data))
         localStorage.setItem(ActionTypes.KEY_USER, JSON.stringify(data))
-        
+
     } catch (error) {
 
         const message = error.response &&

@@ -17,32 +17,30 @@ export default function NavBarSearchingHome(props) {
 
     return <div onClick={() => setInputSearching('')}>
 
+
         <TheInputForm
             placeholder='Sök'
             onChange={(e) => setInputSearching(e.target.value.toLowerCase())}
             value={inputSearching}
-            className={
-                inputSearching?.length > Number(0) ?
-                    'Input-type-style productdetials text-searching-left' :
-                    'Input-type-style productdetials text-searching'
-            }
             FirstIcons={
                 <Fragment>
-
-                    {
-                        inputSearching?.length > Number(0) ? null :
-                            <BiSearch className='Icons-LEFT halve-searching' />
-                    }
+                    <BiSearch className='Icons-LEFT' />
                     {
                         inputSearching?.length > Number(1) && <HiOutlineX
                             className='close-pp-pp-image ADD-REMOVE'
                             onClick={() => setInputSearching('')}
                         />
                     }
-
                 </Fragment>
             }
+
+            className='Input-type-style productdetials text-searching'
         />
+
+
+
+
+
 
 
     </div>

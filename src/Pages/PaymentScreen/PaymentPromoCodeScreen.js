@@ -1,9 +1,8 @@
 import {  Row, Col, } from 'react-bootstrap'
 import './PaymentScreen.css'
-import Input from '../../Components/Input/Input'
 import ButtomClick from '../../Components/Buttom/Buttom'
 import Styles from '../../Components/Update/StylesComponents/style'
-
+import TheInputForm from '../../Components/TheInputForm/TheInputForm'
 
 
 export default function PaymentPromoCodeScreen() {
@@ -29,16 +28,16 @@ export default function PaymentPromoCodeScreen() {
 
         <Row className='justify-content-center margin-bottom-payment'>
             <Col xs={8} sm={8} md={8} lg={8}>
-                <Input
+                <TheInputForm
 
                     placeholder='Enter promo code...'
-                    className='Types-Input-BUTTOM-STADAR'
+                    className='Input-type-style productdetials'
                 />
             </Col>
             <Col xs={4} sm={4} md={4} lg={4}>
                 <ButtomClick 
                 title='Skicka'
-                style={Styles.buttomColorPage}
+                style={Styles.TabButtomCreate}
                 />
             </Col>
         </Row>

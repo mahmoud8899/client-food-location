@@ -13,6 +13,7 @@ import TheInputForm from '../TheInputForm/TheInputForm'
 import { RiCheckFill } from 'react-icons/ri'
 import { FaCity } from 'react-icons/fa'
 import { BiClinic, BiPlus, BiStreetView } from 'react-icons/bi'
+import {ErrorTextInput} from '../../Assistant/TextError'
 const MyAddress = (props) => {
     const {
         ClassNamePayment,
@@ -106,7 +107,7 @@ const MyAddress = (props) => {
 
         {handleError &&
             <div className='error-input-red' >
-                <CodeError error='Det är saker som är fel' />
+                <CodeError error={ErrorTextInput} />
             </div>
         }
 
@@ -272,7 +273,7 @@ const MyAddress = (props) => {
                     <ButtomClick
                         title='Save'
                         type='submit'
-                        style={Styles.buttomColorPage}
+                        style={Styles.TabButtomCreate}
 
 
                         disabled={

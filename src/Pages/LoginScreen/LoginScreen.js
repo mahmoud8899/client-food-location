@@ -9,11 +9,14 @@ import Styles from '../../Components/Update/StylesComponents/style'
 import { HiArrowNarrowLeft, HiOutlineX } from 'react-icons/hi'
 import HandleLoadingPage from '../../Components/Update/HandleLoadingPage/HandleLoadingPage'
 import React, { useState, useEffect } from 'react'
+import CodeError from '../../Components/CodeError/CodeError'
+import { ErrorTextInput } from '../../Assistant/TextError'
 import LogIn from './LogIn'
 import SingUp from './SingUp'
 import './style.css'
-import CodeError from '../../Components/CodeError/CodeError'
-import { ErrorTextInput } from '../../Assistant/TextError'
+
+
+
 
 const LoginScreen = (props) => {
 
@@ -292,7 +295,7 @@ const LoginScreen = (props) => {
                                                     : !ValtionMe(dataLogin?.email, 'isEmail')
 
                                     }
-                                    style={Styles.buttomColorPage}
+                                    style={Styles.TabButtomCreate}
                                 />
                             </div>
 

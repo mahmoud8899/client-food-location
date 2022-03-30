@@ -41,6 +41,7 @@ import { PaymentDriverselection } from '../reducres/PaymentReducres'
 import {
     AddNumberReducres,
     LoginReducres,
+    DriverAskWork,
 
 
 
@@ -91,6 +92,7 @@ const reducer = combineReducers({
     // user handle login or singup or forget password.....
     userLogin: LoginReducres,
     PageNumber : AddNumberReducres,
+    driverAsk : DriverAskWork,
 
 
 

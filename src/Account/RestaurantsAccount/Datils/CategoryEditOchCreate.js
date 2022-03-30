@@ -9,8 +9,9 @@ import { TheRemoveUpdated } from '../../../Components/CloseScreen/CloseScreen'
 import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
 import Styles from '../../../Components/Update/StylesComponents/style'
 import CodeError from '../../../Components/CodeError/CodeError'
-import { HiOutlineX } from 'react-icons/hi'
+import {ErrorTextInput} from '../../../Assistant/TextError'
 import TheInputForm from '../../../Components/TheInputForm/TheInputForm'
+import { HiOutlineX } from 'react-icons/hi'
 import { RiCheckFill } from 'react-icons/ri'
 import '../style.css'
 export default function CategoryEditOchCreate(props) {
@@ -151,7 +152,7 @@ export default function CategoryEditOchCreate(props) {
 
                 {handleError &&
                     <div className='error-input-red' >
-                        <CodeError error='Det är saker som är fel' />
+                        <CodeError error={ErrorTextInput} />
                     </div>
                 }
 

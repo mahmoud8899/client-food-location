@@ -186,6 +186,7 @@
 }
 .className-infoUser.REMOVE-BOTTOM{
     margin-top: 0.5rem;
+    width: 100%;
 }
 .first-left-box{
     margin-left: 1rem;
@@ -834,9 +835,7 @@ border-left: ridge;
     width: 100%;
 }
 
-.Input-type-style.productdetials.add-left-text{
-    padding-left: 40px;
-}
+
 .box-alert{
    
     display: flex;

@@ -1,6 +1,5 @@
-import Input from '../../Input/Input'
-
-
+import TheInputForm from '../../TheInputForm/TheInputForm'
+import { BiMap } from 'react-icons/bi'
 
 
 export default function InputSearchLocation() {
@@ -9,8 +8,14 @@ export default function InputSearchLocation() {
 
 
 
-    return <Input
+    return <TheInputForm
         placeholder='Enter Street address'
-        className='Input-type-style'
+        type='text'
+        FirstIcons={<BiMap className='Icons-LEFT' />}
+        className='Input-type-style productdetials add-left-text'
+
     />
 }
+
+
+

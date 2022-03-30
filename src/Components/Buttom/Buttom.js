@@ -11,6 +11,7 @@ const ButtomClick = (props) => {
         type,
         style,
         DisaBledStyle,
+        className
     } = props
 
 
@@ -20,6 +21,7 @@ const ButtomClick = (props) => {
         type={type}
         disabled={disabled}
         style={disabled ? DisaBledStyle ? DisaBledStyle : Styles.disabled : style}
+        className={className}
     >
         {title ? title : null}
     </button>

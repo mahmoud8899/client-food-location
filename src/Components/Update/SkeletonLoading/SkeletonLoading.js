@@ -122,7 +122,7 @@ export default function SkeletonLoading({ type }) {
 
 
     if (type === 'filterHome') return Array(3).fill(<FilterHome />)
-    if (type === 'HomeCart') return Array(3).fill(<CartHome />)
+    if (type === 'HomeCart') return <CartHome />
     if (type === 'ProductPage') return <div className="first-class-product">
         <ProductPage />
 

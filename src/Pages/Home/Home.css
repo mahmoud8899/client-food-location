@@ -1,10 +1,114 @@
+.slick-next {
+    right: 3px !important;
+}
+.slick-prev, .slick-next {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    transform: translate(0, -50%);
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+    top: 0rem !important;
+}
+.slick-prev:before, .slick-next:before {
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: #ff9d97 !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.LoginDriverScreen{
+    margin-top: 4rem;
+
+}
+.mAPS-INPUT{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+.Input-type-style.productdetials.add-left-text{
+    padding-left: 40px;
+    height: 45px;
+}
+.Input-type-style{
+
+    border-radius: 0.4rem;
+    border: 0.1rem solid #ff9c97ba;
+    cursor: pointer;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+.Input-type-style.add-leftpaddig{
+    padding-left: 40px;
+}
+
+.Input-type-style.padding-left-none{
+    padding: 10px
+
+}
+.Input-type-style:focus{
+    color: #212529;
+    background-color: white;
+    border-color: #ff9d97;
+    outline: 0;
+    box-shadow: 0 0 0 0rem #ff9c97;
+}
+
+.Input-type-style.notLeft{
+    padding-left: 2rem;
+}
+.Input-type-style.notLeftinput{
+    padding: 0.3rem;
+}
+
+.Input-type-style.productdetials{
+    padding-left: 0.3rem;
+    width: 100%;
+    height: 45px;
+}
+.Input-type-style.productdetials.text-aligen-center{
+    text-align: center;
+}
+.Input-type-style.productdetials.text-searching{
+   padding-left: 2rem;
+    height: 35px;
+    border: 1px solid #ff9c97ba;
+    font-size: 14px;
+    transition: all 2s;
+}
+
+.Input-type-style.productdetials.text-searching-left{
+    text-align: left;
+    height: 35px;
+    border: 1px solid #ff9c97ba;
+    font-size: 14px;
+    transition: all 2s;
+}
+.Input-type-style.productdetials.text-searching::placeholder{
+    color: #ff9c97ba; 
+}
+.Input-type-style.hegith{
+    height: 100px;
+}
+.Input-type-style.image{
+    height: 40px;
+    padding-left: 0rem;
+}
+.Input-type-style.productdetials.text-searching.ADD-HEIGTH{
+    height: 45px;
+    margin-right: 0.4rem;
+
+}
 
 
-/* 
-Margin-top-home -- all Home screen
-
-
-*/
 .box-Slider-Sitemw-itemme-children{
     box-shadow: 0rem 0rem 0.1rem #ff3b2f85;
     padding: 0.1rem;
@@ -531,7 +635,7 @@ justify-content: flex-start
     font-size: 14px;
     text-align: center;
     line-height: 45px;
-    font-family: system-ui;
+
     cursor: pointer;
 }
 .first-text-country{

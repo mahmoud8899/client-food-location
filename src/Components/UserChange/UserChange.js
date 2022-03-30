@@ -1,6 +1,5 @@
 import { Image, Modal } from 'react-bootstrap'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
-import Input from '../../Components/Input/Input'
 import ButtomClick from '../../Components/Buttom/Buttom'
 import { ChangeUserInfo } from '../../redux/Action/Auth_Action'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,8 +11,9 @@ import { ErrorServer, ErrorTextInput } from '../../Assistant/TextError'
 import { ValtionMe } from '../../Assistant/ValtionMe'
 import CodeError from '../CodeError/CodeError'
 import { CloseScreen } from '../../Components/CloseScreen/CloseScreen'
-import { useState } from 'react'
-
+import { Fragment, useState } from 'react'
+import TheInputForm from '../TheInputForm/TheInputForm'
+import { RiCheckFill } from 'react-icons/ri'
 export default function UserChange(props) {
 
 
@@ -128,27 +128,51 @@ export default function UserChange(props) {
                         </div>
                     }
 
-                    <Input
-                        placeholder='First name'
+
+                    <span className='selection-name'>Förnamn</span>
+                    <TheInputForm
+
+                        placeholder='Förnamn'
                         className='Input-type-style productdetials'
                         name='firstname'
                         type='text'
                         onChange={(e) => setPostData({ ...postData, firstname: e.target.value })}
                         value={postData?.firstname}
-                        validation={ValtionMe(postData?.firstname, 'inputname')?.toString()}
+                        FirstIcons={
+                            <Fragment>
+
+
+                                {ValtionMe(postData?.firstname, 'inputname')
+                                    ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                }
+                            </Fragment>
+                        }
+
 
                     />
 
-                    <Input
-                        placeholder='last name'
+
+                    <TheInputForm
+
+                        placeholder='efternamn'
                         className='Input-type-style productdetials'
                         name='lastname'
                         type='text'
                         onChange={(e) => setPostData({ ...postData, lastname: e.target.value })}
                         value={postData?.lastname}
-                        validation={ValtionMe(postData?.lastname, 'inputname')?.toString()}
+                        FirstIcons={
+                            <Fragment>
+                                {ValtionMe(postData?.lastname, 'inputname')
+                                    ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                }
+                            </Fragment>
+                        }
+
 
                     />
+
+
+
 
 
                     <div className='buttom-box'>
@@ -156,8 +180,9 @@ export default function UserChange(props) {
 
                         <div className='buttom-class'>
                             <ButtomClick
+                                className='cancel-add-text'
                                 title='Cancel'
-                                style={Styles.buttomColorPagenot}
+                                style={Styles.colorCancel}
                                 onClick={handleClose}
                             />
                         </div>

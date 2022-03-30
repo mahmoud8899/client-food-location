@@ -14,7 +14,6 @@ const Styles = {
         cursor: 'pointer',
         transition : '2s all',
         fontSize: '14px',
-        fontFamily: 'system-ui',
         textTransform: 'capitalize'
        
 

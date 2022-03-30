@@ -48,7 +48,7 @@ export default function SingUp(props) {
                             onChange={(e) => setDataLogin({ ...dataLogin, firstname: e.target.value })}
                             type='text'
                             value={dataLogin?.firstname}
-                            className='Input-type-style padding-left-none'
+                            className='Input-type-style productdetials'
                             FirstIcons={
                                 <Fragment>
 
@@ -66,15 +66,15 @@ export default function SingUp(props) {
                 </Col>
                 <Col xs={6} sm={6} md={6} lg={6}>
 
-
+ 
                     <div>
-                        <span>Efternamn</span>
+                        <span className='selection-name' >Efternamn</span>
                         <TheInputForm
                             placeholder='Efternamn'
                             onChange={(e) => setDataLogin({ ...dataLogin, lastname: e.target.value })}
                             type='text'
                             value={dataLogin?.lastname}
-                            className='Input-type-style padding-left-none'
+                            className='Input-type-style productdetials'
                             FirstIcons={
                                 <Fragment>
                                     {ValtionMe(dataLogin?.lastname, 'inputname')
@@ -97,7 +97,7 @@ export default function SingUp(props) {
 
             <Col xs={12} sm={12} md={12} lg={12}>
                 <div>
-                    <span className=''>Telefonnummer</span>
+                    <span className='selection-name'>Telefonnummer</span>
                     <TheInputForm
                         placeholder='Telefonnummer'
                         onChange={(e) => setDataLogin({ ...dataLogin, telephone: e.target.value })}
@@ -126,7 +126,7 @@ export default function SingUp(props) {
             <Col xs={12} sm={12} md={12} lg={12} className='singUp-bottom'>
 
                 <div>
-                    <span className=''>Ditt lösenord</span>
+                    <span className='selection-name'>Ditt lösenord</span>
                     <TheInputForm
                         type={changeType ? 'text' : 'password'}
                         autoComplete="username"

@@ -92,7 +92,7 @@ export default function LogIn(props) {
 
 
 
-            <div>
+            <div className='margin-bottom'>
 
                 <TheInputForm
                     placeholder='Din email'

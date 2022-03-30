@@ -269,35 +269,15 @@ login-margin-top-bottom   margin-top and bottom
 .center-c-more-style{
     font-size: 24px;
 }
-.Input-type-style{
-    height: 40px;
-    border-radius: 0.4rem;
-    border: 0.1rem solid #ff9c97ba;
-    cursor: pointer;
-    margin-top: 0.3rem;
-    margin-bottom: 0.3rem;
-}
-/* .Input-type-style::placeholder{
-    color: #ff9c97ba;
-} */
 
-.Input-type-style.padding-left-none{
-    padding: 10px
-
-}
-.Input-type-style:focus{
-    color: #212529;
-    background-color: white;
-    border-color: #ff9d97;
-    outline: 0;
-    box-shadow: 0 0 0 0rem #ff9c97;
-}
 .login-text-bottom{
     font-size: 12px;
     text-align: center;
     text-transform: capitalize;
 }
-
+.margin-bottom{
+    margin-bottom: 0.5rem;
+}
 .singUp-top{
     margin-top: 3rem;
 }

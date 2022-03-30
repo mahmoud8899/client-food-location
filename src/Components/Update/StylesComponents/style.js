@@ -184,8 +184,8 @@ const Styles = {
     NavBarSearchingColor: {
         background: COLORS.testing,
         color: COLORS.light,
-        height: '43px',
-        borderRadius: '999px',
+        height: '35px',
+        borderRadius: '0.4rem',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -290,6 +290,18 @@ const Styles = {
         height: '45px',
         boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
         cursor: 'pointer',
+
+    },
+    InputButtom: {
+        backgroundColor: COLORS.firstRed,
+        color: COLORS.white,
+        border: 'none',
+        width: '100%',
+        borderRadius: '0.4rem',
+        height: '45px',
+        boxShadow: 'rgba(0, 0, 0, 0.25) 0px 25px 50px -12px',
+        cursor: 'pointer',
+        textTransform: 'capitalize',
 
     },
 

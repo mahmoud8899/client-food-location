@@ -9,12 +9,12 @@ import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/Loadi
 import EditCartInfo from './Datils/EditCartInfo'
 import UserName from './Datils/UserName'
 import { useEffect, useState } from 'react'
-import AddAccountUser from './Datils/AddAccountUser'
 import { BiTaskX, BiNetworkChart } from 'react-icons/bi'
 import { ErrorServer } from '../../Assistant/TextError'
 import { PageEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
 import NavBarList from '../../Components/Update/NavBarSearchingTopAll/NavBarList'
 import './style.css'
+import AddAccountScreen from '../../Components/AddAccountScreen/AddAccountScreen'
 
 
 
@@ -152,7 +152,7 @@ export default function RestaurantsProfilScreen(props) {
 
         </Row>
 
-        <AddAccountUser openAddAccount={openAddAccount} setOpenAddAccount={setOpenAddAccount} />
+        <AddAccountScreen openAddAccount={openAddAccount} setOpenAddAccount={setOpenAddAccount} />
         <LoadingErrorHandle loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer} extraStyle  >
             <EditCartInfo
                 show={show}

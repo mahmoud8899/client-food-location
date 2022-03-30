@@ -298,6 +298,10 @@
     margin-top: 1rem;
 
 }
+.error-input-red.sopppp{
+    padding: 2rem;
+    margin-top: 0rem;
+}
 .FOOD-TYPES{
     padding: 1rem;
 }
@@ -363,9 +367,7 @@
 }
 
 
-.Input-type-style.notLeftinput{
-    padding: 0.3rem;
-}
+
 .div-image-handle-product-edit{
 
    display: flex;
@@ -430,36 +432,7 @@
     margin-right: 1rem;
     font-size: 25px;
 }
-.Input-type-style.productdetials{
-    padding-left: 0.3rem;
-    width: 100%;
-}
 
-.Input-type-style.productdetials.text-searching{
-   padding-left: 2rem;
-    height: 35px;
-    border: 1px solid #ff9c97ba;
-    font-size: 14px;
-    transition: all 2s;
-}
-
-.Input-type-style.productdetials.text-searching-left{
-    text-align: left;
-    height: 35px;
-    border: 1px solid #ff9c97ba;
-    font-size: 14px;
-    transition: all 2s;
-}
-.Input-type-style.productdetials.text-searching::placeholder{
-    color: #ff9c97ba; 
-}
-.Input-type-style.hegith{
-    height: 100px;
-}
-.Input-type-style.image{
-    height: 40px;
-    padding-left: 0rem;
-}
 
 .form-Scrolling{
 overflow: hidden;
@@ -524,54 +497,9 @@ margin-top: 1rem;
 .switch-type span:nth-of-type(2){
     margin-left: 1rem;
 }
-/* Start product  */
-.body-navbar-product {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 0rem;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    background-color: red;
 
-}
-.body-navbar-product-input{
-    height: 45px;
-    margin-top: 0.3rem;
-    margin-bottom: 0.3rem;
-}.body-navbar-product-input .Input-type-style{
-  
-    padding: 0rem;
-    margin: 0rem;
-    width: 300px;
-    border-radius: 1rem;
 
-}
-.classProduct {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background-color: #EEE;
-    height: 45px;
-    border-radius: 0.4rem;
-    width: 150px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 0.3rem;
-    margin-bottom: 0.3rem;
-}
-.codd{
-    background-color: #eee;
-    padding: 0.3rem;
-    display: flex;
-    flex-direction: column;
-}
-.oppins{
-    text-transform: capitalize;
-    font-size: 19px;
-}
-/* End product  */
+
 
 
 /* Start catgory css */
@@ -607,9 +535,7 @@ margin-top: 1rem;
 
     margin-top: 6rem;
 }
-.Input-type-style.notLeft{
-    padding-left: 2rem;
-}
+
 /* END catgory css */
 .Color-su{
 
@@ -618,7 +544,7 @@ margin-top: 1rem;
     border-radius: 0.1rem;
     border: none;
 }
-.fex-style-more{}
+
 .List {
    
     padding: 0.5rem;

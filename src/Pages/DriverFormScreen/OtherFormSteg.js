@@ -1,6 +1,5 @@
 import { AskOne, Stand } from '../../Assistant/Selection'
-import Input from '../../Components/Input/Input'
-
+import TheInputForm from '../../Components/TheInputForm/TheInputForm'
 
 
 
@@ -8,16 +7,6 @@ import Input from '../../Components/Input/Input'
 export default function OtherFormSteg(props) {
 
     const { HandleDriver, askOne, setAskOne, handleError } = props
-
-
-
-
-
-    console.log(handleError)
-
-
-
-
 
 
     return <>
@@ -70,13 +59,16 @@ export default function OtherFormSteg(props) {
                 <span className='ask-text-style-text'>tell me about yourself  option</span>
             </div>
 
-            <Input
+
+
+            <TheInputForm
                 placeholder='tell me about yourself  option'
-                className='Input-driver-type add-more-heigth'
                 as="textarea"
                 onChange={(e) => setAskOne({ ...askOne, yourself: e.target.value })}
                 onKeyPress={(e) => e.key === 'Enter' ? HandleDriver : null}
+                className='Input-type-style hegith'
             />
+
         </div>
 
 

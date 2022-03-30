@@ -12,6 +12,7 @@ import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/Hand
 import { ValidationCartInfo, ChangeCode, ValidationCreateCart } from '../../../Assistant/ValidationPayment'
 import { TheCartInfo } from '../../../Components/CloseScreen/CloseScreen'
 import { ChnageTime } from '../../../Assistant/Selection'
+import {ErrorTextInput} from '../../../Assistant/TextError'
 import { Fragment, useEffect, useState } from 'react'
 import { BiEditAlt } from 'react-icons/bi'
 import { HiOutlineX } from 'react-icons/hi'
@@ -199,6 +200,7 @@ export default function EditCartInfo(props) {
 
 
 
+    
 
     // console.log(foodType)
 
@@ -213,6 +215,13 @@ export default function EditCartInfo(props) {
         // console.log('select', data?._id)
 
     }
+
+
+
+    
+
+
+
 
     return <Modal show={props?.show?.value} onHide={HandleClose}>
 
@@ -249,7 +258,7 @@ export default function EditCartInfo(props) {
 
                         {handleError &&
                             <div className='error-input-red' >
-                                <CodeError error='Det är saker som är fel' />
+                                <CodeError error={ErrorTextInput} />
                             </div>
                         }
 
@@ -308,29 +317,30 @@ export default function EditCartInfo(props) {
                                 <Row className='justify-content-center'>
                                     <Col xs={6} sm={6} md={6} lg={6}>
 
-                                        <span className='selection-name'>öppnings tid</span>
+                                        <span className='selection-name'>öppnings tid - - {opentime?.oppen}</span>
                                         <TheInputForm
                                             placeholder='öppnings tid'
                                             name="image"
                                             className='Input-type-style productdetials'
                                             type='time'
                                             onChange={(e) => setOpentime({ ...opentime, oppen: e.target.value })}
-                                            value={opentime.oppen}
-                                            FirstIcons={
-                                                <Fragment>
+                                            
+                                            // value={opentime?.oppen?.length === Number(5) && opentime?.oppen}
+                                            // FirstIcons={
+                                            //     <Fragment>
 
-                                                    {ValtionMe(opentime.oppen, 'inputname')
-                                                        ? <RiCheckFill className='Icons-LEFT-right' /> : null
-                                                    }
-                                                </Fragment>
-                                            }
+                                            //         {ValtionMe(opentime.oppen, 'inputname')
+                                            //             ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                            //         }
+                                            //     </Fragment>
+                                            // }
 
 
                                         />
 
                                     </Col>
                                     <Col xs={6} sm={6} md={6} lg={6}>
-                                        <span className='selection-name'>stängningstid</span>
+                                        <span className='selection-name'>stängningstid - {opentime?.close}</span>
                                         <TheInputForm
                                             placeholder='stängningstid'
                                             name="image"
@@ -338,15 +348,16 @@ export default function EditCartInfo(props) {
                                             title='stängningstid'
                                             className='Input-type-style productdetials'
                                             onChange={(e) => setOpentime({ ...opentime, close: e.target.value })}
-                                            value={opentime.close}
-                                            FirstIcons={
-                                                <Fragment>
+                                            // value={opentime?.close?.length === Number(5) && opentime?.close }
+                                           
+                                            // FirstIcons={
+                                            //     <Fragment>
 
-                                                    {ValtionMe(opentime.close, 'inputname')
-                                                        ? <RiCheckFill className='Icons-LEFT-right' /> : null
-                                                    }
-                                                </Fragment>
-                                            }
+                                            //         {ValtionMe(opentime.close, 'inputname')
+                                            //             ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                            //         }
+                                            //     </Fragment>
+                                            // }
 
 
                                         />

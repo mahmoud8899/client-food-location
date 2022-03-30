@@ -3,8 +3,9 @@ import { Stand } from '../../Assistant/Selection'
 import MyAddress from '../../Components/MyAddress/MyAddress'
 import AddOpenComponent from '../../Components/Update/AddOpenComponent/AddOpenComponent'
 import UserAddressInfo from '../User/UserAddresScreen/UserAddressInfo'
-import {AiOutlineSend} from 'react-icons/ai'
-
+import { AiOutlineSend } from 'react-icons/ai'
+import ButtomClick from '../../Components/Buttom/Buttom'
+import Styles from '../../Components/Update/StylesComponents/style'
 
 
 export default function ActiveUserSearchCity(props) {
@@ -39,20 +40,20 @@ export default function ActiveUserSearchCity(props) {
                     </div>
 
                 }
-                <div className='Add-Addres add-padding-loaction'  onClick={(e) => HandleOpenAdddress(e)}>
+                <div className='Add-Addres add-padding-loaction' onClick={(e) => HandleOpenAdddress(e)}>
                     <AddOpenComponent
                         Titel='Lägg till din adress'
                         className='Font-address'
                         classNameTitle='classPluseTitel exstra-style'
                         classNamePluse='classPlusefont'
-                       
+
                     />
                 </div>
 
 
                 <div className='Add-nar-mig add-padding-loaction' onClick={(e) => HandleCity(e)}>
                     <div className='flex-box-nar-img'>
-                        <AiOutlineSend className='classPlusefont remove-router'  />
+                        <AiOutlineSend className='classPlusefont remove-router' />
                         <div className='classPluseTitel normail'> Nära mig</div>
                     </div>
 
@@ -64,9 +65,16 @@ export default function ActiveUserSearchCity(props) {
 
                 </div>
 
-                <div className='buttom-close' onClick={() => setShowCity(!showCity)}>
-                    <div>Close</div>
-                </div>
+              <div className='buttom-close'>
+              <ButtomClick
+                    title='Save'
+                    
+                    onClick={() => setShowCity(!showCity)}
+                    style={Styles.TabButtomCreate}
+                />
+
+              </div>
+
             </Fragment>
 
             :

@@ -2,22 +2,24 @@ import { Fragment, useEffect, useState } from 'react'
 import { Form, Modal } from 'react-bootstrap'
 import { HiOutlineX } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
-import { ChangeCode, ValidationAccount, ValidationUpdatedAccount } from '../../../Assistant/ValidationPayment'
-import { ValtionMe } from '../../../Assistant/ValtionMe'
-import ButtomClick from '../../../Components/Buttom/Buttom'
-import { CloseScreen, closeUpdateAccount } from '../../../Components/CloseScreen/CloseScreen'
-import CodeError from '../../../Components/CodeError/CodeError'
-import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
-import Styles from '../../../Components/Update/StylesComponents/style'
-import { AddAcountBAction } from '../../../redux/Action/Auth_Action'
-import TheInputForm from '../../../Components/TheInputForm/TheInputForm'
+import { ChangeCode, ValidationAccount, ValidationUpdatedAccount } from '../../Assistant/ValidationPayment'
+import { ValtionMe } from '../../Assistant/ValtionMe'
+import ButtomClick from '../Buttom/Buttom'
+import { CloseScreen, closeUpdateAccount } from '../CloseScreen/CloseScreen'
+import CodeError from '../CodeError/CodeError'
+import HandleLoadingPage from '../Update/HandleLoadingPage/HandleLoadingPage'
+import Styles from '../Update/StylesComponents/style'
+import { AddAcountBAction } from '../../redux/Action/Auth_Action'
+import TheInputForm from '../TheInputForm/TheInputForm'
 import { RiCheckFill } from 'react-icons/ri'
+import {ErrorTextInput} from '../../Assistant/TextError'
 
 
 
 
 
-export default function AddAccountUser(props) {
+
+export default function AddAccountScreen(props) {
     const { openAddAccount, setOpenAddAccount } = props
 
 
@@ -131,17 +133,12 @@ export default function AddAccountUser(props) {
                 <div className='modal-title-edit-category'>
 
                     <h1>Add Account bank </h1>
-                    {/* <ImageScreen
-                        ImageIcon={MyOderImage.close}
-                        className='close-pp-pp-image'
-                        onClick={HandleClose}
-                    /> */}
                     <HiOutlineX className='close-pp-pp-image' onClick={HandleClose} />
                 </div>
 
                 {handleError &&
                     <div className='error-input-red' >
-                        <CodeError error='Det är saker som är fel' />
+                        <CodeError error={ErrorTextInput}  />
                     </div>
                 }
 

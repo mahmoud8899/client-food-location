@@ -39,11 +39,12 @@
 
 .buttom-close{
     width: 100%;
-   
+    padding: 1rem;
     position: absolute;
-    bottom: 0.5rem;
+    bottom: 1.5rem;
     height: 3rem;
     cursor: pointer;
+    left: 0rem;
 }
 .buttom-close div{
     width: 95%;
@@ -228,7 +229,7 @@ color: white;
 .NavBar-city.add-postion{
     background-color: white;
     position: fixed;
-    bottom: 0rem;
+    bottom: -0.2rem;
     width: 100%;
     z-index: 70;
     left: 0rem;
@@ -284,6 +285,9 @@ color: white;
     cursor: pointer;
     text-decoration: none;
     color: black;
+    display: flex;
+    align-items: center;
+    width: 100%;
 }.add-padding-loaction:hover{
     color: black;
 }

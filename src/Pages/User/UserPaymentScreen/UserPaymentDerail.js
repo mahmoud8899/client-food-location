@@ -165,7 +165,7 @@ export default function UserPaymentDerail(props) {
 
                             <ButtomClick
                                 title='Add cart'
-                                style={Styles.addCartcolor}
+                                style={Styles.TabButtomCreate}
                                 onClick={(e) => HandleCard(e)}
                                 disabled={
                                     !ValtionMe(dataPayment?.secuity, 'xPcVV') ||

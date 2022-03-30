@@ -108,6 +108,27 @@ export const AddNumberReducres = (state = {
 
 
 
+// driver ask work 
+export const DriverAskWork = (state = {
+    successfully: null,
+    loading: false,
+    error: null
+}, action) => {
+    switch (action.type) {
+        case ActionTypes.DRIVER_WORK_LOADING: return { loading: true }
+        case ActionTypes.DRIVER_WORK_SUCSSFULLY: return {
+            ...state,
+            successfully: action.payload,
+            loading: false
+        }
+        case ActionTypes.DRIVER_WORK_FAIL: return {
+            error: action.payload,
+            loading: false
+        }
+        default: return state
+    }
+}
+
 
 
 

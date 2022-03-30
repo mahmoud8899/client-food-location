@@ -15,6 +15,7 @@ import { Fragment, useEffect, useState } from 'react'
 import TheInputForm from '../../../Components/TheInputForm/TheInputForm'
 import PageSwitch from '../../../Components/Update/PageSwitch/PageSwitch'
 import CodeError from '../../../Components/CodeError/CodeError'
+import {ErrorTextInput} from '../../../Assistant/TextError'
 import { RiCheckFill } from 'react-icons/ri'
 import { HiOutlineX } from 'react-icons/hi'
 import '../style.css'
@@ -181,6 +182,9 @@ export default function ProductEditOchCreate(props) {
         return TheProductRemoveAndUpdated(dispatch)
     }
 
+
+
+
     return <Modal show={show?.value} onHide={() => HandleClose()} >
 
         <HandleLoadingPage
@@ -218,7 +222,7 @@ export default function ProductEditOchCreate(props) {
 
                         {handleError &&
                             <div className='error-input-red' >
-                                <CodeError error='Det är saker som är fel' />
+                                <CodeError error={ErrorTextInput} />
                             </div>
                         }
 
@@ -289,9 +293,7 @@ export default function ProductEditOchCreate(props) {
 
 
                                 <span className='selection-name'>Välj kategori</span>
-                                <select
-                                    className='Input-type-style productdetials'
-
+                                <select className='Input-type-style productdetials'
                                     onChange={(e) =>
                                         setProductDetails({ ...productDetails, category: e.target.value })}
                                     value={productDetails?.category}

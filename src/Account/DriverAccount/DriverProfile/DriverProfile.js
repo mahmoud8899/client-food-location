@@ -1,5 +1,5 @@
 import Title from '../../../Components/ScreenTitle/ScreenTitle'
-import AddAccount from './AddAccount'
+import AddAccountScreen from '../../../Components/AddAccountScreen/AddAccountScreen'
 import ChangeAddres from './ChangeAddres'
 import DriverOderScreen from './DriverOderScreen'
 import { Container, Row, Col } from 'react-bootstrap'
@@ -79,7 +79,7 @@ const DriverProfile = (props) => {
             </Col>
 
 
-            <AddAccount
+            <AddAccountScreen
                 openAddAccount={openAddAccount}
                 setOpenAddAccount={setOpenAddAccount}
             />

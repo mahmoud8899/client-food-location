@@ -1,27 +1,30 @@
 import { Col, Container, Row } from 'react-bootstrap'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
-import '../Home.css'
-import Input from '../../../Components/Input/Input'
 import { FirstNameRest, Stand } from '../../../Assistant/Selection'
 import ScreenAbout from '../../ScreenAbout/ScreenAbout'
 // import * as ActionTypes from '../../../redux/Action/Types'
-import {LoactionPath} from '../../../redux/Action/CartItemAction'
-import {useDispatch} from 'react-redux'
+import { LoactionPath } from '../../../redux/Action/CartItemAction'
+import { useDispatch } from 'react-redux'
+import TheInputForm from '../../../Components/TheInputForm/TheInputForm'
+import ButtomClick from '../../../Components/Buttom/Buttom'
+import { Fragment } from 'react'
+import { BiMap } from 'react-icons/bi'
+import '../Home.css'
 export default function LocationScreen({ history }) {
 
 
-  const dispatch =useDispatch()
+  const dispatch = useDispatch()
 
 
 
 
-  const SelectionCity = ( id) => {
-  
+  const SelectionCity = (id) => {
+
     const city = id.toLowerCase()
 
     dispatch(LoactionPath(city))
-   
+
     // console.log(id)
     history.push(`/${city}/`)
   }
@@ -39,19 +42,24 @@ export default function LocationScreen({ history }) {
         <Col xs={12} sm={12} md={12} lg={12} className='back-color'>
           <h1 className='fontt'>Delivery address</h1>
           <Row>
-            <Col xs={8} sm={5} md={4} lg={4}>
-              <Input
-                className='Input-type-style'
-                placeholder='Example Street'
-                ImageLog={MyOderImage.pin}
+            <div className='mAPS-INPUT'>
+              <Col xs={8} sm={5} md={4} lg={4}>
+                <TheInputForm
+                  placeholder='Söker efter Produkter...'
+                  FirstIcons={
+                    <Fragment>
+                      <BiMap className='Icons-LEFT' />
+                    </Fragment>
+                  }
 
-              />
-            </Col>
-            <Col xs={4} sm={2} md={2} lg={2}>
-              <div className='searching-buttom'>
-                Searching
-              </div>
-            </Col>
+                  className='Input-type-style productdetials text-searching ADD-HEIGTH'
+                />
+              </Col>
+              <Col xs={4} sm={2} md={2} lg={2}>
+                <ButtomClick title='Searching' className='searching-buttom' />
+              </Col>
+            </div>
+
           </Row>
         </Col>
 
@@ -73,7 +81,7 @@ export default function LocationScreen({ history }) {
 
             <div className='text-city'>
               {Stand?.map((land) => (
-                <div className='text-city-city' key={land} onClick={() => SelectionCity( land)} >
+                <div className='text-city-city' key={land} onClick={() => SelectionCity(land)} >
                   <span>{land}</span>
                   <ImageScreen ImageIcon={MyOderImage.right} className='Image-right' />
                 </div>
@@ -92,4 +100,3 @@ export default function LocationScreen({ history }) {
     </div>
   </Container>
 }
-

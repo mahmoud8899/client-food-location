@@ -1,11 +1,11 @@
 import '../DriverScreen/style.css'
-import { Row, Col, Image } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import Styles from '../DriverScreen/style'
-import Input from '../../../Components/Input/Input'
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ButtomClick from '../../../Components/Buttom/Buttom'
 import { useState } from 'react'
-
+import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
+import TheInputForm from '../../../Components/TheInputForm/TheInputForm'
 
 export default function MessageInput(props) {
 
@@ -68,25 +68,39 @@ export default function MessageInput(props) {
     return <div className='buttom-chat'>
         <Row className="justify-content-center">
             <Col xs={9} sm={9} md={9} lg={9}>
-                <Input
-                    placeholder='Send a Message'
-                    as='textarea'
-                    style={Styles.textarea}
-                    onChange={(e) => setSendInput(e.target.value)}
-                    name='input'
-                    value={sendInput}
-                    onKeyPress={(e) => e.key === 'Enter' ? SendMessage(e) : null}
 
-                />
+         
+                    <TheInputForm
+                      placeholder='Send a Message'
+                      as='textarea'
+                      style={Styles.textarea}
+                      onChange={(e) => setSendInput(e.target.value)}
+                      name='input'
+                      value={sendInput}
+                      onKeyPress={(e) => e.key === 'Enter' ? SendMessage(e) : null}
+
+
+                      
+                     
+                   
+                        className='Input-type-style hegith'
+                      
+
+
+                    />
+
+
+
+              
             </Col>
             <Col xs={3} sm={3} md={3} lg={3}>
                 <ul className='ulplus'>
 
                     <li>
-                        <Image src={MyOderImage.map} alt={MyOderImage.map} style={Styles.image} />
+                        <ImageScreen ImageIcon={MyOderImage.map} style={Styles.image} />
                     </li>
                     <li>
-                        <Image src={MyOderImage.image} alt={MyOderImage.image} style={Styles.image} />
+                        <ImageScreen ImageIcon={MyOderImage.image}  style={Styles.image} />
                     </li>
 
                 </ul>

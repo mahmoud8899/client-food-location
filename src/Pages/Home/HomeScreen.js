@@ -6,7 +6,7 @@ import NavBarCity from '../NavBarCity/NavBarCity'
 import { FatchButik, FoodTypesAction, FreeDeliveryAction, NewRestaurantsAction } from '../../redux/Action/CartItemAction'
 import RestrangeItems from './RestrangeItems/RestrangeItems'
 import LoadingErrorHandld from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import { ErrorServer, TextButiker, Textrestaurant, Textfree, TextCategory ,LoadingSkeletonHomeCart } from '../../Assistant/TextError'
+import { ErrorServer, TextButiker, Textrestaurant, Textfree, TextCategory, LoadingSkeletonHomeCart } from '../../Assistant/TextError'
 import SearchingResultHome from '../../Components/Update/NavBarSearchingHome/SearchingResultHome'
 import CategoryScreen from './CategoryScreen/CategoryScreen'
 import CarouselItems from './Carousel/Carousel'
@@ -16,7 +16,7 @@ import './Home.css'
 
 // import TimeContext from '../../Components/Update/UseContext/TimeContext'
 // FatchButik, FirDeliveryAction, FoodTypesAction, GetCartInfoHomeRestranges,
-// import LoginDriverScreen from './LoginDriverScreen/LoginDriverScreen'
+import LoginDriverScreen from './LoginDriverScreen/LoginDriverScreen'
 
 export default function HomeScreen(props) {
 
@@ -46,6 +46,14 @@ export default function HomeScreen(props) {
     // category all 
     const pageHomeCategory = useSelector((state) => state?.pageHomeCategory)
     const { loading: loadingCategory, category, error: errorCategory } = pageHomeCategory
+
+
+
+    // user info 
+    const userLogin = useSelector((state) => state?.userLogin)
+    const { userInfo } = userLogin
+
+
 
 
 
@@ -104,70 +112,81 @@ export default function HomeScreen(props) {
     // [3] : stores 
     // [4] : free category 
     // [5]   class name category ....>   CategoryScreen  
+    // [6] driver resgstira 
 
 
 
 
 
 
-    return  <Container fluid>
-            <Title TextTitle={FirstNameRest} />
+    return <Container fluid>
+        <Title TextTitle={FirstNameRest} />
 
-            <Row className='justify-content-center'>
+        <Row className='justify-content-center'>
 
-                <Col xs={12} sm={12} md={6} lg={6} className='postion-abs'  >
-                    <SearchingResultHome />
-                </Col>
-            </Row>
-
-
-
-            <div className='margin-top-like'>
-                <NavBarCity ClassNameHOMEactive />
-            </div>
-
-
-            <Row className='justify-content-center'>
+            <Col xs={12} sm={12} md={6} lg={6} className='postion-abs'  >
+                <SearchingResultHome />
+            </Col>
+        </Row>
 
 
 
+        <div className='margin-top-like'>
+            <NavBarCity ClassNameHOMEactive />
+        </div>
 
-                <Col xs={12} sm={12} md={11} lg={11}>
 
-
-
-                    <LoadingErrorHandld loading={loadingnewRestaurant} error={errornewRestaurant} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
-                        <CarouselItems home={newRestaurant} />
-                        <RestrangeItems home={newRestaurant} Title={Textrestaurant} newRest />
-                    </LoadingErrorHandld>
-
-                    <LoadingErrorHandld loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
-                        <RestrangeItems home={stores} Title={TextButiker} />
-                    </LoadingErrorHandld>
+        <Row className='justify-content-center'>
 
 
 
 
-
-                    <LoadingErrorHandld loading={loadingFreedelivery} error={errorFreedelivery} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
-                        <RestrangeItems home={freedelivery} Title={Textfree} />
-                    </LoadingErrorHandld>
-
-                    <LoadingErrorHandld loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}>
-                        <CategoryScreen category={category} Title={TextCategory} />
-                    </LoadingErrorHandld>
-
-
-                </Col>
-
-            </Row>
+            <Col xs={12} sm={12} md={11} lg={11}>
 
 
 
+                <LoadingErrorHandld loading={loadingnewRestaurant} error={errornewRestaurant} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
+                    <CarouselItems home={newRestaurant} />
+                    <RestrangeItems home={newRestaurant} Title={Textrestaurant} newRest />
+                </LoadingErrorHandld>
+
+                <LoadingErrorHandld loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
+                    <RestrangeItems home={stores} Title={TextButiker} />
+                </LoadingErrorHandld>
 
 
 
-        </Container>
+                {userInfo?.email &&
+                    <div className='LoginDriverScreen'>
+
+                        <LoginDriverScreen />
+
+
+                    </div>
+                }
+
+
+
+
+                <LoadingErrorHandld loading={loadingFreedelivery} error={errorFreedelivery} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
+                    <RestrangeItems home={freedelivery} Title={Textfree} />
+                </LoadingErrorHandld>
+
+                <LoadingErrorHandld loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}>
+                    <CategoryScreen category={category} Title={TextCategory} />
+                </LoadingErrorHandld>
+
+
+            </Col>
+
+        </Row>
+
+
+
+
+
+
+    </Container>
 
 
 

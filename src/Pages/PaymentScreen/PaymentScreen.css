@@ -619,7 +619,10 @@ align-items: center;
 }
 
 
-
+.item-item{
+    display: flex;
+    align-items: center;
+}
 
 .flex-add-add{
     display: flex;
@@ -628,6 +631,9 @@ align-items: center;
 
 .margin-bottom-payment{
     margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    
 }
 
 

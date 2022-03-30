@@ -1,17 +1,17 @@
-import '../UserProfileScreen/Profile.css'
 import { Form, Modal, Row, Col } from 'react-bootstrap'
-import Input from '../../../Components/Input/Input'
 import ButtomClick from '../../../Components/Buttom/Buttom'
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { ValtionMe } from '../../../Assistant/ValtionMe'
 import { useDispatch, useSelector } from 'react-redux'
 import { AddTelefonNumber } from '../../../redux/Action/Auth_Action'
-import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import Styles from '../../../Components/Update/StylesComponents/style'
 import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
-import { NumberRemove} from '../../../Components/CloseScreen/CloseScreen'
-import {ErrorServer} from '../../../Assistant/TextError'
+import { NumberRemove } from '../../../Components/CloseScreen/CloseScreen'
+import { ErrorServer } from '../../../Assistant/TextError'
+import TheInputForm from '../../../Components/TheInputForm/TheInputForm'
+import { HiOutlineX } from 'react-icons/hi'
+import { RiCheckFill } from 'react-icons/ri'
+import '../UserProfileScreen/Profile.css'
 export default function UserAddTelefonNumber(props) {
 
     const { openAddNumber, setOpenAddNumber } = props
@@ -28,7 +28,7 @@ export default function UserAddTelefonNumber(props) {
 
 
 
-     // updated telefon number 
+    // updated telefon number 
     useEffect(() => {
 
         if (successfully === 'ok') return setUpdateSuccessFully(true)
@@ -56,8 +56,8 @@ export default function UserAddTelefonNumber(props) {
 
 
 
-     // close page add telefon number
-    const HandleClose = () => { 
+    // close page add telefon number
+    const HandleClose = () => {
         setOpenAddNumber(!openAddNumber)
         setUpdateSuccessFully(false)
         NumberRemove(dispatch)
@@ -74,7 +74,7 @@ export default function UserAddTelefonNumber(props) {
         return
     }
 
-    
+
 
     return openAddNumber && <Modal show={openAddNumber} onHide={HandleClose}>
 
@@ -93,34 +93,50 @@ export default function UserAddTelefonNumber(props) {
 
 
                 <div className='add-padding-number-clos'>
-                    <ImageScreen
+                    <HiOutlineX className='close-pp-pp-image' onClick={() => setOpenAddNumber(!openAddNumber)} />
+                    {/* <ImageScreen
                         ImageIcon={MyOderImage.close}
                         className='Login-Close-Image-rigth'
-                        onClick={() => setOpenAddNumber(!openAddNumber)}
-                    />
+                       
+                    /> */}
                 </div>
                 <Row className='justify-content-center'>
                     <Col xs={10} sm={10} md={8} lg={8}  >
                         <h1 className='text-align-center-h1'>lägga till telefonnummer</h1>
                         <Form className='flex-class-center' >
-                            <Input
+
+
+                            <TheInputForm
                                 placeholder='- - - - - - - - - -'
-                                className='Type-Input-class'
                                 onChange={(e) => setTelefonNumber(e.target.value)}
-                                validation={ValtionMe(telefonNumber, 'isPhone').toString()}
+
                                 value={telefonNumber}
                                 type='number'
                                 onKeyPress={(e) => e.key === 'key' ? HandleAddNumber(e) : null}
+                                FirstIcons={
+                                    <Fragment>
+
+                                        {ValtionMe(telefonNumber, 'isPhone')
+                                            ? <RiCheckFill className='Icons-LEFT-right' /> : null
+                                        }
+                                    </Fragment>
+                                }
+                                className='Input-type-style productdetials text-aligen-center'
+
                             />
 
 
 
-                            <ButtomClick
-                                title='lägga till telefonnummer'
-                                disabled={!ValtionMe(telefonNumber, 'isPhone')}
-                                onClick={(e) => HandleAddNumber(e)}
-                                style={Styles.buttomColorPage}
-                            />
+                            <div className='buttom-close'>
+                                <ButtomClick
+                                    title='lägga till telefonnummer'
+                                    disabled={!ValtionMe(telefonNumber, 'isPhone')}
+                                    onClick={(e) => HandleAddNumber(e)}
+                                    style={Styles.TabButtomCreate}
+                                />
+                            </div>
+
+
                         </Form>
                     </Col>
                 </Row>

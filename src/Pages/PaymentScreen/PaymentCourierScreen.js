@@ -1,12 +1,11 @@
 import { Image, Row, Col, } from 'react-bootstrap'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import './PaymentScreen.css'
-import {  selectionCourier } from '../../Assistant/Selection'
+import { selectionCourier } from '../../Assistant/Selection'
 import { useState } from 'react'
-import Input from '../../Components/Input/Input'
 import ButtomClick from '../../Components/Buttom/Buttom'
 import Styles from '../../Components/Update/StylesComponents/style'
-
+import TheInputForm from '../../Components/TheInputForm/TheInputForm'
 
 
 
@@ -53,7 +52,7 @@ export default function PaymentCourierScreen() {
                 <div className='item-credit-text'>
                     <div className='color-family'> Dricks till kurirpartern</div>
                     <div className='color-last-items'>
-                    Frivillig dricks till kurirpartnern
+                        Frivillig dricks till kurirpartnern
                     </div>
                 </div>
 
@@ -69,8 +68,8 @@ export default function PaymentCourierScreen() {
                     <div className='courier-box'>
                         <div className='courier-item'>
                             <p>
-                            De får 100 % av din dricks efter leveransen. 
-                            Om du vill ändra eller avbryta dricksen, vänligen kontakta supporten för hjälp.
+                                De får 100 % av din dricks efter leveransen.
+                                Om du vill ändra eller avbryta dricksen, vänligen kontakta supporten för hjälp.
                             </p>
                         </div>
                         <div className='courier-item'>
@@ -92,12 +91,15 @@ export default function PaymentCourierScreen() {
                                 You can tip between €0.50 to €100.00
                             </span>
 
-                            <Row className='justify-content-center'>
+                            <Row className='justify-content-center item-item'>
                                 <Col xs={8} sm={8} md={8} lg={8}>
-                                    <Input   className='Types-Input-BUTTOM-STADAR' />
+
+                                    <TheInputForm className='Input-type-style productdetials' />
+
+
                                 </Col>
                                 <Col xs={4} sm={4} md={4} lg={4}>
-                                    <ButtomClick title='Ok' style={Styles.buttomColorPage}/>
+                                    <ButtomClick title='Ok' style={Styles.TabButtomCreate} />
                                 </Col>
                             </Row>
 

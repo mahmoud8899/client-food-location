@@ -75,7 +75,7 @@ export const CheckOutConfirming = (TheCheckOutBookingTime, CheckOutRestrange, da
     } else {
         return TheCheckOutBookingTime?.timeOrder === null
             || TheCheckOutBookingTime?.dateOrder === 'today' ?
-            'kontrollera tiden' :  `${TheCheckOutBookingTime?.dateOrder}-${TheCheckOutBookingTime?.timeOrder}`
+            'kontrollera tiden' : `${TheCheckOutBookingTime?.dateOrder}-${TheCheckOutBookingTime?.timeOrder}`
 
     }
 }
@@ -103,6 +103,7 @@ export function ValidationUpdateProduct(OldValues, NewValues, changeImage) {
 
     return NewValues?.name?.trim()?.toLowerCase()?.normalize() === OldValues?.name?.toLowerCase()?.normalize()
         && NewValues?.description?.trim()?.toLowerCase()?.normalize() === OldValues?.description?.toLowerCase()?.normalize()
+        && NewValues?.category?.normalize() === OldValues?.category?._id?.normalize()
         && NewValues?.popular === OldValues?.popular
         && Number(NewValues?.prices) === Number(OldValues?.prices)
         && changeImage === ''
@@ -182,7 +183,7 @@ export function ValidationUpdatedAccount(NewData, OldData) {
 
 
 // valdtion create caret
-export function ValidationCreateCart(productDetails, opentime, addressinfo, finishfood, changeImage,foodType) {
+export function ValidationCreateCart(productDetails, opentime, addressinfo, finishfood, changeImage, foodType) {
 
 
 
