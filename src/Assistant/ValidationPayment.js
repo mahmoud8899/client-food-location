@@ -103,7 +103,7 @@ export function ValidationUpdateProduct(OldValues, NewValues, changeImage) {
 
     return NewValues?.name?.trim()?.toLowerCase()?.normalize() === OldValues?.name?.toLowerCase()?.normalize()
         && NewValues?.description?.trim()?.toLowerCase()?.normalize() === OldValues?.description?.toLowerCase()?.normalize()
-        && NewValues?.category?.normalize() === OldValues?.category?._id?.normalize()
+        // && NewValues?.?.trim()?.toLowerCcategoryase()?.normalize() === OldValues?.category?.toLowerCase()?.normalize()
         && NewValues?.popular === OldValues?.popular
         && Number(NewValues?.prices) === Number(OldValues?.prices)
         && changeImage === ''

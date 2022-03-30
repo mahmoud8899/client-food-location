@@ -66,8 +66,9 @@ export default function CheckOutSuccess(props) {
 
                 <br />
 
+
                 <div className='click-home' onClick={HandleRemoveCart}>
-                    <Link to={{ pathname: '/sw/profil/orders/' }} >om du vill se din beställning klicka här</Link>
+                    <Link to={{ pathname: '/sw/fex/profil/orders/' }} >om du vill se din beställning klicka här</Link>
                     <Link to={{ pathname: '/uppsala/' }} >om du vill gå till home</Link>
                 </div>
                 <div className='handle-image-Uppsala'>

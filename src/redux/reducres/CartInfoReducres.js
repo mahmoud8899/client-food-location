@@ -200,11 +200,11 @@ export const CartInfoIdReducres = (state = {
 
 
 
-// get  new restrange max 8
-export const newRestrangeReducres = (state = {
+// get  new best restrant max 6
+export const BestRestrantsReducres = (state = {
     loading: false,
     error: null,
-    newRestaurant: [],
+    BestRestaurant: [],
 }, action) => {
     switch (action.type) {
 
@@ -214,7 +214,7 @@ export const newRestrangeReducres = (state = {
         }
         case ActionTypes.ADD_NEW_RESTRANGE_SUCCESS: return {
             ...state,
-            newRestaurant: action.payload,
+            BestRestaurant: action.payload,
             loading: false,
         }
         case ActionTypes.ADD_NEW_RESTRANGE_FAIL: return {

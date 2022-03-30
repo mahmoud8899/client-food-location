@@ -1,7 +1,7 @@
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { TabScreen, TabScrrenDor } from '../../../Components/TabScreen/TabScreen'
-import InfiniteScrollData from '../Datils/InfiniteScrollData'
+import InfiniteScrollData from '../../../Components/InfiniteScroll/InfiniteScroll'
 import { ShowOrderAction } from '../../../redux/Action/Order_Action'
 import Styles from '../../../Components/Update/StylesComponents/style'
 import { Fragment } from 'react'

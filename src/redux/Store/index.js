@@ -72,7 +72,7 @@ import {
 import {
     CartInfoReducres,
     CartInfoIdReducres,
-    newRestrangeReducres,
+    BestRestrantsReducres,
     FreeDeliverReducres,
     ALLcatgoryReducres,
     CartInfoActionResturanReducres,
@@ -160,7 +160,7 @@ const reducer = combineReducers({
     // home page 
     PageHomeRestrange: CartInfoReducres,
     cartInfoid: CartInfoIdReducres,
-    pageHomeNewRestaurant: newRestrangeReducres,
+    pageHomeNewBestRestrant: BestRestrantsReducres,
     pageHomeFreeDelivery: FreeDeliverReducres,
     pageHomeCategory: ALLcatgoryReducres,
     pageUserCartinfo : CartInfoActionResturanReducres,

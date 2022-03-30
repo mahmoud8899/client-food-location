@@ -103,7 +103,7 @@ const MyAddress = (props) => {
 
     return <Form
         onSubmit={HandelChangeAddres}
-        className={ClassNamePayment ? 'ClassNamePayment' : ClassPaymentAdd ? '' : 'POstion-form'}>
+        className={ClassNamePayment ? 'ClassNamePayment' : ClassPaymentAdd ? 'tesing-form' : 'POstion-form'}>
 
         {handleError &&
             <div className='error-input-red' >

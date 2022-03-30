@@ -30,9 +30,11 @@ export default function CategoryScreen(props) {
         <Col xs={12} sm={12} md={12} lg={12}>
             <div className='Handplockat-class'>
 
-                <h1>
-                    {Title}
-                </h1>
+            <div className='xxxsss'>
+                    <span className='Visa-alla-title'>{Title}</span>
+                   
+                </div>
+
                 <Slider {...SettingsSlider}>
 
                     {category?.map((ho, Index) => (

@@ -1,22 +1,23 @@
+import { BestRestaurantAction, FatchButik, FoodTypesAction, FreeDeliveryAction, GetCartInfoHomeRestranges } from '../../redux/Action/CartItemAction'
+import { ErrorServer, TextButiker, Textfree, TextCategory, LoadingSkeletonHomeCart, TextRestrantHome, TextBestHome } from '../../Assistant/TextError'
+import LoadingErrorHandld from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
+import SearchingResultHome from '../../Components/Update/NavBarSearchingHome/SearchingResultHome'
+import RestrangeItems from './RestrangeItems/RestrangeItems'
+import CategoryScreen from './CategoryScreen/CategoryScreen'
+import TimeContext from '../../Components/Update/UseContext/TimeContext'
+import LoginDriverScreen from './LoginDriverScreen/LoginDriverScreen'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
 import { useSelector, useDispatch } from 'react-redux'
 import { Container, Row, Col } from 'react-bootstrap'
 import { FirstNameRest } from '../../Assistant/Selection'
 import NavBarCity from '../NavBarCity/NavBarCity'
-import { FatchButik, FoodTypesAction, FreeDeliveryAction, NewRestaurantsAction } from '../../redux/Action/CartItemAction'
-import RestrangeItems from './RestrangeItems/RestrangeItems'
-import LoadingErrorHandld from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import { ErrorServer, TextButiker, Textrestaurant, Textfree, TextCategory, LoadingSkeletonHomeCart } from '../../Assistant/TextError'
-import SearchingResultHome from '../../Components/Update/NavBarSearchingHome/SearchingResultHome'
-import CategoryScreen from './CategoryScreen/CategoryScreen'
-import CarouselItems from './Carousel/Carousel'
+import Carousel from './Carousel/Carousel'
 import { useEffect } from 'react'
 import './Home.css'
+import { Link } from 'react-router-dom'
+import LocationUser from './LocationUser/LocationUser'
 
 
-// import TimeContext from '../../Components/Update/UseContext/TimeContext'
-// FatchButik, FirDeliveryAction, FoodTypesAction, GetCartInfoHomeRestranges,
-import LoginDriverScreen from './LoginDriverScreen/LoginDriverScreen'
 
 export default function HomeScreen(props) {
 
@@ -30,13 +31,13 @@ export default function HomeScreen(props) {
     const dispatch = useDispatch()
 
 
-    // get new restaurant
-    const pageHomeNewRestaurant = useSelector((state) => state?.pageHomeNewRestaurant)
-    const { loading: loadingnewRestaurant, newRestaurant, error: errornewRestaurant } = pageHomeNewRestaurant
+    // get Best Restaurant
+    const pageHomeNewBestRestrant = useSelector((state) => state?.pageHomeNewBestRestrant)
+    const { loading: loadingnewBestRestaurant, BestRestaurant, error: errornewBestRestaurant } = pageHomeNewBestRestrant
 
     // get all restrange and stores....
     const PageHomeRestrange = useSelector((state) => state?.PageHomeRestrange)
-    const { loading, error, stores } = PageHomeRestrange
+    const { loading, error, stores, home } = PageHomeRestrange
 
 
     // get free delivery from restrest and stores
@@ -61,12 +62,12 @@ export default function HomeScreen(props) {
 
     // get all restrange
     useEffect(() => {
-        newRestaurant?.length === Number(0) && dispatch(NewRestaurantsAction({
+        BestRestaurant?.length === Number(0) && dispatch(BestRestaurantAction({
             city: LocationPath,
             productType: "restaurant"
         }))
 
-    }, [LocationPath, dispatch, newRestaurant?.length])
+    }, [LocationPath, dispatch, BestRestaurant?.length])
 
 
     // get all butiker
@@ -79,6 +80,21 @@ export default function HomeScreen(props) {
 
 
     }, [stores?.length, LocationPath, dispatch])
+
+
+    // get all restrang
+    useEffect(() => {
+        home?.length === Number(0) && dispatch(GetCartInfoHomeRestranges({
+            city: LocationPath,
+            productType: "restaurant"
+        }))
+
+
+
+    }, [home?.length, LocationPath, dispatch])
+
+
+
 
 
 
@@ -107,6 +123,8 @@ export default function HomeScreen(props) {
 
 
 
+
+
     // [1]  LoadingErrorHandld this is check out error and loading if not error coming data  
     // [2]  Limit new restrange max 8 itmes. and Carousel some data
     // [3] : stores 
@@ -119,75 +137,108 @@ export default function HomeScreen(props) {
 
 
 
-    return <Container fluid>
-        <Title TextTitle={FirstNameRest} />
-
-        <Row className='justify-content-center'>
-
-            <Col xs={12} sm={12} md={6} lg={6} className='postion-abs'  >
-                <SearchingResultHome />
-            </Col>
-        </Row>
 
 
+    return <TimeContext>
+        <Container fluid>
+            <Title TextTitle={FirstNameRest} />
 
-        <div className='margin-top-like'>
-            <NavBarCity ClassNameHOMEactive />
-        </div>
+            <Row className='justify-content-center'>
+
+                <Col xs={12} sm={12} md={6} lg={6} className='postion-abs'  >
+                    <SearchingResultHome />
+                </Col>
+            </Row>
 
 
-        <Row className='justify-content-center'>
+            <LocationUser  />
 
 
 
-
-            <Col xs={12} sm={12} md={11} lg={11}>
-
-
-
-                <LoadingErrorHandld loading={loadingnewRestaurant} error={errornewRestaurant} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
-                    <CarouselItems home={newRestaurant} />
-                    <RestrangeItems home={newRestaurant} Title={Textrestaurant} newRest />
-                </LoadingErrorHandld>
-
-                <LoadingErrorHandld loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
-                    <RestrangeItems home={stores} Title={TextButiker} />
-                </LoadingErrorHandld>
+            <div className='margin-top-like'>
+                <NavBarCity ClassNameHOMEactive />
+            </div>
 
 
-
-                {userInfo?.email &&
-                    <div className='LoginDriverScreen'>
-
-                        <LoginDriverScreen />
-
-
-                    </div>
-                }
+            <Row className='justify-content-center'>
 
 
 
 
-                <LoadingErrorHandld loading={loadingFreedelivery} error={errorFreedelivery} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
-                    <RestrangeItems home={freedelivery} Title={Textfree} />
-                </LoadingErrorHandld>
-
-                <LoadingErrorHandld loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}>
-                    <CategoryScreen category={category} Title={TextCategory} />
-                </LoadingErrorHandld>
-
-
-            </Col>
-
-        </Row>
+                <Col xs={12} sm={12} md={11} lg={11}>
 
 
 
 
 
+                    <LoadingErrorHandld loading={loadingnewBestRestaurant} error={errornewBestRestaurant} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
+                        <Carousel home={BestRestaurant} Title={TextBestHome} />
+                    </LoadingErrorHandld>
 
-    </Container>
 
+                    <LoadingErrorHandld loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
+
+
+                        <RestrangeItems home={home} Title={TextRestrantHome}
+                            // nextNumber={nextNumber}
+                            TheRedirect={
+                                <Link to={{ pathname: '/uppsala/restaurants/' }} className='Visa-alla' >Visa alla</Link>
+                            }
+                        />
+
+
+                    </LoadingErrorHandld>
+
+
+                    <LoadingErrorHandld loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
+                        <RestrangeItems
+                            home={stores}
+                            Title={TextButiker}
+                            TheRedirect={
+                                <Link to={{ pathname: '/uppsala/butiker/' }} className='Visa-alla' >Visa alla</Link>
+                            }
+
+
+                        />
+                    </LoadingErrorHandld>
+
+
+
+                    {userInfo?.email &&
+                        <div className='LoginDriverScreen'>
+
+                            <LoginDriverScreen />
+
+
+                        </div>
+                    }
+
+
+
+
+                    <LoadingErrorHandld loading={loadingFreedelivery} error={errorFreedelivery} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
+                        <RestrangeItems home={freedelivery} Title={Textfree} />
+                    </LoadingErrorHandld>
+
+                    <LoadingErrorHandld loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}>
+                        <CategoryScreen category={category} Title={TextCategory} />
+                    </LoadingErrorHandld>
+
+
+
+
+                </Col>
+
+            </Row>
+
+
+
+
+
+
+        </Container>
+
+    </TimeContext>
 
 
 

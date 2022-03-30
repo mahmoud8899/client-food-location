@@ -1,110 +1,125 @@
-import { Col, Row, } from 'react-bootstrap'
-import { useState } from 'react'
-// import { Link } from 'react-router-dom'
-import Styles from '../../../Components/Update/StylesComponents/style'
-import Carousel from 'react-bootstrap/Carousel'
-import Rating from '../../../Components/Rating/Rating'
-import ScreenDiscount from '../../../Components/ScreenDiscount/ScreenDiscount'
-import { Conversion } from '../../../Components/Update/Conversion/Conversion'
-import { Link } from 'react-router-dom'
+import { MyOderImage } from "../../../Assistant/MyOrderImage";
+import { TheTimeOppenProduct } from "../../../Assistant/TheTimeOppenProduct";
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
+import Rating from "../../../Components/Rating/Rating";
+import { Conversion } from "../../../Components/Update/Conversion/Conversion";
+import Styles from "../../../Components/Update/StylesComponents/style";
+import { SliceName } from '../../../Assistant/Slice'
+import React from "react";
+import Slider from "react-slick";
+import { Row, Col } from 'react-bootstrap'
+import { Link } from "react-router-dom";
 import '../Home.css'
-const CarouselItems = (props) => {
-
-
-
-    const { home } = props
-
-
-    const [dataTesting, setDataTesting] = useState(null)
 
 
 
 
 
 
+export default function Carousel(props) {
+
+    const {  home ,Title } = props
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        responsive: [
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                },
+            }
+        ],
+    };
+    return (
+        <Row>
+
+            <Col xs={12} sm={12} md={12} lg={12} >
+
+
+                <h1 className="first-frist">
+                    {Title}
+                </h1>
+                <Slider {...settings}>
+
+                    {home?.map((item, Index) => (
+
+                        <div className='box-Slider-Show-home' key={Index}>
+                            <Link to={{ pathname: Conversion(item) }} >
+                                <div className="image-coursel-home">
+
+                                    <div className="image-coursel-home-clidren">
+
+                                        <ImageScreen ImageIcon={item?.image} className='image-coursel-home-clidren-Image' />
 
 
 
-
-    const ChangeData = (e, data) => {
-
-        e.preventDefault()
-        return setDataTesting(data)
-    }
+                                        <div className="callBack-info"  >
 
 
+                                            <h1>{item?.username}</h1>
+                                            <span className="spanClass">{SliceName(item?.description, 20)}</span>
+
+                                            <div className='callBack-info-driver' style={Styles.buttom}>
+
+                                                <ImageScreen
+                                                    ImageIcon={MyOderImage.delivery}
+                                                    className='driver-image'
+                                                />
+
+                                                <div className='title-bottom-price'>
+                                                    SEK0.00
+                                                </div>
+
+                                                <div className='title-bottom-price'>
+                                                    <Rating value={item?.rating} text={item?.numReviews} />
+                                                </div>
+
+
+                                                <div className='callBack-info-time'>
+                                                    <div className='callBack-info-time-children'>{item?.finishfood?.to}-{item?.finishfood?.to}</div>
+                                                    <div className='callBack-info-time-children'> min</div>
+                                                </div>
+
+                                            </div>
+
+                                            {TheTimeOppenProduct(item?.opentime)?.toString() === 'true' &&
+                                                <div className='list-image-close add-close'>
+                                                    stängd
+                                                </div>
+
+                                            }
+
+
+                                        </div>
 
 
 
-    return home?.length > Number(0) ? <div style={Styles.firstClass} className='exstra-margint'>
+                                    </div>
 
-        <Row className='justify-content-center'>
-            <Col xs={12} sm={12} md={8} lg={8}>
-                <Carousel >
-                    {home?.map((top, Index) => (
-                        <Carousel.Item
-                            key={Index}
-
-                            onMouseOver={(e) => ChangeData(e, top)}
-                            className='Hovermore'
-                        >
-                            <Link
-                                to={{ pathname: Conversion(top) }}
-                                className='add'
-                            >
-                                <div
-                                    className="add_link_all"
-
-                                >
-                                    <ImageScreen
-                                        className="d-block w-100"
-                                        ImageIcon={top?.image}
-                                        alt="First slide"
-                                        style={Styles.CarouselItems}
-                                        fluid
-                                    />
-                                    <Carousel.Caption>
-                                        {top?.discount > 0 &&
-                                            <ScreenDiscount dis={top?.discount} />}
-
-                                    </Carousel.Caption>
 
                                 </div>
                             </Link>
-                            <Carousel.Caption variant="info">
-                                <h3>First slide label</h3>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </Carousel.Caption>
 
-                        </Carousel.Item>
+
+                        </div>
+
+
                     ))}
-                </Carousel>
 
 
-            </Col>
-            <Col xs={12} sm={12} md={4} lg={4} className='Home-display'>
-                <div className='carousel-box' >
-                    <span className='carousel-box-children'>{dataTesting?.name ? dataTesting?.name : null}</span>
-                    <span className='carousel-box-children'> {dataTesting?.description ? dataTesting?.description : 'The best food in the world'}</span>
-                    <span className='carousel-box-children' >{dataTesting?.prices ? dataTesting?.prices : null}</span>
-                    <div className=''>
-                        <Rating
-                            value={dataTesting?.rating ? dataTesting?.rating : 5}
-                            text={`${dataTesting?.numReviews ? dataTesting?.numReviews : 5} reviews`}
-                        />
-                    </div>
 
-                </div>
+                </Slider>
+
+
             </Col>
         </Row>
-
-
-    </div> : null
-
-
-
+    );
 
 }
-
-export default CarouselItems

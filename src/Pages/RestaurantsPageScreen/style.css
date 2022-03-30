@@ -57,6 +57,12 @@ class-padding-style  this is padding
     position: relative;
 
 }
+.medi-size.add-postion-medi{
+    position: absolute;
+    bottom: 0rem;
+
+  
+}
 .driver {
     padding: 0rem;
     margin: 0rem;

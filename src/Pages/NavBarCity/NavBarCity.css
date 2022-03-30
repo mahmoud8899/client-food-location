@@ -52,15 +52,12 @@
     background-color: rgba(255, 59, 47, 0.52);
     color: white;
     display: block;
-    text-align: center;
-    height: 100%;
     line-height: 3rem;
-    font-size: 20px;
     text-align: center;
     border-radius: 0.4rem;
-    font-size: 16px;
-    font-family: system-ui;
+    font-size: 17px;
     text-transform: capitalize;
+    height: 45px;
 }
 
 .Add-Scroll-Home{

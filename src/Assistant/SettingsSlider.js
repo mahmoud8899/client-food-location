@@ -1,11 +1,10 @@
 
 export const SettingsSlider = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    initialSlide: 0,
+  dots: true,
+  infinite: false,
+  slidesToShow: 3,
+  slidesToScroll: 3,
+  adaptiveHeight: true,
     responsive: [
     //   {
     //     breakpoint: 1024,

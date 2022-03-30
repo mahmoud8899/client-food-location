@@ -1,5 +1,5 @@
 import ProductsChildrenItems from './ProductsChildrenItems'
-import InfiniteScrollData from '../../Account/RestaurantsAccount/Datils/InfiniteScrollData'
+import InfiniteScrollData from '../../Components/InfiniteScroll/InfiniteScroll'
 import { FatchButik, GetCartInfoHomeRestranges } from '../../redux/Action/CartItemAction'
 import { FilterCategory } from '../../Components/Update/UseContext/FilterCategoryScreen'
 import { useContext } from 'react'

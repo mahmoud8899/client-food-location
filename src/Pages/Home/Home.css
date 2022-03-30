@@ -1,3 +1,104 @@
+
+
+
+.image-coursel-home{
+    height: 15rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+.image-coursel-home-clidren{
+    position: relative;
+}
+.image-coursel-home-clidren-Image{
+
+    width: 100%;
+    height: 15rem;
+    border-radius: 0.5rem;
+    object-fit: cover;
+}
+
+.callBack-info{
+    position: absolute;
+    width: 100%;
+    left: 0rem;
+    height: 15rem;
+    z-index: 434343;
+    background-color: #00000052;
+    bottom: 0rem;
+    color: white;
+    border-radius: 0.5rem;
+}
+.callBack-info h1{
+    bottom: 4rem;
+    position: absolute;
+    left: 1rem;
+    font-size: 20px;
+    text-transform: capitalize;
+    font-family: 'Heebo', sans-serif;
+}
+.callBack-info .spanClass{
+    bottom: 3rem;
+    position: absolute;
+    left: 1rem;
+    font-size: 20px;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.first-frist
+{
+    padding: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: -1rem;
+    font-size: 17px;
+    text-transform: capitalize;
+    font-family: 'Heebo', sans-serif;
+}
+
+.callBack-info-driver{
+    bottom: 0rem;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: center;
+ 
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 0.3rem;
+}
+.callBack-info-time{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  
+}
+
+.callBack-info-time-children{
+    left: 1rem;
+    font-size: 17px;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.callBack-info-driver .title-bottom-price{
+    font-size: 17px;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+/* .callBack-info-driver .title-bottom-price span{
+    display: flex;
+    align-items: center;
+   background-color: #198754;
+} */
+.callBack-info-driver .driver-image{
+    width: 22px;
+    height: 22px;
+}
+.callBack-info-driver .title-bottom-price{
+    font-size: 17px;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
 .slick-next {
     right: 3px !important;
 }
@@ -23,6 +124,9 @@
     color: #ff9d97 !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+.tesing-form{
+    width: 100%;
 }
 .LoginDriverScreen{
     margin-top: 4rem;
@@ -115,6 +219,30 @@
     border-radius: 0.5rem;
     overflow: hidden;
 }
+.box-Slider-Sitemw-itemme-children.notboxshadow{
+    box-shadow: none;
+}
+.list-image {
+
+    position: relative;
+    height: 10rem;
+ 
+}
+.list-image.add-corsol{
+    height: 15rem;
+}
+
+.image-res{
+
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    object-fit:cover
+
+}
+
+
 .first-class-product{
     display: flex;
     flex-direction: column;
@@ -292,8 +420,13 @@ justify-content: flex-start
      font-size: 20px;
      font-weight: bold;
      text-decoration: none;
+     border-radius: 0.5rem;
    
 }
+.list-image-close.add-close{
+    background-color: transparent;
+}
+
 .list-image-close:hover{
  color: white;
 }
@@ -377,14 +510,25 @@ justify-content: flex-start
     opacity: 0.6;
     font-size: 13px;
 }
-
+.sjsdfsdkf{
+    background-color: red;
+}
 
 .Dev-Error{
     display: flex;
     justify-content: center;
     align-items: center;
-  
+   
     width: 100%;
+
+}
+.Dev-Error-Error{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 100%;
+    padding : 1rem
 
 }
 .Font-goo{
@@ -393,15 +537,36 @@ justify-content: flex-start
 }
  /* Start restrange  */
 
- .Handplockat-class h1 {
+
+.xxxsss {
     padding: 0.5rem;
     margin-top: 2rem;
     margin-bottom: -1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 90%;
+ }
+.Visa-alla-title
+ {
     font-size: 17px;
     text-transform: capitalize;
     font-family: 'Heebo', sans-serif;
-    
-  }
+ }
+ .Visa-alla{
+
+    font-size: 17px;
+    text-transform: capitalize;
+    font-family: 'Heebo', sans-serif;
+    color: #ff9c97;
+    cursor: pointer;
+    text-decoration: none;
+}
+.Visa-alla:hover{
+    color: #ff9c97;
+}
+
   .box-Slider-Show-home{
     padding: 0.5rem;
     margin-top: 1rem;
@@ -477,21 +642,8 @@ justify-content: flex-start
 
  }
 
- .list-image {
 
-    position: relative;
-    height: 10rem;
- 
-}
-.image-res{
 
-    width: 100%;
-    height: 100%;
-    object-fit:cover;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-
-}
 
 .title {
     padding: 0rem;
@@ -1052,6 +1204,18 @@ justify-content: flex-start
 @media only screen and (max-width: 767px) {
     .Home-display{
         display: none;
+    }
+    .callBack-info h1{
+        font-size: 15px;
+    }
+    .callBack-info .spanClass{
+        font-size: 13px;
+    }
+    .callBack-info-driver .title-bottom-price{
+        font-size: 13px;
+    }
+    .callBack-info-time-children{
+        font-size: 13px;
     }
 }
 

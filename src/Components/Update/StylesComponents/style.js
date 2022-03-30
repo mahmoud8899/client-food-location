@@ -3,6 +3,7 @@ import COLORS from '../../../Assistant/Color'
 
 
 const Styles = {
+
     searchingcolor:{
 
         color : COLORS.testing

@@ -237,14 +237,14 @@ export const CartInfoIdRatingAction = (user, ChangeParams) => async (dispatch, g
 
 
 
-// get new restaurant limit 8
+// get Best Restaurant
 // we have twe params.... [1] : city [2] : producttypes
-// GET // URL : // /api/cartinfo/limit/:city/:productType/
-export const NewRestaurantsAction = (user) => async (dispatch) => {
+// GET // URL : // /api/cartinfo/best/:city/:productType/
+export const BestRestaurantAction = (user) => async (dispatch) => {
     try {
         dispatch({ type: ActionTypes.ADD_NEW_RESTRANGE_LOADING })
 
-        const { data } = await axios.get(`/api/cartinfo/limit/${user?.city}/${user?.productType}/`)
+        const { data } = await axios.get(`/api/cartinfo/best/${user?.city}/${user?.productType}/`)
         dispatch({ type: ActionTypes.ADD_NEW_RESTRANGE_SUCCESS, payload: data })
     } catch (error) {
         dispatch({

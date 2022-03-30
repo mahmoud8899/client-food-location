@@ -6,8 +6,8 @@
 }
 .cooking{
 
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     object-fit: cover;
     margin: 0rem auto;
     transition: all 9s;

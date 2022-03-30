@@ -22,7 +22,7 @@ export default function LoadingErrorHandle(props) {
         </div>
         :
         error ?
-            <div className={extraStyle ? 'Dev-Error extraStyle' : 'Dev-Error'}>
+            <div className={error && extraStyle ? 'Dev-Error extraStyle' : 'Dev-Error-Error'}>
                 <CodeError error={TextNotItems} />
             </div>
             :

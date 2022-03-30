@@ -13,7 +13,6 @@ import { GetCartInfoIdAction } from '../../redux/Action/CartItemAction'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import { ErrorServer,LoadingSkeletonProductPage } from '../../Assistant/TextError'
-
 import './PaymentScreen.css'
 import TimeContext from '../../Components/Update/UseContext/TimeContext'
 export default function CheckOutPaymentScreen(props) {
@@ -95,8 +94,8 @@ export default function CheckOutPaymentScreen(props) {
 
 
 
-    return <TimeContext>
-        <Container fluid>
+    return    <TimeContext>
+               <Container fluid>
             <Title TextTitle='Checkout' />
             <LoadingErrorHandle
                 loading={loading}
@@ -151,7 +150,7 @@ export default function CheckOutPaymentScreen(props) {
 
 
         </Container>
-    </TimeContext>
+    </TimeContext>   
 
 }
 

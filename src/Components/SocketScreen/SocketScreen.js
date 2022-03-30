@@ -21,7 +21,7 @@ export default function SocketScreen({ children }) {
             const newSocket = io.connect(`http://localhost:8000/`, { reconnect: true })
             newSocket.on('disconnect', () => {
                 setSocket(null)
-                setTimeout(supSocket, 3000)
+                // setTimeout(supSocket, 3000)
                 console.log('disconnect', 'socket Disconnect !')
             })
 
