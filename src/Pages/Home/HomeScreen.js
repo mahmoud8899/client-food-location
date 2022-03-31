@@ -12,11 +12,13 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { FirstNameRest } from '../../Assistant/Selection'
 import NavBarCity from '../NavBarCity/NavBarCity'
 import Carousel from './Carousel/Carousel'
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
+import { UserLoaction } from '../LoactionPage/LoactionPage'
 import './Home.css'
 import { Link } from 'react-router-dom'
-import LocationUser from './LocationUser/LocationUser'
 
+// import LocationUser from './LocationUser/LocationUser'
+// <LocationUser  />
 
 
 export default function HomeScreen(props) {
@@ -26,27 +28,21 @@ export default function HomeScreen(props) {
 
 
     // city name
-    const LocationPath = match.params.id
+    // const LocationPath = match.params.id
+
+    const {
+        lat,
+        long,
+        loading: loadingLocation, } = useContext(UserLoaction)
 
     const dispatch = useDispatch()
-
-
-    // get Best Restaurant
-    const pageHomeNewBestRestrant = useSelector((state) => state?.pageHomeNewBestRestrant)
-    const { loading: loadingnewBestRestaurant, BestRestaurant, error: errornewBestRestaurant } = pageHomeNewBestRestrant
 
     // get all restrange and stores....
     const PageHomeRestrange = useSelector((state) => state?.PageHomeRestrange)
     const { loading, error, stores, home } = PageHomeRestrange
 
 
-    // get free delivery from restrest and stores
-    const pageHomeFreeDelivery = useSelector((state) => state?.pageHomeFreeDelivery)
-    const { loading: loadingFreedelivery, freedelivery, error: errorFreedelivery } = pageHomeFreeDelivery
 
-    // category all 
-    const pageHomeCategory = useSelector((state) => state?.pageHomeCategory)
-    const { loading: loadingCategory, category, error: errorCategory } = pageHomeCategory
 
 
 
@@ -60,61 +56,45 @@ export default function HomeScreen(props) {
 
 
 
-    // get all restrange
-    useEffect(() => {
-        BestRestaurant?.length === Number(0) && dispatch(BestRestaurantAction({
-            city: LocationPath,
-            productType: "restaurant"
-        }))
-
-    }, [LocationPath, dispatch, BestRestaurant?.length])
-
-
     // get all butiker
     useEffect(() => {
-        stores?.length === Number(0) && dispatch(FatchButik({
-            city: LocationPath,
-            productType: "butiker"
+        if (lat !== null && long !== null) {
+            stores?.length === Number(0) && dispatch(FatchButik({
+                lat: lat,
+                long: long,
+                productType : 'butiker'
+              
+            }))
+          
+            return
+        }
+
+
+    }, [dispatch, lat,   long,stores?.length])
+
+
+
+    // get all restrant
+    useEffect(() => {
+
+
+        return lat !== null && long !== null && home?.length === Number(0) && dispatch(GetCartInfoHomeRestranges({
+            lat: lat,
+            long: long,
+            productType : 'restaurant'
         }))
 
 
 
-    }, [stores?.length, LocationPath, dispatch])
+
+    }, [
 
 
-    // get all restrang
-    useEffect(() => {
-        home?.length === Number(0) && dispatch(GetCartInfoHomeRestranges({
-            city: LocationPath,
-            productType: "restaurant"
-        }))
-
-
-
-    }, [home?.length, LocationPath, dispatch])
-
-
-
-
-
-
-    // free delivery
-    useEffect(() => {
-
-        freedelivery?.length === Number(0) && dispatch(FreeDeliveryAction(LocationPath))
-
-    }, [LocationPath, dispatch, freedelivery?.length])
-
-
-
-
-
-    // category
-    useEffect(() => {
-
-        category.length === Number(0) && dispatch(FoodTypesAction())
-
-    }, [dispatch, category.length])
+        dispatch,
+        lat,
+        long,
+        home?.length
+    ])
 
 
 
@@ -139,106 +119,84 @@ export default function HomeScreen(props) {
 
 
 
-    return <TimeContext>
-        <Container fluid>
-            <Title TextTitle={FirstNameRest} />
+    return <LoadingErrorHandld loading={loadingLocation} >
+        <TimeContext>
+            <Container fluid>
+                <Title TextTitle={FirstNameRest} />
 
-            <Row className='justify-content-center'>
+                <Row className='justify-content-center'>
 
-                <Col xs={12} sm={12} md={6} lg={6} className='postion-abs'  >
-                    <SearchingResultHome />
-                </Col>
-            </Row>
-
-
-            <LocationUser  />
-
-
-
-            <div className='margin-top-like'>
-                <NavBarCity ClassNameHOMEactive />
-            </div>
-
-
-            <Row className='justify-content-center'>
-
-
-
-
-                <Col xs={12} sm={12} md={11} lg={11}>
-
-
-
-
-
-                    <LoadingErrorHandld loading={loadingnewBestRestaurant} error={errornewBestRestaurant} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
-                        <Carousel home={BestRestaurant} Title={TextBestHome} />
-                    </LoadingErrorHandld>
-
-
-                    <LoadingErrorHandld loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
-
-
-                        <RestrangeItems home={home} Title={TextRestrantHome}
-                            // nextNumber={nextNumber}
-                            TheRedirect={
-                                <Link to={{ pathname: '/uppsala/restaurants/' }} className='Visa-alla' >Visa alla</Link>
-                            }
-                        />
-
-
-                    </LoadingErrorHandld>
-
-
-                    <LoadingErrorHandld loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
-                        <RestrangeItems
-                            home={stores}
-                            Title={TextButiker}
-                            TheRedirect={
-                                <Link to={{ pathname: '/uppsala/butiker/' }} className='Visa-alla' >Visa alla</Link>
-                            }
-
-
-                        />
-                    </LoadingErrorHandld>
-
-
-
-                    {userInfo?.email &&
-                        <div className='LoginDriverScreen'>
-
-                            <LoginDriverScreen />
-
-
-                        </div>
-                    }
-
-
-
-
-                    <LoadingErrorHandld loading={loadingFreedelivery} error={errorFreedelivery} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
-                        <RestrangeItems home={freedelivery} Title={Textfree} />
-                    </LoadingErrorHandld>
-
-                    <LoadingErrorHandld loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}>
-                        <CategoryScreen category={category} Title={TextCategory} />
-                    </LoadingErrorHandld>
-
-
-
-
-                </Col>
-
-            </Row>
+                    <Col xs={12} sm={12} md={6} lg={6} className='postion-abs'  >
+                        <SearchingResultHome />
+                    </Col>
+                </Row>
 
 
 
 
 
 
-        </Container>
+                <div className='margin-top-like'>
+                    <NavBarCity ClassNameHOMEactive />
+                </div>
 
-    </TimeContext>
+
+                <Row className='justify-content-center'>
+
+
+
+
+                    <Col xs={12} sm={12} md={11} lg={11}>
+
+
+
+
+
+                        <LoadingErrorHandld loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
+
+
+                            <RestrangeItems home={home} Title={TextRestrantHome}
+                                // nextNumber={nextNumber}
+                                TheRedirect={
+                                    <Link to={{ pathname: '/uppsala/restaurants/' }} className='Visa-alla' >Visa alla</Link>
+                                }
+                            />
+
+
+                        </LoadingErrorHandld>
+
+
+                        <LoadingErrorHandld loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
+                            <RestrangeItems
+                                home={stores}
+                                Title={TextButiker}
+                                TheRedirect={
+                                    <Link to={{ pathname: '/uppsala/butiker/' }} className='Visa-alla' >Visa alla</Link>
+                                }
+
+
+                            />
+                        </LoadingErrorHandld>
+
+
+
+
+
+
+
+                    </Col>
+
+                </Row>
+
+
+
+
+
+
+            </Container>
+
+        </TimeContext>
+    </LoadingErrorHandld>
 
 
 
@@ -247,3 +205,58 @@ export default function HomeScreen(props) {
 
 }
 
+
+
+
+// <LoadingErrorHandld loading={loadingnewBestRestaurant} error={errornewBestRestaurant} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
+// <Carousel home={BestRestaurant} Title={TextBestHome} />
+// </LoadingErrorHandld>
+
+
+// {userInfo?.email &&
+// <div className='LoginDriverScreen'>
+
+//     <LoginDriverScreen />
+
+
+// </div>
+// }
+
+// <LoadingErrorHandld loading={loadingFreedelivery} error={errorFreedelivery} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
+// <RestrangeItems home={freedelivery} Title={Textfree} />
+// </LoadingErrorHandld>
+
+// <LoadingErrorHandld loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}>
+// <CategoryScreen category={category} Title={TextCategory} />
+// </LoadingErrorHandld>
+
+
+    // // get Best Restaurant
+    // const pageHomeNewBestRestrant = useSelector((state) => state?.pageHomeNewBestRestrant)
+    // const { loading: loadingnewBestRestaurant, BestRestaurant, error: errornewBestRestaurant } = pageHomeNewBestRestrant
+    // // get free delivery from restrest and stores
+    // const pageHomeFreeDelivery = useSelector((state) => state?.pageHomeFreeDelivery)
+    // const { loading: loadingFreedelivery, freedelivery, error: errorFreedelivery } = pageHomeFreeDelivery
+    // // category all 
+    // const pageHomeCategory = useSelector((state) => state?.pageHomeCategory)
+    // const { loading: loadingCategory, category, error: errorCategory } = pageHomeCategory
+    // // get all restrange
+    // useEffect(() => {
+    //     BestRestaurant?.length === Number(0) && dispatch(BestRestaurantAction({
+    //         city: LocationPath,
+    //         productType: "restaurant"
+    //     }))
+
+    // }, [LocationPath, dispatch, BestRestaurant?.length])
+    // // free delivery
+    // useEffect(() => {
+
+    //     freedelivery?.length === Number(0) && dispatch(FreeDeliveryAction(LocationPath))
+
+    // }, [LocationPath, dispatch, freedelivery?.length])
+    // // category
+    // useEffect(() => {
+
+    //     category.length === Number(0) && dispatch(FoodTypesAction())
+
+    // }, [dispatch, category.length])

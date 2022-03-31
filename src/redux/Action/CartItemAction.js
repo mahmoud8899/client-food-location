@@ -32,7 +32,7 @@ export const FatchButik = (user) => async (dispatch, getState) => {
     if (CheckNumber) {
         try {
             dispatch({ type: ActionTypes.ADD_CART_INFO_LOADING_RESTAURANT_STORES })
-            const { data } = await axios.get(`/api/cartinfo/views/${user?.city}/${user?.productType}/?pageNumber=${CheckNumber}`,)
+            const { data } = await axios.get(`/api/cartinfo/views/${user?.lat}/${user?.long}/${user.productType}/?pageNumber=${CheckNumber}`,)
             dispatch(AppendListStores(data.data))
             if (data?.pages <= 1) return dispatch(APPendStoresNumber(null))
             const nextpage = data?.result?.next?.page > data?.pages ? null : data?.result?.next?.page
@@ -91,7 +91,7 @@ export const GetCartInfoHomeRestranges = (user) => async (dispatch, getState) =>
         try {
 
             dispatch({ type: ActionTypes.ADD_CART_INFO_LOADING_RESTAURANT_STORES })
-            const { data } = await axios.get(`/api/cartinfo/views/${user?.city}/${user?.productType}/?pageNumber=${CheckNumber}`,)
+            const { data } = await axios.get(`/api/cartinfo/views/${user?.lat}/${user?.long}/${user.productType}/?pageNumber=${CheckNumber}`,)
             dispatch(AppendListRestaurant(data.data))
             if (data?.pages <= 1) return dispatch(APPendRestaurantNumber(null))
             const nextpage = data?.result?.next?.page > data?.pages ? null : data?.result?.next?.page

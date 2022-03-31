@@ -7,9 +7,10 @@ import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/Loadi
 import FilterProducts from '../../Components/Update/FilterProducts/FilterProducts'
 import { FilterCategory } from '../../Components/Update/UseContext/FilterCategoryScreen'
 import VisaProductItems from './VisaProductsItems'
-import { ErrorServer ,LoadingSkeletonHomeCart} from '../../Assistant/TextError'
+import { ErrorServer, LoadingSkeletonHomeCart } from '../../Assistant/TextError'
 import { useContext, useEffect } from 'react'
 import './VisaProducts.css'
+import { UserLoaction } from '../LoactionPage/LoactionPage'
 export default function VisaProducts(props) {
 
     // option   // params  
@@ -21,9 +22,12 @@ export default function VisaProducts(props) {
 
 
 
+
+
+
     const { match, location } = props
 
-
+    const { lat, long, loading: LoadingLocation } = useContext(UserLoaction)
 
     // restaurant or butik
     const IdMatch = match?.params?.id
@@ -54,20 +58,29 @@ export default function VisaProducts(props) {
     useEffect(() => {
 
 
-        if (IdMatch === 'butiker') {
+        if (IdMatch === 'butiker' && lat !== null && long !== null) {
 
             return stores?.length === Number(0) && dispatch(FatchButik({
-                city: city,
+                lat: lat,
+                long: long,
                 productType: "butiker"
             }))
-        } else {
+        }
 
+
+        if (IdMatch === 'restaurants' && lat !== null && long !== null) {
             home?.length === Number(0) && dispatch(GetCartInfoHomeRestranges({
-                city: city,
+                lat: lat,
+                long: long,
                 productType: "restaurant"
             }))
             return IdMatch !== 'restaurants' && setAddCart([IdMatch])
+
         }
+
+
+
+
 
 
 
@@ -75,7 +88,7 @@ export default function VisaProducts(props) {
         // eslint-disable-next-line
 
 
-    }, [IdMatch, dispatch, home?.length, city, stores?.length, setAddCart])
+    }, [IdMatch, dispatch, home?.length, city, stores?.length, setAddCart, lat, long])
 
 
 
@@ -86,43 +99,48 @@ export default function VisaProducts(props) {
 
 
 
-    return <Container fluid>
+    return <LoadingErrorHandle loading={LoadingLocation}>
+        <Container fluid>
 
-        <Title TextTitle={match?.params?.id} />
+            <Title TextTitle={match?.params?.id} />
 
-        <div className='margin-top-category'>
-            <NavBarCity ClassNameCategory={IdMatch === 'restaurants'} ClassNameLike={IdMatch === 'butiker'} />
-        </div>
+            <div className='margin-top-category'>
+                <NavBarCity ClassNameCategory={IdMatch === 'restaurants'} ClassNameLike={IdMatch === 'butiker'} />
+            </div>
 
 
-        <Row className='justify-content-center'>
-            <Col xs={12} sm={12} md={11} lg={11} className='extra-padding-dddd'>
+            <Row className='justify-content-center'>
+                <Col xs={12} sm={12} md={11} lg={11} className='extra-padding-dddd'>
 
-                <div className='visaProduct-css-flex'>
-                    <div className='Title-name-products-text'>
-                        <h1>{match?.params?.id}</h1>
+                    <div className='visaProduct-css-flex'>
+                        <div className='Title-name-products-text'>
+                            <h1>{match?.params?.id}</h1>
+                        </div>
+
+                        <FilterProducts location={location?.search} />
+
                     </div>
-
-                 <FilterProducts location={location?.search} />
-
-                </div>
-                <LoadingErrorHandle loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
-                    <Row>
-                        <VisaProductItems
-                            home={IdMatch === 'butiker' ? stores : home}
-                            fetchMore={IdMatch === 'butiker' ? nextstoresnumber : nextNumber}
-                            city={city}
-                            IdMatch={IdMatch}
-                        />
-                    </Row>
-                </LoadingErrorHandle>
+                    <LoadingErrorHandle loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
+                        <Row>
+                            <VisaProductItems
+                                home={IdMatch === 'butiker' ? stores : home}
+                                fetchMore={IdMatch === 'butiker' ? nextstoresnumber : nextNumber}
+                                IdMatch={IdMatch}
+                                long={long}
+                                lat={lat}
+                            />
+                        </Row>
+                    </LoadingErrorHandle>
 
 
-            </Col>
-        </Row>
+                </Col>
+            </Row>
 
 
-    </Container>
+        </Container>
+    </LoadingErrorHandle>
+
+
 
 }
 

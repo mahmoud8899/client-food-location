@@ -106,7 +106,7 @@ export default function CheckOutPaymentScreen(props) {
 
 
                 <Row className='justify-content-center'>
-                    <PaymentMapsScreen cartinfo={cartinfo?.username} />
+                    <PaymentMapsScreen cartinfo={cartinfo} />
 
                     <Row className='row-box'>
 

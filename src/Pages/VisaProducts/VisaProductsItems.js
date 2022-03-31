@@ -9,7 +9,7 @@ import './VisaProducts.css'
 
 export default function VisaProductItems(props) {
   // params [1] : home data , [2] :nextNumber : next number with fetch
-  const { fetchMore, home, city, IdMatch } = props
+  const { fetchMore, home, IdMatch, lat, long } = props
 
 
   const dispatch = useDispatch()
@@ -29,7 +29,8 @@ export default function VisaProductItems(props) {
 
       // console.log(city)
       return dispatch(GetCartInfoHomeRestranges({
-        city: city,
+        lat: lat,
+        long: long,
         productType: "restaurant"
       }))
     }
@@ -42,7 +43,8 @@ export default function VisaProductItems(props) {
     if (fetchMore > Number(1)) {
 
       return dispatch(FatchButik({
-        city: city,
+        lat: lat,
+        long: long,
         productType: "butiker"
       }))
 

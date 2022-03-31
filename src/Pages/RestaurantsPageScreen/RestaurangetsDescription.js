@@ -19,6 +19,8 @@ export default function RestaurangetsDescription(props) {
 
 
 
+
+
     return <Modal show={openDescription} onHide={() => setOpenDescription(!openDescription)}>
 
 
@@ -26,7 +28,7 @@ export default function RestaurangetsDescription(props) {
         <div className='add-Open-Imae-postion'>
 
             <div className='description-image' >
-                <LocationUser />
+                <LocationUser   coordinates={cartinfo?.location?.coordinates} />
             </div>
 
 

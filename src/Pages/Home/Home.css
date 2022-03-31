@@ -1,4 +1,18 @@
 
+.InfoWindow-div
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-transform: capitalize;
+}
+.InfoWindow-div h1
+{
+    color: rgba(255, 59, 47, 0.52);
+    font-family: Heebo, sans-serif;
+    font-size: 11px;
+}
 .gm-svpc{
     background-color: #00000052;
     display: none;

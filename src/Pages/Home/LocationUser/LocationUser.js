@@ -6,6 +6,7 @@ import {
     withGoogleMap,
     GoogleMap,
     Marker,
+    InfoWindow
 
 } from "react-google-maps";
 
@@ -13,13 +14,18 @@ import {
 
 export default function LocationUser(props) {
 
-    const { className } = props
+    const { className, coordinates } = props
 
 
-    const [lat, setLat] = useState(null);
-    const [lng, setLng] = useState(null);
+    const [latMe, setLatMe] = useState(null);
+    const [lngMe, setLngMe] = useState(null);
     const [status, setStatus] = useState(null);
     const [loading, setLoading] = useState(false)
+
+
+
+
+
 
 
 
@@ -35,8 +41,8 @@ export default function LocationUser(props) {
                     navigator.geolocation.getCurrentPosition((position) => {
                         setStatus(null);
                         setLoading(false)
-                        setLat(position.coords.latitude);
-                        setLng(position.coords.longitude);
+                        setLatMe(position.coords.latitude);
+                        setLngMe(position.coords.longitude);
                     }, () => {
                         setStatus('Unable to retrieve your location');
                     });
@@ -51,18 +57,40 @@ export default function LocationUser(props) {
 
         return () => {
             setStatus(null)
-            setLng(null)
-            setLat(null)
+            setLngMe(null)
+            setLatMe(null)
             setLoading(false)
-         
+
         }
     }, [])
 
 
+
+
+
+    // show info 
+    const [selectedPark, setSelectedPark] = useState(null);
+
+    useEffect(() => {
+        const listener = e => {
+            if (e.key === "Escape") {
+                setSelectedPark(null);
+            }
+        };
+        window.addEventListener("keydown", listener);
+
+        return () => {
+            window.removeEventListener("keydown", listener);
+        };
+    }, []);
+
+
+
+
     const MapWithAMarker = withScriptjs(withGoogleMap(props =>
         <GoogleMap
-            defaultZoom={13}
-            defaultCenter={{ lat: Number(lat), lng: Number(lng) }}
+            defaultZoom={11}
+            defaultCenter={{ lat: Number(coordinates[0]), lng: Number(coordinates[1]) }}
             defaultOptions={{
                 styles: mapStyles,
                 fullscreenControl: false,
@@ -70,17 +98,60 @@ export default function LocationUser(props) {
 
             }}
         >
-
-
             < Marker
-                position={{ lat: Number(lat), lng: Number(lng) }}
-                // icon={{
-                //     url: `/MyOrder/bike.png`,
-                //     scaledSize: new window.google.maps.Size(30, 30)
-                // }}
+                position={{ lat: Number(coordinates[0]), lng: Number(coordinates[1]) }}
+                icon={{
+                    url: `/MyOrder/restaurant.png`,
+                    scaledSize: new window.google.maps.Size(30, 30)
+                }}
+                onClick={() => {
+                    setSelectedPark({
+                        lat: Number(coordinates[0]),
+                        lng: Number(coordinates[1])
+                        , restaurant: 'Restaurangens adress',
+                        me: 'hitta oss här'
+                    });
+                }}
             />
 
 
+            {latMe !== null && lngMe !== null &&
+                < Marker
+                    position={{ lat: latMe, lng: lngMe }}
+                    icon={{
+                        url: `/MyOrder/HomeAddress.png`,
+                        scaledSize: new window.google.maps.Size(30, 30)
+                    }}
+                    onClick={() => {
+                        setSelectedPark({
+                            lat: Number(latMe),
+                            lng: Number(lngMe),
+                            restaurant: 'mitt ställe',
+                            me: '😍'
+
+                        });
+                    }}
+                />
+
+            }
+
+
+
+            {selectedPark && (<InfoWindow onCloseClick={() => {
+                setSelectedPark(null);
+            }}
+                position={{
+                    lat: Number(selectedPark.lat),
+                    lng: Number(selectedPark.long),
+                }}
+            >
+               <div className="InfoWindow-div">
+                   <h1>{selectedPark?.restaurant}</h1>
+                   <p>{selectedPark?.me}</p>
+               </div>
+
+            </InfoWindow>)
+            }
         </GoogleMap>
 
     ));
@@ -111,7 +182,6 @@ export default function LocationUser(props) {
 
     </div>
 }
-
 
 
 
