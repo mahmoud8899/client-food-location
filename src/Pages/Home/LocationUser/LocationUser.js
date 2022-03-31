@@ -1,101 +1,120 @@
 import { useEffect, useState } from "react"
+import mapStyles from "./mapStyles";
+import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen'
+import {
+    withScriptjs,
+    withGoogleMap,
+    GoogleMap,
+    Marker,
+
+} from "react-google-maps";
 
 
 
+export default function LocationUser(props) {
 
-export default function LocationUser() {
+    const { className } = props
+
 
     const [lat, setLat] = useState(null);
     const [lng, setLng] = useState(null);
     const [status, setStatus] = useState(null);
+    const [loading, setLoading] = useState(false)
 
-    useEffect(()=>{
-        if (!navigator.geolocation) {
-            setStatus('Geolocation is not supported by your browser');
-        } else {
-            setStatus('Locating...');
-            navigator.geolocation.getCurrentPosition((position) => {
-                setStatus(null);
-                setLat(position.coords.latitude);
-                setLng(position.coords.longitude);
-            }, () => {
-                setStatus('Unable to retrieve your location');
-            });
+
+
+    useEffect(() => {
+
+
+        const Add = async () => {
+
+            try {
+                if (navigator.geolocation) {
+                    setStatus('Locating...');
+                    setLoading(true)
+                    navigator.geolocation.getCurrentPosition((position) => {
+                        setStatus(null);
+                        setLoading(false)
+                        setLat(position.coords.latitude);
+                        setLng(position.coords.longitude);
+                    }, () => {
+                        setStatus('Unable to retrieve your location');
+                    });
+                }
+            } catch (error) {
+                return setStatus('Geolocation is not supported by your browser');
+            }
+
         }
-    },[])
 
-    // const getLocation = () => {
-       
-    // }
-    return <div className="App">
-      
-        <h1>Coordinates</h1>
-        <p>{status}</p>
-        {lat && <p>Latitude: {lat}</p>}
-        {lng && <p>Longitude: {lng}</p>}
+        Add()
+
+        return () => {
+            setStatus(null)
+            setLng(null)
+            setLat(null)
+            setLoading(false)
+         
+        }
+    }, [])
+
+
+    const MapWithAMarker = withScriptjs(withGoogleMap(props =>
+        <GoogleMap
+            defaultZoom={13}
+            defaultCenter={{ lat: Number(lat), lng: Number(lng) }}
+            defaultOptions={{
+                styles: mapStyles,
+                fullscreenControl: false,
+                zoomControl: false
+
+            }}
+        >
+
+
+            < Marker
+                position={{ lat: Number(lat), lng: Number(lng) }}
+                // icon={{
+                //     url: `/MyOrder/bike.png`,
+                //     scaledSize: new window.google.maps.Size(30, 30)
+                // }}
+            />
+
+
+        </GoogleMap>
+
+    ));
+
+
+
+
+
+
+
+    return <div className={className}>
+        {status &&
+            loading ?
+            <div className="loading">
+                <LoadingScreen />
+            </div>
+            :
+            <MapWithAMarker
+                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAaiHP2Akwa5NPa_WNDy7rv_SRAL3PJy1U`}
+                loadingElement={<div style={{ height: `30rem` }} />}
+                containerElement={<div style={{ height: `30rem` }} />}
+                mapElement={<div style={{ height: `30rem` }} />}
+            />
+        }
+
+
+
+
     </div>
 }
 
 
-  // var options = {
-    //     enableHighAccuracy: true,
-    //     timeout: 5000,
-    //     maximumAge: 0,
-    // };
-    // function success(pos) {
-    //     var crd = pos.coords;
-
-    //     console.log("Your current position is:");
-    //     console.log(`Latitude : ${crd.latitude}`);
-    //     console.log(`Longitude: ${crd.longitude}`);
-    //     console.log(`More or less ${crd.accuracy} meters.`);
-    // }
-
-    // function errors(err) {
-    //     console.log(`ERROR(${err.code}): ${err.message}`);
-    // }
-
-    // // useEffect(() => {
-    // //     if (navigator.geolocation) {
-    // //         navigator.permissions
-    // //             .query({ name: "geolocation" })
-    // //             .then(function (result) {
-    // //                 if (result.state === "granted") {
-    // //                     console.log(result.state);
-    // //                     //If granted then you can directly call your function here
-    // //                     navigator.geolocation.getCurrentPosition(success);
-    // //                 } else if (result.state === "prompt") {
-    // //                     navigator.geolocation.getCurrentPosition(success, errors, options);
-    // //                 } else if (result.state === "denied") {
-    // //                     //If denied then you have to show instructions to enable location
-    // //                 }
-    // //                 result.onchange = function () {
-    // //                     console.log(result.state);
-    // //                 };
-    // //             });
-    // //     } else {
-    // //         alert("Sorry Not available!");
-    // //     }
-    // // }, [])
 
 
 
-    // useEffect(()=>{
-    //     navigator.geolocation.getCurrentPosition(
-    //       function (result) {
-    //             if (result.state === "granted") {
-    //                 console.log(result.state);
-    //                 //If granted then you can directly call your function here
-    //                 navigator.geolocation.getCurrentPosition(success);
-    //             } else if (result.state === "prompt") {
-    //                 navigator.geolocation.getCurrentPosition(success, errors, options);
-    //             } else if (result.state === "denied") {
-    //                 //If denied then you have to show instructions to enable location
-    //             }
-    //             result.onchange = function () {
-    //                 console.log(result.state);
-    //             };
-    //         },
-    //         function(){console.log("error")}
-    //       );
-    // },[])
+
+

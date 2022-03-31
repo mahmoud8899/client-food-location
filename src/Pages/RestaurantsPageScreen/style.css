@@ -469,11 +469,14 @@ class-padding-style  this is padding
     overflow: hidden;
 }
 .update-imageover{
-    margin-top: -9rem;
+
     padding: 1rem;
     border-radius: calc(0.25rem - 1px);
     text-transform: capitalize;
     width: 100%;
+    z-index: 555;
+    position: absolute;
+    margin-top: -9rem;
     
 }
 .sopsp{

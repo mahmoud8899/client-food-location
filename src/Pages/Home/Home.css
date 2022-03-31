@@ -1,6 +1,29 @@
 
+.gm-svpc{
+    background-color: #00000052;
+    display: none;
+}
+.loading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px
+}
+.gmnoprint{
+    display: none;
+}
+.Mpas-Location-api{
+    width: 100%;
+    height: 300px;
+    margin-bottom: 4rem;
+    background-color: #eee;
+    display: block;
+    margin-top: 3rem;
+    text-align: center;
+    line-height: 300px;
+ 
 
-
+}
 .image-coursel-home{
     height: 15rem;
     overflow: hidden;

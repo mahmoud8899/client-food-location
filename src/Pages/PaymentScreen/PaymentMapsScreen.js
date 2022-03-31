@@ -1,7 +1,6 @@
 import { Fragment } from 'react'
 import { Col } from 'react-bootstrap'
-import { MyOderImage } from '../../Assistant/MyOrderImage'
-import ImageScreen from '../../Components/ImageScreen/ImageScreen'
+import LocationUser from '../Home/LocationUser/LocationUser'
 import './PaymentScreen.css'
 
 
@@ -14,10 +13,9 @@ export default function PaymentMapsScreen(props) {
         <Col xs={12} sm={12} md={12} lg={12} className='removePaddingmarggin'>
 
 
-            <ImageScreen
-                ImageIcon={MyOderImage.maps}
-                className='Cover-image'
-            />
+            <div className='Cover-image' >
+                <LocationUser />
+            </div>
 
 
         </Col>

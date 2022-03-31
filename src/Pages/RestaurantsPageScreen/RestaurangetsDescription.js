@@ -1,13 +1,14 @@
 
-import { Image, Modal } from 'react-bootstrap'
-import { MyOderImage } from '../../Assistant/MyOrderImage'
+import { Modal } from 'react-bootstrap'
+
 import './style.css'
-import { HiOutlineX  } from 'react-icons/hi'
+import { HiOutlineX } from 'react-icons/hi'
+import LocationUser from '../Home/LocationUser/LocationUser'
 
 export default function RestaurangetsDescription(props) {
 
 
-    const { openDescription, setOpenDescription ,cartinfo} = props
+    const { openDescription, setOpenDescription, cartinfo } = props
 
 
     // google maps...
@@ -24,11 +25,15 @@ export default function RestaurangetsDescription(props) {
 
         <div className='add-Open-Imae-postion'>
 
-            <Image src={MyOderImage.maps}
-                className='description-image' />
+            <div className='description-image' >
+                <LocationUser />
+            </div>
+
+
+
 
             <div className='close-yourOrder add-postion-close'>
-            <HiOutlineX  className='close-pp-pp-image'   onClick={() => setOpenDescription(!openDescription)}/>
+                <HiOutlineX className='close-pp-pp-image' onClick={() => setOpenDescription(!openDescription)} />
 
             </div>
         </div>
@@ -66,8 +71,8 @@ export default function RestaurangetsDescription(props) {
                     <span> {cartinfo?.addressinfo?.city}</span>
                     <span>{cartinfo?.addressinfo?.address}</span>
                     <span>+{cartinfo?.addressinfo?.telefon}</span>
-                   
-                   
+
+
 
                 </div>
 
@@ -94,7 +99,7 @@ export default function RestaurangetsDescription(props) {
 
                 <div className='website-contact'>
                     <span >
-                        website 
+                        website
                     </span>
                     <span onClick={MpasClick}>
                         visit webeite
