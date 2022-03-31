@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap'
 
 import './style.css'
 import { HiOutlineX } from 'react-icons/hi'
-import LocationUser from '../Home/LocationUser/LocationUser'
+import MapsLocation from '../Home/MapsLocation/MapsLocation'
 
 export default function RestaurangetsDescription(props) {
 
@@ -28,7 +28,7 @@ export default function RestaurangetsDescription(props) {
         <div className='add-Open-Imae-postion'>
 
             <div className='description-image' >
-                <LocationUser   coordinates={cartinfo?.location?.coordinates} />
+                <MapsLocation   coordinates={cartinfo?.location?.coordinates} />
             </div>
 
 

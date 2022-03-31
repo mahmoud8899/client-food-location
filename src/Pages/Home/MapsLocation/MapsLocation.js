@@ -12,7 +12,7 @@ import {
 
 
 
-export default function LocationUser(props) {
+export default function MapsLocation(props) {
 
     const { className, coordinates } = props
 

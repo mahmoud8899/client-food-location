@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Col } from 'react-bootstrap'
-import LocationUser from '../Home/LocationUser/LocationUser'
+import MapsLocation from '../Home/MapsLocation/MapsLocation'
 import './PaymentScreen.css'
 
 
@@ -16,7 +16,7 @@ const {cartinfo} = props
 
 
             <div className='Cover-image' >
-                <LocationUser  coordinates={cartinfo?.location?.coordinates} />
+                <MapsLocation  coordinates={cartinfo?.location?.coordinates} />
             </div>
 
 

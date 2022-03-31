@@ -14,26 +14,26 @@ import NavBarCity from '../NavBarCity/NavBarCity'
 import Carousel from './Carousel/Carousel'
 import { useEffect, useContext } from 'react'
 import { UserLoaction } from '../LoactionPage/LoactionPage'
-import './Home.css'
 import { Link } from 'react-router-dom'
-
+import './Home.css'
 // import LocationUser from './LocationUser/LocationUser'
 // <LocationUser  />
 
 
 export default function HomeScreen(props) {
 
-    // whoy params id
-    const { match } = props
+    // // whoy params id
+    // const { match } = props
+    // // city name
+    //  const LocationPath = match.params.id
+    //  console.log(LocationPath)
 
 
-    // city name
-    // const LocationPath = match.params.id
 
-    const {
-        lat,
-        long,
-        loading: loadingLocation, } = useContext(UserLoaction)
+    
+
+    // location User
+    const { lat, long, loading: loadingLocation, } = useContext(UserLoaction)
 
     const dispatch = useDispatch()
 
@@ -43,8 +43,13 @@ export default function HomeScreen(props) {
 
 
 
+    // get Best Restaurant
+    const pageHomeNewBestRestrant = useSelector((state) => state?.pageHomeNewBestRestrant)
+    const { loading: loadingnewBestRestaurant, BestRestaurant, error: errornewBestRestaurant } = pageHomeNewBestRestrant
 
-
+    // category all 
+    const pageHomeCategory = useSelector((state) => state?.pageHomeCategory)
+    const { loading: loadingCategory, category, error: errorCategory } = pageHomeCategory
 
     // user info 
     const userLogin = useSelector((state) => state?.userLogin)
@@ -52,6 +57,18 @@ export default function HomeScreen(props) {
 
 
 
+    // get all restrange
+    useEffect(() => {
+        if (lat !== null && long !== null) {
+            return BestRestaurant?.length === Number(0) && dispatch(BestRestaurantAction({
+                lat: lat,
+                long: long,
+                productType: "restaurant"
+            }))
+        }
+
+
+    }, [dispatch, BestRestaurant?.length, lat, long,])
 
 
 
@@ -62,15 +79,15 @@ export default function HomeScreen(props) {
             stores?.length === Number(0) && dispatch(FatchButik({
                 lat: lat,
                 long: long,
-                productType : 'butiker'
-              
+                productType: 'butiker'
+
             }))
-          
+
             return
         }
 
 
-    }, [dispatch, lat,   long,stores?.length])
+    }, [dispatch, lat, long, stores?.length])
 
 
 
@@ -81,7 +98,7 @@ export default function HomeScreen(props) {
         return lat !== null && long !== null && home?.length === Number(0) && dispatch(GetCartInfoHomeRestranges({
             lat: lat,
             long: long,
-            productType : 'restaurant'
+            productType: 'restaurant'
         }))
 
 
@@ -100,10 +117,32 @@ export default function HomeScreen(props) {
 
 
 
+    // get free delivery from restrest and stores
+    const pageHomeFreeDelivery = useSelector((state) => state?.pageHomeFreeDelivery)
+    const { loading: loadingFreedelivery, freedelivery, error: errorFreedelivery } = pageHomeFreeDelivery
+    //  free delivery
+    useEffect(() => {
+        if (lat !== null && long !== null) {
+
+            return freedelivery?.length === Number(0) && dispatch(FreeDeliveryAction({
+                lat: lat,
+                long: long
+            }))
+        }
+
+
+    }, [dispatch, freedelivery?.length, lat, long])
 
 
 
 
+
+    // category
+    useEffect(() => {
+
+        category.length === Number(0) && dispatch(FoodTypesAction())
+
+    }, [dispatch, category.length])
 
     // [1]  LoadingErrorHandld this is check out error and loading if not error coming data  
     // [2]  Limit new restrange max 8 itmes. and Carousel some data
@@ -148,7 +187,9 @@ export default function HomeScreen(props) {
 
                     <Col xs={12} sm={12} md={11} lg={11}>
 
-
+                        <LoadingErrorHandld loading={loadingnewBestRestaurant} error={errornewBestRestaurant} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
+                            <Carousel home={BestRestaurant} Title={TextBestHome} />
+                        </LoadingErrorHandld>
 
 
 
@@ -180,6 +221,23 @@ export default function HomeScreen(props) {
 
 
 
+                        {userInfo?.email &&
+                            <div className='LoginDriverScreen'>
+
+                                <LoginDriverScreen />
+
+
+                            </div>
+                        }
+
+                        <LoadingErrorHandld loading={loadingFreedelivery} error={errorFreedelivery} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
+                            <RestrangeItems home={freedelivery} Title={Textfree} />
+                        </LoadingErrorHandld>
+
+
+                        <LoadingErrorHandld loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}>
+                            <CategoryScreen category={category} Title={TextCategory} />
+                        </LoadingErrorHandld>
 
 
 
@@ -208,55 +266,18 @@ export default function HomeScreen(props) {
 
 
 
-// <LoadingErrorHandld loading={loadingnewBestRestaurant} error={errornewBestRestaurant} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
-// <Carousel home={BestRestaurant} Title={TextBestHome} />
-// </LoadingErrorHandld>
 
 
-// {userInfo?.email &&
-// <div className='LoginDriverScreen'>
-
-//     <LoginDriverScreen />
 
 
-// </div>
-// }
-
-// <LoadingErrorHandld loading={loadingFreedelivery} error={errorFreedelivery} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
-// <RestrangeItems home={freedelivery} Title={Textfree} />
-// </LoadingErrorHandld>
-
-// <LoadingErrorHandld loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}>
-// <CategoryScreen category={category} Title={TextCategory} />
-// </LoadingErrorHandld>
 
 
-    // // get Best Restaurant
-    // const pageHomeNewBestRestrant = useSelector((state) => state?.pageHomeNewBestRestrant)
-    // const { loading: loadingnewBestRestaurant, BestRestaurant, error: errornewBestRestaurant } = pageHomeNewBestRestrant
-    // // get free delivery from restrest and stores
-    // const pageHomeFreeDelivery = useSelector((state) => state?.pageHomeFreeDelivery)
-    // const { loading: loadingFreedelivery, freedelivery, error: errorFreedelivery } = pageHomeFreeDelivery
-    // // category all 
-    // const pageHomeCategory = useSelector((state) => state?.pageHomeCategory)
-    // const { loading: loadingCategory, category, error: errorCategory } = pageHomeCategory
-    // // get all restrange
-    // useEffect(() => {
-    //     BestRestaurant?.length === Number(0) && dispatch(BestRestaurantAction({
-    //         city: LocationPath,
-    //         productType: "restaurant"
-    //     }))
 
-    // }, [LocationPath, dispatch, BestRestaurant?.length])
-    // // free delivery
-    // useEffect(() => {
 
-    //     freedelivery?.length === Number(0) && dispatch(FreeDeliveryAction(LocationPath))
 
-    // }, [LocationPath, dispatch, freedelivery?.length])
-    // // category
-    // useEffect(() => {
 
-    //     category.length === Number(0) && dispatch(FoodTypesAction())
 
-    // }, [dispatch, category.length])
+
+
+
+

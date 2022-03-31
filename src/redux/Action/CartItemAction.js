@@ -179,7 +179,7 @@ export const FreeDeliveryAction = (user) => async (dispatch) => {
     try {
         dispatch({ type: ActionTypes.ADD_NEW_FIRDELIVERY_LOADING })
 
-        const { data } = await axios.get(`/api/cartinfo/freedelvery/${user}/`)
+        const { data } = await axios.get(`/api/cartinfo/freedelvery/${user.lat}/${user?.long}`)
         dispatch({ type: ActionTypes.ADD_NEW_FIRDELIVERY_SUCCESS, payload: data })
     } catch (error) {
         dispatch({
@@ -243,8 +243,9 @@ export const CartInfoIdRatingAction = (user, ChangeParams) => async (dispatch, g
 export const BestRestaurantAction = (user) => async (dispatch) => {
     try {
         dispatch({ type: ActionTypes.ADD_NEW_RESTRANGE_LOADING })
-
-        const { data } = await axios.get(`/api/cartinfo/best/${user?.city}/${user?.productType}/`)
+        
+        
+        const { data } = await axios.get(`/api/cartinfo/best/${user?.lat}/${user?.long}/`)
         dispatch({ type: ActionTypes.ADD_NEW_RESTRANGE_SUCCESS, payload: data })
     } catch (error) {
         dispatch({
