@@ -16,7 +16,7 @@ const {cartinfo} = props
 
 
             <div className='Cover-image' >
-                <MapsLocation  coordinates={cartinfo?.location?.coordinates} />
+                <MapsLocation  className='30rem'   coordinates={cartinfo?.location?.coordinates} />
             </div>
 
 

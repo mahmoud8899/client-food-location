@@ -30,7 +30,7 @@ export const SearchingProductsAction = (city, query = '', form) => async (dispat
 
             dispatch({ type: ActionTypes.ADD_SEARCHING_PRODUCT_DETAILS_LOADING })
 
-            const { data } = await axios.get(`/api/cartinfo/filter/?city=${city}&keyword=${query}&pageNumber=${nextPage}`)
+            const { data } = await axios.get(`/api/cartinfo/filter/${city.lat}/${city?.long}/?keyword=${query}&pageNumber=${nextPage}`)
 
             dispatch(AppendProductSearching(data.data, data.LengthProduct))
 

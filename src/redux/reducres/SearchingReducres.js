@@ -1,16 +1,15 @@
 import * as ActionTypes from '../Action/Types'
 
-const MpasSearching = {
 
+
+
+export const SearchingHomeReducres = (state = {
     loading: false,
     error: null,
     page: Number(0),
-    search: [],
+    searchingHome: [],
     searchingLength : Number(0)
-}
-
-
-export const SearchingHomeReducres = (state = MpasSearching, action) => {
+}, action) => {
 
     switch (action.type) {
 

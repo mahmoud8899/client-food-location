@@ -3,6 +3,24 @@ export const SET_USER = 'SET_USER'
 export const KEY_USER = 'KEY_USER'
 export const KEY_TOKEN = 'KEY_TOKEN'
 
+
+
+// location city user 
+export const ADD_LOACTION_LOADING = 'ADD_LOACTION_LOADING'
+export const ADD_LOACTION_SUCCESSFULLY = 'ADD_LOACTION_SUCCESSFULLY'
+export const ADD_LOACTION_LOACAL = 'ADD_LOACTION_LOACAL'
+export const ADD_LOACTION_REMOVE = 'ADD_LOACTION_REMOVE'
+
+
+
+
+
+
+// text driver
+export const DRIVER_SAVE = 'DRIVER_SAVE'
+export const DRIVER_SAVE_LOCAL = 'DRIVER_SAVE_LOCAL'
+
+
 // IMAGE
 export const ADD_IMAGE_LOADING = 'ADD_IMAGE_LOADING'
 export const ADD_IMAGE_FAIL = 'ADD_IMAGE_FAIL'

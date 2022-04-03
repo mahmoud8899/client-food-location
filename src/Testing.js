@@ -1,173 +1,211 @@
-
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-// import Slider from "react-slick";
-// import { Container, Row, Col, Image } from 'react-bootstrap'
-// import './style.css'
-// import { useEffect } from "react";
-// export default function Testing() {
-
-
-
-//     const newData = new Date()
-//     const Hours =  newData.getHours()
-//     const minuter = newData?.getMinutes()
-
-
-
-
-//     useEffect(()=>{
-
-//         const newData = new Date()
-    
-
-//             return console.log(newData?.getMinutes())
- 
-
-//     },[newData])
+import { Container, Row, Col, Modal, Form } from 'react-bootstrap'
+import { BiMap, BiMapAlt } from "react-icons/bi";
+import './style.css'
+import React, { useState, useEffect, Fragment } from "react";
+import {
+    withGoogleMap,
+    withScriptjs,
+    GoogleMap,
+    Marker,
+} from "react-google-maps";
+import TheInputForm from './Components/TheInputForm/TheInputForm';
+import { HiOutlineX } from 'react-icons/hi';
+import { BsCursor } from 'react-icons/bs';
+import SearchingCity from './Pages/Home/LoactionScreen/SearchingCity';
+import { Stand } from './Assistant/Selection';
+import ButtomClick from './Components/Buttom/Buttom'
+import Styles from './Components/Update/StylesComponents/style';
 
 
 
-//     // console.log('data new', newData)
+function Map() {
+
+
+    const [lat, setLat] = useState(59.858131)
+    const [lng, setLng] = useState(17.644621)
+
+
+    const Mahfdsf = (e) => {
+
+        // console.log(e.latLng.lat())
+        setLat(e.latLng.lat())
+        setLng(e.latLng.lng())
+
+    }
+
+
+    return <GoogleMap
+        defaultZoom={10}
+        defaultCenter={{ lat: lat, lng: lng }}
+        onClick={(e) => Mahfdsf(e)}
+    >
+        <Marker
+
+            position={
+                { lat: lat, lng: lng }
+            }
+
+
+        />
 
 
 
-
-//     return <h1>test....</h1>
-
-
-
-// }
+    </GoogleMap>
+}
 
 
-// // const settings = {
-// //     dots: true,
-// //     infinite: true,
-// //     speed: 500,
-// //     slidesToShow: 2,
-// //     slidesToScroll: 1
-// // };
 
-// // const curent = [
-// //     'https://choconutri.com/revolution/assets/slider-cafe/87d89-papecup.png',
-// //     'https://choconutri.com/images/product/13.jpg',
-// //     'https://choconutri.com/images/product/19.jpg',
-// //     'https://choconutri.com/revolution/assets/slider-cafe/87d89-papecup.png',
-// //     'https://choconutri.com/images/product/13.jpg',
-// //     'https://choconutri.com/images/product/19.jpg',
-// //     'https://choconutri.com/revolution/assets/slider-cafe/87d89-papecup.png',
-// //     'https://choconutri.com/images/product/13.jpg',
-// //     'https://choconutri.com/images/product/19.jpg',
-// //     'https://choconutri.com/revolution/assets/slider-cafe/87d89-papecup.png',
-// //     'https://choconutri.com/images/product/13.jpg',
-// //     'https://choconutri.com/images/product/19.jpg',
-// //     'https://choconutri.com/revolution/assets/slider-cafe/87d89-papecup.png',
-// //     'https://choconutri.com/images/product/13.jpg',
-// //     'https://choconutri.com/images/product/19.jpg',
-// // ]
+const MapWrapped = withScriptjs(withGoogleMap(Map));
 
-// // <Container fluid> 
-//     //     <Row className='justify-content-center'>
-//     //         <Col xs={12} sm={12} md={12} lg={12}>
 
-//     //             <div className='test'>
-//     //                 <Slider {...settings}>
 
-//     //                     {curent?.map((us, index) => (
-//     //                         <Col key={index}>
-//     //                             <Image src={us} className='image-slider-image' />
-//     //                         </Col>
-//     //                     ))}
-//     //                 </Slider>
-//     //             </div>
-
-//     //         </Col>
-
-//     //     </Row>
-//     // </Container>
-//     // const settings = {
-//     //     className: "center",
-//     //     infinite: true,
-//     //     centerPadding: "60px",
-//     //     slidesToShow: 1,
-//     //     swipeToSlide: true,
-//     //     afterChange: function (index) {
-//     //         console.log(
-//     //             `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-//     //         );
-//     //     }
-//     // };
+export default function MAPSTESTING() {
 
 
 
 
-// // Import Swiper React components
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import 'swiper/swiper-bundle.min.css'
-// import { Image, Container, Row, Col } from 'react-bootstrap'
-// import './style.css'
-// import "swiper/css/pagination";
+    // filter 
+    const [query, setQuery] = useState('')
+    // console.log(query)
+    const keys = ["name"];
+    const search = (data) => {
+        return data?.filter((item) =>
+            keys?.some((key) => item[key]?.toLowerCase()?.includes(query))
+        );
+    };
 
-// export default function Testing() {
-  
+    const [show, setShow] = useState(true)
+    const [selectCity, setSelectCity] = useState(false)
 
-//     const ImageSlider = [
-//         'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-keto-pizza-073-1544039876.jpg?crop=0.668xw:1.00xh;0.233xw,0.00255xh&resize=980:*',
-//         'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-keto-pizza-073-1544039876.jpg?crop=0.668xw:1.00xh;0.233xw,0.00255xh&resize=980:*',
-//         'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-keto-pizza-073-1544039876.jpg?crop=0.668xw:1.00xh;0.233xw,0.00255xh&resize=980:*',
-//         'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-keto-pizza-073-1544039876.jpg?crop=0.668xw:1.00xh;0.233xw,0.00255xh&resize=980:*',
-//         'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-keto-pizza-073-1544039876.jpg?crop=0.668xw:1.00xh;0.233xw,0.00255xh&resize=980:*',
-//         'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-keto-pizza-073-1544039876.jpg?crop=0.668xw:1.00xh;0.233xw,0.00255xh&resize=980:*',
-//         'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-keto-pizza-073-1544039876.jpg?crop=0.668xw:1.00xh;0.233xw,0.00255xh&resize=980:*',
-//         'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-keto-pizza-073-1544039876.jpg?crop=0.668xw:1.00xh;0.233xw,0.00255xh&resize=980:*',
-//         'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-keto-pizza-073-1544039876.jpg?crop=0.668xw:1.00xh;0.233xw,0.00255xh&resize=980:*',
-//         'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-keto-pizza-073-1544039876.jpg?crop=0.668xw:1.00xh;0.233xw,0.00255xh&resize=980:*',
-//     ]
-
-    
-//     return (
-//         <Container fluid >
-//             <Row className='justify-content-center colow-xsw'>
-//                 <Col xs={12} sm={12} md={12} lg={12}  >
-
-//                     <Swiper
-//                         spaceBetween={10}
-//                         slidesPerView={3}
-                        
-//                         onSlideChange={() => console.log("slide change")}
-//                         onSwiper={swiper => console.log(swiper)}
-//                     >
-
-//                         {ImageSlider?.map((x, Index) => (
-
-//                             <SwiperSlide key={Index}>
-                                
-//                                 <Image
-//                                     src={x}
-//                                     className='Image-swiper'
-
-//                                 />
-                               
-//                             </SwiperSlide>
+    const handleClose = () => { }
 
 
-//                         ))}
+    // handel city
+    const HandleCity = () => { }
 
+    const removeCity = () => {
+        setSelectCity(false)
+        setQuery('')
+    }
 
-//                     </Swiper>
+    return <Container>
+
+        <Row className='justify-content-center'>
+            <Col xs={6} sm={6} md={6} lg={6}>
+                <Modal show={show} onHide={handleClose}>
+                    <div className='body-category'>
+
+                        <div className='margin-left'>
+                            <HiOutlineX className='close-pp-pp-image' />
+                        </div>
+
+                        <h1 className='font-edit'>Lägg till ny adress</h1>
+
+                        <div className='hitta-hitta'>
+                            <span className='classPluseTitel'>Skriv din adress för att hitta restauranger och affärer i ditt område.</span>
+                        </div>
 
 
 
+                        <Form onSubmit={HandleCity}>
 
-//                 </Col>
+                            <span className='selection-name'>Stad</span>
+                            <div className='postin-city'>
+                                <TheInputForm
+                                    placeholder='Hitta din stad'
+                                    onChange={(e) => setQuery(e.target.value.trim().toLowerCase())}
+                                    value={query}
+                                    FirstIcons={
+                                        <Fragment>
+                                            <BiMap className='Icons-LEFT' />
+                                            {query.length > Number(0) && <HiOutlineX
+                                                className='close-pp-pp-image ADD-REMOVE'
+                                                onClick={removeCity}
+                                            />
+                                            }
+                                        </Fragment>
+                                    }
+                                    className='Input-type-style productdetials add-left-text'
+                                />
+
+
+                                {!selectCity && query.length > Number(0) &&
+                                    <div className='resultSearchingcity'>
+
+                                        <div className='flex-ddd changecolor'>
+                                        </div>
+                                        <div className='nuvarande'>
+                                            <BsCursor />
+                                            <span>Använd min nuvarande plats</span>
+                                        </div>
+
+                                        <SearchingCity
+                                            Stand={search(Stand)}
+                                            setQuery={setQuery}
+                                            setSelectCity={setSelectCity}
+
+                                        />
 
 
 
-//             </Row>
-//         </Container>
+                                    </div>
+                                }
 
-//     );
-// };
+                            </div>
 
+
+                            <div className='buttom-close'>
+                                <ButtomClick
+                                    title='next'
+                                    style={Styles.TabButtomCreate}
+                                    disabled={!selectCity}
+                                />
+                            </div>
+
+                        </Form>
+
+
+                    </div>
+                </Modal>
+                <div>
+
+
+
+
+
+
+
+
+
+
+
+                    <h1>Adressens plats</h1>
+                    <span>
+                        Om du anger din exakta plats på kartan hjälper du oss att hitta dig snabbt.
+                    </span>
+
+                    <div className='maps-icons'>
+                        <BiMapAlt className='placering' />
+                        <h1>Ändra entréns placering på en karta</h1>
+                    </div>
+
+
+                    <div style={{ width: "100%", height: "200px" }}>
+                        <MapWrapped
+                            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAaiHP2Akwa5NPa_WNDy7rv_SRAL3PJy1U`}
+                            loadingElement={<div style={{ height: `100%` }} />}
+                            containerElement={<div style={{ height: `100%` }} />}
+                            mapElement={<div style={{ height: `100%` }} />}
+                        />
+                    </div>
+
+
+                </div>
+
+            </Col>
+        </Row>
+
+    </Container>
+}
 
 

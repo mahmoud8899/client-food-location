@@ -14,7 +14,7 @@ export default function RestaurangetsDescription(props) {
     // google maps...
     const MpasClick = (e) => {
         e.preventDefault()
-        return window.open((`http://${cartinfo?.addressinfo?.telefon}`), '_blank')
+        return window.open((`http://${cartinfo?.addressinfo?.website}`), '_blank')
     }
 
 
@@ -28,7 +28,7 @@ export default function RestaurangetsDescription(props) {
         <div className='add-Open-Imae-postion'>
 
             <div className='description-image' >
-                <MapsLocation   coordinates={cartinfo?.location?.coordinates} />
+                <MapsLocation className='277px'  coordinates={cartinfo?.location?.coordinates} />
             </div>
 
 

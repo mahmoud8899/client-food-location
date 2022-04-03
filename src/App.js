@@ -33,6 +33,9 @@ import ScreenLike from './Pages/Like/Like'
 import Footer from './Pages/Footer/Footer'
 import HomePage from './Pages/SomethingFail/SomethingFail'
 import LocationPage from './Pages/LoactionPage/LoactionPage';
+import SearchingPage from './Pages/SearchingPage/SearchingPage';
+import MAPSTESTING from './Testing';
+
 
 export default function App() {
 
@@ -44,25 +47,24 @@ export default function App() {
   // searching restrang class name  SearchingHome
 
 
-
-  return <LocationPage>
+  return <LocationPage >
     <ScrollDrowPageScreen>
       <SearchingResult>
         <FilterRestarangeProduct>
           <FilterCategoryScreen>
             <SearchingHome >
-
-
               <Router>
 
                 <NavBar />
 
                 <Switch>
+                <Route path="/" component={MAPSTESTING} exact />
+                
 
-                  <Route path="/" component={LocationScreen} exact />
                   <Route path="/:id/" component={HomeScreen} exact />
                   <Route path='/:id/:id/' component={VisaProducts} exact />
                   <Route path='/:id/:id/:id/' component={RestaurantsPageProductsScreen} exact />
+
                   <Route path="/sw/password/changepassword/:id" component={ForgetPassword} exact />
                   <Route path="/sw/order/shipping/:id/" component={Order} exact />
                   <Route path={`/sw/mig/${FirstNameRest}/work/`} component={ScreenWork} exact />
@@ -72,10 +74,10 @@ export default function App() {
                   <Route path="/sw/personal/like/" component={ScreenLike} exact />
                   <Route path="/:id/restaurant/:id/checkout/" component={CheckOutPaymentScreen} exact />
                   <Route path='/sw/fex/signup/driver/' component={DriverFormScreen} exact />
+
+
                   <Route path='/sw/driver/online/driver/' >
-
                     <HomeDriver />
-
                   </Route>
 
 
@@ -89,10 +91,14 @@ export default function App() {
                   <Route path="/sw/fex/profil/address/" component={UserAddresScreen} exact />
                   <Route path="/sw/fex/profil/orders/" component={UserOrdersScreen} exact />
                   <Route path="/sw/fex/profil/settings/" component={UserSettingsScreen} exact />
+
+                  <Route path="/sw/filter/result/:id/" component={SearchingPage} exact />
                   <Route path="*" exact={true} component={HomePage} />
 
 
                 </Switch>
+
+
                 <Footer />
               </Router>
 
@@ -105,6 +111,7 @@ export default function App() {
         </FilterRestarangeProduct>
       </SearchingResult>
     </ScrollDrowPageScreen>
+
   </LocationPage>
 
 
@@ -113,3 +120,6 @@ export default function App() {
 
 
 }
+
+
+//      <Route path="/" component={LocationScreen} exact />

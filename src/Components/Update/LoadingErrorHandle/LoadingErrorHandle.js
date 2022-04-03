@@ -15,7 +15,7 @@ export default function LoadingErrorHandle(props) {
 
 
     return loading ?
-        <div className={type && extraStyle ? 'Dev-Error extraStyle' : 'Dev-Error-Error'}>
+        <div className={type && extraStyle ? '' : ''}>
 
             {type ? <SkeletonLoading type={type} /> : <LoadingScreen />}
 

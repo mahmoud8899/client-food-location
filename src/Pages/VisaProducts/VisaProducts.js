@@ -7,8 +7,8 @@ import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/Loadi
 import FilterProducts from '../../Components/Update/FilterProducts/FilterProducts'
 import { FilterCategory } from '../../Components/Update/UseContext/FilterCategoryScreen'
 import VisaProductItems from './VisaProductsItems'
-import { ErrorServer, LoadingSkeletonHomeCart } from '../../Assistant/TextError'
-import { useContext, useEffect } from 'react'
+import { ErrorServer, LoadingSkeletonHomeCart, SearchingSkeleton } from '../../Assistant/TextError'
+import { useContext, useEffect, useRef } from 'react'
 import './VisaProducts.css'
 import { UserLoaction } from '../LoactionPage/LoactionPage'
 export default function VisaProducts(props) {
@@ -19,11 +19,6 @@ export default function VisaProducts(props) {
     // [3] : class name what is selection match?.params?.id
     // [4] : class name filter to category FilterProducts --- stopp now
     // [5] : class name LoadingErrorHandle : error loading
-
-
-
-
-
 
     const { match, location } = props
 
@@ -94,13 +89,32 @@ export default function VisaProducts(props) {
 
 
 
+    const scrollUseRef = useRef()
+
+
+    useEffect(() => {
+        scrollUseRef.current?.scrollIntoView({
+            block: "nearest",
+            inline: "center",
+            behavior: "smooth",
+            alignToTop: false
+        });
+        // eslint-disable-next-line
+    }, [])
 
 
 
 
 
-    return <LoadingErrorHandle loading={LoadingLocation}>
-        <Container fluid>
+
+
+
+
+
+
+
+    return <LoadingErrorHandle loading={LoadingLocation} type={SearchingSkeleton} >
+        <Container fluid ref={scrollUseRef}>
 
             <Title TextTitle={match?.params?.id} />
 
@@ -138,7 +152,11 @@ export default function VisaProducts(props) {
 
 
         </Container>
+
+
     </LoadingErrorHandle>
+
+
 
 
 

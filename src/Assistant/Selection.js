@@ -13,7 +13,7 @@ export function ChnageTime(restrantoppen) {
         const xp = restrantoppen.slice(0, 2)
         const lo = restrantoppen.slice(4)
 
-        return  `${xp}:${lo}`
+        return `${xp}:${lo}`
 
 
     } else {
@@ -135,8 +135,22 @@ export const AskOne = [
 //-- active
 // selection city
 export const Stand = [
-    'uppsala',
-    'gothenburg'
+    {
+        _id : 1,
+        name: 'uppsala',
+        lat: Number(59.858131),
+        long: Number(17.644621)
+
+    },
+    {
+        _id : 2,
+        name: 'gothenburg',
+        lat: Number(57.708870),
+        long: Number(11.974560)
+
+    },
+
+
 ]
 
 

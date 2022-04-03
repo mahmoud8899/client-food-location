@@ -57,7 +57,9 @@ export default function PageNavBarScreen(props) {
                     <YourFvourite />
                 </div>
 
-                <InputSearchingRestrange />
+               <div className='filter-product-product'>
+               <InputSearchingRestrange />
+               </div>
 
 
             </div>

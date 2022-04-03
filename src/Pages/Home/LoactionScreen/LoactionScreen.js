@@ -3,14 +3,15 @@ import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import { FirstNameRest, Stand } from '../../../Assistant/Selection'
 import ScreenAbout from '../../ScreenAbout/ScreenAbout'
-// import * as ActionTypes from '../../../redux/Action/Types'
-import { LoactionPath } from '../../../redux/Action/CartItemAction'
+import { LocationUserAction } from '../../../redux/Action/LoactionUserAction'
 import { useDispatch } from 'react-redux'
 import TheInputForm from '../../../Components/TheInputForm/TheInputForm'
-import ButtomClick from '../../../Components/Buttom/Buttom'
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { BiMap } from 'react-icons/bi'
 import '../Home.css'
+import { HiOutlineX } from 'react-icons/hi'
+import { BsCursor } from 'react-icons/bs'
+import SearchingCity from './SearchingCity'
 export default function LocationScreen({ history }) {
 
 
@@ -19,15 +20,23 @@ export default function LocationScreen({ history }) {
 
 
 
+  // select city .....
   const SelectionCity = (id) => {
 
-    const city = id.toLowerCase()
-
-    dispatch(LoactionPath(city))
-
-    // console.log(id)
-    history.push(`/${city}/`)
+    dispatch(LocationUserAction(id))
+    history.push(`/${id.name.toLowerCase()}/`)
   }
+
+
+  // filter 
+  const [query, setQuery] = useState('')
+  console.log(query)
+  const keys = ["name"];
+  const search = (data) => {
+    return data?.filter((item) =>
+      keys?.some((key) => item[key]?.toLowerCase()?.includes(query))
+    );
+  };
 
 
   return <Container fluid>
@@ -40,24 +49,53 @@ export default function LocationScreen({ history }) {
 
         </Col>
         <Col xs={12} sm={12} md={12} lg={12} className='back-color'>
-          <h1 className='fontt'>Delivery address</h1>
+          <h1 className='fontt'>Leveransadress</h1>
           <Row>
             <div className='mAPS-INPUT'>
-              <Col xs={8} sm={5} md={4} lg={4}>
-                <TheInputForm
-                  placeholder='Söker efter Produkter...'
-                  FirstIcons={
-                    <Fragment>
-                      <BiMap className='Icons-LEFT' />
-                    </Fragment>
+              <Col xs={12} sm={6} md={4} lg={4}>
+                <div className='postin-city'>
+
+                  <TheInputForm
+                    placeholder='Hitta din stad'
+                    onChange={(e) => setQuery(e.target.value.toLowerCase())}
+                    value={query}
+                    FirstIcons={
+                      <Fragment>
+                        <BiMap className='Icons-LEFT' />
+                        {query.length > Number(0) && <HiOutlineX
+                          className='close-pp-pp-image ADD-REMOVE'
+                          onClick={() => setQuery('')}
+                        />
+                        }
+                      </Fragment>
+                    }
+
+                    className='Input-type-style productdetials text-searching ADD-HEIGTH'
+                  />
+
+
+                  {query.length > Number(0) &&
+                    <div className='resultSearchingcity'>
+
+                      <div className='flex-ddd'>
+                      </div>
+                      <div className='nuvarande'>
+                        <BsCursor />
+                        <span>Använd min nuvarande plats</span>
+                      </div>
+
+                      <SearchingCity Stand={search(Stand)} />
+
+
+
+                    </div>
                   }
 
-                  className='Input-type-style productdetials text-searching ADD-HEIGTH'
-                />
+                </div>
+
+
               </Col>
-              <Col xs={4} sm={2} md={2} lg={2}>
-                <ButtomClick title='Searching' className='searching-buttom' />
-              </Col>
+
             </div>
 
           </Row>
@@ -68,21 +106,21 @@ export default function LocationScreen({ history }) {
         <Col xs={12} sm={12} md={12} lg={12}>
 
           <div className='first-text-country'>
-            Explore cities where you find {FirstNameRest}
+            Upptäck städer där   {FirstNameRest} finns
 
           </div>
 
           <div className='box-country'>
             <div className='selection-image-country'>
               <ImageScreen ImageIcon={MyOderImage.sweden} className='Image-country' />
-              <span className='flex-font-sw'>sweden</span>
+              <span className='flex-font-sw'>Sverige</span>
             </div>
 
 
             <div className='text-city'>
-              {Stand?.map((land) => (
-                <div className='text-city-city' key={land} onClick={() => SelectionCity(land)} >
-                  <span>{land}</span>
+              {Stand?.map((land, Index) => (
+                <div className='text-city-city' key={Index} onClick={() => SelectionCity(land)} >
+                  <span>{land.name}</span>
                   <ImageScreen ImageIcon={MyOderImage.right} className='Image-right' />
                 </div>
               ))}

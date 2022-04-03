@@ -71,7 +71,7 @@ export default function VisaProductItems(props) {
 
 
   return <InfiniteScrollData products={home} categoryProductsNextPagesxp={fetchMore} fetchData={IdMatch === 'butiker' ? fetchStores : fetchData}>
-    <Row>
+    <Row  >
       <ProductsChildrenItems home={Searching(home)} />
     </Row>
   </InfiniteScrollData>

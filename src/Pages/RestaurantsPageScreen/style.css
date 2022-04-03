@@ -1686,7 +1686,9 @@ overflow: hidden;
     font-weight: bold;
 }
 
+.filter-product-product{
 
+}
 
 /* End cart navbar */
 
@@ -1699,6 +1701,7 @@ overflow: hidden;
     margin-top: 0rem;
     border-top-left-radius: 21px;
     border-top-right-radius: 21px;
+ 
  }
  .add-Open-Imae-postion{
      position: relative;

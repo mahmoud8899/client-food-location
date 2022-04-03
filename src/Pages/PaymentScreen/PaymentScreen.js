@@ -7,7 +7,7 @@ import PaymentCourierScreen from './PaymentCourierScreen'
 import PaymentPromoCodeScreen from './PaymentPromoCodeScreen'
 import PaymentPricesScreen from './PaymentPricesScreen'
 import PaymentMapsScreen from './PaymentMapsScreen'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { GetCartInfoIdAction } from '../../redux/Action/CartItemAction'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
@@ -90,12 +90,26 @@ export default function CheckOutPaymentScreen(props) {
 
 
 
+    const scrollUseRef = useRef()
+
+
+    useEffect(() => {
+        scrollUseRef.current?.scrollIntoView({
+            block: "nearest",
+            inline: "center",
+            behavior: "smooth",
+            alignToTop: false
+        });
+        // eslint-disable-next-line
+    }, [])
 
 
 
 
-    return <TimeContext>
-        <Container fluid>
+
+
+    return <TimeContext >
+        <Container fluid >
             <Title TextTitle='Checkout' />
             <LoadingErrorHandle
                 loading={loading}
@@ -105,8 +119,8 @@ export default function CheckOutPaymentScreen(props) {
             >
 
 
-                <Row className='justify-content-center'>
-                    <PaymentMapsScreen cartinfo={cartinfo} />
+                <Row className='justify-content-center' ref={scrollUseRef}>
+                    <PaymentMapsScreen   cartinfo={cartinfo} />
 
                     <Row className='row-box'>
 

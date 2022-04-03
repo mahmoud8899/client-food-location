@@ -6,7 +6,8 @@ import UserAddressInfo from '../User/UserAddresScreen/UserAddressInfo'
 import { AiOutlineSend } from 'react-icons/ai'
 import ButtomClick from '../../Components/Buttom/Buttom'
 import Styles from '../../Components/Update/StylesComponents/style'
-
+import { FirstNameRest } from '../../Assistant/Selection'
+import { useState } from 'react'
 
 export default function ActiveUserSearchCity(props) {
 
@@ -23,6 +24,13 @@ export default function ActiveUserSearchCity(props) {
     } = props
 
 
+
+
+    const ChangeCity = (e) =>{
+        e.preventDefault()
+
+        console.log('change city.....')
+    }
 
 
 
@@ -51,29 +59,20 @@ export default function ActiveUserSearchCity(props) {
                 </div>
 
 
-                <div className='Add-nar-mig add-padding-loaction' onClick={(e) => HandleCity(e)}>
-                    <div className='flex-box-nar-img'>
-                        <AiOutlineSend className='classPlusefont remove-router' />
-                        <div className='classPluseTitel normail'> Nära mig</div>
+                <div className='Add-nar-mig add-padding-loaction' >
+                    <div className='classPluseTitel normail' onClick={(e) => HandleCity(e)} >
+                        Visa alla städer med {FirstNameRest}
                     </div>
-
-                    <div className='classPluseTitel normail'>
-                        Utforska städer
-                    </div>
-
-
-
                 </div>
 
-              <div className='buttom-close'>
-              <ButtomClick
-                    title='Save'
-                    
-                    onClick={() => setShowCity(!showCity)}
-                    style={Styles.TabButtomCreate}
-                />
+                <div className='buttom-close'>
+                    <ButtomClick
+                        title='Save'
+                        onClick={() => setShowCity(!showCity)}
+                        style={Styles.TabButtomCreate}
+                    />
 
-              </div>
+                </div>
 
             </Fragment>
 
@@ -98,10 +97,10 @@ export default function ActiveUserSearchCity(props) {
 
                             </span>
 
-                            {Stand?.map((x, Index) => (
-                                <div className='stad-div' key={Index}>
-                                    <div className='classPluseTitel notleft'>{x}</div>
-                                    <div className='classPluseTitel notleft' >0 km</div>
+                            {Stand?.map((city, Index) => (
+                                <div className='stad-div' key={Index} onClick={(e)=>ChangeCity(e)}  >
+                                    <div className='classPluseTitel notleft'>{city.name}</div>
+                                    <div className='classPluseTitel notleft' >100 km</div>
                                 </div>
                             ))}
 
@@ -121,3 +120,36 @@ export default function ActiveUserSearchCity(props) {
     </Fragment>
 
 }
+
+
+
+    // const [lat, setLat] = useState(null);
+    // const [lng, setLng] = useState(null);
+    // const [status, setStatus] = useState(null);
+
+    // const FindLocation = () => {
+
+    //     console.log('loading')
+
+    //     if (!navigator.geolocation) {
+	// 		setStatus('Geolocation is not supported by your browser');
+	// 	} else {
+    //         setStatus('Locating...');
+    //         navigator.geolocation.getCurrentPosition((position) => {
+    //             setStatus(null);
+    //             setLat(position.coords.latitude);
+    //             setLng(position.coords.longitude);
+    //         }, () => {
+    //             setStatus('Unable to retrieve your location');
+    //         });
+    //     }
+
+    // }
+
+    // console.log(lat,
+    //     lng,
+    //     status)
+    //     <div className='flex-box-nar-img' onClick={(e) => FindLocation(e)}>
+    //     <AiOutlineSend className='classPlusefont remove-router' />
+    //     <div className='classPluseTitel normail'> Nära mig</div>
+    // </div>

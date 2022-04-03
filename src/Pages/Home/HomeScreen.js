@@ -1,7 +1,6 @@
 import { BestRestaurantAction, FatchButik, FoodTypesAction, FreeDeliveryAction, GetCartInfoHomeRestranges } from '../../redux/Action/CartItemAction'
-import { ErrorServer, TextButiker, Textfree, TextCategory, LoadingSkeletonHomeCart, TextRestrantHome, TextBestHome } from '../../Assistant/TextError'
+import { ErrorServer, SkeletonHomeScreen, TextButiker, Textfree, TextCategory, LoadingSkeletonHomeCart, TextRestrantHome, TextBestHome, SkeletonCategory, HomeCarouselScreen } from '../../Assistant/TextError'
 import LoadingErrorHandld from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import SearchingResultHome from '../../Components/Update/NavBarSearchingHome/SearchingResultHome'
 import RestrangeItems from './RestrangeItems/RestrangeItems'
 import CategoryScreen from './CategoryScreen/CategoryScreen'
 import TimeContext from '../../Components/Update/UseContext/TimeContext'
@@ -12,12 +11,10 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { FirstNameRest } from '../../Assistant/Selection'
 import NavBarCity from '../NavBarCity/NavBarCity'
 import Carousel from './Carousel/Carousel'
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, useRef } from 'react'
 import { UserLoaction } from '../LoactionPage/LoactionPage'
 import { Link } from 'react-router-dom'
 import './Home.css'
-// import LocationUser from './LocationUser/LocationUser'
-// <LocationUser  />
 
 
 export default function HomeScreen(props) {
@@ -30,7 +27,7 @@ export default function HomeScreen(props) {
 
 
 
-    
+
 
     // location User
     const { lat, long, loading: loadingLocation, } = useContext(UserLoaction)
@@ -155,23 +152,31 @@ export default function HomeScreen(props) {
 
 
 
+    const scrollUseRef = useRef()
+
+
+    useEffect(() => {
+        scrollUseRef.current?.scrollIntoView({
+            block: "nearest",
+            inline: "center",
+            behavior: "smooth",
+            alignToTop: false
+        });
+        // eslint-disable-next-line
+    }, [])
 
 
 
-    return <LoadingErrorHandld loading={loadingLocation} >
+
+
+
+
+    // testing loading.... skeleton.
+
+    return <LoadingErrorHandld loading={loadingLocation} type={SkeletonHomeScreen} >
         <TimeContext>
             <Container fluid>
                 <Title TextTitle={FirstNameRest} />
-
-                <Row className='justify-content-center'>
-
-                    <Col xs={12} sm={12} md={6} lg={6} className='postion-abs'  >
-                        <SearchingResultHome />
-                    </Col>
-                </Row>
-
-
-
 
 
 
@@ -180,22 +185,30 @@ export default function HomeScreen(props) {
                 </div>
 
 
-                <Row className='justify-content-center'>
+                <Row className='justify-content-center' ref={scrollUseRef}>
 
 
 
 
                     <Col xs={12} sm={12} md={11} lg={11}>
 
-                        <LoadingErrorHandld loading={loadingnewBestRestaurant} error={errornewBestRestaurant} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
+                        <LoadingErrorHandld
+                            loading={loadingnewBestRestaurant}
+                            error={errornewBestRestaurant}
+                            TextNotItems={ErrorServer}
+                            type={HomeCarouselScreen}
+                        >
                             <Carousel home={BestRestaurant} Title={TextBestHome} />
                         </LoadingErrorHandld>
 
 
 
-                        <LoadingErrorHandld loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
-
-
+                        <LoadingErrorHandld
+                            loading={loading}
+                            error={error}
+                            TextNotItems={ErrorServer}
+                            type={LoadingSkeletonHomeCart}
+                        >
                             <RestrangeItems home={home} Title={TextRestrantHome}
                                 // nextNumber={nextNumber}
                                 TheRedirect={
@@ -207,7 +220,12 @@ export default function HomeScreen(props) {
                         </LoadingErrorHandld>
 
 
-                        <LoadingErrorHandld loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}  >
+                        <LoadingErrorHandld
+                            loading={loading}
+                            error={error}
+                            TextNotItems={ErrorServer}
+                            type={LoadingSkeletonHomeCart}
+                        >
                             <RestrangeItems
                                 home={stores}
                                 Title={TextButiker}
@@ -230,12 +248,22 @@ export default function HomeScreen(props) {
                             </div>
                         }
 
-                        <LoadingErrorHandld loading={loadingFreedelivery} error={errorFreedelivery} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
+                        <LoadingErrorHandld
+                            loading={loadingFreedelivery}
+                            error={errorFreedelivery}
+                            TextNotItems={ErrorServer}
+                            type={LoadingSkeletonHomeCart}
+                        >
                             <RestrangeItems home={freedelivery} Title={Textfree} />
                         </LoadingErrorHandld>
 
 
-                        <LoadingErrorHandld loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart}>
+                        <LoadingErrorHandld
+                            loading={loadingCategory}
+                            error={errorCategory}
+                            TextNotItems={ErrorServer}
+                            type={SkeletonCategory}
+                        >
                             <CategoryScreen category={category} Title={TextCategory} />
                         </LoadingErrorHandld>
 
@@ -262,9 +290,6 @@ export default function HomeScreen(props) {
 
 
 }
-
-
-
 
 
 

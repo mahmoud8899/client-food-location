@@ -6,6 +6,11 @@ import * as ActionTypes from '../Action/Types'
 // start now Edit .... 
 //ActionTypes.KEY_TOKEN
 
+
+import {
+    LocationCityUserReducres
+} from '../reducres/LocationUserReducres'
+
 import {
 
     PaginationProductReducres,
@@ -91,8 +96,8 @@ const reducer = combineReducers({
 
     // user handle login or singup or forget password.....
     userLogin: LoginReducres,
-    PageNumber : AddNumberReducres,
-    driverAsk : DriverAskWork,
+    PageNumber: AddNumberReducres,
+    driverAsk: DriverAskWork,
 
 
 
@@ -108,7 +113,7 @@ const reducer = combineReducers({
     // product pagination and reviews...
     PaginationProducts: PaginationProductReducres,
     productID: ShowPostIDReducres,
-    PageUpdatedProduct: HandleUpdatedAndCreateProductReducres, 
+    PageUpdatedProduct: HandleUpdatedAndCreateProductReducres,
     PagePublicProducts: ProductsPublicReducres,
 
 
@@ -118,9 +123,9 @@ const reducer = combineReducers({
 
     // category to restranges...
     // ListCategory: CategoryAllReducres,
-    PageCategory : UpdateRemoveReducres,
-    UserpageCategory : CategoryReducresUser,
-    PagePublicCategory : CategoryPublicReducres,
+    PageCategory: UpdateRemoveReducres,
+    UserpageCategory: CategoryReducresUser,
+    PagePublicCategory: CategoryPublicReducres,
 
 
 
@@ -143,7 +148,7 @@ const reducer = combineReducers({
     // order 
     order: OrderReducres,
     myOrder: pagnationMyOrderReducres,
-    theResturant : ResturantOrdersNotfications,
+    theResturant: ResturantOrdersNotfications,
 
     TheResturantShowsOrders: ShowOrderReducres,
 
@@ -163,9 +168,15 @@ const reducer = combineReducers({
     pageHomeNewBestRestrant: BestRestrantsReducres,
     pageHomeFreeDelivery: FreeDeliverReducres,
     pageHomeCategory: ALLcatgoryReducres,
-    pageUserCartinfo : CartInfoActionResturanReducres,
-    updatedCartInfo : UpdatedCartiNFOReducres,
-    theRating : TheRatingReducres,
+    pageUserCartinfo: CartInfoActionResturanReducres,
+    updatedCartInfo: UpdatedCartiNFOReducres,
+    theRating: TheRatingReducres,
+
+
+
+
+    // location user if not has location from brow
+    locationIndex: LocationCityUserReducres,
 
 
 })
@@ -201,17 +212,30 @@ const LocastorLike = localStorage.getItem('likeCart') ?
 const loaclDriver = localStorage.getItem(ActionTypes.DELIVER_SAVE_LOACAL) ?
     JSON.parse(localStorage.getItem(ActionTypes.DELIVER_SAVE_LOACAL)) : null
 
+// text driver 
+const textDriverLocal = localStorage.getItem(ActionTypes.DRIVER_SAVE_LOCAL) ?
+    JSON.parse(localStorage.getItem(ActionTypes.DRIVER_SAVE_LOCAL)) : null
 
 
+
+
+//  booking time
 const loacTime = localStorage.getItem('timeBooking') ? JSON.parse(localStorage.getItem('timeBooking')) : null
 
+//  item cart....
 const itemsLocalstorge = localStorage.getItem(ActionTypes.SAVE_LOCAL_CH) ?
     JSON.parse(localStorage.getItem(ActionTypes.SAVE_LOCAL_CH)) : []
 
 
-// // add adress  
+// add adress  
 const lOCalCARDsAVE = localStorage.getItem(ActionTypes.ADD_LOCAT_CARTNUMBER) ?
     JSON.parse(localStorage.getItem(ActionTypes.ADD_LOCAT_CARTNUMBER)) : []
+
+
+
+// add adress  
+const LocationUserCity = localStorage.getItem(ActionTypes.ADD_LOACTION_LOACAL) ?
+    JSON.parse(localStorage.getItem(ActionTypes.ADD_LOACTION_LOACAL)) : []
 
 
 
@@ -234,8 +258,13 @@ const intialstate = ({
     },
 
     driverselection: {
-        driver: loaclDriver
-    }
+        driver: loaclDriver,
+        textdriver: textDriverLocal
+    },
+
+    locationIndex: {
+        locationUser: LocationUserCity
+    },
 
 })
 

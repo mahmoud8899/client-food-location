@@ -21,7 +21,7 @@ export default function InfiniteScrollData(props) {
         next={fetchData}
         hasMore={categoryProductsNextPagesxp !== null ? 'false' : 'true'}
         loader={categoryProductsNextPagesxp !== null ? <div className='center-loading'>
-             <SkeletonLoading  type='loadingdata'  />
+             <SkeletonLoading  type='fetchMore'  />
         </div> : null }
         endMessage={<p ><b>Yay! You have seen it all</b> </p>}
         

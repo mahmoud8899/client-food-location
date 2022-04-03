@@ -1,5 +1,5 @@
 import { Container, Row } from 'react-bootstrap'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import RestaurantsYourOrderCart from './RestaurantsYourOrderCart'
 import RestaurantsNavBarCart from './RestaurantsNavBarCart'
 import RestaurangetsDescription from './RestaurangetsDescription'
@@ -17,6 +17,9 @@ import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRest
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import { ErrorServer ,LoadingSkeletonProductPage} from '../../Assistant/TextError'
 import './style.css'
+
+
+
 
 export default function RestaurantsPageProductsScreen(props) {
 
@@ -68,7 +71,7 @@ export default function RestaurantsPageProductsScreen(props) {
     const { error: errorCategoryPublicError, loading: loadingCategoryPublicError } = CategoryPublicError
 
 
-    // category.....
+
     // cart info id   
     // testing and loading this is okej 
     useEffect(() => {
@@ -113,7 +116,25 @@ export default function RestaurantsPageProductsScreen(props) {
     // [3] :   restrurange name  --- RestaurantsPagePhotoNavBar
     // [4] :    nav nar views all category och time rating  and searching.....
 
-    return <Container fluid>
+    const scrollUseRef = useRef()
+
+
+    useEffect(() => {
+        scrollUseRef.current?.scrollIntoView({
+            block: "nearest",
+            inline: "center",
+            behavior: "smooth",
+            alignToTop: false
+        });
+        // eslint-disable-next-line
+    }, [])
+
+
+
+    // const tESTINFL = true
+
+
+    return <Container fluid ref={scrollUseRef}>
         <LoadingErrorHandle
             loading={loadingCartInfo}
             error={errorCartInfo}

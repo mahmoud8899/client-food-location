@@ -10,7 +10,7 @@ export default function NavBarSearchingHome(props) {
 
 
     // context input searching 
-    const { inputSearching, setInputSearching } = useContext(SearchingHomeDatilas)
+    const { inputSearching, setInputSearching,  } = useContext(SearchingHomeDatilas)
 
 
 

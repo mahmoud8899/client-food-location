@@ -1,8 +1,8 @@
 
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, useContext } from 'react'
 import { SearchingProductsAction } from '../../../redux/Action/SearchingProduct'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { UserLoaction } from '../../../Pages/LoactionPage/LoactionPage'
 
 
 
@@ -15,20 +15,25 @@ export default function SearchingHome({ children }) {
 
 
     const dispatch = useDispatch()
-    
+
+
+    const { lat, long } = useContext(UserLoaction)
+
+
+
 
     //filter params id city....
     const LastLength = window.location.pathname.length
     const city = window.location.pathname.slice(1, LastLength - 1)
 
-    
+
     // input searching in server
     const [inputSearching, setInputSearching] = useState('')
 
 
     // console.log(city) 
 
-    // searching product
+    // searching product event from Server...
     const ProductsSearching = useSelector((state) => state?.ProductsSearching)
     const { searchingHome } = ProductsSearching
 
@@ -36,6 +41,12 @@ export default function SearchingHome({ children }) {
     // input concat all result 
     const [products, setProducts] = useState([])
 
+
+
+    const Data = {
+        lat,
+        long
+    }
 
 
     // concat result to product
@@ -55,19 +66,19 @@ export default function SearchingHome({ children }) {
     }, [inputSearching, setProducts])
 
 
-// const city = 'uppsala'
+    // const city = 'uppsala'
 
     // send first result to server 
     const HandleSearching = () => {
         if (!inputSearching?.startsWith(' ') || !inputSearching.endsWith(' ')) {
-            return dispatch(SearchingProductsAction(city, inputSearching, true))
+            return dispatch(SearchingProductsAction(Data, inputSearching, true))
         }
     }
 
 
 
 
-    return <SearchingHomeDatilas.Provider value={{ inputSearching, setInputSearching, products ,city }}>
+    return <SearchingHomeDatilas.Provider value={{ inputSearching, setInputSearching, products, city }}>
         {children}
     </SearchingHomeDatilas.Provider>
 }
