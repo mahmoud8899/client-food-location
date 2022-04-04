@@ -899,8 +899,10 @@ border-left: ridge;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 130px;
     font-size: 19px;
+    border-radius: 0.5rem;
+    height: 100px;
 
 }
 .openSelection.action{
@@ -922,5 +924,8 @@ border-left: ridge;
 @media  (max-width: 400px) {
     .scrollAlert{
         height: 100vh;
+    }
+    .openSelection{
+        width: 90px;
     }
 }

@@ -1,9 +1,101 @@
 
 
  /* start skeleton */
-.hitta-hitta{
+ .buttom-close.alrt-buttom{
+
+    bottom: 5rem;
+   
+    height: 100px;
+
+ }
+ .class-maps{
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+ }
+ .class-maps-children{
+     display: flex;
+     flex-direction: column;
+     font-size: 13px;
+     margin-left: 0.6rem;
+
+ }
+
+ .first-lagg{
+     padding: 1rem;
+ }
+ .maps-icons{
+    background-color: #ff9d97;
+    color: white;
+    cursor: pointer;
     margin-top: 1rem;
-    margin-bottom: 2rem;
+    padding: 0.9rem;
+    text-align: center;
+    border-radius: 0.4rem;
+    opacity: 0.9;
+}
+.maps-icons:hover{
+    transition: all 0.5s;
+    opacity: 0.7;
+}
+.placering{
+    margin-right: 1rem;
+}
+.maps-icons span{
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+}
+ .add-scroll-to.change-top{
+     margin-top: 1rem;
+ }
+ .font-edit.change-font{
+     margin-top: 0.7rem;
+     font-size: 15px;
+     margin-bottom: 0rem;
+ }
+ .flexrow
+ {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0.5rem;
+ }
+ .Handl-navBar-only{
+    padding: 0.5rem;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+ }
+ .postion-city{
+     position: relative;
+     display: flex;
+     flex-direction: row;
+     margin-top: 1rem;
+     margin-bottom: 1rem;
+     cursor: pointer;
+ }
+ .postion-city-children{
+    padding-left: 45px;
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+ }
+ .selection-name.bottom-select{
+     display: block;
+     margin-bottom: 1rem;
+
+ }
+.hitta-hitta{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
  .margin-left{
     display: flex;

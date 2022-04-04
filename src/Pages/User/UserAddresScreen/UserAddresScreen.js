@@ -2,7 +2,7 @@ import { Container, Row, Col, Modal } from 'react-bootstrap'
 import UserNavBarScreen from '../UserNavBarScreen/UserNavBarScreen'
 import '../UserProfileScreen/Profile.css'
 import Styles from '../../../Components/Update/StylesComponents/style'
-import MyAddress from '../../../Components/MyAddress/MyAddress'
+import MyAddressLocation from '../../../Components/MyAddress/MyAddressLocation'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import UserAddressInfo from './UserAddressInfo'
@@ -74,7 +74,7 @@ export default function UserAddresScreen(props) {
 
                 <UserNavBarScreen ClassNameAddress />
 
-                <div className='margin-bottom-class'>  </div>
+                <div className='margin-bottom-class'> </div>
 
             </Col>
 
@@ -150,7 +150,7 @@ export default function UserAddresScreen(props) {
                                         </div>
 
                                         <div className='title-add'>
-                                            <span className='title-add-profile'>uppdatera adressuppgifter</span>
+                                            <span className='title-add-profile'>Lägg Till Ny Adress</span>
                                         </div>
 
                                         <HiOutlineX className='close-pp-pp-image' onClick={(e) => setOpenAddres(false)} />
@@ -161,7 +161,7 @@ export default function UserAddresScreen(props) {
 
 
 
-                                    <MyAddress
+                                    <MyAddressLocation
                                         setOpenAddres={setOpenAddres}
                                         setUpdateSuccessFully={setUpdateSuccessFully}
                                     />
@@ -210,3 +210,6 @@ export default function UserAddresScreen(props) {
 
 }
 
+
+
+//uppdatera adressuppgifter

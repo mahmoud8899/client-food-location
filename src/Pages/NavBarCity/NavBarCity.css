@@ -46,7 +46,7 @@
     cursor: pointer;
     left: 0rem;
 }
-.buttom-close div{
+/* .buttom-close div{
     width: 95%;
     margin: 0rem auto;
     background-color: rgba(255, 59, 47, 0.52);
@@ -58,7 +58,7 @@
     font-size: 17px;
     text-transform: capitalize;
     height: 45px;
-}
+} */
 
 .Add-Scroll-Home{
     padding: 1rem;
@@ -130,10 +130,10 @@
 }
 .classPluseTitel{
     text-decoration: none;
+    text-transform: capitalize;
     font-size: 15px;
     font-family: "Open Sans", sans-serif;
     font-weight: bold;
-    text-transform: capitalize;
 }
 .classPluseTitel.notleft{
     margin-left: 0rem;
