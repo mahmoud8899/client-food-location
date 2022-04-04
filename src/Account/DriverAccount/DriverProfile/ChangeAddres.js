@@ -1,6 +1,5 @@
 import { Col, Row } from 'react-bootstrap'
 import MyAddress from '../../../Components/MyAddress/MyAddress'
-import MyAddressLocation from '../../../Components/MyAddress/MyAddressLocation'
 import Styles from '../DriverScreen/style'
 
 const ChangeAddres = (props) => {
@@ -18,7 +17,7 @@ const ChangeAddres = (props) => {
                     <span className="close_items" onClick={() => setOpenAddres(false)}>X</span>
                     <div className="Billing_Address">
                         <h1 style={Styles.font} >Add Addres</h1>
-                        <MyAddressLocation />
+                        <MyAddress />
 
                     </div>
                 </div>

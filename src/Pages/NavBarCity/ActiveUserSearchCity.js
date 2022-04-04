@@ -3,11 +3,10 @@ import { Stand } from '../../Assistant/Selection'
 import MyAddress from '../../Components/MyAddress/MyAddress'
 import AddOpenComponent from '../../Components/Update/AddOpenComponent/AddOpenComponent'
 import UserAddressInfo from '../User/UserAddresScreen/UserAddressInfo'
-import { AiOutlineSend } from 'react-icons/ai'
 import ButtomClick from '../../Components/Buttom/Buttom'
 import Styles from '../../Components/Update/StylesComponents/style'
 import { FirstNameRest } from '../../Assistant/Selection'
-import { useState } from 'react'
+
 
 export default function ActiveUserSearchCity(props) {
 

@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import { BiClinic, BiMapAlt, BiPlus, BiStreetView } from 'react-icons/bi';
 import { RiCheckFill } from 'react-icons/ri';
 import ImageScreen from '../ImageScreen/ImageScreen';
@@ -11,10 +11,25 @@ import { addresSelection } from '../../Assistant/Selection';
 
 
 export default function LoactionAddress(props) {
-    const { nextStep, setNextStep, oppenMpas, setOppenMaps ,dataPost,setPostData} = props
+    const {
+        nextStep,
+        setNextStep,
+        oppenMpas,
+        setOppenMaps,
+        addAddress,
+        setAddAddress,
+    } = props
 
-   
 
+
+
+    // city: '',
+    // zipcode: '',
+    // location: {
+    //     lat: '',
+    //     long: ''
+    // },
+    // work: ''
 
 
     const HandleCity = () => { }
@@ -36,51 +51,51 @@ export default function LoactionAddress(props) {
 
             <div>
 
-                <span className='selection-name'>Street address and building number</span>
+                <span className='selection-name'>Gatuadress och byggnadsnummer</span>
                 <TheInputForm
-                    placeholder='Street address and building number'
-                    onChange={(e) => setPostData({ ...dataPost, addres: e.target.value })}
+                    placeholder='Gatuadress och byggnadsnummer'
+                    onChange={(e) => setAddAddress({ ...addAddress, address: e.target.value })}
                     type='text'
-                    value={dataPost?.addres}
+                    value={addAddress?.address}
                     name='address'
                     FirstIcons={
                         <Fragment>
                             <BiStreetView className='Icons-LEFT' />
-                            {validation(dataPost?.addres, 4)
+                            {validation(addAddress?.address, 4)
                                 ? <RiCheckFill className='Icons-LEFT-right' /> : null
                             }
                         </Fragment>
                     }
                     className='Input-type-style productdetials add-left-text'
                     onKeyPress={(e) => e.key === 'Enter' ?
-                        validation(dataPost?.addres, 4) ?
+                        validation(addAddress?.address, 4) ?
                             HandleCity(e) : null : null}
                 />
 
 
-                <span className='selection-name'>Details (door number, apartment)</span>
+                <span className='selection-name'>Detaljer (dörrnummer, lägenhet)</span>
                 <TheInputForm
-                    placeholder='Details (door number, apartment)'
-                    onChange={(e) => setPostData({ ...dataPost, homeNumber: e.target.value })}
-                    value={dataPost?.homeNumber}
+                    placeholder='Detaljer (dörrnummer, lägenhet)'
+                    onChange={(e) => setAddAddress({ ...addAddress, doornumber: e.target.value })}
+                    value={addAddress?.doornumber}
                     name='homeNumber'
                     FirstIcons={
                         <Fragment>
                             <BiClinic className='Icons-LEFT' />
-                            {validation(dataPost?.homeNumber, 1)
+                            {validation(addAddress?.doornumber, 1)
                                 ? <RiCheckFill className='Icons-LEFT-right' /> : null
                             }
                         </Fragment>
                     }
                     className='Input-type-style productdetials add-left-text'
                     onKeyPress={(e) => e.key === 'Enter' ?
-                        validation(dataPost?.homeNumber, 1) ?
+                        validation(addAddress?.doornumber, 1) ?
                             HandleCity(e) : null : null}
                 />
 
                 <div className='postion-city' onClick={() => setNextStep(!nextStep)}>
                     <FaCity className='Icons-LEFT' />
-                    <span className='postion-city-children'>Uppsala</span>
+                    <span className='postion-city-children'>{addAddress?.city}</span>
                 </div>
 
                 <span className='selection-name'>Postnummer</span>
@@ -89,19 +104,19 @@ export default function LoactionAddress(props) {
                     type='text'
                     placeholder='Postnummer'
                     required
-                    onChange={(e) => setPostData({ ...dataPost, zipcode: e.target.value })}
-                    value={dataPost?.zipcode}
+                    onChange={(e) => setAddAddress({ ...addAddress, zipcode: e.target.value })}
+                    value={addAddress?.zipcode}
                     FirstIcons={
                         <Fragment>
                             <BiPlus className='Icons-LEFT' />
-                            {validation(dataPost?.zipcode, 3)
+                            {validation(addAddress?.zipcode, 3)
                                 ? <RiCheckFill className='Icons-LEFT-right' /> : null
                             }
                         </Fragment>
                     }
                     className='Input-type-style productdetials add-left-text'
                     onKeyPress={(e) => e.key === 'Enter' ?
-                        validation(dataPost?.zipcode, 3) ?
+                        validation(addAddress?.zipcode, 3) ?
                             HandleCity(e) : null : null}
                 />
 
@@ -136,10 +151,10 @@ export default function LoactionAddress(props) {
             <div className='selectionHome'>
                 {addresSelection?.map((wo, Index) => (
                     <div
-                        className={dataPost?.work === wo?.name ? 'openSelection action' : 'openSelection'}
+                        className={addAddress?.work === wo?.name ? 'openSelection action' : 'openSelection'}
                         style={Styles.colorLine}
                         key={Index}
-                        onClick={(e) => setPostData({ ...dataPost, work: wo?.name })}
+                        onClick={(e) => setAddAddress({ ...addAddress, work: wo?.name })}
 
                     >
                         <span>{wo?.name}</span>

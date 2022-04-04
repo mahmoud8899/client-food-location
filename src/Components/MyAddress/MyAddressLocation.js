@@ -1,48 +1,72 @@
-import { Modal, Form } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import React, { useState, Fragment } from "react";
-import { HiArrowNarrowLeft, HiOutlineX } from 'react-icons/hi';
 import Styles from '../Update/StylesComponents/style';
 import ButtomClick from '../Buttom/Buttom'
-import FirstPage from './FirstPage'
+import SelectCityInput from './SelectCityInput'
 import LoactionAddress from './LocationAddress'
 import ShowMaps from './Maps'
 
 
 
-export default function MyAddressLocation() {
+export default function MyAddressLocation(props) {
+    const {
+        nextStep,
+        setNextStep,
+        oppenMpas,
+        setOppenMaps
+    } = props
 
 
 
-
-    // name city..... 
-    const [query, setQuery] = useState('')
     // navbar slider close and call back
-    const [nextStep, setNextStep] = useState(false)
-    const [dataPost, setPostData] = useState({ work: '' })
-    const [oppenMpas, setOppenMaps] = useState(false)
+    const [addAddress, setAddAddress] = useState({
+        address: '',
+        doornumber: '',
+        city: '',
+        zipcode: '',
+        location: {
+            lat: '',
+            long: ''
+        },
+        work: ''
+    })
 
 
 
 
-    // handel city
+
+
+
+    // handel add addresss.... >
     const HandleCity = (Event) => {
         Event.preventDefault()
-        setNextStep(!nextStep)
-    }
+        if (!nextStep) {
 
-
-
-    // close and call back
-    const CallBack = (e) => {
+            return setNextStep(!nextStep)
+        }
 
         if (oppenMpas) {
-            return setOppenMaps(!oppenMpas)
+            setOppenMaps(!oppenMpas)
+            return console.log('close Maps')
         }
-        setNextStep(!nextStep)
+
+
+
+        console.log('data....')
+
+
 
     }
 
 
+
+
+
+
+
+
+    // SelectCityInput first input select city input 
+    // 
 
 
     return <Fragment>
@@ -58,15 +82,15 @@ export default function MyAddressLocation() {
                         setNextStep={setNextStep}
                         oppenMpas={oppenMpas}
                         setOppenMaps={setOppenMaps}
-                        dataPost={dataPost}
-                        setPostData={setPostData}
+                        addAddress={addAddress}
+                        setAddAddress={setAddAddress}
                     />
 
                 :
 
-                <FirstPage
-                    query={query}
-                    setQuery={setQuery}
+                <SelectCityInput
+                    addAddress={addAddress}
+                    setAddAddress={setAddAddress}
                 />
 
             }
@@ -78,7 +102,7 @@ export default function MyAddressLocation() {
                 <ButtomClick
                     title={oppenMpas ? 'Fortsätt' : 'next'}
                     style={Styles.TabButtomCreate}
-                    disabled={query === 'value' || query === ''}
+                    disabled={addAddress.city === 'value' || addAddress.city === ''}
                 />
             </div>
 
@@ -93,14 +117,14 @@ export default function MyAddressLocation() {
 
 
 
-{/* <div className={nextStep ? 'Handl-navBar-only' : 'flexrow'}>
-{nextStep &&
-    <>
-        <HiArrowNarrowLeft className='close-pp-pp-image' onClick={(e) => CallBack(e)} />
-        <h1 className='font-edit'>Adressdetaljer</h1>
-    </>
-}
+//  <div className={nextStep ? 'Handl-navBar-only' : 'flexrow'}>
+// {nextStep &&
+//     <>
+//         <HiArrowNarrowLeft className='close-pp-pp-image' onClick={(e) => CallBack(e)} />
+//         <h1 className='font-edit'>Adressdetaljer</h1>
+//     </>
+// }
 
-<HiOutlineX className='close-pp-pp-image' />
-</div> */}
+// <HiOutlineX className='close-pp-pp-image' />
+// </div> 
 

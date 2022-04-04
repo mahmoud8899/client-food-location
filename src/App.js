@@ -18,7 +18,7 @@ import UserSettingsScreen from './Pages/User/UserSettingsScreen/UserSettingsScre
 import CheckOutPaymentScreen from './Pages/PaymentScreen/PaymentScreen'
 import ScrollDrowPageScreen from './Components/SocketScreen/ScrollDrown'
 import DriverFormScreen from './Pages/DriverFormScreen/DriverFormScreen'
-import LocationScreen from './Pages/Home/LoactionScreen/LoactionScreen'
+// import LocationScreen from './Pages/Home/LoactionScreen/LoactionScreen'
 import SearchingResult from './Components/Update/UseContext/SearchingResult'
 import FilterRestarangeProduct from './Components/Update/UseContext/FilterRestarangeProduct'
 import VisaProducts from './Pages/VisaProducts/VisaProducts'
@@ -34,7 +34,7 @@ import Footer from './Pages/Footer/Footer'
 import HomePage from './Pages/SomethingFail/SomethingFail'
 import LocationPage from './Pages/LoactionPage/LoactionPage';
 import SearchingPage from './Pages/SearchingPage/SearchingPage';
-import MAPSTESTING from './Testing';
+
 
 
 export default function App() {
@@ -58,7 +58,7 @@ export default function App() {
                 <NavBar />
 
                 <Switch>
-                <Route path="/" component={MAPSTESTING} exact />
+             
                 
 
                   <Route path="/:id/" component={HomeScreen} exact />
@@ -123,3 +123,4 @@ export default function App() {
 
 
 //      <Route path="/" component={LocationScreen} exact />
+//         <Route path="/" component={MAPSTESTING} exact />
