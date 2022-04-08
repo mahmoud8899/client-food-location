@@ -1,3 +1,103 @@
+.color-avtive
+{
+    color:  #ff9d97;
+    text-transform: capitalize;
+}
+
+.valje
+{
+    background: #ff9d97;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    color: white;
+}
+
+.remove-all-address{
+
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+.remove-all-address span:nth-last-child(1){
+    color: red;
+    margin-right: 0.3rem;
+    font-size: 15px;
+    text-transform: capitalize;
+}
+
+.show-sort-address{
+    padding: 0rem;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.font-size-work.icons-icons{
+   font-size: 25px;
+   font-size: 25px;
+   border-radius: 50%;
+   background: #eee;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 40px;
+   width: 40px;
+}
+.font-size-work.color-avtive
+{
+    font-size: 25px;
+    font-size: 25px;
+    border-radius: 50%;
+    background: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    color:  #ff9d97;
+    text-transform: capitalize;
+}
+.font-size-work{
+
+    text-transform: capitalize;
+}
+.bike-User{
+    width: 30px;
+    height: 30px;
+    object-fit:cover
+}
+.margin-left-class{
+    margin-left: auto;
+
+}
+.first-left-box{
+    margin-bottom: 0.5rem;
+    display: flex;
+    border-radius: 0.5.rem;
+    padding: 1rem;
+}
+.box-infoUser{
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    align-items: center;
+}
+.address-list-edit{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: 1rem;
+    width: 100%;
+}
+.address-list-edit-children{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-transform: capitalize;
+}
 .Remove-div-all{
     margin-left: auto;
     position: relative;
@@ -57,16 +157,16 @@
 }
 .class-edit-postion.hidden{
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     padding: 0rem;
     margin: 0rem;
     background-color: #eee;
     border-radius: 0.4rem;
     position: absolute;
-    top: 2.4rem;
+    top: 1.9rem;
     left: -3rem;
     transition: all 2s;
-    border-top-left-radius: 1rem;
+    z-index: 343434;
 
 }
 
@@ -115,11 +215,7 @@
 
 
 
-.bike-User{
-    width: 30px;
-    height: 30px;
-    object-fit:cover
-}
+
 .bike-User.add-size{
     width: 30px;
     height: 30px;
@@ -177,21 +273,26 @@
 }
 .className-infoUser{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     margin-top: 4rem;
     cursor: pointer;
     transition: all 3s;
     border-radius: 0.4rem;
 }
-.className-infoUser.REMOVE-BOTTOM{
-    margin-top: 0.5rem;
+
+.className-infoUser.add-style-remove-padding{
+    background-color: rgba(238, 238, 238, 0.345);
     width: 100%;
-}
-.first-left-box{
-    margin-left: 1rem;
+    padding: 0rem;
+    margin: 0rem;
+
 }
 
+.scroll-down-body{
+    height: 400px;
+    overflow-y: auto;
+}
 .myprofile h1{
     font-family: system-ui;
 }
@@ -214,9 +315,9 @@
 .margin-top-class{
  margin-top:5rem
 }
-.heigth-margin{
+/* .heigth-margin{
     height: 400px;
-}
+} */
 
 .animationRow{
    transition: all 2s;

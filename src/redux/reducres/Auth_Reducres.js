@@ -71,12 +71,8 @@ export const LoginReducres = (state = {
 
 
 
-// add acount uSER 
 
-
-
-
-
+// add number
 export const AddNumberReducres = (state = {
     successfully: null,
     loading: false,
@@ -131,5 +127,82 @@ export const DriverAskWork = (state = {
 
 
 
+
+
+
+// add addres and save within locatstory.
+export const AddAddresResducres = (
+    state = {
+        myAddressLocal: []
+    }, action) => {
+    switch (action.type) {
+
+
+
+        case ActionTypes.ADD_ADDRESS_LOADING:
+            return {
+                ...state,
+                loading: true
+            }
+
+
+
+
+        case ActionTypes.ADD_ADDRESS_LOCAL_SUCCESSFULLY:
+
+            const Thecheck = state?.myAddressLocal?.filter((x) => x?.firstAddress === true ? x : state?.myAddressLocal)
+
+            Thecheck.map((x) => x.firstAddress = false)
+
+            const item = action.payload
+
+            const checkItems = Thecheck?.find((x) => x?.address === item?.address)
+            if (checkItems) {
+
+                return {
+                    ...state,
+                    myAddressLocal: Thecheck.map((x) =>
+                        x.address === checkItems.address ?
+                            item : x
+                    ),
+                    loading: false,
+                }
+
+            } else {
+
+                return {
+                    ...state,
+                    myAddressLocal: [...Thecheck, item],
+                    loading: false
+                }
+            }
+
+
+
+        // remove one address
+        case ActionTypes.REMOVE_ONE_ADDRESS:
+
+            return {
+                ...state,
+                myAddressLocal: state.myAddressLocal.filter((x) => x.address !== action.payload),
+                loading: false,
+            }
+
+        // remove all addres 
+        case ActionTypes.REMOVE_ALL_ADDRESS:
+            return {
+                ...state,
+                myAddressLocal: [],
+                loading: false,
+
+            }
+
+
+
+
+
+        default: return state
+    }
+}
 
 

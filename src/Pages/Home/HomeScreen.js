@@ -12,7 +12,7 @@ import { FirstNameRest } from '../../Assistant/Selection'
 import NavBarCity from '../NavBarCity/NavBarCity'
 import Carousel from './Carousel/Carousel'
 import { useEffect, useContext, useRef } from 'react'
-import { UserLoaction } from '../LoactionPage/LoactionPage'
+import { AnotherLocation } from '../LoactionPage/ChooseAnotherLocation'
 import { Link } from 'react-router-dom'
 import './Home.css'
 
@@ -26,11 +26,13 @@ export default function HomeScreen(props) {
     //  console.log(LocationPath)
 
 
-
-
-
     // location User
-    const { lat, long, loading: loadingLocation, } = useContext(UserLoaction)
+    const { getLocation, loading: loadingLocation } = useContext(AnotherLocation)
+
+
+
+
+
 
     const dispatch = useDispatch()
 
@@ -56,26 +58,32 @@ export default function HomeScreen(props) {
 
     // get all restrange
     useEffect(() => {
-        if (lat !== null && long !== null) {
+
+
+        if (getLocation?.location?.lat !== null && getLocation?.location?.long !== null) {
             return BestRestaurant?.length === Number(0) && dispatch(BestRestaurantAction({
-                lat: lat,
-                long: long,
+                lat: getLocation?.location?.lat,
+                long: getLocation?.location?.long,
                 productType: "restaurant"
             }))
         }
 
 
-    }, [dispatch, BestRestaurant?.length, lat, long,])
+    }, [dispatch,
+        BestRestaurant?.length,
+        getLocation?.location?.lat,
+        getLocation?.location?.long,
+    ])
 
 
 
 
     // get all butiker
     useEffect(() => {
-        if (lat !== null && long !== null) {
+        if (getLocation?.location?.lat !== null && getLocation?.location?.long !== null) {
             stores?.length === Number(0) && dispatch(FatchButik({
-                lat: lat,
-                long: long,
+                lat: getLocation?.location?.lat,
+                long: getLocation?.location?.long,
                 productType: 'butiker'
 
             }))
@@ -84,7 +92,8 @@ export default function HomeScreen(props) {
         }
 
 
-    }, [dispatch, lat, long, stores?.length])
+    }, [dispatch, stores?.length, getLocation?.location?.lat,
+        getLocation?.location?.long,])
 
 
 
@@ -92,9 +101,9 @@ export default function HomeScreen(props) {
     useEffect(() => {
 
 
-        return lat !== null && long !== null && home?.length === Number(0) && dispatch(GetCartInfoHomeRestranges({
-            lat: lat,
-            long: long,
+        return getLocation?.location?.lat !== null && getLocation?.location?.long !== null && home?.length === Number(0) && dispatch(GetCartInfoHomeRestranges({
+            lat: getLocation?.location?.lat,
+            long: getLocation?.location?.long,
             productType: 'restaurant'
         }))
 
@@ -105,8 +114,8 @@ export default function HomeScreen(props) {
 
 
         dispatch,
-        lat,
-        long,
+        getLocation?.location?.lat,
+        getLocation?.location?.long,
         home?.length
     ])
 
@@ -119,16 +128,19 @@ export default function HomeScreen(props) {
     const { loading: loadingFreedelivery, freedelivery, error: errorFreedelivery } = pageHomeFreeDelivery
     //  free delivery
     useEffect(() => {
-        if (lat !== null && long !== null) {
+        if (getLocation?.location?.lat !== null && getLocation?.location?.long !== null) {
 
             return freedelivery?.length === Number(0) && dispatch(FreeDeliveryAction({
-                lat: lat,
-                long: long
+                lat: getLocation?.location?.lat,
+                long: getLocation?.location?.long,
             }))
         }
 
 
-    }, [dispatch, freedelivery?.length, lat, long])
+    }, [dispatch,
+        freedelivery?.length,
+        getLocation?.location?.lat,
+        getLocation?.location?.long,])
 
 
 
@@ -203,6 +215,8 @@ export default function HomeScreen(props) {
 
 
 
+
+
                         <LoadingErrorHandld
                             loading={loading}
                             error={error}
@@ -270,6 +284,12 @@ export default function HomeScreen(props) {
 
 
 
+
+
+
+
+
+
                     </Col>
 
                 </Row>
@@ -290,14 +310,6 @@ export default function HomeScreen(props) {
 
 
 }
-
-
-
-
-
-
-
-
 
 
 

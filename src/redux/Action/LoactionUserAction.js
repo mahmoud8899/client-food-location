@@ -9,6 +9,7 @@ export const LocationUserAction = (data) => (dispatch,getStat) => {
     dispatch({type : ActionTypes.ADD_LOACTION_SUCCESSFULLY , payload : data})
 
     localStorage.setItem(ActionTypes.ADD_LOACTION_LOACAL, JSON.stringify(getStat().locationIndex.locationUser))
+    // window.onload()
 }
 
 

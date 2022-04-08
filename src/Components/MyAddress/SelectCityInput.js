@@ -11,6 +11,10 @@ export default function SelectCityInput(props) {
 
 
 
+
+    // console.log(addAddress?.city)
+
+
     return <div className='first-lagg'>
 
 
@@ -28,13 +32,13 @@ export default function SelectCityInput(props) {
             <option>value</option>
             {Stand?.map((city, Index) => (
                 <option
-                    value={city.name}
+                    value={city.address}
                     key={Index}>
-                    {city.name}
+                    {city.address}
                 </option>
             ))}
         </Form.Control>
-    </div>
+    </div >
 }
 
 

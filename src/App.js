@@ -34,13 +34,15 @@ import Footer from './Pages/Footer/Footer'
 import HomePage from './Pages/SomethingFail/SomethingFail'
 import LocationPage from './Pages/LoactionPage/LoactionPage';
 import SearchingPage from './Pages/SearchingPage/SearchingPage';
-
-
+import ChooseAnotherLocation from './Pages/LoactionPage/ChooseAnotherLocation'
+// import Testing from './Testing'
+// <Route path="/" component={Testing} exact />
 
 export default function App() {
 
   // location User
-  // scroll dwon restrant product class name  ScrollDrowPageScreen
+  //  onther location selection from user class name 
+  // scroll dwon restrant product class name  ScrollDrowPageScreen ChooseAnotherLocation
   // searching products class name  SearchingResult
   // sort itemscart between restrants class name  FilterRestarangeProduct
   // filter category to all restrants Home class name  FilterCategoryScreen
@@ -48,6 +50,7 @@ export default function App() {
 
 
   return <LocationPage >
+    <ChooseAnotherLocation>
     <ScrollDrowPageScreen>
       <SearchingResult>
         <FilterRestarangeProduct>
@@ -60,8 +63,9 @@ export default function App() {
                 <Switch>
              
                 
-
-                  <Route path="/:id/" component={HomeScreen} exact />
+                
+              
+                  <Route path="/" component={HomeScreen} exact />
                   <Route path='/:id/:id/' component={VisaProducts} exact />
                   <Route path='/:id/:id/:id/' component={RestaurantsPageProductsScreen} exact />
 
@@ -111,6 +115,8 @@ export default function App() {
         </FilterRestarangeProduct>
       </SearchingResult>
     </ScrollDrowPageScreen>
+
+    </ChooseAnotherLocation>
 
   </LocationPage>
 

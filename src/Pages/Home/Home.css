@@ -1,12 +1,23 @@
 
 
  /* start skeleton */
+
  .buttom-close.alrt-buttom{
 
     bottom: 5rem;
    
     height: 100px;
 
+ }
+ .error-input-address{
+     height: 30px;
+
+ }
+ .error-input-address-children{
+     color: red;
+     text-transform: capitalize;
+     font-size: 14px;
+     font-weight: bold;
  }
  .class-maps{
     background-color: white;
@@ -435,9 +446,9 @@
     justify-content: center;
     height: 200px
 }
-.gmnoprint{
+/* .gmnoprint{
     display: none;
-}
+} */
 .Mpas-Location-api{
     width: 100%;
     height: 300px;

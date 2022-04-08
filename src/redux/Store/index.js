@@ -47,6 +47,7 @@ import {
     AddNumberReducres,
     LoginReducres,
     DriverAskWork,
+    AddAddresResducres,
 
 
 
@@ -98,6 +99,7 @@ const reducer = combineReducers({
     userLogin: LoginReducres,
     PageNumber: AddNumberReducres,
     driverAsk: DriverAskWork,
+    locateAddress: AddAddresResducres,
 
 
 
@@ -227,19 +229,29 @@ const itemsLocalstorge = localStorage.getItem(ActionTypes.SAVE_LOCAL_CH) ?
     JSON.parse(localStorage.getItem(ActionTypes.SAVE_LOCAL_CH)) : []
 
 
-// add adress  
+// add cart number  
 const lOCalCARDsAVE = localStorage.getItem(ActionTypes.ADD_LOCAT_CARTNUMBER) ?
     JSON.parse(localStorage.getItem(ActionTypes.ADD_LOCAT_CARTNUMBER)) : []
 
 
 
-// add adress  
+// add city  
 const LocationUserCity = localStorage.getItem(ActionTypes.ADD_LOACTION_LOACAL) ?
     JSON.parse(localStorage.getItem(ActionTypes.ADD_LOACTION_LOACAL)) : []
 
 
+// // save address user ... >
+const AddressUser = localStorage.getItem(ActionTypes.ADD_ADDRESS_ADDRESS) ?
+    JSON.parse(localStorage.getItem(ActionTypes.ADD_ADDRESS_ADDRESS)) : []
+
+
+
 
 const intialstate = ({
+
+    locateAddress: {
+        myAddressLocal: AddressUser
+    },
     cart: {
         cartItems: itemsLocalstorge,
         timeBooking: loacTime,

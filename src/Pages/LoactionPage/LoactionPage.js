@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { createContext } from 'react'
 import { Modal } from "react-bootstrap";
-import { Stand } from "../../Assistant/Selection";
-import { LocationUserAction, RemoveLocationUserAction } from "../../redux/Action/LoactionUserAction";
+// import { RemoveLocationUserAction } from "../../redux/Action/LoactionUserAction";
+import { AddAddressAction } from "../../redux/Action/Auth_Action";
 import { useDispatch, useSelector } from 'react-redux'
+import LocationSelectCity from "./LocationSelectCity";
 
 export const UserLoaction = createContext()
 
@@ -15,6 +16,8 @@ export default function LocationPage({ children }) {
     const [long, setLong] = useState(null);
     const [status, setStatus] = useState(null);
     const [loading, setLoading] = useState(false)
+    // Give a mark I'm the user has no location
+    const [locationUser, setLocationUser] = useState(false)
     const [openSelectCity, setOpenSelectCity] = useState(false)
     const dispatch = useDispatch()
 
@@ -24,7 +27,14 @@ export default function LocationPage({ children }) {
 
 
     // locat save location user... some select 
-    const locationIndex = useSelector((state) => state?.locationIndex?.locationUser)
+    // user address...
+    const locateAddress = useSelector((state) => state.locateAddress?.myAddressLocal)
+
+ 
+
+
+  
+
 
 
 
@@ -40,17 +50,21 @@ export default function LocationPage({ children }) {
             setStatus('Locating...');
             setLoading(true)
             navigator.geolocation.getCurrentPosition((position) => {
-                dispatch(RemoveLocationUserAction())
+                // dispatch(RemoveLocationUserAction())
                 setStatus(null);
                 setLoading(false)
 
                 setLat(position.coords.latitude);
+                setLocationUser(true)
                 return setLong(position.coords.longitude);
             }, () => {
 
-                if (locationIndex?.name) {
-                    setLat(locationIndex.lat)
-                    setLong(locationIndex.long)
+                const THEcheckActive = locateAddress.filter((s) => s.firstAddress === true)
+                const theremoveArray = Object(...THEcheckActive)
+                //    console.log('check Out',locationIndex?.name)
+                if (theremoveArray?.address) {
+                    setLat(theremoveArray.location.lat)
+                    setLong(theremoveArray.location.long)
                     setLoading(false)
                     return
                 }
@@ -73,7 +87,7 @@ export default function LocationPage({ children }) {
             setLoading(false)
 
         }
-    }, [dispatch, locationIndex])
+    }, [dispatch,locateAddress])
 
 
 
@@ -82,9 +96,9 @@ export default function LocationPage({ children }) {
     const HandleAddCityLocation = (data) => {
 
 
-        dispatch(LocationUserAction(data))
-        setLat(data.lat)
-        setLong(data.long)
+        dispatch(AddAddressAction(data))
+        setLat(data.location.lat)
+        setLong(data.location.long)
         setOpenSelectCity(false)
         setLoading(false)
         setStatus(null)
@@ -99,35 +113,24 @@ export default function LocationPage({ children }) {
         return console.log('close....')
     }
 
+
+
+
+
+
     return <UserLoaction.Provider value={{
         lat,
         long,
         status,
         loading,
+        locationUser,
     }}>
         {openSelectCity ?
             <Modal show={openSelectCity} onHide={handleClose}>
 
-                <div className='Add-Scroll-Home'>
-                    <div className='top-margin-'>
-                        <span>
-                            City view används för att du
-                            snabbt ska få en överblick.
-                            För att enbart se restauranger
-                            som levererar till dig
-
-                        </span>
-
-                        {Stand?.map((city, Index) => (
-                            <div className='stad-div' key={Index} onClick={(e) => HandleAddCityLocation(city)}>
-                                <div className='classPluseTitel notleft'>{city.name}</div>
-                                <div className='classPluseTitel notleft' >10 km</div>
-                            </div>
-                        ))}
-
-
-                    </div>
-                </div>
+                <LocationSelectCity
+                    HandleAddCityLocation={HandleAddCityLocation}
+                />
 
 
             </Modal>
@@ -145,5 +148,3 @@ export default function LocationPage({ children }) {
 
 
 
-// if (window.location.pathname.length > Number(2)) {
-// }

@@ -1,52 +1,102 @@
-import { Fragment } from 'react'
-import { Stand } from '../../Assistant/Selection'
-import MyAddress from '../../Components/MyAddress/MyAddress'
+import { Fragment, useEffect, useState } from 'react'
 import AddOpenComponent from '../../Components/Update/AddOpenComponent/AddOpenComponent'
-import UserAddressInfo from '../User/UserAddresScreen/UserAddressInfo'
+import ShowListAddress from '../User/UserAddresScreen/ShowListAddress'
 import ButtomClick from '../../Components/Buttom/Buttom'
 import Styles from '../../Components/Update/StylesComponents/style'
 import { FirstNameRest } from '../../Assistant/Selection'
-
-
+import { useSelector, useDispatch } from 'react-redux'
+import { AddAddressAction } from '../../redux/Action/Auth_Action'
+import CreateNewAddress from '../../Components/MyAddress/CreateNewAddress'
+import LocationSelectCity from '../LoactionPage/LocationSelectCity'
 export default function ActiveUserSearchCity(props) {
 
-
+    // params....
     const {
         openAddres,
         setOpenAddres,
         openSelectionCity,
-        theUserCheckIn,
         HandleOpenAdddress,
         HandleCity,
         setShowCity,
-        showCity
+        showCity,
+        nextStep,
+        setNextStep
     } = props
 
 
+    const dispatch = useDispatch()
 
 
-    const ChangeCity = (e) =>{
-        e.preventDefault()
+    // user address...
+    const locateAddress = useSelector((state) => state.locateAddress)
 
-        console.log('change city.....')
+
+
+
+
+
+
+    // valja address 
+    const ViljaAddress = (data) => {
+        dispatch(AddAddressAction(data))
+        window.location.reload()
     }
 
 
 
+
+
+    //  start oppen address add new address..... //openAddres
+    // this is next input after select city...
+    // oppen the maps
+    const [oppenMpas, setOppenMaps] = useState(false)
+    // succfully after user add addrss.
+    const [updateSuccessFully, setUpdateSuccessFully] = useState(false)
+
+    // succfully add address....
+    useEffect(() => {
+        if (updateSuccessFully) {
+            setUpdateSuccessFully(false)
+            setOpenAddres({ value: false })
+            setNextStep(false)
+            window.location.reload()
+            return
+        }
+
+
+        // eslint-disable-next-line
+    }, [updateSuccessFully])
+
+
+
+
+
+    // change city....
+    const HandleAddCityLocation = (data) => {
+        // testing  console.log(data)
+        dispatch(AddAddressAction(data))
+        window.location.reload()
+    }
+
+
+
+
     return <Fragment>
-        {!openAddres && !openSelectionCity ?
+        {!openAddres.value && !openSelectionCity ?
 
-            <Fragment>
-                {theUserCheckIn?.Adress?.addres &&
-                    <div className='add-padding-loaction'>
-                        <UserAddressInfo
-                            userInfo={theUserCheckIn}
-                            ClASShOME
-                        />
+            <div className='scroll-down-body'>
 
-                    </div>
 
+                {locateAddress?.myAddressLocal?.length > Number(0) &&
+                    <ShowListAddress
+                        locateAddress={locateAddress}
+                        StyleHome
+                        ViljaAddress={ViljaAddress}
+                    />
                 }
+
+
+
                 <div className='Add-Addres add-padding-loaction' onClick={(e) => HandleOpenAdddress(e)}>
                     <AddOpenComponent
                         Titel='Lägg till din adress'
@@ -58,7 +108,7 @@ export default function ActiveUserSearchCity(props) {
                 </div>
 
 
-                <div className='Add-nar-mig add-padding-loaction' >
+                <div className='Add-Addres add-padding-loaction' >
                     <div className='classPluseTitel normail' onClick={(e) => HandleCity(e)} >
                         Visa alla städer med {FirstNameRest}
                     </div>
@@ -73,39 +123,25 @@ export default function ActiveUserSearchCity(props) {
 
                 </div>
 
-            </Fragment>
+            </div>
 
             :
             <Fragment>
-                {openAddres &&
+                {openAddres.value &&
                     <div >
-                        <MyAddress
-                            ClassNamePayment
-                            setOpenAddres={setOpenAddres}
+                        <CreateNewAddress
+                            openAddres={openAddres}
+                            nextStep={nextStep}
+                            setNextStep={setNextStep}
+                            oppenMpas={oppenMpas}
+                            setOppenMaps={setOppenMaps}
+                            setUpdateSuccessFully={setUpdateSuccessFully}
                         />
                     </div>
                 }
                 {openSelectionCity &&
-                    <div className='Add-Scroll-Home'>
-                        <div className='top-margin-'>
-                            <span>
-                                City view används för att du
-                                snabbt ska få en överblick.
-                                För att enbart se restauranger
-                                som levererar till dig
 
-                            </span>
-
-                            {Stand?.map((city, Index) => (
-                                <div className='stad-div' key={Index} onClick={(e)=>ChangeCity(e)}  >
-                                    <div className='classPluseTitel notleft'>{city.name}</div>
-                                    <div className='classPluseTitel notleft' >100 km</div>
-                                </div>
-                            ))}
-
-
-                        </div>
-                    </div>
+                    <LocationSelectCity HandleAddCityLocation={HandleAddCityLocation} />
                 }
 
 
@@ -120,35 +156,3 @@ export default function ActiveUserSearchCity(props) {
 
 }
 
-
-
-    // const [lat, setLat] = useState(null);
-    // const [lng, setLng] = useState(null);
-    // const [status, setStatus] = useState(null);
-
-    // const FindLocation = () => {
-
-    //     console.log('loading')
-
-    //     if (!navigator.geolocation) {
-	// 		setStatus('Geolocation is not supported by your browser');
-	// 	} else {
-    //         setStatus('Locating...');
-    //         navigator.geolocation.getCurrentPosition((position) => {
-    //             setStatus(null);
-    //             setLat(position.coords.latitude);
-    //             setLng(position.coords.longitude);
-    //         }, () => {
-    //             setStatus('Unable to retrieve your location');
-    //         });
-    //     }
-
-    // }
-
-    // console.log(lat,
-    //     lng,
-    //     status)
-    //     <div className='flex-box-nar-img' onClick={(e) => FindLocation(e)}>
-    //     <AiOutlineSend className='classPlusefont remove-router' />
-    //     <div className='classPluseTitel normail'> Nära mig</div>
-    // </div>

@@ -1,7 +1,7 @@
 import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import MyAddress from '../../../Components/MyAddress/MyAddress'
-import UserAddressInfo from '../../User/UserAddresScreen/UserAddressInfo'
+import ShowListAddress from '../../User/UserAddresScreen/ShowListAddress'
 import { useEffect, useState } from 'react'
 import { HiArrowNarrowLeft } from 'react-icons/hi'
 
@@ -77,7 +77,7 @@ export default function PaymentDetailsAddres(props) {
                         <div className='drivery-class' onClick={(e) => HandlAddAddres(e)}>
 
 
-                            <UserAddressInfo
+                            <ShowListAddress
                                 userInfo={userInfo}
                                 ClassNamepAY
                                 ClASShOME

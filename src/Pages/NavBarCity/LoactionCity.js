@@ -5,11 +5,14 @@ import { useState } from 'react'
 import NotUserSerchingCity from './NotUserSerchingCity'
 import ActiveUserSearchCity from './ActiveUserSearchCity'
 import { HiOutlineX, HiArrowNarrowLeft } from 'react-icons/hi'
+
+
+
 export default function LoactionCity(props) {
 
     const { showCity, setShowCity } = props
     const theUserCheckIn = useSelector((state) => state?.userLogin?.userInfo)
-    const [openAddres, setOpenAddres] = useState(false)
+    const [openAddres, setOpenAddres] = useState({ value: false, object: '' })
     const [openSelectionCity, setOpenSelectionCity] = useState(false)
 
 
@@ -17,9 +20,25 @@ export default function LoactionCity(props) {
 
 
     // open address.... 
+    const [nextStep, setNextStep] = useState(false)
     const HandleOpenAdddress = (e) => {
         e.preventDefault()
-        setOpenAddres(!openAddres)
+
+
+        if (nextStep) {
+
+            return setNextStep(false)
+
+        } else if (!openAddres.value) {
+            // console.log(openAddres)
+            setOpenAddres({ value: true, object: '' })
+            return
+        } else {
+            setOpenAddres({ value: false, object: '' })
+        }
+
+
+
     }
 
 
@@ -33,14 +52,25 @@ export default function LoactionCity(props) {
 
 
 
+    // close all
+    function TheCloseAll() {
+        setShowCity(false)
+        setNextStep(false)
+        setOpenAddres(false)
+        setOpenSelectionCity(false)
+    }
 
-    return <Modal show={showCity} onHide={() => setShowCity(false)}>
+
+
+
+
+    return <Modal show={showCity} onHide={TheCloseAll}>
         <div className='first-city-location add-padding-loaction'>
             <div>
-                {openAddres || openSelectionCity ?
+                {openAddres.value || openSelectionCity ?
                     <HiArrowNarrowLeft
                         className='close-pp-pp-image'
-                        onClick={(e) => openAddres ? HandleOpenAdddress(e) : HandleCity(e)}
+                        onClick={(e) => openAddres.value ? HandleOpenAdddress(e) : HandleCity(e)}
                     />
                     : null
 
@@ -48,9 +78,9 @@ export default function LoactionCity(props) {
 
             </div>
             <div className='font-edit'>
-                Edit address details
+            Redigera adressuppgifter
             </div>
-            <HiOutlineX className='close-pp-pp-image' onClick={() => setShowCity(false)} />
+            <HiOutlineX className='close-pp-pp-image' onClick={TheCloseAll} />
 
         </div>
 
@@ -69,6 +99,8 @@ export default function LoactionCity(props) {
                 HandleCity={HandleCity}
                 setShowCity={setShowCity}
                 showCity={showCity}
+                nextStep={nextStep}
+                setNextStep={setNextStep}
 
             />
 

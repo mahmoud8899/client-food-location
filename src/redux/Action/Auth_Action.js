@@ -489,7 +489,53 @@ export const AddAcountBAction = (user, token) => async (dispatch) => {
 
 
 
+/// add address 
+// add cart save in loacastorage..
+// save cart items 
+export const AddAddressAction = (data) => async (dispatch, getStat) => {
+
+
+    dispatch({ type: ActionTypes.ADD_ADDRESS_LOADING })
 
 
 
+    const UpdateData = {
+        address: data?.address ,
+        doornumber: data?.doornumber,
+        city: data?.city,
+        zipcode: data?.zipcode,
+        location: data?.location,
+        work: data?.work,
+        firstAddress: true,
 
+
+    }
+
+    dispatch({ type: ActionTypes.ADD_ADDRESS_LOCAL_SUCCESSFULLY, payload: UpdateData })
+    localStorage.setItem(ActionTypes.ADD_ADDRESS_ADDRESS, JSON.stringify(getStat().locateAddress.myAddressLocal))
+
+
+    return
+
+
+}
+
+
+// remove Addresss 
+// remove all address
+export const RemoveAddressAction = () => async (dispatch, getStat) => {
+    dispatch({ type: ActionTypes.ADD_ADDRESS_LOADING })
+    dispatch({ type: ActionTypes.REMOVE_ALL_ADDRESS })
+    return localStorage.setItem(ActionTypes.ADD_ADDRESS_ADDRESS, JSON.stringify(getStat().locateAddress.myAddressLocal))
+}
+
+// remove Cart from items... 
+export const RemoveOneAddress = (id) => async (dispatch, getStat) => {
+    dispatch({ type: ActionTypes.ADD_ADDRESS_LOADING })
+    // console.log('action',id)
+    dispatch({
+        type: ActionTypes.REMOVE_ONE_ADDRESS,
+        payload: id
+    })
+    localStorage.setItem(ActionTypes.ADD_ADDRESS_ADDRESS, JSON.stringify(getStat().locateAddress.myAddressLocal))
+}

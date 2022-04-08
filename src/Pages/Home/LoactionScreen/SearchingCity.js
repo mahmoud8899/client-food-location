@@ -15,7 +15,7 @@ export default function SearchingCity(props) {
     }
 
     return Stand?.map((city, Index) => (
-        <span key={Index} onClick={(e) => HandleCity(city?.name)}>{city?.name}</span>
+        <span key={Index} onClick={(e) => HandleCity(city?.address)}>{city?.address}</span>
     ))
 
 }

@@ -2,7 +2,7 @@
 import { createContext, useState, useEffect, useContext } from 'react'
 import { SearchingProductsAction } from '../../../redux/Action/SearchingProduct'
 import { useDispatch, useSelector } from 'react-redux'
-import { UserLoaction } from '../../../Pages/LoactionPage/LoactionPage'
+import { AnotherLocation } from '../../../Pages/LoactionPage/ChooseAnotherLocation'
 
 
 
@@ -17,7 +17,7 @@ export default function SearchingHome({ children }) {
     const dispatch = useDispatch()
 
 
-    const { lat, long } = useContext(UserLoaction)
+    const { getLocation } = useContext(AnotherLocation)
 
 
 
@@ -44,8 +44,8 @@ export default function SearchingHome({ children }) {
 
 
     const Data = {
-        lat,
-        long
+        lat : getLocation?.location?.lat,
+        long : getLocation?.location?.long
     }
 
 

@@ -1,81 +1,151 @@
-import { withGoogleMap, withScriptjs, GoogleMap, Marker } from 'react-google-maps'
-import mapStyles from '../../Pages/Home/MapsLocation/mapStyles'
-import {useState,} from 'react'
-function Map() {
+import React, { useContext, useEffect, } from 'react'
+import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
+import { options } from './OptionMaps'
+import { Stand } from '../../Assistant/Selection';
+import { UserLoaction } from '../../Pages/LoactionPage/LoactionPage'
 
+const mapContainerStyle = {
 
-    const [lat, setLat] = useState(59.858131)
-    const [lng, setLng] = useState(17.644621)
+    width: "100%",
+    height: "400px",
 
-
-    const Mahfdsf = (e) => {
-
-        // console.log(e.latLng.lat())
-        setLat(e.latLng.lat())
-        setLng(e.latLng.lng())
-
-    }
-
-
-    return <GoogleMap
-        defaultZoom={10}
-        defaultCenter={{ lat: lat, lng: lng }}
-        onClick={(e) => Mahfdsf(e)}
-        defaultOptions={{
-            styles: mapStyles,
-            fullscreenControl: false,
-            zoomControl: false
-
-        }}
-    >
-        <Marker
-
-            position={
-                { lat: lat, lng: lng }
-            }
-
-
-        />
-
-
-
-    </GoogleMap>
-}
-
-
-
-const MapWrapped = withScriptjs(withGoogleMap(Map));
+};
 
 
 
 export default function ShowMaps(props) {
+    const { addAddress, setAddAddress } = props
 
 
 
-    return <div>
-        <div style={{ width: "100%", height: "100vh" }}>
-            <MapWrapped
-                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAaiHP2Akwa5NPa_WNDy7rv_SRAL3PJy1U`}
-                loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{ height: `100%` }} />}
-                mapElement={<div style={{ height: `100%` }} />}
-            />
 
-        </div>
-        <div className='buttom-close alrt-buttom'>
+    const { locationUser, lat, long } = useContext(UserLoaction)
 
-            <div className='class-maps'>
-                <span>😍</span>
-                <div className='class-maps-children'>
-                    <span>
-                        Stämmer det?
-                    </span>
-                    <span>Finjustera nålen tills du är klar och tryck sedan på fortsätt.</span>
 
-                </div>
 
-            </div>
 
-        </div>
-    </div>
+
+
+
+    // get lat and long when loading page...
+    useEffect(() => {
+
+
+
+
+        function TheLocation() {
+
+            if (locationUser) {
+                setAddAddress({
+                    ...addAddress,
+                    location: {
+                        lat: lat,
+                        long: long,
+                    }
+                })
+
+            } else if (addAddress.city) {
+
+                if (!addAddress?.location?.lat) {
+
+                    const Thefilter = Stand.filter((s) => s.address === addAddress.city)
+
+                    const Newchange = Object(...Thefilter)
+
+
+                    setAddAddress({
+                        ...addAddress,
+                        location: {
+                            lat: Number(Newchange?.location?.lat),
+                            long: Number(Newchange?.location?.long),
+                        }
+                    })
+                }
+            }
+        }
+
+        TheLocation()
+        document.addEventListener('touchstart', TheLocation, { passive: true })
+        return () => {
+            TheLocation()
+        }
+
+        // eslint-disable-next-line
+    }, [])
+
+
+
+
+
+    // loading and error 
+    const { isLoaded, loadError } = useLoadScript({
+        googleMapsApiKey: 'AIzaSyAaiHP2Akwa5NPa_WNDy7rv_SRAL3PJy1U',
+        passive: true
+    });
+
+
+
+
+
+    if (loadError) return "Error";
+    if (!isLoaded) return "Loading...";
+
+    // set new lat and long
+    const onMapClick = (e) => {
+        // e.preventdefault()
+        setAddAddress({
+            ...addAddress,
+            location: {
+                lat: e.latLng.lat(),
+                long: e.latLng.lng()
+            }
+
+
+        })
+    }
+
+
+
+
+
+
+    return <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        zoom={10}
+        center={{ lat: Number(addAddress.location.lat), lng: Number(addAddress.location.long) }}
+        options={options}
+        onClick={onMapClick}
+
+    >
+        <Marker
+            position={{ lat: Number(addAddress.location.lat), lng: Number(addAddress.location.long) }}
+            icon={{
+                url: `/MyOrder/food.png`,
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(15, 15),
+                scaledSize: new window.google.maps.Size(30, 30),
+            }}
+
+
+
+        />
+    </GoogleMap>
+
+
 }
+
+    // // show location tap
+    // const [selectedPark, setSelectedPark] = useState(null)
+    // // toush remove.....
+    // useEffect(() => {
+    //     const listener = e => {
+    //         if (e.key === "Escape") {
+    //             setSelectedPark(null);
+    //         }
+    //     };
+        // window.addEventListener("keydown", listener);
+
+        // return () => {
+        //     window.removeEventListener("keydown", listener);
+        // };
+    // }, []);

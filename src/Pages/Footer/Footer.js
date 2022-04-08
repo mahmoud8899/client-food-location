@@ -112,7 +112,7 @@ export default function Footer() {
                     <div style={Styles.container}>
                         <div style={Styles.last}>
                             <span>
-                                ©️ uppsala mat {new Date().getFullYear()}
+                                ©️ {FirstNameRest} {new Date().getFullYear()}
                             </span>
 
                         </div>

@@ -6,11 +6,12 @@ import { FatchButik, GetCartInfoHomeRestranges } from '../../redux/Action/CartIt
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import FilterProducts from '../../Components/Update/FilterProducts/FilterProducts'
 import { FilterCategory } from '../../Components/Update/UseContext/FilterCategoryScreen'
-import VisaProductItems from './VisaProductsItems'
 import { ErrorServer, LoadingSkeletonHomeCart, SearchingSkeleton } from '../../Assistant/TextError'
+import { AnotherLocation } from '../LoactionPage/ChooseAnotherLocation'
+import VisaProductItems from './VisaProductsItems'
 import { useContext, useEffect, useRef } from 'react'
 import './VisaProducts.css'
-import { UserLoaction } from '../LoactionPage/LoactionPage'
+
 export default function VisaProducts(props) {
 
     // option   // params  
@@ -22,11 +23,18 @@ export default function VisaProducts(props) {
 
     const { match, location } = props
 
-    const { lat, long, loading: LoadingLocation } = useContext(UserLoaction)
+    const { getLocation, loading: LoadingLocation } = useContext(AnotherLocation)
+
+
+
+
+
+
+
 
     // restaurant or butik
     const IdMatch = match?.params?.id
-    const city = match?.url?.slice(1, 4) === 'upp' ? 'uppsala' : 'gothenburg'
+    // const city = match?.url?.slice(1, 4) === 'upp' ? 'uppsala' : 'gothenburg'
 
 
     // filter category...
@@ -53,20 +61,20 @@ export default function VisaProducts(props) {
     useEffect(() => {
 
 
-        if (IdMatch === 'butiker' && lat !== null && long !== null) {
+        if (IdMatch === 'butiker' && getLocation?.location?.lat !== null && getLocation?.location?.long !== null) {
 
             return stores?.length === Number(0) && dispatch(FatchButik({
-                lat: lat,
-                long: long,
+                lat: getLocation?.location?.lat,
+                long: getLocation?.location?.long,
                 productType: "butiker"
             }))
         }
 
 
-        if (IdMatch === 'restaurants' && lat !== null && long !== null) {
+        if (IdMatch === 'restaurants' && getLocation?.location?.lat !== null && getLocation?.location?.long !== null) {
             home?.length === Number(0) && dispatch(GetCartInfoHomeRestranges({
-                lat: lat,
-                long: long,
+                lat: getLocation?.location?.lat,
+                long: getLocation?.location?.long,
                 productType: "restaurant"
             }))
             return IdMatch !== 'restaurants' && setAddCart([IdMatch])
@@ -83,7 +91,14 @@ export default function VisaProducts(props) {
         // eslint-disable-next-line
 
 
-    }, [IdMatch, dispatch, home?.length, city, stores?.length, setAddCart, lat, long])
+    }, [IdMatch,
+        dispatch,
+        home?.length,
+        stores?.length,
+        setAddCart,
+        getLocation?.location?.lat,
+        getLocation?.location?.long,
+    ])
 
 
 
@@ -140,8 +155,9 @@ export default function VisaProducts(props) {
                                 home={IdMatch === 'butiker' ? stores : home}
                                 fetchMore={IdMatch === 'butiker' ? nextstoresnumber : nextNumber}
                                 IdMatch={IdMatch}
-                                long={long}
-                                lat={lat}
+                                long={getLocation?.location?.lat}
+                                lat={getLocation?.location?.long}
+
                             />
                         </Row>
                     </LoadingErrorHandle>

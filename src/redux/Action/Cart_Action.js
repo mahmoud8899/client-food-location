@@ -54,13 +54,6 @@ export const AddCart_Action = (data) => async (dispatch, getStat) => {
         product: data._id,
     }
 
-
-    // testing  console.log(FilterData)
-
-
-    // console.log(FilterData ,data)
-
-
     dispatch({ type: ActionTypes.CART_ADD_ITEMS, payload: FilterData })
     localStorage.setItem(ActionTypes.SAVE_LOCAL_CH, JSON.stringify(getStat().cart.cartItems))
     //testing console.log('save data....>....')

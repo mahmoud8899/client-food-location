@@ -1,5 +1,6 @@
 import { MyOderImage } from './MyOrderImage'
-
+import { CgWorkAlt } from "react-icons/cg"
+import { BiHomeAlt, BiNote } from 'react-icons/bi'
 
 // change time
 export function ChnageTime(restrantoppen) {
@@ -52,7 +53,7 @@ export const addresSelection = [
 ]
 //-- active
 // page name..
-export const FirstNameRest = 'UppsalaMat'
+export const FirstNameRest = 'lätt Spis 🚴'
 //-- active
 // pay money to the driver
 export const selectionCourier = [
@@ -136,17 +137,23 @@ export const AskOne = [
 // selection city
 export const Stand = [
     {
-        _id : 1,
-        name: 'uppsala',
-        lat: Number(59.858131),
-        long: Number(17.644621)
+        _id: 1,
+        address: 'uppsala',
+        location: {
+            lat: Number(59.858131),
+            long: Number(17.644621)
+        }
+
 
     },
     {
-        _id : 2,
-        name: 'gothenburg',
-        lat: Number(57.708870),
-        long: Number(11.974560)
+        _id: 2,
+        address: 'gothenburg',
+        location: {
+            lat: Number(57.708870),
+            long: Number(11.974560)
+        }
+
 
     },
 
@@ -156,12 +163,15 @@ export const Stand = [
 
 //-- active
 // selection image to address.
+
 export const WhichWork = (name) => {
+
+    // console.log(name)
     switch (name?.toLowerCase()) {
-        case 'home': return `${MyOderImage.home}`
-        case 'work': return `${MyOderImage.work}`
-        case 'other': return `${MyOderImage.other}`
-        default: return `${MyOderImage.home}`
+        case 'home': return <BiHomeAlt />
+        case 'work': return <CgWorkAlt />
+        case 'other': return <BiNote />
+        default: return <BiHomeAlt />
     }
 }
 

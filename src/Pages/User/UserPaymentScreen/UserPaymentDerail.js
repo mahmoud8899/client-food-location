@@ -9,6 +9,7 @@ import Styles from '../../../Components/Update/StylesComponents/style'
 import '../UserProfileScreen/Profile.css'
 import TheInputForm from '../../../Components/TheInputForm/TheInputForm'
 import { RiCheckFill } from 'react-icons/ri'
+import { FirstNameRest } from '../../../Assistant/Selection'
 
 export default function UserPaymentDerail(props) {
     // params oppen ande change style class name classNamePayment
@@ -185,7 +186,7 @@ export default function UserPaymentDerail(props) {
 
                 <div className='des-text'>
                     <p>
-                        You can use your debit or credit cards to order with Uppsala mat. Your card will be
+                        You can use your debit or credit cards to order with {FirstNameRest}. Your card will be
                         charged only after an order has been successfully delivered.
                     </p>
                 </div>

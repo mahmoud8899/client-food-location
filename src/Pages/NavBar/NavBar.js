@@ -11,7 +11,7 @@ import NavBarSearchingHome from '../../Components/Update/NavBarSearchingHome/Nav
 import { LogoUtUser } from '../../Components/CloseScreen/CloseScreen'
 import { TheProfile } from '../../Components/Update/Redirction/Redirction'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import { UserLoaction } from '../../Pages/LoactionPage/LoactionPage'
+import { AnotherLocation } from '../../Pages/LoactionPage/ChooseAnotherLocation'
 import { NavBarSkeleton } from '../../Assistant/TextError'
 import SearchingResultHome from '../../Components/Update/NavBarSearchingHome/SearchingResultHome'
 import './NavBar.css'
@@ -33,7 +33,7 @@ const NavBar = (props) => {
     const [loginOpen, setLoginOpen] = useState(false)
 
     // location user  
-    const { loading } = useContext(UserLoaction)
+    const { loading } = useContext(AnotherLocation)
 
 
 

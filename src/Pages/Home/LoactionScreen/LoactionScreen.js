@@ -120,7 +120,7 @@ export default function LocationScreen({ history }) {
             <div className='text-city'>
               {Stand?.map((land, Index) => (
                 <div className='text-city-city' key={Index} onClick={() => SelectionCity(land)} >
-                  <span>{land.name}</span>
+                  <span>{land.address}</span>
                   <ImageScreen ImageIcon={MyOderImage.right} className='Image-right' />
                 </div>
               ))}

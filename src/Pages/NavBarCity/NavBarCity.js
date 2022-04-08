@@ -1,11 +1,12 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import LoactionCity from './LoactionCity'
-import { useState } from 'react'
-import { BiStore ,BiRestaurant } from "react-icons/bi";
-import {FaCity} from 'react-icons/fa'
+import { BiStore ,BiRestaurant } from 'react-icons/bi'
 import {BsChevronDown, BsCursor} from 'react-icons/bs'
+import {FaCity} from 'react-icons/fa'
+import { useState } from 'react'
 import './NavBarCity.css'
+import ShowStreetName from './ShowStreetName';
 const NavBarCity = (props) => {
 
     const {
@@ -37,7 +38,9 @@ const NavBarCity = (props) => {
                         <BsCursor  className='NavBar-city-image'  />
                     </div>
                     <div className='center-city-city'>
-                        <span className='NavBar-city-text' >upppsala</span>
+                        <span className='NavBar-city-text' >
+                            <ShowStreetName   />
+                        </span>
                     </div>
 
                     <BsChevronDown className='NavBar-city-image-left'  />
@@ -52,7 +55,7 @@ const NavBarCity = (props) => {
 
 
                     <Link className={ClassNameHOMEactive ? 'center-image-city home addx' : 'center-image-city home'}
-                       to={{ pathname: '/uppsala/' }}
+                       to={{ pathname: '/' }}
                     >
                         <FaCity className='NavBar-city-image'  />
                         <span>Upptäck</span>
