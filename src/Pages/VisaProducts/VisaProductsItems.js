@@ -25,7 +25,7 @@ export default function VisaProductItems(props) {
   const fetchData = () => {
 
     if (fetchMore > Number(1)) {
-
+      console.log('helllo')
 
       // console.log(city)
       return dispatch(GetCartInfoHomeRestranges({
@@ -40,6 +40,8 @@ export default function VisaProductItems(props) {
 
   // stores....... only fetch data....
   const fetchStores = () => {
+
+
     if (fetchMore > Number(1)) {
 
       return dispatch(FatchButik({
@@ -69,8 +71,15 @@ export default function VisaProductItems(props) {
 
 
 
+  // console.log(fetchMore,IdMatch === 'butiker' ? console.log('here') : console.log('not here'))
 
-  return <InfiniteScrollData products={home} categoryProductsNextPagesxp={fetchMore} fetchData={IdMatch === 'butiker' ? fetchStores : fetchData}>
+
+  return <InfiniteScrollData
+    products={home}
+    categoryProductsNextPagesxp={fetchMore}
+    fetchData={IdMatch === 'butiker' ? fetchStores : fetchData}
+
+  >
     <Row  >
       <ProductsChildrenItems home={Searching(home)} />
     </Row>

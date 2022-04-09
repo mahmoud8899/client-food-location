@@ -1,5 +1,7 @@
+import { Form } from 'react-bootstrap'
 import { AskOne, Stand } from '../../Assistant/Selection'
 import TheInputForm from '../../Components/TheInputForm/TheInputForm'
+import Styles from '../../Components/Update/StylesComponents/style'
 
 
 
@@ -35,13 +37,30 @@ export default function OtherFormSteg(props) {
                 <span className='ask-text-style' >2</span>
                 <span className='ask-text-style-text'>what city do you want to work in </span>
             </div>
-            <select onChange={(e) => setAskOne({ ...askOne, city: e.target.value })} className='text-selection'>
+
+
+            <Form.Control
+                as='select'
+                style={Styles.input_selector_user}
+                onChange={(e) => setAskOne({ ...askOne, city: e.target.value })}
+                value={askOne.city}
+            >
+                <option value='value'  >value</option>
                 {Stand?.map((st, index) => (
 
-                    <option key={index} value={st}  >{st}</option>
+                    <option key={index} value={st.address}  >{st.address}</option>
                 ))}
 
-            </select>
+
+
+            </Form.Control>
+
+
+
+
+
+
+
 
             <p className='handelerror'> {handleError ? askOne?.city?.length === 0 ? 'please choose' : null : null}</p>
 
@@ -74,5 +93,4 @@ export default function OtherFormSteg(props) {
 
     </>
 }
-
 

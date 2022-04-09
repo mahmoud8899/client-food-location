@@ -104,18 +104,18 @@ export default function VisaProducts(props) {
 
 
 
-    const scrollUseRef = useRef()
+    // const scrollUseRef = useRef()
 
-
-    useEffect(() => {
-        scrollUseRef.current?.scrollIntoView({
-            block: "nearest",
-            inline: "center",
-            behavior: "smooth",
-            alignToTop: false
-        });
-        // eslint-disable-next-line
-    }, [])
+    // ref={scrollUseRef}
+    // useEffect(() => {
+    //     scrollUseRef.current?.scrollIntoView({
+    //         block: "nearest",
+    //         inline: "center",
+    //         behavior: "smooth",
+    //         alignToTop: false
+    //     });
+    //     // eslint-disable-next-line
+    // }, [])
 
 
 
@@ -129,7 +129,7 @@ export default function VisaProducts(props) {
 
 
     return <LoadingErrorHandle loading={LoadingLocation} type={SearchingSkeleton} >
-        <Container fluid ref={scrollUseRef}>
+        <Container fluid >
 
             <Title TextTitle={match?.params?.id} />
 
@@ -155,8 +155,9 @@ export default function VisaProducts(props) {
                                 home={IdMatch === 'butiker' ? stores : home}
                                 fetchMore={IdMatch === 'butiker' ? nextstoresnumber : nextNumber}
                                 IdMatch={IdMatch}
-                                long={getLocation?.location?.lat}
-                                lat={getLocation?.location?.long}
+                                lat={getLocation?.location?.lat}
+                                long={getLocation?.location?.long}
+
 
                             />
                         </Row>

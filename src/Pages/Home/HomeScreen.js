@@ -164,18 +164,17 @@ export default function HomeScreen(props) {
 
 
 
-    const scrollUseRef = useRef()
-
-
-    useEffect(() => {
-        scrollUseRef.current?.scrollIntoView({
-            block: "nearest",
-            inline: "center",
-            behavior: "smooth",
-            alignToTop: false
-        });
-        // eslint-disable-next-line
-    }, [])
+    // const scrollUseRef = useRef()
+    // ref={scrollUseRef}
+    // useEffect(() => {
+    //     scrollUseRef.current?.scrollIntoView({
+    //         block: "nearest",
+    //         inline: "center",
+    //         behavior: "smooth",
+    //         alignToTop: false
+    //     });
+    //     // eslint-disable-next-line
+    // }, [])
 
 
 
@@ -197,7 +196,7 @@ export default function HomeScreen(props) {
                 </div>
 
 
-                <Row className='justify-content-center' ref={scrollUseRef}>
+                <Row className='justify-content-center' >
 
 
 

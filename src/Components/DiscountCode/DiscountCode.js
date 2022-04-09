@@ -2,7 +2,6 @@ import { Form } from 'react-bootstrap'
 import { CheckInDiscountCodAction } from '../../redux/Action/Product_Action'
 import ButtomClick from '../Buttom/Buttom'
 import CodeError from '../CodeError/CodeError'
-import Input from '../Input/Input'
 import LoadingScreen from '../LoadingScreen/LoadingScreen'
 import React, { useEffect } from 'react'
 import Styles from './style'
@@ -67,7 +66,7 @@ const DiscountCode = (props) => {
             <>
                 {success && <CodeError error={success} />}
                 <Form onSubmit={(e) => HandlelDiscount(e)}>
-                    <Input
+                    <Form.Control
                         placeholder='discount Code'
                         style={Styles.input}
                         onChange={(e) => setInputDiscount(e.target.value)}

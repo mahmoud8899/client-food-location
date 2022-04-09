@@ -96,7 +96,7 @@ export default function DriverFormScreen() {
 
 
         if (!nextStep) {
-
+            
             setNextStep(!nextStep)
 
         } else {
@@ -129,18 +129,17 @@ export default function DriverFormScreen() {
 
 
 
-    const scrollUseRef = useRef()
-
-
-    useEffect(() => {
-        scrollUseRef.current?.scrollIntoView({
-            block: "nearest",
-            inline: "center",
-            behavior: "smooth",
-            alignToTop: false
-        });
-        // eslint-disable-next-line
-    }, [])
+    // const scrollUseRef = useRef()
+    // ref={scrollUseRef}
+    // useEffect(() => {
+    //     scrollUseRef.current?.scrollIntoView({
+    //         block: "nearest",
+    //         inline: "center",
+    //         behavior: "smooth",
+    //         alignToTop: false
+    //     });
+    //     // eslint-disable-next-line
+    // }, [])
 
 
 
@@ -150,7 +149,7 @@ export default function DriverFormScreen() {
     return <Container fluid  >
 
         <Title TextTitle='Driver' />
-        <Row className='justify-content-center' ref={scrollUseRef} >
+        <Row className='justify-content-center'  >
 
             <Col xs={12} sm={12} md={12} lg={12}>
 

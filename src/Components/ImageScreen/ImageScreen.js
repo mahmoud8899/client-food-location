@@ -24,3 +24,12 @@ export default function ImageScreen(props) {
 
     />
 }
+
+// {/* <LazyLoadImage
+//     className={className}
+//         alt={ImageIcon.alt}
+//         height={ImageIcon}
+//         src={ImageIcon} // use normal <img> attributes as props
+//         width={ImageIcon.width}
+//         onClick={onClick}
+//     /> */}

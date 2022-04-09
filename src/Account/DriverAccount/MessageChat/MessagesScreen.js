@@ -10,17 +10,16 @@ export default function MessagesScreen(props) {
 
     const { alMessages, userInfo } = props
 
-    const scrollUseRef = useRef()
+    // const scrollUseRef = useRef()
+    // ref={scrollUseRef}
+    // useEffect(() => {
 
-
-    useEffect(() => {
-
-        scrollUseRef.current?.scrollIntoView();
-        scrollUseRef.current?.scrollIntoView(false);
-        scrollUseRef.current?.scrollIntoView({ block: "end" });
-        scrollUseRef.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-        // eslint-disable-next-line
-    }, [alMessages])
+    //     scrollUseRef.current?.scrollIntoView();
+    //     scrollUseRef.current?.scrollIntoView(false);
+    //     scrollUseRef.current?.scrollIntoView({ block: "end" });
+    //     scrollUseRef.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+    //     // eslint-disable-next-line
+    // }, [alMessages])
 
     // console.log(alMessages)
 
@@ -32,7 +31,7 @@ export default function MessagesScreen(props) {
 
                 <div className={mess?.sender === userInfo?._id ? 'server-message' : 'coustom-message'}     >
                     <span className='datename'>{mess?.sender?.username}</span>
-                    <span className='datename' ref={scrollUseRef}>
+                    <span className='datename' >
                         {mess?.text}
                     </span>
                     <span className='date'>

@@ -116,25 +116,24 @@ export default function RestaurantsPageProductsScreen(props) {
     // [3] :   restrurange name  --- RestaurantsPagePhotoNavBar
     // [4] :    nav nar views all category och time rating  and searching.....
 
-    const scrollUseRef = useRef()
-
-
-    useEffect(() => {
-        scrollUseRef.current?.scrollIntoView({
-            block: "nearest",
-            inline: "center",
-            behavior: "smooth",
-            alignToTop: false
-        });
-        // eslint-disable-next-line
-    }, [])
+    // const scrollUseRef = useRef()
+    // ref={scrollUseRef}
+    // useEffect(() => {
+    //     scrollUseRef.current?.scrollIntoView({
+    //         block: "nearest",
+    //         inline: "center",
+    //         behavior: "smooth",
+    //         alignToTop: false
+    //     });
+    //     // eslint-disable-next-line
+    // }, [])
 
 
 
     // const tESTINFL = true
 
 
-    return <Container fluid ref={scrollUseRef}>
+    return <Container fluid >
         <LoadingErrorHandle
             loading={loadingCartInfo}
             error={errorCartInfo}

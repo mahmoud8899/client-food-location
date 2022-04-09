@@ -1,62 +1,23 @@
+import { Image } from "react-bootstrap"
+import restaurant from './ImagePage/restaurant.png'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 
 
-
-  const Mahmoud = [
-    {
-      _id : 1,
-      name : 'Mahmoud',
-      fristName : true
-    },
-    {
-      _id : 2,
-      name : 'ahmed',
-      fristName : true
-    },
-    {
-      _id : 3,
-      name : 'sabina',
-      fristName : true
-    },{
-      _id : 4,
-      name : 'hossam',
-      fristName : true
-    },
-    {
-      _id : 5,
-      name : 'abeer',
-      fristName : false
-    },
-  ]
 
 
 export default function Testing(){
 
 
-  console.log('OLD',Mahmoud)
-
-  const check = Mahmoud?.filter((x) => x?.fristName === false ? x : Mahmoud)
-
-   check.map((x)=> x.fristName = true)
-
- 
 
 
 
 
-  console.log(check)
-
-
-
-
-  return <div>
-    {check.map((x,Index)=>(
-
-      <div key={Index}>
-        {x.name}
-      </div>
-    ))}
-  </div>
+  return     <LazyLoadImage
+  alt={restaurant}
+  height={restaurant}
+  src={restaurant} // use normal <img> attributes as props
+  width={restaurant.width} />
 }
 
 

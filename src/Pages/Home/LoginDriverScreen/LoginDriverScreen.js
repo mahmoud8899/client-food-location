@@ -14,7 +14,7 @@ export default function LoginDriverScreen() {
 
         <div className='font-size-driver'> become a courier</div>
 
-        <ImageScreen ImageIcon={MyOderImage.logindriver} className='logindriver' />
+        <ImageScreen ImageIcon={`/MyOrder/login-driver.jpg`} className='logindriver' />
 
 
         <div className='item-screen-driver-apply'>
