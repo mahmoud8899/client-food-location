@@ -30,7 +30,7 @@ import HomeScreen from './Pages/Home/HomeScreen'
 import NavBar from './Pages/NavBar/NavBar'
 import Order from './Pages/Order/Order'
 import ScreenLike from './Pages/Like/Like'
-import Footer from './Pages/Footer/Footer'
+// import Footer from './Pages/Footer/Footer'
 import HomePage from './Pages/SomethingFail/SomethingFail'
 import LocationPage from './Pages/LoactionPage/LoactionPage';
 import SearchingPage from './Pages/SearchingPage/SearchingPage';
@@ -49,22 +49,24 @@ export default function App() {
   // searching restrang class name  SearchingHome
 
 
-  return <LocationPage >
-    <ChooseAnotherLocation>
-      <ScrollDrowPageScreen>
-        <SearchingResult>
-          <FilterRestarangeProduct>
-            <FilterCategoryScreen>
-              <SearchingHome >
-                <Router>
+  return <Router>
+
+    <LocationPage >
+      <ChooseAnotherLocation>
+        <ScrollDrowPageScreen>
+          <SearchingResult>
+            <FilterRestarangeProduct>
+              <FilterCategoryScreen>
+                <SearchingHome >
 
                   <NavBar />
-
                   <Switch>
 
 
 
-                  
+
+
+
                     <Route path="/" component={HomeScreen} exact />
                     <Route path='/:id/:id/' component={VisaProducts} exact />
                     <Route path='/:id/:id/:id/' component={RestaurantsPageProductsScreen} exact />
@@ -99,39 +101,23 @@ export default function App() {
                     <Route path="/sw/filter/result/:id/" component={SearchingPage} exact />
                     <Route path="*" exact={true} component={HomePage} />
 
-
                   </Switch>
+                
 
 
+                </SearchingHome>
 
 
-                  <h1>foodter</h1>
-                  <h1>foodter</h1>
+              </FilterCategoryScreen>
+            </FilterRestarangeProduct>
+          </SearchingResult>
+        </ScrollDrowPageScreen>
 
-                   <h1>foodter</h1>
-                   <h1>foodter</h1>
-                   <h1>foodter</h1>
-                   
+      </ChooseAnotherLocation>
 
+    </LocationPage>
 
-               
-                </Router>
-
-
-
-              </SearchingHome>
-
-
-            </FilterCategoryScreen>
-          </FilterRestarangeProduct>
-        </SearchingResult>
-      </ScrollDrowPageScreen>
-
-    </ChooseAnotherLocation>
-
-  </LocationPage>
-
-
+  </Router>
 
 
 

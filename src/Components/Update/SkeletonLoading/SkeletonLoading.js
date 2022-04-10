@@ -8,6 +8,7 @@ import { FirstNameRest } from '../../../Assistant/Selection'
 
 
 
+
 export default function SkeletonLoading({ type }) {
 
 
@@ -251,7 +252,7 @@ export default function SkeletonLoading({ type }) {
 
 
 
-
+    // nav bar 
     function NavBarTop() {
 
 
@@ -280,7 +281,38 @@ export default function SkeletonLoading({ type }) {
     }
 
 
+
+
+    // one cart fetch 
+    function OneCart() {
+
+        return <Container fluid>
+            <Row className="justify-content-center" >
+                <Col xs={12} md={8} lg={8} className='testinpadding' >
+                    <div className="OneCart">
+                        <div className="OneCart-text">
+                            <span className="OneCart-text-children">loading</span>
+                            <span className="OneCart-text-children">loading</span>
+                        </div>
+                        <div className="OneCart-IMAGR"></div>
+                    </div>
+                </Col>
+                <Col xs={12} md={8} lg={8} className='testinpadding' >
+                    <div className="OneCart">
+                        <div className="OneCart-text">
+                            <span className="OneCart-text-children">loading</span>
+                            <span className="OneCart-text-children">loading</span>
+                        </div>
+                        <div className="OneCart-IMAGR"></div>
+                    </div>
+                </Col>
+            </Row>
+        </Container>
+    }
+
+
     if (type === 'filterHome') return Array(3).fill(<FilterHome />)
+    if (type === 'OneCart') return <OneCart />
     if (type === 'HomeCart') return <CartHome />
 
     if (type === 'loadingdata') return <CartHomeLoading />

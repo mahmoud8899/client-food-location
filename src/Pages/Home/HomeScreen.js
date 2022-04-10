@@ -11,10 +11,11 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { FirstNameRest } from '../../Assistant/Selection'
 import NavBarCity from '../NavBarCity/NavBarCity'
 import Carousel from './Carousel/Carousel'
-import { useEffect, useContext, useRef } from 'react'
+import { useEffect, useContext,  } from 'react'
 import { AnotherLocation } from '../LoactionPage/ChooseAnotherLocation'
 import { Link } from 'react-router-dom'
 import './Home.css'
+import Footer from '../Footer/Footer'
 
 
 export default function HomeScreen(props) {
@@ -290,13 +291,13 @@ export default function HomeScreen(props) {
 
 
                     </Col>
-
+                    <Footer />
                 </Row>
 
 
 
 
-
+       
 
             </Container>
 

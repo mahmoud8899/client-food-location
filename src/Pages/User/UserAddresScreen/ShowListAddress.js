@@ -134,7 +134,7 @@ export default function ShowListAddress(props) {
                         </div>
 
                     </div>
-                )).reverse()}
+                ))}
 
             </div>
         </div>

@@ -3,7 +3,23 @@ color-last-items
 class-padding-style  this is padding 
 */
 
-
+.ClassTesting{
+    width: 100%;
+    height: 300px;
+}
+.csdkjfhsknjfksd{
+    background-color: red;
+    overflow-y: auto;
+    margin-top: 0rem;
+}
+.msdfsdfsdfdsf{
+    height: 300px;
+    overflow: hidden;
+    background-color: #000;
+    margin-bottom: 2rem;
+    width: 200px;
+    margin: 3rem auto;
+}
 .center-loading{
     margin-top: 1rem;
     text-align: center;

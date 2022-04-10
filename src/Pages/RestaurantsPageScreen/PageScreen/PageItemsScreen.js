@@ -1,16 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux'
-import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen'
 import { PorudtsActionPaganationPublic } from '../../../redux/Action/Product_Action'
-import InfiniteScroll from 'react-infinite-scroll-component'
 import { useEffect, useState, useContext } from 'react'
 import RestaurantsOneProduct from '../RestaurantsOneProduct'
 import RestaurantProducts from '../../../Components/Update/RestaurantProducts/RestaurantProducts'
-import Styles from '../../../Components/Update/StylesComponents/style'
 import LoadingErrorHandle from '../../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import { ErrorServer } from '../../../Assistant/TextError'
 import { SearchingContext } from '../../../Components/Update/UseContext/SearchingResult'
+import InfiniteScrollData from '../../../Components/InfiniteScroll/InfiniteScroll'
 export default function PageItemsScreen(props) {
-    const { idRes ,category} = props
+    const { idRes, category } = props
 
 
 
@@ -28,7 +26,7 @@ export default function PageItemsScreen(props) {
     const matProducts = useSelector((state) => state?.PagePublicProducts?.allProducts[idRes]) || []
     const NumberPages = useSelector((state) => state?.PagePublicProducts?.productNextNumber[idRes]) || null
     const ProductList = useSelector((state) => state?.PagePublicProducts)
-    const { loading, error } = ProductList
+    const {  error } = ProductList
 
 
 
@@ -56,6 +54,8 @@ export default function PageItemsScreen(props) {
 
     // fetching products....
     const fetchData = () => {
+
+      
         if (NumberPages > Number(1)) {
             if (idRes) {
                 return dispatch(PorudtsActionPaganationPublic(idRes))
@@ -72,61 +72,83 @@ export default function PageItemsScreen(props) {
     const search = (data) => {
         return data?.filter((item) =>
 
-            keys?.some((key) => item?.category  ?  item?.category[key]?.includes(searching) : item[key]?.includes(searching)) 
+            keys?.some((key) => item?.category ? item?.category[key]?.includes(searching) : item[key]?.includes(searching))
             || keys?.some((key) => item[key]?.includes(searching))
 
         )
     };
 
+    
+    
 
 
-    return <LoadingErrorHandle error={error} loading={loading} TextNotItems={ErrorServer} >
-        <div className='Margin-top-lit'>
-
-
-            {idRes ?
-
-
-
-                <InfiniteScroll
-                    style={Styles.hidden}
-                    dataLength={matProducts?.length}
-                    next={fetchData}
-                    hasMore={NumberPages !== null ? 'false' : 'true'}
-                    loader={NumberPages !== null ?  <div className='center-loading'><LoadingScreen /></div> : null}
-                    endMessage={<p ><b>Yay! You have seen it all</b> </p>}
-                >
-
-                    <RestaurantProducts
-                        matProducts={search(matProducts)}
-                        HandleOpenProductid={HandleOpenProductid}
-                        setSearching={setSearching}
-                        searching={searching}
-                        category={category}
-                    />
-
-
-                </InfiniteScroll>
-
-                : null
-            }
-
-
-
-
-            <RestaurantsOneProduct
-                openCartProduct={openCartProduct}
-                setOpenCartProduct={setOpenCartProduct}
+    return <LoadingErrorHandle error={error}  TextNotItems={ErrorServer} >
+    
+    <div className='Margin-top-lit'>
+        <InfiniteScrollData
+            products={matProducts}
+            categoryProductsNextPagesxp={NumberPages}
+            fetchData={fetchData}
+            TypeSkeleton='OneCart'
+        >
+            <RestaurantProducts
+                matProducts={search(matProducts)}
+                HandleOpenProductid={HandleOpenProductid}
+                setSearching={setSearching}
+                searching={searching}
+                category={category}
             />
 
+        </InfiniteScrollData>
+
+
+        <RestaurantsOneProduct
+            openCartProduct={openCartProduct}
+            setOpenCartProduct={setOpenCartProduct}
+        />
 
 
 
-        </div>
+
+    </div >
 
     </LoadingErrorHandle>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
 
 
+// {/* <LoadingErrorHandle error={error} loading={loading} TextNotItems={ErrorServer} >
+        // <div className='Margin-top-lit'></div>
+        // <RestaurantsOneProduct
+        //         openCartProduct={openCartProduct}
+        //         setOpenCartProduct={setOpenCartProduct}
+        //     />
+
+
+
+
+        // </div>
+
+//     </LoadingErrorHandle> */}
+// {/* <InfiniteScroll
+// style={Styles.hidden}
+// dataLength={matProducts?.length}
+// next={fetchData}
+// hasMore={NumberPages !== null ? 'false' : 'true'}
+// loader={NumberPages !== null ?  <div className='center-loading'><LoadingScreen /></div> : null}
+// endMessage={<p ><b>Yay! You have seen it all</b> </p>}
+// >
+// </InfiniteScroll> */}

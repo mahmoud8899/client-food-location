@@ -9,7 +9,7 @@ import { FilterCategory } from '../../Components/Update/UseContext/FilterCategor
 import { ErrorServer, LoadingSkeletonHomeCart, SearchingSkeleton } from '../../Assistant/TextError'
 import { AnotherLocation } from '../LoactionPage/ChooseAnotherLocation'
 import VisaProductItems from './VisaProductsItems'
-import { useContext, useEffect, useRef } from 'react'
+import { useContext, useEffect } from 'react'
 import './VisaProducts.css'
 
 export default function VisaProducts(props) {
@@ -45,7 +45,7 @@ export default function VisaProducts(props) {
 
     // get all restrange and stores....
     const PageHomeRestrange = useSelector((state) => state?.PageHomeRestrange)
-    const { loading, home, error, nextNumber, stores, nextstoresnumber } = PageHomeRestrange
+    const {  home, error, nextNumber, stores, nextstoresnumber } = PageHomeRestrange
 
 
 
@@ -149,7 +149,7 @@ export default function VisaProducts(props) {
                         <FilterProducts location={location?.search} />
 
                     </div>
-                    <LoadingErrorHandle loading={loading} error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
+                    <LoadingErrorHandle  error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
                         <Row>
                             <VisaProductItems
                                 home={IdMatch === 'butiker' ? stores : home}

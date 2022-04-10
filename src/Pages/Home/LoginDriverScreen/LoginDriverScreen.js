@@ -1,5 +1,4 @@
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
 import { FirstNameRest } from '../../../Assistant/Selection'
 import { useHistory } from 'react-router-dom'
 import '../Home.css'

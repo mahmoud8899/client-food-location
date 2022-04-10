@@ -1,5 +1,5 @@
 import { Container, Row } from 'react-bootstrap'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect,  useState } from 'react'
 import RestaurantsYourOrderCart from './RestaurantsYourOrderCart'
 import RestaurantsNavBarCart from './RestaurantsNavBarCart'
 import RestaurangetsDescription from './RestaurangetsDescription'
@@ -17,6 +17,7 @@ import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRest
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import { ErrorServer ,LoadingSkeletonProductPage} from '../../Assistant/TextError'
 import './style.css'
+import Footer from '../Footer/Footer'
 
 
 
@@ -220,9 +221,9 @@ export default function RestaurantsPageProductsScreen(props) {
 
             />
 
-
+                   <Footer />
         </LoadingErrorHandle>
-
+      
     </Container>
 }
 

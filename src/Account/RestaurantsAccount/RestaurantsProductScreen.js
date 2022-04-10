@@ -15,7 +15,7 @@ import {BiCloudUpload}  from 'react-icons/bi'
 import './style.css'
 import UserName from './Datils/UserName'
 import NavBarSearchingTopAll from '../../Components/Update/NavBarSearchingTopAll/NavBarSearchingTopAll'
-
+import Footer from '../../Pages/Footer/Footer'
 
 export default function RestaurantsProductScreen(props) {
 
@@ -224,6 +224,8 @@ export default function RestaurantsProductScreen(props) {
 
 
             </Col >
+
+            <Footer  />
 
         </Row >
 
