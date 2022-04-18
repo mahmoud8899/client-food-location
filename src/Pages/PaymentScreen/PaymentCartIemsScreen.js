@@ -34,7 +34,7 @@ export default function PaymentCartIemsScreen(props) {
     return <Fragment>
         <Col xs={12} ms={12} md={12} lg={12} >
 
-            <h1 className='Delivery-method-and-time'>
+            <h1 className='Delivery-method-and-time Visa-alla-title color-color-all'>
                 Valda artiklar
             </h1>
             {props?.loading ? <LoadingScreen />
@@ -55,18 +55,18 @@ export default function PaymentCartIemsScreen(props) {
 
 
                                     <div className='items-name-first'>
-                                        <div style={Styles.colorcourrent} className='items-name-first-qty color-family'>
+                                        <div  className='items-name-first-qty color-family'>
                                             {ca?.qty}
                                             <span className='leftmore'>x</span>
                                         </div>
-                                        <div className='items-name-first-name color-family'>
+                                        <div className='items-name-first-name font-all-all-edit color-color-all'>
                                             {ca?.name}
                                         </div>
                                     </div>
-                                    <div className='items-name-first-des color-last-items'>
+                                    <div className='items-name-first-des font-name-size-line'>
                                         {SliceName(ca?.description, 40)}
                                     </div>
-                                    <div style={Styles.colorcourrent} className='prics-font'>
+                                    <div  className='font-all-all-edit color-color-all'>
                                         kr {CollectNumber(ca?.qty, ca?.prices)}
                                     </div>
 
@@ -87,7 +87,10 @@ export default function PaymentCartIemsScreen(props) {
                 PathName={Conversion(props?.cartinfo)}
                 Titel='lägg till artiklar'
                 className='add-selected-item'
+                classNameTitle='classPluseTitel exstra-style'
+                classNamePluse='color-color-all'
             />
+
 
 
 

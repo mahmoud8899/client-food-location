@@ -328,7 +328,7 @@ export default function SkeletonLoading({ type }) {
     </div>
 
     // slider cart.
-    if (type === 'SliserCart') return <SliserCart />
+    if (type === 'SliserCart') return <SliserCart  Hidden/>
 
 
     // slider fetch data

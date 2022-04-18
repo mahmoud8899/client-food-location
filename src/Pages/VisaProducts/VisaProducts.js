@@ -12,6 +12,7 @@ import VisaProductItems from './VisaProductsItems'
 import { useContext, useEffect } from 'react'
 import './VisaProducts.css'
 
+
 export default function VisaProducts(props) {
 
     // option   // params  
@@ -45,7 +46,7 @@ export default function VisaProducts(props) {
 
     // get all restrange and stores....
     const PageHomeRestrange = useSelector((state) => state?.PageHomeRestrange)
-    const {  home, error, nextNumber, stores, nextstoresnumber } = PageHomeRestrange
+    const { home, error, nextNumber, stores, nextstoresnumber, loading } = PageHomeRestrange
 
 
 
@@ -63,27 +64,31 @@ export default function VisaProducts(props) {
 
         if (IdMatch === 'butiker' && getLocation?.location?.lat !== null && getLocation?.location?.long !== null) {
 
-            return stores?.length === Number(0) && dispatch(FatchButik({
+             stores?.length === Number(0) && dispatch(FatchButik({
                 lat: getLocation?.location?.lat,
                 long: getLocation?.location?.long,
                 productType: "butiker"
             }))
-        }
 
-
-        if (IdMatch === 'restaurants' && getLocation?.location?.lat !== null && getLocation?.location?.long !== null) {
+            return  setAddCart([])
+        }else if (IdMatch !== 'butiker' && getLocation?.location?.lat !== null && getLocation?.location?.long !== null) {
             home?.length === Number(0) && dispatch(GetCartInfoHomeRestranges({
                 lat: getLocation?.location?.lat,
                 long: getLocation?.location?.long,
                 productType: "restaurant"
             }))
-            return IdMatch !== 'restaurants' && setAddCart([IdMatch])
+            
+             return IdMatch !== 'restaurants' && IdMatch !== 'butiker' ? setAddCart([IdMatch])
+             : setAddCart([])
 
         }
 
 
 
 
+
+
+        // return () => setAddCart([])
 
 
 
@@ -104,21 +109,9 @@ export default function VisaProducts(props) {
 
 
 
-    // const scrollUseRef = useRef()
-
-    // ref={scrollUseRef}
-    // useEffect(() => {
-    //     scrollUseRef.current?.scrollIntoView({
-    //         block: "nearest",
-    //         inline: "center",
-    //         behavior: "smooth",
-    //         alignToTop: false
-    //     });
-    //     // eslint-disable-next-line
-    // }, [])
 
 
-
+ 
 
 
 
@@ -129,7 +122,7 @@ export default function VisaProducts(props) {
 
 
     return <LoadingErrorHandle loading={LoadingLocation} type={SearchingSkeleton} >
-        <Container fluid >
+        <Container fluid  >
 
             <Title TextTitle={match?.params?.id} />
 
@@ -138,7 +131,7 @@ export default function VisaProducts(props) {
             </div>
 
 
-            <Row className='justify-content-center'>
+            <Row className='justify-content-center'   >
                 <Col xs={12} sm={12} md={11} lg={11} className='extra-padding-dddd'>
 
                     <div className='visaProduct-css-flex'>
@@ -146,10 +139,10 @@ export default function VisaProducts(props) {
                             <h1>{match?.params?.id}</h1>
                         </div>
 
-                        <FilterProducts location={location?.search} />
+                      {  IdMatch === 'butiker' ? null :  <FilterProducts location={location?.search} />}
 
                     </div>
-                    <LoadingErrorHandle  error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
+                    <LoadingErrorHandle  loading={loading}  error={error} TextNotItems={ErrorServer} type={LoadingSkeletonHomeCart} >
                         <Row>
                             <VisaProductItems
                                 home={IdMatch === 'butiker' ? stores : home}
@@ -165,6 +158,8 @@ export default function VisaProducts(props) {
 
 
                 </Col>
+
+               
             </Row>
 
 

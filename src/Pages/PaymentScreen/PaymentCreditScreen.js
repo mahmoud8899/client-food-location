@@ -1,15 +1,13 @@
 import { Col } from 'react-bootstrap'
-import { MyOderImage } from '../../Assistant/MyOrderImage'
 import './PaymentScreen.css'
 import { FirstNameRest } from '../../Assistant/Selection'
 import { useState } from 'react'
 import UserPaymentDerail from '../User/UserPaymentScreen/UserPaymentDerail'
 import Styles from '../../Components/Update/StylesComponents/style'
 import { useSelector } from 'react-redux'
-import ImageScreen from '../../Components/ImageScreen/ImageScreen'
 import AddOpenComponent from '../../Components/Update/AddOpenComponent/AddOpenComponent'
 import ShowDetailsCard from '../User/UserPaymentScreen/ShowDetailsCard'
-
+import { BsChevronRight, BsChevronUp ,BsCreditCard } from 'react-icons/bs'
 
 export default function PaymentCreditScreen() {
 
@@ -41,33 +39,35 @@ export default function PaymentCreditScreen() {
 
     return <Col xs={12} ms={12} md={12} lg={12} >
 
-        <h1 className='Delivery-method-and-time'>
+<h1 className='Delivery-method-and-time Visa-alla-title color-color-all'>
         Betalningsdetaljer
         </h1>
 
         <div className='box-delivery-cart '>
             <div className='box-delivery-item' onClick={(e) => ChnagePaymentOpen(e)} >
 
-                <ImageScreen
-                    ImageIcon={MyOderImage.card2}
+                <BsCreditCard
+                 
                     className='bike'
                 />
 
                 <div className='item-credit-text'>
-                    <div className='color-family'>
+                    <div className='font-all-all-edit color-color-all'>
                         {TheCheckCart?.cartnumber ? TheCheckCart?.cartnumber : 'Välj betalningsmetod'}
 
                     </div>
-                    <div className='color-last-items'>
+                    <div className='font-name-size-line'>
                         {TheCheckCart?.cartnumber ? 'valt betalmetod kommer att debiteras' : 'Vänligen lägg till betalningsmetod för att kunna fortsätta med din beställning. Tack!'}
 
                     </div>
                 </div>
 
-                <ImageScreen
-                    ImageIcon={paymentOpenCard ? MyOderImage.top : MyOderImage.right}
-                    className='bike add-left-image'
-                />
+
+                {paymentOpenCard ? 
+                    <BsChevronUp className='bike add-left-image' /> :  <BsChevronRight className='bike add-left-image' /> 
+
+                }
+              
 
             </div>
             {paymentOpenCard &&
@@ -100,7 +100,9 @@ export default function PaymentCreditScreen() {
                                 <AddOpenComponent
                                     Titel='Lägg till ett nytt kort'
 
-                                    className='add-selected-item addxpxp'
+                                    className='add-selected-item'
+                                    classNameTitle='classPluseTitel exstra-style margin-left'
+                                    classNamePluse='color-color-all add-left-left'
                                 />
                             </div>
 
@@ -109,7 +111,7 @@ export default function PaymentCreditScreen() {
 
 
                             <div className='fooder-card' style={Styles.topbottom}  >
-                                <p>
+                                <p className='font-name-size-line'>
                                     The following payment methods are available on {FirstNameRest}:
                                     credit and debit cards, {FirstNameRest} at Work, {FirstNameRest} credits.
                                 </p>

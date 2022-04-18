@@ -57,7 +57,7 @@ export default function PaymentDrivery(props) {
 
     return <div className='FIrst-how add-padding-slider'>
         {loading ? <LoadingScreen /> :
-            <div className='how-class color-family'>
+            <div className='how-class font-all-all-edit color-color-all'>
                Hur ?
             </div>
         }
@@ -72,12 +72,12 @@ export default function PaymentDrivery(props) {
                 />
 
                 <div className='drivery-text'>
-                    <span className='color-family'>{driver?.name ? driver?.name : DeliveryTakeaway[0]?.name}</span>
-                    <span className='color-last-items' >{driver?.des ? driver?.des : DeliveryTakeaway[0]?.des}</span>
+                    <span className='font-all-all-edit'>{driver?.name ? driver?.name : DeliveryTakeaway[0]?.name}</span>
+                    <span className='font-name-size-line' >{driver?.des ? driver?.des : DeliveryTakeaway[0]?.des}</span>
                 </div>
 
                 <div className='change-drivery' >
-                    <span className='color-family add-color-all'>ändra</span>
+                    <span className='font-all-all-edit color-color-all'>ändra</span>
                 </div>
             </div>
             :

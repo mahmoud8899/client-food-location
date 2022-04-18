@@ -38,7 +38,7 @@ export default function DriverComment(props) {
 
     return <div className='close-yourOrder add-heigth'>
         <LoadingErrorHandle loading={loading}>
-            <h1 className='your-h1'>Lägg till kommentar</h1>
+            <h1 className='name-res'>Lägg till kommentar</h1>
             <span className='comment-image-top-text-last'>
 
                 Vi kan behöva dela din kommentar med de som hanterar eller levererar din beställning.

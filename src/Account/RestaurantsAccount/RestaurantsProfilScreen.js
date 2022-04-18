@@ -1,20 +1,18 @@
-import { Container, Row, Col } from 'react-bootstrap'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
-import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
 import CartItemsInfo from './Datils/CartItemsInfo'
 import { CartInfoActionResturan, FoodTypesAction } from '../../redux/Action/CartItemAction'
 import { useDispatch, useSelector } from 'react-redux'
 import Styles from '../../Components/Update/StylesComponents/style'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import EditCartInfo from './Datils/EditCartInfo'
-import UserName from './Datils/UserName'
-import { useEffect, useState } from 'react'
+import { useEffect, useState ,Fragment} from 'react'
 import { BiTaskX, BiNetworkChart } from 'react-icons/bi'
 import { ErrorServer } from '../../Assistant/TextError'
 import { PageEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
 import NavBarList from '../../Components/Update/NavBarSearchingTopAll/NavBarList'
 import './style.css'
 import AddAccountScreen from '../../Components/AddAccountScreen/AddAccountScreen'
+
 
 
 
@@ -39,7 +37,7 @@ export default function RestaurantsProfilScreen(props) {
 
     // get all category...
     const pageHomeCategory = useSelector((state) => state?.pageHomeCategory)
-    const { category ,error :errorCategory , loading : loadingCategory} = pageHomeCategory
+    const { category, error: errorCategory, loading: loadingCategory } = pageHomeCategory
 
 
 
@@ -64,93 +62,81 @@ export default function RestaurantsProfilScreen(props) {
 
 
 
-    // open acount 
-    const OpenBankAcount = (e) => {
-        e.preventDefault()
-        return setOpenAddAccount(true)
-    }
+    // // open acount 
+    // const OpenBankAcount = (e) => {
+    //     e.preventDefault()
+    //     return setOpenAddAccount(true)
+    // }
 
 
 
 
-    return <Container>
+    return <Fragment>
         <Title TextTitle='product Admin' />
-        <div className='box'>
-            <UserName />
-        </div>
 
 
-        <Row className='justify-content-center'>
 
-            <Col xs={12} sm={12} md={4} lg={3} >
-                <RestaurantsNavBarScreen
-                    classNameSitting
-                    OpenBankAcount={OpenBankAcount}
-                />
-            </Col>
+        <LoadingErrorHandle loading={loading} error={error} TextNotItems={ErrorServer} extraStyle>
+            {info === 'Empty' ?
 
-            <Col xs={12} sm={12} md={8} lg={9} >
-                <LoadingErrorHandle loading={loading} error={error} TextNotItems={ErrorServer} extraStyle>
-                    {info === 'Empty' ?
+                <PageEmpty onClick={() => setShow({ value: true, updated: true })} />
 
-                        <PageEmpty onClick={() => setShow({ value: true, updated: true })} />
+                :
+                <>
+                    <NavBarList
+                        Other={
+                            <div className='Order-List-New-other'>
+                                <div style={Styles.colorback} className='Fistclass-handle'>
+                                    <div className='half-fistclass'>
+                                        <BiNetworkChart className='Image-sales' />
+                                        <span>sales</span>
+                                    </div>
 
-                        :
-                        <>
-                            <NavBarList
-                                Other={
-                                    <div className='Order-List-New-other'>
-                                        <div style={Styles.colorback} className='Fistclass-handle'>
-                                            <div className='half-fistclass'>
-                                                <BiNetworkChart className='Image-sales' />
-                                                <span>sales</span>
-                                            </div>
+                                    <div className='Fistclass'>
 
-                                            <div className='Fistclass'>
-
-                                                <span className='font-all'>3029.00$</span>
-                                            </div>
-
-
-                                        </div>
-
+                                        <span className='font-all'>3029.00$</span>
                                     </div>
 
 
-                                }
-                                OtherLast={
-                                    <div className='Order-List-New-other'>
-                                        <div style={Styles.colorback} className='Fistclass-handle'>
-                                            <div className='half-fistclass'>
-                                                <BiTaskX className='Image-sales' />
-                                                <span>cancel</span>
+                                </div>
 
-                                            </div>
+                            </div>
 
-                                            <div className='Fistclass'>
 
-                                                <span className='font-all' >3 items</span>
-                                            </div>
-                                        </div>
+                        }
+                        OtherLast={
+                            <div className='Order-List-New-other'>
+                                <div style={Styles.colorback} className='Fistclass-handle'>
+                                    <div className='half-fistclass'>
+                                        <BiTaskX className='Image-sales' />
+                                        <span>cancel</span>
+
                                     </div>
 
-                                }
-                            />
+                                    <div className='Fistclass'>
 
-                            <CartItemsInfo
-                                info={info}
-                                setShow={setShow}
-                            />
-                        </>
+                                        <span className='font-all' >3 items</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    />
+
+                    <CartItemsInfo
+                        info={info}
+                        setShow={setShow}
+                    />
+                </>
 
 
 
-                    }
-                </LoadingErrorHandle>
+            }
+        </LoadingErrorHandle>
 
-            </Col>
 
-        </Row>
+
+
 
         <AddAccountScreen openAddAccount={openAddAccount} setOpenAddAccount={setOpenAddAccount} />
         <LoadingErrorHandle loading={loadingCategory} error={errorCategory} TextNotItems={ErrorServer} extraStyle  >
@@ -162,8 +148,10 @@ export default function RestaurantsProfilScreen(props) {
                 category={category}
             />
         </LoadingErrorHandle>
+    </Fragment >
 
-    </Container>
+
+
 }
 
 

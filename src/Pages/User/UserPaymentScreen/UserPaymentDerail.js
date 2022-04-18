@@ -49,8 +49,7 @@ export default function UserPaymentDerail(props) {
     return <Row className='justify-content-center animationRow'>
         <Col xs={12} sm={classNamePayment ? 7 : 12} md={6} lg={classNamePayment ? 10 : 8}>
 
-            <div
-                className={classNamePayment ? 'box-cart-Info extra' : 'box-cart-Info'}
+            <div className={classNamePayment ? 'box-cart-Info extra' : 'box-cart-Info'}
                 style={classNamePayment ? null : Styles.back}
             >
 

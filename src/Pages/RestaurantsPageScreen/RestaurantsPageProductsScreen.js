@@ -17,7 +17,7 @@ import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRest
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import { ErrorServer ,LoadingSkeletonProductPage} from '../../Assistant/TextError'
 import './style.css'
-import Footer from '../Footer/Footer'
+
 
 
 
@@ -87,6 +87,10 @@ export default function RestaurantsPageProductsScreen(props) {
 
 
 
+    // const locateAddress = useSelector((state) => state.locateAddress)
+    // // const { loading } = locateAddress
+
+    // console.log(locateAddress)
 
 
 
@@ -117,21 +121,6 @@ export default function RestaurantsPageProductsScreen(props) {
     // [3] :   restrurange name  --- RestaurantsPagePhotoNavBar
     // [4] :    nav nar views all category och time rating  and searching.....
 
-    // const scrollUseRef = useRef()
-    // ref={scrollUseRef}
-    // useEffect(() => {
-    //     scrollUseRef.current?.scrollIntoView({
-    //         block: "nearest",
-    //         inline: "center",
-    //         behavior: "smooth",
-    //         alignToTop: false
-    //     });
-    //     // eslint-disable-next-line
-    // }, [])
-
-
-
-    // const tESTINFL = true
 
 
     return <Container fluid >
@@ -221,7 +210,7 @@ export default function RestaurantsPageProductsScreen(props) {
 
             />
 
-                   <Footer />
+                   {/* <Footer /> */}
         </LoadingErrorHandle>
       
     </Container>
@@ -233,4 +222,18 @@ export default function RestaurantsPageProductsScreen(props) {
 
 
 
+    // const scrollUseRef = useRef()
+    // ref={scrollUseRef}
+    // useEffect(() => {
+    //     scrollUseRef.current?.scrollIntoView({
+    //         block: "nearest",
+    //         inline: "center",
+    //         behavior: "smooth",
+    //         alignToTop: false
+    //     });
+    //     // eslint-disable-next-line
+    // }, [])
 
+
+
+    // const tESTINFL = true

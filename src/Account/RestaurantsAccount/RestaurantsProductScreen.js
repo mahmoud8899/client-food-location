@@ -1,21 +1,21 @@
-import { Container, Row, Col } from 'react-bootstrap'
+import NavBarSearchingTopAll from '../../Components/Update/NavBarSearchingTopAll/NavBarSearchingTopAll'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
-import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
 import CartItemsProducts from './Datils/CartItemsProducts'
 import { productpaginationAction } from '../../redux/Action/Product_Action'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductEditOchCreate from './Datils/ProductEditOchCreate'
 import { TheClearing } from '../../Components/CloseScreen/CloseScreen'
 import { FetchCategoryUser } from '../../redux/Action/Category_Action'
-import { PageTextEmpty  } from '../../Components/Update/PageEmpty/PageEmpty'
+import { PageTextEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import { ErrorServer, TextProduct,IconText ,PlaceholderProduct } from '../../Assistant/TextError'
-import { useEffect, useState } from 'react'
-import {BiCloudUpload}  from 'react-icons/bi'
+import { ErrorServer, TextProduct, IconText, PlaceholderProduct } from '../../Assistant/TextError'
+import { Fragment,useEffect, useState } from 'react'
+import { BiCloudUpload } from 'react-icons/bi'
 import './style.css'
-import UserName from './Datils/UserName'
-import NavBarSearchingTopAll from '../../Components/Update/NavBarSearchingTopAll/NavBarSearchingTopAll'
-import Footer from '../../Pages/Footer/Footer'
+
+
+
+
 
 export default function RestaurantsProductScreen(props) {
 
@@ -144,93 +144,73 @@ export default function RestaurantsProductScreen(props) {
 
 
 
-    return <Container >
-
-        <div className='box'>
-
-            <UserName />
-
-        </div>
-
+    return <Fragment>
         <Title TextTitle='Alla Produkter...' />
 
-        <Row className='justify-content-center'>
-            <Col xs={12} sm={12} md={4} lg={3} >
-                <RestaurantsNavBarScreen ClassNameUpdate />
-            </Col>
-
-            <Col xs={12} sm={12} md={8} lg={9} >
-
-                <LoadingErrorHandle
-                    loading={loading}
-                    error={error}
-                    home={products}
-                    TextNotItems={ErrorServer}
-                    TextData='ccc'
-                    extraStyle
-                >
+        <LoadingErrorHandle
+            loading={loading}
+            error={error}
+            home={products}
+            TextNotItems={ErrorServer}
+            TextData='ccc'
+            extraStyle
+        >
 
 
-                    {ListCategoryUX?.length !== 0
-                        && ListCategoryUX !== 'Empty'
-                        && userInfo?.cartinfo &&
-                        <NavBarSearchingTopAll
-                        onClick={(e) => setShow({ value: true, object: '' })}
-                            setQuery={setQuery}
-                            query={query}
-                            Icons={BiCloudUpload}
-                            TextIcons={IconText}
-                            Placeholder={PlaceholderProduct}
-                            IconStyle
-                        />
-                    }
+            {ListCategoryUX?.length !== 0
+                && ListCategoryUX !== 'Empty'
+                && userInfo?.cartinfo &&
+                <NavBarSearchingTopAll
+                    onClick={(e) => setShow({ value: true, object: '' })}
+                    setQuery={setQuery}
+                    query={query}
+                    Icons={BiCloudUpload}
+                    TextIcons={IconText}
+                    Placeholder={PlaceholderProduct}
+                    IconStyle
+                />
+            }
 
 
 
-                    {products?.length === Number(0) ?
-                        <PageTextEmpty Pagetext={TextProduct} />
+            {products?.length === Number(0) ?
+                <PageTextEmpty Pagetext={TextProduct} />
 
-                        :
-                        <CartItemsProducts
-                            products={search(products)}
-                            setShow={setShow}
-                            categoryProductsNextPagesxp={categoryProductsNextPagesxp}
-                            resturantId={userInfo?.cartinfo}
-                        />
-                    }
+                :
+                <CartItemsProducts
+                    products={search(products)}
+                    setShow={setShow}
+                    categoryProductsNextPagesxp={categoryProductsNextPagesxp}
+                    resturantId={userInfo?.cartinfo}
+                />
+            }
 
 
 
 
 
 
-                    {show?.value &&
+            {show?.value &&
 
 
-                        <ProductEditOchCreate
-                            show={show}
-                            setShow={setShow}
-                            userInfo={userInfo}
-                            ListCategoryUX={ListCategoryUX}
-                        />
+                <ProductEditOchCreate
+                    show={show}
+                    setShow={setShow}
+                    userInfo={userInfo}
+                    ListCategoryUX={ListCategoryUX}
+                />
 
-                    }
-
-
-
-                </LoadingErrorHandle>
+            }
 
 
 
+        </LoadingErrorHandle>
 
-            </Col >
-
-            <Footer  />
-
-        </Row >
+    </Fragment>
 
 
-    </Container >
+
+
 }
 
 

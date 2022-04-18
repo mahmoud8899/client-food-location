@@ -9,6 +9,8 @@ const {cartinfo} = props
 
 
 
+// console.log(cartinfo?.location?.coordinates)
+
 // console.log(cartinfo)
 
     return <Fragment>
@@ -24,10 +26,10 @@ const {cartinfo} = props
 
         <Col xs={12} sm={12} md={12} lg={12} className='removePaddingmarggin'>
             <div className='update-imageover'>
-                <h1 className='add_color_maps'>
+                <h1 className='name-res'>
                     Checkout
                 </h1>
-                <h1 className='add_color_maps'>
+                <h1 className='name-res'>
                     {cartinfo?.username}
                 </h1>
             </div>
@@ -36,3 +38,4 @@ const {cartinfo} = props
     </Fragment>
 }
 
+// name-res

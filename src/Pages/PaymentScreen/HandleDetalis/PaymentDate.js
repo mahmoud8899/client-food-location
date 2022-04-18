@@ -90,7 +90,7 @@ export default function PaymentDate() {
 
     return <div className='FIrst-how add-padding-slider'>
 
-        <div className='how-class color-family'>
+        <div className='how-class font-all-all-edit color-color-all'>
             När?
         </div>
 
@@ -104,12 +104,12 @@ export default function PaymentDate() {
 
 
             <div className='drivery-text'>
-                <span className='color-family'>
+                <span className='font-all-all-edit'>
                     {timeBooking?.dateOrder ? timeBooking?.dateOrder : 'Så snart som möjligt'}
                     {timeBooking?.timeOrder && timeBooking?.timeOrder}
 
                 </span>
-                <span className='color-last-items '>
+                <span className='font-name-size-line'>
                     {timeBooking?.dateOrder ? null : `Din beställning förväntas att levereras om 10 till 30 minuter`}
 
                 </span>
@@ -117,7 +117,7 @@ export default function PaymentDate() {
             </div>
             {openchangeTime ? null :
                 <div className='change-drivery' >
-                    <span className='color-family add-color-all'>ändra</span>
+                    <span className='font-all-all-edit color-color-all'>ändra</span>
                 </div>
             }
 
@@ -129,13 +129,13 @@ export default function PaymentDate() {
                 <div className='add-fix-add' onChange={(e) => HandleClickALL(e)}>
                     <ImageScreen ImageIcon={MyOderImage.checkedblack} className='bike' />
                     <div className='drivery-text'>
-                        <span className='color-family'>
+                        <span className='font-name-size-line'>
                             {dateOrder}-{timeOrder}
                         </span>
                     </div>
 
                     <div className='change-drivery' onClick={(e) => HandleClickALL(e)}>
-                        <span className='color-family add-color-all'>Done</span>
+                        <span className='font-all-all-edit color-color-all'>Done</span>
                     </div>
                 </div>
 

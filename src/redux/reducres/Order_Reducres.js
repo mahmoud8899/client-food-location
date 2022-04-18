@@ -101,7 +101,7 @@ export const pagnationMyOrderReducres = (state = {
 // [2] cancel order
 // [3] order id
 export const OrderReducres = (state = {
-    createOrder: {},
+    createOrder: null,
     orderID: {},
     loading: false,
     ordercancel: null,

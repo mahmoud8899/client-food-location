@@ -32,7 +32,7 @@ export default function RestrangeItems(props) {
             <div className='Handplockat-class'>
 
                 <div className='xxxsss'>
-                    <span className='Visa-alla-title'>{Title}</span>
+                    <span className='Visa-alla-title color-color-all'>{Title}</span>
                     {TheRedirect && TheRedirect}
                 </div>
 

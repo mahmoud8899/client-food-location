@@ -80,13 +80,13 @@ export default function RestaurantsNavBarCart(props) {
                         </div>
 
 
-                        <div className='view-order-number-text'>
+                        <div className='view-order-number-text color-color font-all-all-edit'>
                             Till kassan
                         </div>
 
 
                         <div className='view-order-number-price'>
-                            kr {TotalPrice(filterCartProduct)}
+                        <span className='font-all-all-edit'>  kr {TotalPrice(filterCartProduct)} </span>   
                         </div>
 
 

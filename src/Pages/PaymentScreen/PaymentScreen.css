@@ -10,7 +10,10 @@ add-padding-slider   padding left rigth
 
 
  /* Start last page check out success */
-
+.color-color-all{
+    color: #ff9d97;
+   
+}
  .click-home{
      display: flex;
      flex-direction: column;
@@ -162,13 +165,7 @@ input:invalid+.validity:after {
     
 }
 
-.color-last-items{
-    opacity: 0.8;
-    font-size: 13px;
-    color: black;
-    text-transform: capitalize;
-    word-break: break-word;
-}
+
 .color-last-items.extrat{
     font-size: 12px;
 }
@@ -177,12 +174,8 @@ input:invalid+.validity:after {
     padding: 0rem;
 }
 .Delivery-method-and-time{
-    font-size: 16px;
     margin-bottom: 1.5rem;
-    margin-top: 1.5rem;
-    text-transform: capitalize;
-    font-family: 'Heebo', sans-serif;
-    
+    margin-top: 1.5rem; 
 }
 .cart_item_overflow{
     display: flex;
@@ -200,14 +193,7 @@ input:invalid+.validity:after {
 
 }
 
-.add_color_maps{
-    color: black;
-    padding: 0rem;
-    margin: 0rem;
-    font-size: 35px;
-    font-family: 'Heebo', sans-serif;
-    text-transform: capitalize;
-}
+
 
 .top-maps{
     top: 0rem;
@@ -277,14 +263,7 @@ input:invalid+.validity:after {
      margin-left: 1rem;
      font-size: 18px;
 }
-.color-family{
-    font-size: 15px;
-    font-family: "Open Sans", sans-serif;
-    font-weight: bold;
-    text-transform: capitalize;
-    color: black;
-    
-}
+
 .color-family.extrat{
     font-size: 13px;
 }
@@ -294,8 +273,8 @@ input:invalid+.validity:after {
     font-weight: bold;
 }
 .bike{
-    width:1.2rem;
-    height: 1.2rem;
+    width:30px;
+    height: 30px;
     cursor: pointer;
 }.add-left-image{
     margin-left: auto;
@@ -378,7 +357,6 @@ align-items: center;
 .items-name-first-prics span{
     padding: 0rem;
     margin: 0rem;
-    font-size: 15px;
     text-transform: capitalize;
 }
 
@@ -401,7 +379,9 @@ align-items: center;
     color: black;
    
 }
-
+.add-left-left{
+    margin-left: 0.5rem;
+}
 .flex-font-size  {
     font-family: 'Barlow';
     font-size: 18px;
@@ -416,10 +396,7 @@ align-items: center;
     flex-direction: column;
     justify-content: flex-start;
 }
-.item-credit-text span{
-    font-size: 13px;
-    font-weight: bold;
-}
+
 
 .box-delivery-cart{
     margin-top: 0.5rem;
@@ -484,10 +461,8 @@ align-items: center;
     padding: 1rem;
     
     
-}.fooder-card p{
-    font-size: 13px;
-    text-transform: capitalize;
 }
+
 
 .courier-box{
     padding: 1rem;
@@ -495,11 +470,7 @@ align-items: center;
     flex-direction: column;
 
 }
-.courier-item p {
-    font-size: 12px;
-    padding: 0rem;
-    line-height: 1rem;
-}
+
 .courier-item span{
     cursor: pointer;
 
@@ -561,13 +532,7 @@ align-items: center;
     background-color: #eee;
     
 } 
-.item-pricesInclude-text{
-    font-size: 15px;
-    font-family: "Open Sans", sans-serif;
-    font-weight: bold;
-    text-transform: capitalize;
-    color: black;
-}
+
 
 .item-information{
     display: flex;
@@ -610,12 +575,11 @@ align-items: center;
 }
 
 .left-max{
-    font-family: 'Heebo', sans-serif;
-    font-size: 16px;
+
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    text-transform: capitalize;
+
 }
 
 
@@ -682,38 +646,30 @@ align-items: center;
 .box-levrans-uppsala{
     padding: 2rem;
 }
-.box-levrans-uppsala h1
-{
-    color: black;
-    padding: 0rem;
-    margin: 0rem;
-    text-transform: capitalize;
-    font-size: 16px;
-    font-family: 'Heebo', sans-serif;
-}
+
 .box-levrans-uppsala p{
     margin-top: 2rem;
     text-transform: capitalize;
-    font-size: 17px;
+
 
 }.box-levrans-uppsala p::first-letter{
     color: rgba(255, 59, 47, 0.52);
-    font-size: 20px;
+    font-size: 50px;
 }
 .how-class{
     margin-bottom: 1rem;
     margin-top: 1rem;
-    font-size: 15px;
-    font-weight: bold;
-    text-transform: capitalize;
-    font-family: 'Heebo', sans-serif;
+   
+}
+.padding-d{
+    padding: 1rem;
 }
 .nothover {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
-    
+    flex-direction: column;
 }
 .drivery-class{
     display: flex;
@@ -726,9 +682,14 @@ align-items: center;
    
   
 
-}.drivery-class:hover{
-    background-color: rgba(238, 238, 238, 0.486);
 }
+.drivery-class.express-express{
+    display: flex;
+    flex-direction: column;
+}
+/* .drivery-class:hover{
+    background-color: rgba(238, 238, 238, 0.486);
+} */
 .drivery-text{
     display: flex;
     flex-direction: column;

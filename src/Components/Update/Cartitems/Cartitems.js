@@ -41,13 +41,14 @@ export default function CartItemsScreen(props) {
                 }
                 <div className='close-yourOrder-number' onClick={(e) => HandleMatchId(e, cart?.product)} >
 
-                    <div style={Styles.Boxshow} className='close-yourOrder-numer-rigth'>
+                    <div style={Styles.Boxshow} className='close-yourOrder-numer-rigth font-name-size font-all-all-edit add-color-cart'>
                         {cart?.qty}
                     </div>
                     <div className='close-yourOrder-numer-text'>
-                        <div className='font-famil-color'>{cart?.name}</div>
+                    
+                        <div className='font-name-size font-all-all-edit add-color-cart'>{cart?.name}</div>
                         <div className='close-yourOrder-numer-text-culom-d-s'>
-                            <span>kr {CollectNumber(cart?.qty, cart?.prices)}</span>
+                            <span className='font-name-size-line' >kr {CollectNumber(cart?.qty, cart?.prices)}</span>
                          
                             {cart?.popular && <span style={Styles.background} className='popular-popular'>popular</span>}
                             

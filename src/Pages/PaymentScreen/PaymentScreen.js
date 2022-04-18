@@ -13,15 +13,24 @@ import { GetCartInfoIdAction } from '../../redux/Action/CartItemAction'
 import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRestarangeProduct'
 import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import { ErrorServer, LoadingSkeletonProductPage } from '../../Assistant/TextError'
-import './PaymentScreen.css'
 import TimeContext from '../../Components/Update/UseContext/TimeContext'
+import './PaymentScreen.css'
+import { useParams } from 'react-router-dom'
+
 export default function CheckOutPaymentScreen(props) {
 
 
 
 
+
+
+
+    const ParamsId = useParams()
+
+
     // location checkout.... 
-    const ChangeParams = props?.match?.params.id.replace("-", " ")
+    const ChangeParams = ParamsId?.id?.replace("-", " ")
+
 
 
     // filter restranges some order cart.. [1] : get _id restrurange och get all cart order..
@@ -90,17 +99,6 @@ export default function CheckOutPaymentScreen(props) {
 
 
 
-    // const scrollUseRef = useRef()
-    // ref={scrollUseRef}
-    // useEffect(() => {
-    //     scrollUseRef.current?.scrollIntoView({
-    //         block: "nearest",
-    //         inline: "center",
-    //         behavior: "smooth",
-    //         alignToTop: false
-    //     });
-    //     // eslint-disable-next-line
-    // }, [])
 
 
 
@@ -119,7 +117,7 @@ export default function CheckOutPaymentScreen(props) {
 
 
                 <Row className='justify-content-center' >
-                    <PaymentMapsScreen   cartinfo={cartinfo} />
+                    <PaymentMapsScreen cartinfo={cartinfo} />
 
                     <Row className='row-box'>
 
@@ -129,7 +127,7 @@ export default function CheckOutPaymentScreen(props) {
 
                             <Col xs={12} ms={12} md={12} lg={12} >
 
-                                <h1 className='Delivery-method-and-time'>
+                                <h1 className='Delivery-method-and-time Visa-alla-title color-color-all'>
                                     Leveranssätt och tid
                                 </h1>
                                 <PaymentAddresDriverScreen cartinfo={cartinfo} />

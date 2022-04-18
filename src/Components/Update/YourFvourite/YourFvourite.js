@@ -71,6 +71,6 @@ export default function YourFvourite() {
             }
 
 
-            <span className='text-favourit asdextrax'>Favourit</span>
+            <span className='text-favourit asdextrax font-all-all-edit'>Favourit</span>
         </div>
 }

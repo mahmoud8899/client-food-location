@@ -37,7 +37,7 @@ export default function UserSettingsScreen(props) {
 
     // check user
     useEffect(() => {
-        if (!userInfo?.firstname) return history.push('/uppsala')
+        if (!userInfo?.firstname) return history.push('/')
 
     }, [userInfo, history])
 
@@ -78,13 +78,13 @@ export default function UserSettingsScreen(props) {
 
                 <div className='box-Setting'>
                     <div className='box-setting-children'>
-                        <span className='cheildren-span'>namn</span>
+                        <span className='font-all-all-edit'>namn</span>
                         <h1 style={Styles.ColorSetting} onClick={(e) => setOpenName(true)}>
                             {userInfo?.firstname} {userInfo?.lastname}
                         </h1>
                     </div>
                     <div className='box-setting-children'>
-                        <span className='cheildren-span'>Skicka kvitton till e-post</span>
+                        <span className='font-all-all-edit'>Skicka kvitton till e-post</span>
 
                         <div className='check-box-me'>
                             <span className='check-box-me-c check-box-me-left'></span>
@@ -92,7 +92,7 @@ export default function UserSettingsScreen(props) {
                     </div>
 
                     <div className='box-setting-children'>
-                        <span className='cheildren-span'> Logga ut {FirstNameRest}</span>
+                        <span className='font-all-all-edit'> Logga ut {FirstNameRest}</span>
 
                         <h1 style={Styles.ColorSetting} onClick={HandleLogoUt}>Logga ut</h1>
                     </div>

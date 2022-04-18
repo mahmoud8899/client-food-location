@@ -1,4 +1,4 @@
-import { Image, Modal } from 'react-bootstrap'
+import {  Modal } from 'react-bootstrap'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import ButtomClick from '../../Components/Buttom/Buttom'
 import { ChangeUserInfo } from '../../redux/Action/Auth_Action'
@@ -14,6 +14,7 @@ import { CloseScreen } from '../../Components/CloseScreen/CloseScreen'
 import { Fragment, useState } from 'react'
 import TheInputForm from '../TheInputForm/TheInputForm'
 import { RiCheckFill } from 'react-icons/ri'
+import ImageScreen from '../ImageScreen/ImageScreen'
 export default function UserChange(props) {
 
 
@@ -118,7 +119,7 @@ export default function UserChange(props) {
 
 
 
-                <Image src={MyOderImage.foodname} className='foodname' />
+                <ImageScreen ImageIcon={MyOderImage.foodname} className='foodname' />
 
                 <div className='Form-ckidren-box' >
 
@@ -151,7 +152,7 @@ export default function UserChange(props) {
 
                     />
 
-
+                    <span className='selection-name'>Efternamn</span>
                     <TheInputForm
 
                         placeholder='efternamn'
@@ -175,30 +176,23 @@ export default function UserChange(props) {
 
 
 
-                    <div className='buttom-box'>
 
 
-                        <div className='buttom-class'>
-                            <ButtomClick
-                                className='cancel-add-text'
-                                title='Cancel'
-                                style={Styles.colorCancel}
-                                onClick={handleClose}
-                            />
-                        </div>
 
-                        <div className='buttom-class'>
-                            <ButtomClick
-                                title='uppdatering'
-                                style={Styles.buttomColorPage}
-                                onClick={HandleChangeUserInfo}
-                                disabled={
-                                    ValidationUsername(postData, userInfo)
-                                }
-                            />
-                        </div>
 
+
+                    <div className='buttom-close'>
+                        <ButtomClick
+                            title='uppdatering'
+                            style={Styles.buttomColorPage}
+                            onClick={HandleChangeUserInfo}
+                            disabled={
+                                ValidationUsername(postData, userInfo)
+                            }
+                        />
                     </div>
+
+
                 </div>
 
 
@@ -210,3 +204,5 @@ export default function UserChange(props) {
 
     </Modal>
 }
+
+

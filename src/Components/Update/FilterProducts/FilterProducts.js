@@ -5,6 +5,8 @@ import LoadingErrorHandle from '../LoadingErrorHandle/LoadingErrorHandle'
 import { FilterCategory } from '../UseContext/FilterCategoryScreen'
 import { BsFilterRight } from 'react-icons/bs'
 import { Modal } from 'react-bootstrap'
+import ButtomClick from '../../Buttom/Buttom'
+import Styles from '../StylesComponents/style'
 
 
 export default function FilterProducts(props) {
@@ -107,7 +109,8 @@ export default function FilterProducts(props) {
 
 
             <div className='buttom-close' onClick={() => setShow(false)}>
-                <div>spara</div>
+                <ButtomClick  title='spara' style={Styles.TabButtomCreate} />
+                
             </div>
 
         </Modal>

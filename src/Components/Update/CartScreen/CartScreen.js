@@ -39,7 +39,7 @@ export default function CartScreen(props) {
                          
                         </div>
 
-                        <div className='view-order-number-text color-color'>
+                        <div className='view-order-number-text color-color font-all-all-edit'>
                             Till kassan
                         </div>
 
@@ -48,7 +48,7 @@ export default function CartScreen(props) {
                     </div>
 
                     <div className='basket-price'>
-                        <span>kr {TotalPrice(filterCartProduct)}</span>
+                        <span className='font-all-all-edit'>kr {TotalPrice(filterCartProduct)}</span>
                     </div>
                 </div>
             </Col>

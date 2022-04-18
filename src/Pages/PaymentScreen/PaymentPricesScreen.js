@@ -7,15 +7,16 @@ import { FilterCartDetials } from '../../Components/Update/UseContext/FilterRest
 import InformationServices from './HandleDetalis/InformationServices'
 import { TimePrive } from '../../Components/Update/UseContext/TimeContext'
 import { Order_Action } from '../../redux/Action/Order_Action'
-import {TotalPrice, DliveryPrice,
+import {
+    TotalPrice, DliveryPrice,
     Serviceavgift, LitenBeställning,
     LitenBeställningPrics
 } from '../../Assistant/TotalPrice'
 import { Col } from 'react-bootstrap'
 import './PaymentScreen.css'
-import { useContext,  useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { CollectTotla } from '../../Assistant/SelectionPayment'
-
+import { SocketChildrenResturant } from '../../Components/SocketScreen/SocketResturant'
 
 
 export default function PaymentPricesScreen(props) {
@@ -23,16 +24,48 @@ export default function PaymentPricesScreen(props) {
     const [openCheckOut, setOpenCheckOut] = useState(false)
     // this is localstora cart items
     const { filterCartProduct } = useContext(FilterCartDetials)
-    // open information serives pries
-    const [show, setShow] = useState(false)
     // run time real time
     const { dataTime } = useContext(TimePrive)
+
+    const { socket } = useContext(SocketChildrenResturant)
+
+    // open information serives pries
+    const [show, setShow] = useState(false)
+
+
+
 
 
 
 
 
     const dispatch = useDispatch()
+
+
+
+
+
+
+    const checkOrderSuccessfully = useSelector((state) => state.order?.createOrder)
+
+
+
+
+
+
+    useEffect(() => {
+
+        if (checkOrderSuccessfully !== null) {
+            if (socket) {
+                socket.emit('getrestrantid', checkOrderSuccessfully?.cartinfo)
+            }
+            return
+        }
+
+    }, [checkOrderSuccessfully,socket])
+
+
+
 
 
     //----------------------- Start check everything before paying  --------------------->
@@ -160,21 +193,21 @@ export default function PaymentPricesScreen(props) {
         <div className='parant-st'>
 
 
-            <h1 className='left-max'>Priser i SEK, inkl. moms </h1>
+            <h1 className='left-max Visa-alla-title color-color-all'>Priser i SEK, inkl. moms </h1>
 
 
 
             <div className='parant'>
 
                 <div className='item-pricesInclude'>
-                    <span className='item-pricesInclude-text color-family ' >{`Summa artiklar (${filterCartProduct?.length} artikel)`}</span>
-                    <span className='item-pricesInclude-text color-family '>kr {TotalPrice(filterCartProduct)}</span>
+                    <span className='font-all-all-edit' >{`Summa artiklar (${filterCartProduct?.length} artikel)`}</span>
+                    <span className='font-all-all-edit'>kr {TotalPrice(filterCartProduct)}</span>
                 </div>
 
                 {TheCheckOutDriver?.name === 'utkörning' ?
                     <div className='item-pricesInclude'>
-                        <span className='item-pricesInclude-text color-family' >Utkörning</span>
-                        <span className='item-pricesInclude-text color-family '>kr {DliveryPrice}</span>
+                        <span className='font-all-all-edit' >Utkörning</span>
+                        <span className='font-all-all-edit'>kr {DliveryPrice}</span>
                     </div>
                     : null
                 }
@@ -183,22 +216,22 @@ export default function PaymentPricesScreen(props) {
 
                 {LitenBeställning(TotalPrice(filterCartProduct)) &&
                     <div className='item-pricesInclude'>
-                        <span className='item-pricesInclude-text color-family' >Tillägg för liten beställning</span>
-                        <span className='item-pricesInclude-text color-family '>kr {LitenBeställningPrics}</span>
+                        <span className='font-all-all-edit' >Tillägg för liten beställning</span>
+                        <span className='font-all-all-edit'>kr {LitenBeställningPrics}</span>
                     </div>
 
                 }
 
 
                 <div className='item-pricesInclude'>
-                    <span className='item-pricesInclude-text color-family' >Serviceavgift</span>
-                    <span className='item-pricesInclude-text color-family '>kr {Serviceavgift}</span>
+                    <span className='font-all-all-edit' >Serviceavgift</span>
+                    <span className='font-all-all-edit'>kr {Serviceavgift}</span>
                 </div>
 
 
 
                 <div className='item-information' onClick={() => setShow(!show)}>
-                    <span className='item-pricesInclude-text color-family' > Hur våra avgifter funkar</span>
+                    <span className='font-name-size-line color-color-all' > Hur våra avgifter funkar</span>
                 </div>
 
 

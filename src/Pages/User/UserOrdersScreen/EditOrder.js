@@ -120,7 +120,7 @@ export default function EditOrder(props) {
 
 
                 <div className="avbryta">
-                    <h1 className="your-h1">Vill du avbryta beställningen</h1>
+                    <h1 className="name-res">Vill du avbryta beställningen</h1>
                 </div>
                 {oppenInput &&
                     <>

@@ -12,15 +12,15 @@ export default function PaymentPromoCodeScreen() {
 
     return <Col xs={12} ms={12} md={12} lg={12} >
 
-        <h1 className='Delivery-method-and-time ' >
+<h1 className='Delivery-method-and-time Visa-alla-title color-color-all'>
         Promokod
         </h1>
         <div className='promo'>
 
-            <div >
+            <p className='font-name-size-line'>
             Om du har en kod, ange den nedan för att kunna lösa in den.
              
-            </div>
+            </p>
 
 
         </div>

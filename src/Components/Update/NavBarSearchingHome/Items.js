@@ -27,8 +27,8 @@ export default function Items(props) {
                 className='result-image'
             />
             <div className='rigth-result'>
-                <span className='rigth-result-first'>{rest?.username}</span>
-                <span className='rigth-result-last'>{SliceName(rest?.description, 20)}</span>
+                <span className='font-name-size font-all-all-edit add-color-cart'>{rest?.username}</span>
+                <span className='font-name-size-line'>{SliceName(rest?.description, 20)}</span>
                 <div className='Driver-pri'>
                     {rest?.freeDelvery ?
                         <span>Fri Leverans</span>

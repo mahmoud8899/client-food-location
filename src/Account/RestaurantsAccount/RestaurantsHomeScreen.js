@@ -1,19 +1,19 @@
-import { Col, Container, Row, } from 'react-bootstrap'
-import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
+import { Row, } from 'react-bootstrap'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
-import { MyOderImage } from '../../Assistant/MyOrderImage'
-import ImageScreen from '../../Components/ImageScreen/ImageScreen'
+import { MdNotificationsNone } from 'react-icons/md'
 import { OrderResturantNotifications } from '../../redux/Action/Order_Action'
 import { useDispatch, useSelector } from 'react-redux'
 import NotficationOrders from './Datils/NotficationOrders'
 import NavBarList from '../../Components/Update/NavBarSearchingTopAll/NavBarList'
-import UserName from './Datils/UserName'
-import { useEffect } from 'react'
+import { Fragment, useEffect, useContext, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import './style.css'
+
 
 export default function RestaurantsHomeScreen(props) {
 
-    const { history } = props
+    const history = useHistory()
+
 
 
 
@@ -29,7 +29,8 @@ export default function RestaurantsHomeScreen(props) {
 
     const dispatch = useDispatch()
 
-
+    // ingration data
+    const [allNotfications, setAllNotfications] = useState([])
 
 
 
@@ -39,10 +40,10 @@ export default function RestaurantsHomeScreen(props) {
 
         if (userInfo?.restaurantid) {
 
-            return userInfo?.cartinfo && orderNotfications?.length === 0 && dispatch(OrderResturantNotifications(userInfo?.cartinfo))
+            // return userInfo?.cartinfo && orderNotfications?.length === 0 && dispatch(OrderResturantNotifications(userInfo?.cartinfo))
 
         } else {
-            return history.push('/uppsala/')
+            return history.push('/')
         }
 
 
@@ -57,79 +58,101 @@ export default function RestaurantsHomeScreen(props) {
 
 
 
-    return <Container >
 
-        <div className='box'>
-            <UserName />
-        </div>
+
+
+
+
+
+
+
+
+    // console.log(orderNotfications)
+
+
+
+
+
+
+    return <Fragment>
         <Title TextTitle='Restaurant Admin' />
+
+        <NavBarList
+
+            Other={
+                <div className='Order-List-New-other'>
+                    <div className='AddClass-c add-left'>
+                        <span className='font-all'>Order List New</span>
+                    </div>
+                </div>
+            }
+            OtherLast={
+                <div className='Order-List-New-other'>
+                    <div className='children_notification'>
+                        <MdNotificationsNone className='notification' />
+                        <span className='notification_number' >2</span>
+                    </div>
+                </div>
+
+            }
+        />
+
+
+
+
+
         <Row className='justify-content-center'>
 
 
 
+            <NotficationOrders
+                error={error}
+                loading={loading}
+                orderNotfications={orderNotfications}
+                allNotfications={allNotfications}
+                setAllNotfications={setAllNotfications}
 
-            <Col xs={12} sm={12} md={4} lg={3} >
-                <RestaurantsNavBarScreen ClassNotfication />
-            </Col>
-
-            <Col xs={12} sm={12} md={8} lg={9} >
-
-
-
-
-                <NavBarList
-
-                    Other={
-                        <div className='Order-List-New-other'>
-                            <div className='AddClass-c add-left'>
-                                <span className='font-all'>Order List New</span>
-                            </div>
-                        </div>
-                    }
-                    OtherLast={
-                        <div className='Order-List-New-other'>
-                            <div className='children_notification'>
-                                <ImageScreen ImageIcon={MyOderImage.notification} className='notification' />
-                                <span className='notification_number' >2</span>
-                            </div>
-                        </div>
-
-                    }
-                />
-
-
-
-            
-                
-                        <Row className='justify-content-center'>
-
-             
-
-                                <NotficationOrders
-                                    error={error}
-                                    loading={loading}
-                                    orderNotfications={orderNotfications}
-
-                                />
-                         
-
-
-                        </Row>
-
-      
-               
-            </Col>
-
-
-
-
+            />
 
 
 
         </Row>
-    </Container>
+
+
+    </Fragment>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
+
+// {/* <Col xs={12} sm={12} md={4} lg={3} >
+// <RestaurantsNavBarScreen ClassNotfication />
+// </Col> */}
+
+
+
 
 // {/* 
 //         <div className='Margin-top'>

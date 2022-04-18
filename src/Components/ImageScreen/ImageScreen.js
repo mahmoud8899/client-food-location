@@ -1,4 +1,5 @@
-import { Image } from 'react-bootstrap'
+
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 
 
@@ -10,26 +11,28 @@ export default function ImageScreen(props) {
         className,
         style,
         onClick,
-        fluid
+        
     } = props
 
 
-    return <Image
-    fluid={fluid}
-        src={ImageIcon}
+    return <LazyLoadImage
+        // fluid={fluid}
+        style={style}
         className={className}
         alt={ImageIcon}
-        style={style}
+        height={ImageIcon}
+        src={ImageIcon}
+        width={ImageIcon}
         onClick={onClick}
-
     />
 }
 
-// {/* <LazyLoadImage
-//     className={className}
-//         alt={ImageIcon.alt}
-//         height={ImageIcon}
-//         src={ImageIcon} // use normal <img> attributes as props
-//         width={ImageIcon.width}
+// {/* <Image
+//     fluid={fluid}
+//         src={ImageIcon}
+//         className={className}
+//         alt={ImageIcon}
+//         style={style}
 //         onClick={onClick}
+
 //     /> */}

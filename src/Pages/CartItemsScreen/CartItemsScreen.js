@@ -53,9 +53,9 @@ export default function CartItemsScreen(props) {
 
 
             <div className='title'>
-                <div className='map'>
-                    <span className='Font-goo' >{item?.username}</span>
-                    <span className='font-size'>{item?.addressinfo?.city}</span>
+                <div className='box-name'>
+                    <span className='font-name-size font-all-all-edit add-color-cart' >{item?.username}</span>
+                    <span className='font-name-size-line'>{item?.addressinfo?.city}</span>
 
                 </div>
 

@@ -6,12 +6,14 @@ import { useDispatch } from 'react-redux'
 import RemoveAlrt from '../../../Components/Update/RemoveAlrt/RemoveAlrt'
 import '../UserProfileScreen/Profile.css'
 import { useState } from 'react'
+import { BiCheck } from 'react-icons/bi'
+import { Fragment } from 'react'
 
 
 // show user addrsss and remove addresss
 export default function ShowListAddress(props) {
     // params userinfo and  change style 
-    const { locateAddress, setOpenAddres, StyleHome, ViljaAddress } = props
+    const { locateAddress, setOpenAddres, StyleHome, ViljaAddress, StyleLastPadding, StopCity } = props
 
     // ClassNamepAY
 
@@ -62,76 +64,85 @@ export default function ShowListAddress(props) {
     }
 
 
+    // edit///
+    //StyleHome ? 'className-infoUser add-style-remove-padding' :
     return <LoadingErrorHandle loading={locateAddress.loading}>
 
-        <div className={StyleHome ? 'className-infoUser add-style-remove-padding' : 'className-infoUser'}>
+        <div className={StyleLastPadding ? 'ClassLast-fex' : 'className-infoUser'}>
 
-            {locateAddress?.myAddressLocal?.length > Number(1) &&
+            {StopCity ? null  : locateAddress?.myAddressLocal?.length > Number(1) &&
                 <div className='remove-all-address' onClick={(e) => setShow({ value: true })}>
                     <span>😢</span>
                     <span>
                         Radera alla adresser
                     </span>
                 </div>
+                
 
             }
 
 
 
-            <div className='show-sort-address'>
-                {locateAddress?.myAddressLocal?.map((showadd, Index) => (
-                    <div
-                        className='first-left-box'
-                        key={showadd?.address}
-                        onClick={() => setDataSome(showadd?.address)}
-                    >
+            <div className={StyleLastPadding ? 'show-fex' : 'show-sort-address'}>
+                {locateAddress?.myAddressLocal?.map((showadd) => (
+                    <div className='first-left-box' key={showadd?.address} onClick={() => setDataSome(showadd?.address)} >
+                        {StopCity && !showadd?.doornumber ? null :
+                            <Fragment>
+                                <div className={showadd.firstAddress ? 'box-infoUser color-avtive' : 'box-infoUser'}>
 
-                        <div className={showadd.firstAddress ? 'box-infoUser color-avtive' : 'box-infoUser'}
-                        >
-
-                            <span className={showadd.firstAddress ? 'font-size-work color-avtive' : 'font-size-work icons-icons'}  >
-                                {WhichWork(showadd.work)}
-                            </span>
+                                    <span className={showadd.firstAddress ? 'font-size-work color-avtive' : 'font-size-work icons-icons'}  >
+                                        {WhichWork(showadd.work)}
+                                    </span>
 
 
-                            <span className='font-size-work' >
-                                {showadd?.work}
-                            </span>
-                        </div>
+                                    <span className='font-size-work' >
+                                        {showadd?.work}
+                                    </span>
+                                </div>
 
 
-                        <div className='address-list-edit' >
+                                <div className='address-list-edit' >
 
-                            <div className={showadd.firstAddress ? 'address-list-edit-children color-avtive' :
-                                'address-list-edit-children'}>
-                                <span >
-                                    {showadd.address} {showadd.doornumber}
-                                </span>
-                                <span>
-                                    {showadd?.zipcode} {showadd?.city}
-                                </span>
-                            </div>
-
-                            <div className='margin-left-class'>
-                                {StyleHome ?
-                                    !showadd.firstAddress &&
-                                    <div className='valje' onClick={(e) => ViljaAddress(showadd)}>
-                                        <span>Välj</span>
+                                    <div className={showadd.firstAddress ? 'address-list-edit-children color-avtive' :
+                                        'address-list-edit-children'}>
+                                        <span >
+                                            {showadd.address} {showadd.doornumber}
+                                        </span>
+                                        <span>
+                                            {showadd?.zipcode} {showadd?.city}
+                                        </span>
                                     </div>
-                                    :
-                                    <EditComponent
-                                        address={showadd.address}
-                                        dataSome={dataSome}
-                                        setOptionMore={setOptionMore}
-                                        optionMore={optionMore}
-                                        OpenEditAddress={(e) => OpenEditAddress(showadd)}
-                                        NoRemove={(e) => dispatch(RemoveOneAddress(showadd?.address))}
-                                    />
-                                }
+
+                                    <div className='margin-left-class'>
+                                        {StyleHome || StyleLastPadding ?
+                                            !showadd.firstAddress ?
+                                                <div className='valje' onClick={(e) => ViljaAddress(showadd)}>
+                                                    <span>Välj</span>
+                                                </div>
+                                                :
+                                                <div className='checkout-address' >
+                                                    <BiCheck className='checkout-address-children' />
+                                                </div>
+
+                                            :
+                                            <EditComponent
+                                                address={showadd.address}
+                                                dataSome={dataSome}
+                                                setOptionMore={setOptionMore}
+                                                optionMore={optionMore}
+                                                OpenEditAddress={(e) => OpenEditAddress(showadd)}
+                                                NoRemove={(e) => dispatch(RemoveOneAddress(showadd?.address))}
+                                            />
+                                        }
 
 
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
+
+                            </Fragment>
+
+                        }
+
 
                     </div>
                 ))}

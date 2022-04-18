@@ -31,7 +31,7 @@ export default function CategoryScreen(props) {
             <div className='Handplockat-class'>
 
             <div className='xxxsss'>
-                    <span className='Visa-alla-title'>{Title}</span>
+                    <span className='Visa-alla-title color-color-all'>{Title}</span>
                    
                 </div>
 
@@ -53,7 +53,7 @@ export default function CategoryScreen(props) {
 
                                 <div className='category-name'>
 
-                                    <span className='cateory-name-list'>
+                                    <span className='cateory-name-list Visa-alla-title color-color-all'>
                                         {ho?.foodType}
                                     </span>
 

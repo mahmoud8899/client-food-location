@@ -28,7 +28,7 @@ export default function RestaurantsPagePhotoNavBar(props) {
                             <div className='margin-top-navbar'>
                                 {category?.map((us, Index) => (
                                     <span
-                                        className='font-size-navbar'
+                                        className='font-name-size-line color-with'
                                         key={Index}
                                     >
                                         {us?.name},
@@ -40,7 +40,7 @@ export default function RestaurantsPagePhotoNavBar(props) {
                         
 
                         <div className='Open-time-tody'>
-                            <span>{TheDoday()} open {SliceNameNot(cartinfo?.opentime?.oppen, 5)  }</span>
+                            <span className='font-all-all-edit'>{TheDoday()} open {SliceNameNot(cartinfo?.opentime?.oppen, 5)  }</span>
                         </div>
                     </div>
                 </Col>

@@ -6,7 +6,7 @@ import { useState } from 'react'
 import ButtomClick from '../../Components/Buttom/Buttom'
 import Styles from '../../Components/Update/StylesComponents/style'
 import TheInputForm from '../../Components/TheInputForm/TheInputForm'
-
+import { BsChevronRight, BsChevronUp } from 'react-icons/bs'
 
 
 export default function PaymentCourierScreen() {
@@ -50,15 +50,18 @@ export default function PaymentCourierScreen() {
                 />
 
                 <div className='item-credit-text'>
-                    <div className='color-family'> Dricks till kurirpartern</div>
-                    <div className='color-last-items'>
+                    <div className='font-all-all-edit color-color-all'> Dricks till kurirpartern</div>
+                    <div className='font-name-size-line'>
                         Frivillig dricks till kurirpartnern
                     </div>
                 </div>
 
-                <Image src={courierOpen ? MyOderImage.top : MyOderImage.right}
+                {courierOpen ? 
+                    <BsChevronUp className='bike add-left-image' /> :  <BsChevronRight className='bike add-left-image' /> 
 
-                    className='bike add-left-image' />
+                }
+
+
 
             </div>
             {courierOpen &&
@@ -67,7 +70,7 @@ export default function PaymentCourierScreen() {
 
                     <div className='courier-box'>
                         <div className='courier-item'>
-                            <p>
+                            <p className='font-name-size-line'>
                                 De får 100 % av din dricks efter leveransen.
                                 Om du vill ändra eller avbryta dricksen, vänligen kontakta supporten för hjälp.
                             </p>

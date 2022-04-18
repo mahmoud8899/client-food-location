@@ -2,19 +2,17 @@ import { Container, Row, Col } from 'react-bootstrap'
 import React, { Fragment, useEffect, useState } from 'react'
 import Title from '../../../Components/ScreenTitle/ScreenTitle'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import UserNavBarScreen from '../UserNavBarScreen/UserNavBarScreen'
 import { SliceNameNot } from '../../../Assistant/Slice'
 import ScreenLike from '../../Like/Like'
 import UserAddTelefonNumber from '../UserAddTelefonNumber/UserAddTelefonNumber'
-import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
-import { LikePage } from '../../../Components/Update/Redirction/Redirction'
 import LoadingErrorHandle from '../../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
-import { ErrorServer ,LoadingSkeletonProductPage } from '../../../Assistant/TextError'
+import { ErrorServer, LoadingSkeletonProductPage } from '../../../Assistant/TextError'
 import Styles from '../../../Components/Update/StylesComponents/style'
-import './Profile.css'
 import { GetUserInfoAction } from '../../../redux/Action/Auth_Action'
+import './Profile.css'
+
 
 const UserProfileScreen = () => {
 
@@ -71,6 +69,8 @@ const UserProfileScreen = () => {
 
 
 
+
+
     return <Fragment>
 
 
@@ -115,7 +115,7 @@ const UserProfileScreen = () => {
                             </div>
 
                             <div className='class-profile-name'>
-                                <h1>{userInfo?.firstname} {userInfo?.lastname}</h1>
+                                <h1 className='font-all-all-edit'>{userInfo?.firstname} {userInfo?.lastname}</h1>
                                 <div className='classInfo'>
                                     <div className='classInfo-email'>
                                         <span >Email</span>
@@ -136,50 +136,29 @@ const UserProfileScreen = () => {
                     </Col>
 
                     <Col xs={12} sm={12} md={12} lg={8}>
-                        {LikeLength?.length === 0 ?
+                        {LikeLength?.length > Number(0) &&
 
-                            <div className='class-dina-favoriter'>
-                                <div className='class-profile-name add-notleft'>
-                                    <h1>  Dina favoriter</h1>
-                                </div>
-
-                                <div className='flex-boxc'>
-                                    <p>
-                                        Lägg till en restaurang eller butik bland dina favoriter genom att klicka på hjärtsymbolen som du hittar i menyn. Dina favoriter visas sedan här.
-                                    </p>
-                                    <div className='flex-boxc-left'>
-                                        <ImageScreen
-                                            ImageIcon={MyOderImage.heartFull}
-                                            className='Add-din'
-                                        />
-
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                            :
-
+                      
                             <>
-
                                 <div className='yourFavorut margin-top-'>
 
                                     <div className='yourFavorutnavbar'>
-                                        <h1>your Favourites</h1>
-                                        <div onClick={(e) => LikePage(history)} style={Styles.newBox}>
+                                        <h1 className='font-all-all-edit'>your Favourites</h1>
+                                        <Link to={{ pathname: '/sw/personal/like/like/user/' }} style={Styles.newBox}>
                                             se all
-                                        </div>
+                                        </Link>
                                     </div>
                                 </div>
-
-
                                 <Row>
                                     <ScreenLike Hidding />
 
                                 </Row>
+                             </>
 
-                            </>
+
+                                
+
+                           
 
                         }
 
@@ -230,3 +209,4 @@ export default UserProfileScreen
 
 
 
+// onClick={(e) => LikePage(history)}

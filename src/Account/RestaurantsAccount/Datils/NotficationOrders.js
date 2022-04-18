@@ -5,23 +5,70 @@ import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import LoadingErrorHandle from '../../../Components/Update/LoadingErrorHandle/LoadingErrorHandle'
 import { Col } from 'react-bootstrap'
 import Styles from '../../../Components/Update/StylesComponents/style'
-import { ErrorServer, OrderText } from '../../../Assistant/TextError'
+import { ErrorServer, OrderText ,HomeCarouselScreen } from '../../../Assistant/TextError'
 import { PageTextEmpty } from '../../../Components/Update/PageEmpty/PageEmpty'
 import { format } from 'timeago.js'
 import { BiCreditCard, BiGitCompare, BiMessageSquareCheck } from 'react-icons/bi'
-import { useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import EditOrder from '../../../Pages/User/UserOrdersScreen/EditOrder'
+import { OnlineSocketLoginRestaurant } from '../../../Components/SocketScreen/SocketLoginRestaurant'
+import usex from '../../../Assistant/sound/sound.mp3'
+import useSound from 'use-sound'
+
 export default function NotficationOrders(props) {
     // params [1] error [2] loading [3] data
     const {
         error,
         loading,
-        orderNotfications
+        orderNotfications,
+        setAllNotfications,
+        allNotfications,
     } = props
 
 
 
+    // oppen cancel order....
     const [show, setShow] = useState({ value: false, object: '' })
+
+
+    // notfication new order 
+    const { socket } = useContext(OnlineSocketLoginRestaurant)
+    // alrt sound
+    const [play] = useSound(usex)
+
+
+    useEffect(() => {
+
+        if (socket) {
+            socket.on('NewOrder', (data) => {
+              
+               
+          
+             setAllNotfications(prev => [...prev, Object(...data)])
+                return
+            })
+
+        }
+        // if (orderNotfications) {
+
+        //     return setAllNotfications(orderNotfications)
+        // }
+
+
+
+        return () => setAllNotfications([])
+
+
+
+    }, [socket,orderNotfications,setAllNotfications])
+
+
+
+
+
+    console.log(allNotfications)
+
+ 
 
 
 
@@ -34,20 +81,24 @@ export default function NotficationOrders(props) {
 
 
 
+
+
+
     return <LoadingErrorHandle
         loading={loading}
         error={error}
         extraStyle
         TextNotItems={ErrorServer}
+        type={HomeCarouselScreen}
     >
 
 
-        {orderNotfications?.length === Number(0) ||
-            orderNotfications === 'Empty' ?
+        {allNotfications?.length === Number(0) ||
+            allNotfications === 'Empty' ?
             <PageTextEmpty Pagetext={OrderText} />
             :
 
-            orderNotfications?.map((order, Index) => (
+            allNotfications?.map((order, Index) => (
                 <Col xs={12} sm={6} md={6} lg={6} key={Index}>
                     <div className='List'>
 

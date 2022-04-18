@@ -6,13 +6,13 @@ import { DliveryPrice, LitenBeställning, LitenBeställningPrics, Serviceavgift,
 
 
 // what need method need user for food
-export const Usercheck = (data, user, cartinfo) => {
+export const Usercheck = (data, theremoveArray, cartinfo) => {
 
    switch (data?.name) {
 
       case 'hämta själv': return `Takeaway om ${cartinfo?.finishfood?.to}-${cartinfo?.finishfood?.end} min`
 
-      case 'utkörning': return user?.Adress?.work ? `Leverans om  ${cartinfo?.finishfood?.to}-${cartinfo?.finishfood?.end} min till ${user?.Adress?.work}` : 'lägg till leveransadress'
+      case 'utkörning': return theremoveArray?.doornumber ? `Leverans om  ${cartinfo?.finishfood?.to}-${cartinfo?.finishfood?.end} min till ${theremoveArray?.address}` : 'lägg till leveransadress'
 
       default: return 'lägg till leveransadress'
 
@@ -22,15 +22,17 @@ export const Usercheck = (data, user, cartinfo) => {
 
 
 // selection if customs want dlivery show your address
-export const CheckDriverUser = (dri, use) => {
+export const CheckDriverUser = (dri, theremoveArray) => {
 
-   if (dri?.name === 'utkörning' && use?.Adress?.addres) {
+   if (dri?.name === 'utkörning' && theremoveArray?.doornumber) {
 
-      return `${use?.Adress?.addres} ${use?.Adress?.homeNumber} ${use?.Adress?.city} ${use?.Adress?.work} `
+    return `${theremoveArray?.address} ${theremoveArray?.doornumber} ${theremoveArray?.city} ${theremoveArray?.work} `
+
    }
 }
 
 
+// return `${use?.Adress?.addres} ${use?.Adress?.homeNumber} ${use?.Adress?.city} ${use?.Adress?.work} `
 
 
 
@@ -75,7 +77,7 @@ export const classWeek = () => {
 
 
 // collect total 
-export function CollectTotla(TheCheckOutDriver,filterCartProduct) {
+export function CollectTotla(TheCheckOutDriver, filterCartProduct) {
    // pries driver
    const Driver = TheCheckOutDriver?.name === 'utkörning' ? DliveryPrice : Number(0)
    // order less

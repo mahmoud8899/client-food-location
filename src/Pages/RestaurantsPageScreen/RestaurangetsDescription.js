@@ -1,9 +1,9 @@
 
 import { Modal } from 'react-bootstrap'
-
-import './style.css'
 import { HiOutlineX } from 'react-icons/hi'
 import MapsLocation from '../Home/MapsLocation/MapsLocation'
+import './style.css'
+
 
 export default function RestaurangetsDescription(props) {
 
@@ -44,19 +44,24 @@ export default function RestaurangetsDescription(props) {
 
             <div className='close-yourOrder'>
 
-                <h1 className='Addres-font-size'>{cartinfo?.username}</h1>
+                <h1 className='Addres-font-size'>name : {cartinfo?.username}</h1>
 
 
+                <div className='Oppen-CLOSE'>
                 <span className='comment-image-top-text-last'>
-                    open time : {cartinfo?.opentime?.oppen}
+                öppen tid : {cartinfo?.opentime?.oppen}
+                </span>
+                <span className='comment-image-top-text-last'>
+                öppna stäng : {cartinfo?.opentime?.close}
                 </span>
 
 
+                </div>
             </div>
 
 
             <div className='close-yourOrder'>
-
+            <h1 className='Addres-font-size'>Beskrivning</h1>
                 <div className='comment-image-top-text-last'>
                     {cartinfo?.description}
                 </div>
@@ -66,7 +71,7 @@ export default function RestaurangetsDescription(props) {
 
             <div className='close-yourOrder'>
                 <div className='Addres-font-size'>
-                    Addres
+                Adress
                 </div>
 
                 <div className='Addres-maps-res'>
@@ -79,7 +84,7 @@ export default function RestaurangetsDescription(props) {
                 </div>
 
                 <div className='Addres-font-size see_map'>
-                    see map
+                se karta
                 </div>
 
 
@@ -88,7 +93,7 @@ export default function RestaurangetsDescription(props) {
 
             <div className='close-yourOrder'>
                 <div className='Addres-font-size'>
-                    contact
+                Kontakt
                 </div>
 
                 <div className='Addres-maps-res'>
@@ -101,10 +106,10 @@ export default function RestaurangetsDescription(props) {
 
                 <div className='website-contact'>
                     <span >
-                        website
+                    hemsida
                     </span>
                     <span onClick={MpasClick}>
-                        visit webeite
+                    besök hemsida
                     </span>
                 </div>
 

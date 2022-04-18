@@ -407,10 +407,7 @@ const Styles = {
         padding: '0rem',
 
     },
-    colorcourrent: {
-        color: COLORS.firstColor,
-        fontWeight: 'bold'
-    },
+
 
     colorBox: {
         width: '100%',

@@ -1,7 +1,6 @@
 import { useState } from 'react'
+import { BsFillCreditCardFill } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
-import { MyOderImage } from '../../../Assistant/MyOrderImage'
-import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import EditComponent from '../../../Components/Update/EditComponent/EditComponent'
 import { RemoveCardNumberAction } from '../../../redux/Action/Cart_Action'
 
@@ -25,10 +24,10 @@ export default function ShowDetailsCard(props) {
 
 
     return <div className={classNamePayment ? 'add-selected-item addxpxp' : 'Edit-updateCart'} >
-
+           
         <div className='first-class-add-remove'>
-            <ImageScreen
-                ImageIcon={MyOderImage.visa}
+            <BsFillCreditCardFill
+               
                 className='visa-image'
             />
 

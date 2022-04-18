@@ -57,7 +57,7 @@ export default function SearchingResultHome(props) {
                                 state: { fromDashboard: true }
 
                             }} >
-                            <span className='hitta-style'>
+                            <span className='Visa-alla-title color-color-all'>
                                 Visa alla {searchingLength} träffar
                             </span>
                         </Link>

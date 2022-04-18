@@ -76,7 +76,7 @@ export default function RestaurantsYourOrderCart(props) {
                     <>
 
                         <div className='close-yourOrder'>
-                            <h1 className='your-h1' >Din beställning</h1>
+                            <h1 className='name-res' >Din beställning</h1>
                         </div>
 
                         <div className='scroll-comment'>

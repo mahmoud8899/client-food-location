@@ -19,7 +19,7 @@ export default function ProductsChildrenItems(props) {
 
 
     return home?.length > Number(0) ? home?.map((item, Index) => (
-        <Col xs={6} sm={4} md={4} lg={4} key={Index}>
+        <Col xs={6} sm={4} md={4} lg={4} key={Index} className='margin-margin-x'>
             <CartItemsScreen item={item} />
         </Col>
     )) : <CodeError error={TextEmpty} />

@@ -9,7 +9,8 @@ import { Link } from 'react-router-dom'
 import { Conversion } from '../../Components/Update/Conversion/Conversion'
 import { FiArchive } from 'react-icons/fi'
 import '../Home/Home.css'
-import {removeLikeAction} from '../../redux/Action/Like_Action'
+import { removeLikeAction } from '../../redux/Action/Like_Action'
+import { BsHeartFill } from 'react-icons/bs'
 const ScreenLike = (props) => {
 
 
@@ -29,7 +30,7 @@ const ScreenLike = (props) => {
 
 
 
-    const HandleRemove = (id) =>{
+    const HandleRemove = (id) => {
 
         dispatch(removeLikeAction(id))
     }
@@ -60,7 +61,11 @@ const ScreenLike = (props) => {
                 <Row className="margin-top-cart">
 
 
-                    {likeCart?.map((slider, sliderIndex) => (
+
+              
+
+
+                    {likeCart?.length > Number(0) ? likeCart?.map((slider, sliderIndex) => (
                         <Col xs={12} sm={6} md={4} lg={4} key={sliderIndex} >
 
                             <div className='Favourites-items margin-top-'>
@@ -79,7 +84,7 @@ const ScreenLike = (props) => {
                                 />
 
                                 <div className='box-name'>
-                                    <span className='font-name-size'>{slider?.username}</span>
+                                    <span className='font-name-size font-all-all-edit add-color-cart'>{slider?.username}</span>
                                     <span className='font-name-size-line'>{slider?.addressinfo?.city}</span>
                                 </div>
 
@@ -104,7 +109,27 @@ const ScreenLike = (props) => {
 
 
                         </Col>
-                    ))}
+                    )) :
+                        <div className='class-dina-favoriter'>
+                            <div className='class-profile-name add-notleft notLeft'>
+                                <h1>Dina favoriter</h1>
+                            </div>
+
+                            <div className='flex-boxc'>
+                                <p>
+                                    Lägg till en restaurang eller butik bland dina favoriter genom att klicka på hjärtsymbolen som du hittar i menyn. Dina favoriter visas sedan här.
+                                </p>
+                                <div className='flex-boxc-left'>
+                                    <BsHeartFill
+
+                                        className='Add-din'
+                                    />
+
+                                </div>
+                            </div>
+
+                        </div>
+                    }
 
 
 

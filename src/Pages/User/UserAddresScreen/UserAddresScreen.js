@@ -2,16 +2,16 @@ import { Container, Row, Col, Modal } from 'react-bootstrap'
 import UserNavBarScreen from '../UserNavBarScreen/UserNavBarScreen'
 import Styles from '../../../Components/Update/StylesComponents/style'
 import CreateNewAddress from '../../../Components/MyAddress/CreateNewAddress'
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import ShowListAddress from './ShowListAddress'
 import Title from '../../../Components/ScreenTitle/ScreenTitle'
 import AddOpenComponent from '../../../Components/Update/AddOpenComponent/AddOpenComponent'
 import { HiArrowNarrowLeft, HiOutlineX } from 'react-icons/hi'
 import HandleLoadingPage from '../../../Components/Update/HandleLoadingPage/HandleLoadingPage'
 import { ErrorServer } from '../../../Assistant/TextError'
-// import { CloseScreen } from '../../../Components/CloseScreen/CloseScreen'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import ShowListAddress from './ShowListAddress'
 import '../UserProfileScreen/Profile.css'
+
 export default function UserAddresScreen(props) {
 
     const { history } = props
@@ -29,6 +29,8 @@ export default function UserAddresScreen(props) {
     // user address...
     const locateAddress = useSelector((state) => state.locateAddress)
     const { loading } = locateAddress
+
+    console.log(locateAddress)
 
 
     // check user
@@ -85,6 +87,8 @@ export default function UserAddresScreen(props) {
     // [2]  :   list user address  ShowListAddress
     // [3] : buttom click  create new address AddOpenComponent
     // [4] : page create new addresss.
+
+    console.log(locateAddress)
     return <Container>
 
         <Title TextTitle='Lägg Till Ny Adress' />
@@ -117,6 +121,7 @@ export default function UserAddresScreen(props) {
 
 
                     <ShowListAddress
+                    
                         setOpenAddres={setOpenAddres}
                         locateAddress={locateAddress}
                     />

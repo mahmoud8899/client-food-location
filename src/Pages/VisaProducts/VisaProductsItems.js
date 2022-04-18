@@ -25,7 +25,7 @@ export default function VisaProductItems(props) {
   const fetchData = () => {
 
     if (fetchMore > Number(1)) {
-      console.log('helllo')
+      // console.log('helllo')
 
       // console.log(city)
       return dispatch(GetCartInfoHomeRestranges({
@@ -68,6 +68,9 @@ export default function VisaProductItems(props) {
     );
   }
 
+
+
+  // console.log(IdMatch !== 'restaurants' && IdMatch !== 'butiker')
 
 
 

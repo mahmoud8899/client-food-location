@@ -27,7 +27,7 @@ export default function NavBarSearchingTopAll(props) {
             <div className='Order-List-New-other'>
                 <div style={IconStyle && Styles.NavBarSearchingColor} >
                     {Icons && <Icons style={Styles.TabBoximage} />}
-                    <span className='font-all'>{TextIcons}</span>
+                    <span className='font-all font-all-all-edit'>{TextIcons}</span>
                 </div>
             </div>
 

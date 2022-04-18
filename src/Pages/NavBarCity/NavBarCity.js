@@ -1,9 +1,9 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import LoactionCity from './LoactionCity'
-import { BiStore ,BiRestaurant } from 'react-icons/bi'
-import {BsChevronDown, BsCursor} from 'react-icons/bs'
-import {FaCity} from 'react-icons/fa'
+import { BiStore, BiRestaurant } from 'react-icons/bi'
+import { BsChevronDown, BsCursor } from 'react-icons/bs'
+import { FaCity } from 'react-icons/fa'
 import { useState } from 'react'
 import './NavBarCity.css'
 import ShowStreetName from './ShowStreetName';
@@ -22,7 +22,7 @@ const NavBarCity = (props) => {
     const [showCity, setShowCity] = useState(false)
 
 
-   
+
 
 
 
@@ -35,15 +35,15 @@ const NavBarCity = (props) => {
             <Col xs={12} sm={12} md={3} lg={3} className='TestingCol xs'>
                 <div className='NavBar-city' onClick={() => setShowCity(true)}>
                     <div className='center-image-city'>
-                        <BsCursor  className='NavBar-city-image'  />
+                        <BsCursor className='NavBar-city-image' />
                     </div>
                     <div className='center-city-city'>
-                        <span className='NavBar-city-text' >
-                            <ShowStreetName   />
+                        <span className='font-name-size-line' >
+                            <ShowStreetName />
                         </span>
                     </div>
 
-                    <BsChevronDown className='NavBar-city-image-left'  />
+                    <BsChevronDown className='NavBar-city-image-left' />
 
 
                 </div>
@@ -55,29 +55,29 @@ const NavBarCity = (props) => {
 
 
                     <Link className={ClassNameHOMEactive ? 'center-image-city home addx' : 'center-image-city home'}
-                       to={{ pathname: '/' }}
+                        to={{ pathname: '/' }}
                     >
-                        <FaCity className='NavBar-city-image'  />
+                        <FaCity className='NavBar-city-image' />
                         <span>Upptäck</span>
 
                     </Link>
 
-                    <Link 
-                    to={{ pathname: '/uppsala/restaurants/' }}
-                    className={ClassNameCategory ? 'center-image-city home addx' : 'center-image-city home'}
+                    <Link
+                        to='/restaurants'
+                        className={ClassNameCategory ? 'center-image-city home addx' : 'center-image-city home'}
                     >
-                        <BiRestaurant  className='NavBar-city-image' />
+                        <BiRestaurant className='NavBar-city-image' />
                         <span>restaurants</span>
                     </Link>
 
 
                     <Link
-                        to={{ pathname: '/uppsala/butiker/' }}
+                        to='/butiker'
                         className={ClassNameLike ? 'center-image-city home addx' : 'center-image-city home'}
                     >
 
 
-                        <BiStore  className='NavBar-city-image' />
+                        <BiStore className='NavBar-city-image' />
                         <span>Butiker</span>
 
                     </Link>

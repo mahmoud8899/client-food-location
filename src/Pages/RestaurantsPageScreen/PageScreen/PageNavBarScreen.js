@@ -6,12 +6,12 @@ import { useSelector } from 'react-redux'
 import ImageScreen from '../../../Components/ImageScreen/ImageScreen'
 import InputSearchingRestrange from '../../../Components/Update/InputSearchingRestrange/InputSearchingRestrange'
 import RestaurangetsProductRating from '../RestaurangetsProductRating'
-import {SearchingContext} from '../../../Components/Update/UseContext/SearchingResult'
+import { SearchingContext } from '../../../Components/Update/UseContext/SearchingResult'
 import { useContext, useState } from 'react'
 
 
 export default function PageNavBarScreen(props) {
-    const { 
+    const {
         setOpenDescription,
         openDescription,
         NavBarScroll,
@@ -22,8 +22,8 @@ export default function PageNavBarScreen(props) {
 
 
 
-       // searching input to context
-    const {setSearching ,searching} = useContext(SearchingContext)
+    // searching input to context
+    const { setSearching, searching } = useContext(SearchingContext)
 
 
     // console.log(searching)
@@ -31,7 +31,7 @@ export default function PageNavBarScreen(props) {
 
     // cart info 
     const cartInfoid = useSelector((state) => state?.cartInfoid)
-    const {  cartinfo } = cartInfoid
+    const { cartinfo } = cartInfoid
     // user info 
     const userLogin = useSelector((state) => state?.userLogin)
     const { userInfo } = userLogin
@@ -47,19 +47,19 @@ export default function PageNavBarScreen(props) {
             <div className='NavBarRating-first'>
 
                 <div className='class-box-favourit'>
-              
-                        <div className='rating-views' onClick={() => userInfo?.firstname ? setShowRating(!showRating) : null}>
-                            <Rating value={cartinfo?.rating} text={`${cartinfo?.numReviews}`} />
-                        </div>
-                   
+
+                    <div className='rating-views' onClick={() => userInfo?.firstname ? setShowRating(!showRating) : null}>
+                        <Rating value={cartinfo?.rating} text={`${cartinfo?.numReviews}`} />
+                    </div>
+
 
 
                     <YourFvourite />
                 </div>
 
-               <div className='filter-product-product'>
-               <InputSearchingRestrange />
-               </div>
+                <div className='filter-product-product'>
+                    <InputSearchingRestrange />
+                </div>
 
 
             </div>
@@ -84,10 +84,10 @@ export default function PageNavBarScreen(props) {
                 <div className='CategoryList' ref={NavBarScroll}>
                     <ul className='CategoryList'>
                         {category?.map((cat, Index) => (
-                            <li 
-                            key={Index}
-                             className={searching === cat?.name ? 'add-bottom-avtive' : null}   
-                              onClick={() => setSearching(cat?.name)}  >{cat?.name}</li>
+                            <li
+                                key={Index}
+                                className={searching === cat?.name ? 'font-name-size font-all-all-edit add-color-cart' : 'font-name-size font-all-all-edit'}
+                                onClick={() => setSearching(cat?.name)}  >{cat?.name}</li>
                         ))}
                     </ul>
 
@@ -113,7 +113,7 @@ export default function PageNavBarScreen(props) {
             setShowRating={setShowRating}
             cartid={cartinfo?._id}
             ChangeParams={ChangeParams}
-          
+
         />
 
 

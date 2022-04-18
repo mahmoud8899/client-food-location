@@ -56,12 +56,12 @@ export default function SearchingPage({ history }) {
                     <Col xs={12} sm={12} md={12} lg={12} >
 
                         <div className='result-data'>
-                            <h1>Search results</h1>
+                            <h1 className='Visa-alla-title color-color-all'>Search results</h1>
                         </div>
 
                     </Col>
                     {searchingHome?.map((produx, Index) => (
-                        <Col xs={6} sm={4} md={searchingHome?.length === 2 ? 6 : 4} lg={searchingHome?.length === 2 ? 6 : 4} key={Index}>
+                        <Col xs={6} sm={6} md={searchingHome?.length === 2 ? 6 : 4} lg={4} key={Index}>
                             <CartItemsScreen item={produx} />
                         </Col>
                     ))}

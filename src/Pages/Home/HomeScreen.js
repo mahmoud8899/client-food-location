@@ -11,11 +11,11 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { FirstNameRest } from '../../Assistant/Selection'
 import NavBarCity from '../NavBarCity/NavBarCity'
 import Carousel from './Carousel/Carousel'
-import { useEffect, useContext,  } from 'react'
+import { useEffect, useContext,   } from 'react'
 import { AnotherLocation } from '../LoactionPage/ChooseAnotherLocation'
 import { Link } from 'react-router-dom'
 import './Home.css'
-import Footer from '../Footer/Footer'
+
 
 
 export default function HomeScreen(props) {
@@ -166,7 +166,7 @@ export default function HomeScreen(props) {
 
 
     // const scrollUseRef = useRef()
-    // ref={scrollUseRef}
+
     // useEffect(() => {
     //     scrollUseRef.current?.scrollIntoView({
     //         block: "nearest",
@@ -187,7 +187,7 @@ export default function HomeScreen(props) {
 
     return <LoadingErrorHandld loading={loadingLocation} type={SkeletonHomeScreen} >
         <TimeContext>
-            <Container fluid>
+            <Container fluid     >
                 <Title TextTitle={FirstNameRest} />
 
 
@@ -226,7 +226,7 @@ export default function HomeScreen(props) {
                             <RestrangeItems home={home} Title={TextRestrantHome}
                                 // nextNumber={nextNumber}
                                 TheRedirect={
-                                    <Link to={{ pathname: '/uppsala/restaurants/' }} className='Visa-alla' >Visa alla</Link>
+                                    <Link to={{ pathname: '/restaurants/' }} className='Visa-alla' >Visa alla</Link>
                                 }
                             />
 
@@ -244,7 +244,7 @@ export default function HomeScreen(props) {
                                 home={stores}
                                 Title={TextButiker}
                                 TheRedirect={
-                                    <Link to={{ pathname: '/uppsala/butiker/' }} className='Visa-alla' >Visa alla</Link>
+                                    <Link to={{ pathname: '/butiker/' }} className='Visa-alla' >Visa alla</Link>
                                 }
 
 
@@ -291,7 +291,7 @@ export default function HomeScreen(props) {
 
 
                     </Col>
-                    <Footer />
+                    {/* <Footer /> */}
                 </Row>
 
 

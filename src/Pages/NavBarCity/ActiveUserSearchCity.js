@@ -88,11 +88,14 @@ export default function ActiveUserSearchCity(props) {
 
 
                 {locateAddress?.myAddressLocal?.length > Number(0) &&
-                    <ShowListAddress
+                <div className='padding-d'>
+                     <ShowListAddress
                         locateAddress={locateAddress}
-                        StyleHome
+                        StyleLastPadding
                         ViljaAddress={ViljaAddress}
                     />
+                </div>
+                   
                 }
 
 
@@ -101,7 +104,7 @@ export default function ActiveUserSearchCity(props) {
                     <AddOpenComponent
                         Titel='Lägg till din adress'
                         className='Font-address'
-                        classNameTitle='classPluseTitel exstra-style'
+                        classNameTitle='classPluseTitel exstra-style font-all-all-edit color-color-all'
                         classNamePluse='classPlusefont'
 
                     />
@@ -109,7 +112,7 @@ export default function ActiveUserSearchCity(props) {
 
 
                 <div className='Add-Addres add-padding-loaction' >
-                    <div className='classPluseTitel normail' onClick={(e) => HandleCity(e)} >
+                    <div className='font-name-size-line' onClick={(e) => HandleCity(e)} >
                         Visa alla städer med {FirstNameRest}
                     </div>
                 </div>

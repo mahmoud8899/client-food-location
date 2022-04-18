@@ -7,16 +7,20 @@
 // [4]: reatrurant time 
 export const ValidationPayment = (TheCheckOutDriver, theCheckOutCard, CheckUserAddress, CheckOutRestrange, TheCheckOutBookingTime, dataTime) => {
 
+
+
     // get hour ans minues
     const TheHours = dataTime ? dataTime?.getHours() : ''
     const THEMinutes = dataTime ? dataTime?.getMinutes() : ''
     // 
     let timemintes = String(`${TheHours}:${THEMinutes}`)
 
+    // console.log(CheckOutRestrange?.close , timemintes)
     if (CheckOutRestrange?.close >= timemintes) {
 
 
         if (TheCheckOutDriver?.name === 'utkörning') {
+            // console.log('theCheckOutCard',theCheckOutCard)
             return typeof CheckUserAddress === 'undefined' ? 'vänligen lägg till en leveransadress klicka för att se beställning detaljerna' :
                 typeof theCheckOutCard === 'undefined' ? 'vänligen lägg till betalning för kunna fortsätta med din beställning' :
 
@@ -26,6 +30,7 @@ export const ValidationPayment = (TheCheckOutDriver, theCheckOutCard, CheckUserA
 
 
         if (TheCheckOutDriver?.name === 'hämta själv') {
+
             return typeof theCheckOutCard === 'undefined' ? 'vänligen lägg till betalning för kunna fortsätta med din beställning' : true
         }
 
@@ -36,7 +41,16 @@ export const ValidationPayment = (TheCheckOutDriver, theCheckOutCard, CheckUserA
 
         return TheCheckOutBookingTime?.timeOrder === null
             || TheCheckOutBookingTime?.dateOrder === 'today' ?
-            'kontrollera tiden' : true
+            'kontrollera tiden' :
+            TheCheckOutDriver?.name === 'utkörning' &&
+
+
+                typeof CheckUserAddress === 'undefined' ? 'vänligen lägg till en leveransadress klicka för att se beställning detaljerna' :
+                typeof theCheckOutCard === 'undefined' ? 'vänligen lägg till betalning för kunna fortsätta med din beställning' :
+
+                    TheCheckOutDriver?.name === 'hämta själv' &&
+                        typeof theCheckOutCard === 'undefined' ? 'vänligen lägg till betalning för kunna fortsätta med din beställning' : true
+
 
 
 

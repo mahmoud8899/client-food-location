@@ -1,11 +1,11 @@
 import { Fragment, useState } from 'react'
-import { Image} from 'react-bootstrap'
 import { FiChevronRight } from 'react-icons/fi'
 import { useSelector } from 'react-redux'
 import { MyOderImage } from '../../Assistant/MyOrderImage'
 import { Usercheck, CheckDriverUser } from '../../Assistant/SelectionPayment'
 import PaymentSelectOrderDerails from './PaymentSelectOrderDerails'
 import './PaymentScreen.css'
+import ImageScreen from '../../Components/ImageScreen/ImageScreen'
 
 
 export default function PaymentAddresDriverScreen(props) {
@@ -18,9 +18,9 @@ export default function PaymentAddresDriverScreen(props) {
 
 
 
-    // user Info.......
-    const userLogin = useSelector((state) => state?.userLogin)
-    const { userInfo } = userLogin
+    // // user Info.......
+    // const userLogin = useSelector((state) => state?.userLogin)
+    // const { userInfo } = userLogin
 
 
     // selection localstory why user selection method with order
@@ -29,7 +29,7 @@ export default function PaymentAddresDriverScreen(props) {
 
 
 
-    // console.log(driver)
+
  
 
      // open page to selection navbar time and takeway 
@@ -51,6 +51,14 @@ export default function PaymentAddresDriverScreen(props) {
 
 
 
+    const locateAddress = useSelector((state)=>state.locateAddress.myAddressLocal)
+    const THEcheckActive = locateAddress.filter((s) => s.firstAddress === true)
+    const theremoveArray = Object(...THEcheckActive)
+
+
+
+
+
 
 
     // options pages 
@@ -63,14 +71,14 @@ export default function PaymentAddresDriverScreen(props) {
     return <Fragment>
 
             <div className='box-delivery' onClick={(e) => HandleAddresDriver(e)}>
-                <Image src={MyOderImage.bike2} className='bike' />
+                <ImageScreen ImageIcon={MyOderImage.bike2} className='bike' />
                 <div className='bike-text'>
                 
 
-                    <div className={ClassNameNavBarCart ? 'color-family extrat' :'color-family'}>{Usercheck(driver, userInfo,cartinfo)}</div>
+                    <div className={ClassNameNavBarCart ? 'color-family extrat' :'color-family'}>{Usercheck(driver, theremoveArray,cartinfo)}</div>
                     <div className={ClassNameNavBarCart ? 'color-last-items extrat' :'color-last-items'}>
                         
-                        {CheckDriverUser(driver, userInfo)}
+                        {CheckDriverUser(driver, theremoveArray)}
                     </div>
 
                 </div>
@@ -91,8 +99,9 @@ export default function PaymentAddresDriverScreen(props) {
             setOpenNavBarList={setOpenNavBarList}
             driver={driver}
             loading={loading}
-            userInfo={userInfo}
-        />
+         
+            locateAddress={locateAddress}
+        /> 
 
 
 

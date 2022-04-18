@@ -17,7 +17,8 @@ export default function PaymentSelectOrderDerails(props) {
         setOpenNavBarList,
         driver,
         loading,
-        userInfo
+        
+     
     } = props
 
 
@@ -72,12 +73,9 @@ export default function PaymentSelectOrderDerails(props) {
                 {/* choose the type of requrest */}
                 <PaymentDrivery driver={driver} loading={loading} />
                 {/* add my address if i want home delivery  */}
-                <PaymentDetailsAddres
-                    userInfo={userInfo}
-                    driver={driver}
-                />
+                <PaymentDetailsAddres driver={driver} />
 
-                  {/* add time and day */}
+                {/* add time and day */}
                 <PaymentDate />
 
             </div>

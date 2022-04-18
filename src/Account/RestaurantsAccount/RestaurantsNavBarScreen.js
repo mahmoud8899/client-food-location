@@ -4,19 +4,26 @@ import { MyOderImage } from '../../Assistant/MyOrderImage'
 import { useHistory } from 'react-router-dom'
 import ImageScreen from '../../Components/ImageScreen/ImageScreen'
 import Styles from '../../Components/Update/StylesComponents/style'
+import { useEffect } from 'react'
 
 export default function RestaurantsNavBarScreen(props) {
-    const {
-        classNameSitting,
-        OpenBankAcount,
-        ClassNameUpdate,
-        ClassNameOrder,
-        ClassCategoryActive,
-        ClassNotfication
-    } = props
 
 
     const history = useHistory()
+
+    const IsMatch = history?.location?.pathname
+
+
+
+    // console.log(IsMatch)
+
+
+
+    useEffect(() => {
+
+
+    }, [IsMatch])
+
 
 
 
@@ -31,26 +38,26 @@ export default function RestaurantsNavBarScreen(props) {
     const ProductPage = (e) => {
         e.preventDefault()
 
-        return history.push(`/sw/restaurants/admin/product/`)
+        return history.push(`/sw/restaurants/admin/notification/product/`)
     }
 
     const CategoryPage = (e) => {
         e.preventDefault()
 
-        return history.push(`/sw/restaurants/admin/category/`)
+        return history.push(`/sw/restaurants/admin/notification/category/`)
     }
 
     const OrderPage = (e) => {
         e.preventDefault()
 
-        return history.push(`/sw/restaurants/admin/order/`)
+        return history.push(`/sw/restaurants/admin/notification/order/`)
     }
 
 
     const ProfilPage = (e) => {
         e.preventDefault()
 
-        return history.push(`/sw/restaurants/admin/profile/`)
+        return history.push(`/sw/restaurants/admin/notification/profile/`)
     }
 
 
@@ -61,7 +68,9 @@ export default function RestaurantsNavBarScreen(props) {
 
         <Col xs={6} sm={12} md={12} lg={12} style={Styles.Tabbox}>
             <ListGroup onClick={(e) => HomePage(e)} >
-                <ListGroup.Item style={ClassNotfication? Styles.TabActive :Styles.TabBoxChildren}>
+                <ListGroup.Item style={
+                    IsMatch === '/sw/restaurants/admin/notification/'
+                        ? Styles.TabActive : Styles.TabBoxChildren}>
                     <ImageScreen
                         ImageIcon={MyOderImage.notification}
                         style={Styles.TabBoximage}
@@ -74,7 +83,9 @@ export default function RestaurantsNavBarScreen(props) {
 
         <Col xs={6} sm={12} md={12} lg={12} style={Styles.Tabbox} >
             <ListGroup onClick={(e) => OrderPage(e)}>
-                <ListGroup.Item style={ClassNameOrder ?  Styles.TabActive  : Styles.TabBoxChildren} >
+                <ListGroup.Item style={
+                    IsMatch === '/sw/restaurants/admin/notification/order/'
+                        ? Styles.TabActive : Styles.TabBoxChildren} >
                     <ImageScreen ImageIcon={MyOderImage.basket2} style={Styles.TabBoximage} />
                     {SliceName('views orders', 10)}</ListGroup.Item>
             </ListGroup>
@@ -85,7 +96,9 @@ export default function RestaurantsNavBarScreen(props) {
 
         <Col xs={6} sm={12} md={12} lg={12} style={Styles.Tabbox}  >
             <ListGroup onClick={(e) => ProductPage(e)}   >
-                <ListGroup.Item style={ClassNameUpdate  ? Styles.TabActive: Styles.TabBoxChildren}>
+                <ListGroup.Item style={
+
+                    IsMatch === '/sw/restaurants/admin/notification/product/' ? Styles.TabActive : Styles.TabBoxChildren}>
                     <ImageScreen ImageIcon={MyOderImage.product} style={Styles.TabBoximage} />
                     list Products
                 </ListGroup.Item>
@@ -94,7 +107,9 @@ export default function RestaurantsNavBarScreen(props) {
 
         <Col xs={6} sm={12} md={12} lg={12} style={Styles.Tabbox} >
             <ListGroup onClick={(e) => CategoryPage(e)}>
-                <ListGroup.Item style={ClassCategoryActive ? Styles.TabActive :  Styles.TabBoxChildren} >
+                <ListGroup.Item style={
+                    IsMatch === '/sw/restaurants/admin/notification/category/'
+                        ? Styles.TabActive : Styles.TabBoxChildren} >
                     <ImageScreen ImageIcon={MyOderImage.category} style={Styles.TabBoximage} />
                     list category
                 </ListGroup.Item>
@@ -116,17 +131,14 @@ export default function RestaurantsNavBarScreen(props) {
 
         <Col xs={12} sm={12} md={12} lg={12} style={Styles.Tabbox}>
             <ListGroup onClick={(e) => ProfilPage(e)}>
-                <ListGroup.Item style={classNameSitting ? Styles.TabActive : Styles.TabBoxChildren} >
+                <ListGroup.Item style={
+                    IsMatch === '/sw/restaurants/admin/notification/profile/'
+
+                        ? Styles.TabActive : Styles.TabBoxChildren} >
                     <ImageScreen ImageIcon={MyOderImage.user} style={Styles.TabBoximage} />
                     {SliceName('Sitting', 10)}
                 </ListGroup.Item>
-                {classNameSitting && <>
-                    <ListGroup.Item style={Styles.TabBoxChildren} onClick={(e) => OpenBankAcount(e)} >
-                        <ImageScreen ImageIcon={MyOderImage.change} style={Styles.TabBoximage} />
-                        {SliceName('add acount', 10)}
-                    </ListGroup.Item>
 
-                </>}
 
             </ListGroup>
         </Col>
@@ -141,7 +153,13 @@ export default function RestaurantsNavBarScreen(props) {
 
 }
 
+// {classNameSitting && <>
+//     <ListGroup.Item style={Styles.TabBoxChildren} onClick={(e) => OpenBankAcount(e)} >
+//         <ImageScreen ImageIcon={MyOderImage.change} style={Styles.TabBoximage} />
+//         {SliceName('add acount', 10)}
+//     </ListGroup.Item>
 
+// </>}
 // {/* <ListGroup.Item style={Styles.boxChildren} onClick={(e) => {}}>
 // <ImageScreen ImageIcon={MyOderImage.edit} style={Styles.image} />
 // {SliceName('change addres', 10)}

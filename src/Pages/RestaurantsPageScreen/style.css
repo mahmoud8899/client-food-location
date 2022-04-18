@@ -3,6 +3,13 @@ color-last-items
 class-padding-style  this is padding 
 */
 
+
+.Oppen-CLOSE{
+    display: flex;
+    flex-direction: column;
+}.Oppen-CLOSE span{
+    text-transform: capitalize;
+}
 .ClassTesting{
     width: 100%;
     height: 300px;
@@ -198,10 +205,10 @@ class-padding-style  this is padding
     padding: 0.5rem;
     border-radius: 0.5rem;
     cursor: pointer;
-    font-size: 16px;
+
     text-transform: capitalize;
     margin-left: 0.5rem;
-    font-weight: bold;
+
 }
 .searching-text-style-box{
     display: flex;
@@ -216,25 +223,15 @@ class-padding-style  this is padding
     line-height: 1rem;
 }
 .class-font-size{
-    font-size: 13px;
-    text-transform: capitalize;
     word-break: break-word;
-    color: #000000c9;
 }
-.searching-text-style{
-    text-transform: capitalize;
-    cursor: pointer;
-    font-size: 16px;
-    font-family: sans-serif;
-    
-}
+
 .searching-text-style-box span{
     margin-left: auto;
     text-transform: capitalize;
-    font-size: 16px;
     cursor: pointer;
-    color: #00000066;
-    font-family: sans-serif;
+
+ 
 }
 .Margin-top-lit{
     margin-top: 4rem;
@@ -331,6 +328,9 @@ class-padding-style  this is padding
     text-transform: capitalize;
     font-family: system-ui;
 
+}
+.color-with{
+    color: white;
 }
 /* .font-size-navbar-class-buttom{
     margin-left: 1rem;
@@ -489,8 +489,8 @@ class-padding-style  this is padding
     padding: 1rem;
     border-radius: calc(0.25rem - 1px);
     text-transform: capitalize;
-    width: 100%;
-    z-index: 555;
+
+
     position: absolute;
     margin-top: -9rem;
     
@@ -718,16 +718,12 @@ class-padding-style  this is padding
 
   .name-res
 {
-    font-size: 39px;
+    font-size: 50px;
     text-transform: capitalize;
     font-family: 'Heebo', sans-serif;
 }
-.name-res.style-font{
-    font-size: 20px;
-}
-.name-res.font{
-    font-size: 20px;
-}
+
+
 
 .zIndexadd{
       z-index: 33;
@@ -737,15 +733,12 @@ class-padding-style  this is padding
 
 .text-favourit{
     cursor: pointer;
-    font-size: 16px;
     text-transform: capitalize;
     margin-left: 0.5rem;
-    font-weight: bold;
+  
   }
   .basket-price span{
     color: white;
-    font-size: 16px;
-    font-weight: bold;
   }
 
   .image-favourite{
@@ -808,10 +801,8 @@ class-padding-style  this is padding
 }
 .CategoryList ul li
 {
-    font-size: 16px;
-    text-transform: capitalize;
-    margin-left: 0.5rem;
-    font-weight: bold;
+  margin-left: 0.5rem;
+
 }
   /* End NavBar */
 
@@ -845,14 +836,7 @@ class-padding-style  this is padding
   display: none;
 }
 
-/* .CategoryList li {
-    margin-right: 1rem;
-    text-transform: capitalize;
-    font-size: 15px;
-    font-weight: bold;
-    margin-top: 0.2rem;
-   
-} */
+
 .CategoryList li:hover{
     opacity: 0.3;
 }
@@ -872,13 +856,7 @@ class-padding-style  this is padding
   outline: none;
   border-bottom: 2px solid black;
 }
-.font-product{
-    cursor: pointer;
-    font-size: 16px;
-    text-transform: capitalize;
-    font-family: system-ui;
-    
-}
+
 
 .item_products:hover{
   
@@ -889,14 +867,7 @@ class-padding-style  this is padding
     margin-top: 1rem;
     align-items: center;
 }
-.prics-item{
-    margin-right: 0.5rem;
-    font-weight: bold;
-    font-size: 20px;
-    text-transform: capitalize;
-    color: #ff392f9a
-  
-}
+
 .box-popular{
     background-color: #eee;
     border-radius: 0.2rem;
@@ -907,11 +878,7 @@ class-padding-style  this is padding
     margin-left: 2rem;
     height: 19px;
 }
-.text-popular{
-    font-weight: bold;
-    font-size: 12px;
-    text-transform: capitalize;
-}
+
 .herat-images{
 
     width: 10px;
@@ -1301,13 +1268,7 @@ overflow: hidden;
     font-weight: bold;
 }
 
-.your-h1 {
-    font-size: 24px;
-    margin-bottom: 1.5rem;
-    margin-top: 1.5rem;
-    text-transform: capitalize;
-    font-family: 'Heebo', sans-serif;
-}
+
 
 .close-yourOrder-number{
 
@@ -1334,20 +1295,16 @@ overflow: hidden;
     width: 40px;
     height: 40px;
     border-radius: 0.4rem;
-
     cursor: pointer;
     text-align: center;
     line-height: 40px;
-    font-weight: bold;
+
   
 }
 .close-yourOrder-numer-text{
     margin-left: 1rem;
 }
-.font-famil-color{
-    font-family: initial;
-    text-transform: capitalize;
-}
+
 .close-yourOrder-numer-text-culom-d-s{
     opacity: 0.7;
     font-size: 14px;
@@ -1692,18 +1649,17 @@ overflow: hidden;
 }
 .view-order-number-text.color-color{
     color: white;
-    font-size: 16px;
-    font-weight: bold;
+
 }
 .view-order-number-price{
     margin-left: auto;
     text-transform: capitalize;
-    font-size: 16px;
-    font-weight: bold;
+    color: white;
 }
 
-.filter-product-product{
-
+.view-order-number-price span{
+   
+    color: white;
 }
 
 /* End cart navbar */

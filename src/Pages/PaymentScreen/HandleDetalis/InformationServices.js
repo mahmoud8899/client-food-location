@@ -39,8 +39,8 @@ export default function InformationServices(props) {
         </div>
 
         <div className='box-levrans-uppsala'>
-            <h1>Leverans</h1>
-            <p>
+            <h1 className='Visa-alla-title color-color-all'>Leverans</h1>
+            <p className='font-name-size-line'>
 
                 Din leveransavgift är baserad på ditt avstånd till stället du beställer ifrån. I det här fallet är det 1,02 km bort, så din leveransavgift blir 49,00 kr.
                 Tillägg för liten beställning

@@ -106,11 +106,15 @@
 .flex-profile{
     display: flex;
     flex-direction: column;
+    text-decoration: none;
+    color: black;
 }
 .flex-profile span{
+    color: #383737;
     font-size: 14px;
-    font-weight: bold;
     text-transform: capitalize;
+}.flex-profile:hover{
+    color: black;
 }
 
 .font-fex{

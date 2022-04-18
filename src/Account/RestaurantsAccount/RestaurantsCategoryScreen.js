@@ -1,6 +1,4 @@
-import { Container, Row, Col } from 'react-bootstrap'
 import Title from '../../Components/ScreenTitle/ScreenTitle'
-import RestaurantsNavBarScreen from './RestaurantsNavBarScreen'
 import { useDispatch, useSelector } from 'react-redux'
 import CartItemsCategory from './Datils/CartItemsCategory'
 import { FetchCategoryUser } from '../../redux/Action/Category_Action'
@@ -9,11 +7,12 @@ import LoadingErrorHandle from '../../Components/Update/LoadingErrorHandle/Loadi
 import { PageTextEmpty } from '../../Components/Update/PageEmpty/PageEmpty'
 import NavBarSearchingTopAll from '../../Components/Update/NavBarSearchingTopAll/NavBarSearchingTopAll'
 import { ErrorServer, CategoryTextCeate, categorySearching } from '../../Assistant/TextError'
-import { useEffect, useState } from 'react'
-import UserName from './Datils/UserName'
+import {Fragment, useEffect, useState } from 'react'
+import { BiCloudUpload } from 'react-icons/bi'
 import './style.css'
 
-import { BiCloudUpload } from 'react-icons/bi'
+
+
 
 
 export default function RestaurantsCategoryScreen(props) {
@@ -82,27 +81,16 @@ export default function RestaurantsCategoryScreen(props) {
 
 
 
-    return <Container>
+    return <Fragment>
 
-        <div className='box'>
-            <UserName />
-        </div>
+
 
 
         <Title TextTitle='product Admin' />
 
 
 
-        <Row className='justify-content-center'>
 
-            <Col xs={12} sm={12} md={4} lg={3} >
-                <RestaurantsNavBarScreen ClassCategoryActive />
-            </Col>
-
-
-
-
-            <Col xs={12} sm={12} md={8} lg={9} >
 
 
 
@@ -151,14 +139,6 @@ export default function RestaurantsCategoryScreen(props) {
 
 
 
-            </Col>
-
-
-
-
-
-
-        </Row>
 
         <CategoryEditOchCreate
             editCategory={editCategory}
@@ -167,10 +147,10 @@ export default function RestaurantsCategoryScreen(props) {
         />
 
 
-    </Container>
 
 
 
+</Fragment>
 
 
 

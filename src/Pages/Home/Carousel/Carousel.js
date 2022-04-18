@@ -18,7 +18,7 @@ import '../Home.css'
 
 export default function Carousel(props) {
 
-    const {  home ,Title } = props
+    const { home, Title } = props
 
     const settings = {
         dots: true,
@@ -43,7 +43,7 @@ export default function Carousel(props) {
             <Col xs={12} sm={12} md={12} lg={12} >
 
 
-                <h1 className="first-frist">
+                <h1 className="first-frist Visa-alla-title color-color-all">
                     {Title}
                 </h1>
                 <Slider {...settings}>
@@ -63,7 +63,7 @@ export default function Carousel(props) {
                                         <div className="callBack-info"  >
 
 
-                                            <h1>{item?.username}</h1>
+                                            <h1 className="Visa-alla-title">{item?.username}</h1>
                                             <span className="spanClass">{SliceName(item?.description, 20)}</span>
 
                                             <div className='callBack-info-driver' style={Styles.buttom}>
@@ -89,7 +89,9 @@ export default function Carousel(props) {
 
                                             </div>
 
-                                            {TheTimeOppenProduct(item?.opentime)?.toString() === 'true' &&
+                                            {TheTimeOppenProduct(item?.opentime)?.toString() === 'true' ?
+                                                <></>
+                                                :
                                                 <div className='list-image-close add-close'>
                                                     stängd
                                                 </div>

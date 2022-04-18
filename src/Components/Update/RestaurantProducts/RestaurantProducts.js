@@ -1,7 +1,7 @@
 import { Row, Col } from 'react-bootstrap'
 import ImageScreen from '../../ImageScreen/ImageScreen'
 import { Fragment } from 'react'
-import {SliceName} from '../../../Assistant/Slice'
+import { SliceName } from '../../../Assistant/Slice'
 import { FiHeart } from "react-icons/fi";
 export default function RestaurantProducts(props) {
 
@@ -28,8 +28,8 @@ export default function RestaurantProducts(props) {
             <Col xs={12} sm={12} md={8} lg={8} >
                 {searching ?
                     <div className='searching-text-style-box' >
-                        <h1 className='searching-text-style'> {searching}</h1>
-                        <span onClick={(e) => setSearching(e.target.value = '')} >see all</span>
+                        <h1 className='font-all-all-edit'> {searching}</h1>
+                        <span className='font-name-size-line' onClick={(e) => setSearching(e.target.value = '')} >radera sökning</span>
                     </div>
                     : null}
 
@@ -40,12 +40,14 @@ export default function RestaurantProducts(props) {
 
         {category?.map((xs, postIndex) => (
             <div key={postIndex}>
-                <Row className='justify-content-center' >
+                {searching?.length > Number(1) ? null :
+                    <Row className='justify-content-center' >
 
-                    <Col xs={12} sm={12} md={8} lg={8} >
-                        <h1 className='name-res style-font'>{xs?.name}</h1>
-                    </Col>
-                </Row>
+                        <Col xs={12} sm={12} md={8} lg={8} >
+                            <h1 className='Visa-alla-title'>{xs?.name}</h1>
+                        </Col>
+                    </Row>
+                }
 
 
                 {matProducts?.length > 0 ? matProducts?.map((post, postIndex) => (
@@ -57,19 +59,18 @@ export default function RestaurantProducts(props) {
                                 <div className='item_products' onClick={(e) => HandleOpenProductid(e, post?._id)}>
 
                                     <div className='item_products-name'>
-                                        <span className='font-product'>{post?.name}</span>
+                                        <span className='font-name-size font-all-all-edit add-color-cart'>{post?.name}</span>
                                         <div className='line-heigt'>
-                                            <span className='class-font-size' > { SliceName(post?.description, 40)  }</span>
+                                            <span className='class-font-size font-name-size-line' > {SliceName(post?.description, 40)}</span>
                                         </div>
                                         <div className='popular'>
-                                            <span className='prics-item'>{post?.prices} kr</span>
+                                            <span className='font-name-size font-all-all-edit add-color-cart'>{post?.prices} kr</span>
 
 
                                             {post?.popular &&
                                                 <div className='box-popular'>
-                                                    <FiHeart  className='herat-images' />
-                                                    {/* <ImageScreen ImageIcon={MyOderImage.heart}  /> */}
-                                                    <span className='text-popular'>popular</span>
+                                                    <FiHeart className='herat-images' />
+                                                    <span className='font-name-size-line'>popular</span>
                                                 </div>
 
 
